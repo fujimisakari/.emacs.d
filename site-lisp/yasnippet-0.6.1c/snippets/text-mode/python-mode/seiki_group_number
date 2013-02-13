@@ -1,0 +1,6 @@
+#name : re.group_number
+# --
+p = r"a(.*)b"
+m = re.search(p, "aaaabbbb")
+if m is not None:
+    m.group(1)

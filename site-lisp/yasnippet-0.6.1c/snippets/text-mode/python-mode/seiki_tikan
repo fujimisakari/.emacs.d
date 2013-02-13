@@ -1,0 +1,4 @@
+#name : re.sub
+# --
+str = unicode("${1:最近SPAMがたくさんくる}", "utf-8")
+str = re.sub("${2:SPAM}", "${3:spam}", str)

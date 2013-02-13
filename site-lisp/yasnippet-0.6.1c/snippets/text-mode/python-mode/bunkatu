@@ -1,0 +1,3 @@
+#name : bunkatu
+# --
+"a:b:c:d:e:f".split(":")

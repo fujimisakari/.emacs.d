@@ -1,0 +1,4 @@
+#name : re.search(m)
+# --
+r = re.compile(r"${1:a([bc]|xz)}")
+if r.search(${2:str}) is not None:

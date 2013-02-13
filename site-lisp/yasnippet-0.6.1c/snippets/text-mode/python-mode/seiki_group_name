@@ -1,0 +1,7 @@
+#name : re.group_name
+# --
+p = r"(?P<year>\d{4})/(?P<month>\d{2})/(?P<day>\d{2})"
+m = re.search(p, "2012/05/04")
+if m is not None:
+    m.group("year"), m.group("month"), m.group("day")
+    m.group(0) # 元の文字列

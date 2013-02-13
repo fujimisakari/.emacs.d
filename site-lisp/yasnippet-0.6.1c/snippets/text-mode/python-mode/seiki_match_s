@@ -1,0 +1,3 @@
+#name : re.match(s)
+# --
+if re.match(r"${1:^a([bc]|xz)*}", ${2:str}) is not None:
