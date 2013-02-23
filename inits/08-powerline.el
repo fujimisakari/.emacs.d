@@ -58,7 +58,7 @@ static char * arrow_right[] = {
 \"          ..\",
 \"           .\"};"  color2 color1))
 
-(defconst color1 "SlateBlue")
+(defconst color1 "SlateBlue3")
 (defconst color2 "gray23")
 (defconst active-back-color "gray45")
 

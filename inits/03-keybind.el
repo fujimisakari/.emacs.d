@@ -28,6 +28,7 @@
 (global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)
 (global-set-key (kbd "C-l C-j") 'delete-horizontal-space)
 (global-set-key (kbd "C-l j") 'just-one-space)
+(global-set-key (kbd "C-l C-;") 'flyspell-region)
 
 ;; 行全体を削除
 (defun kill-all-line (&optional numlines)

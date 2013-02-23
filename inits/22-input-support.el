@@ -37,8 +37,18 @@
 (define-key ac-menu-map (kbd "C-j") 'ac-complete)
 (define-key ac-menu-map (kbd "C-i") 'ac-expand)
 ;; 色の設定
-(set-face-background 'ac-candidate-face "MediumPurple1")
-(set-face-background 'ac-selection-face "gray35")
+(set-face-foreground 'ac-candidate-face "#ccc")
+(set-face-background 'ac-candidate-face "#444")
+(set-face-foreground 'ac-selection-face "#fff")
+(set-face-background 'ac-selection-face "SlateBlue2")
+
+(set-face-foreground 'popup-menu-face "#ccc")
+(set-face-background 'popup-menu-face "#444")
+(set-face-foreground 'popup-menu-selection-face "#fff")
+(set-face-background 'popup-menu-selection-face "SlateBlue2")
+
+(set-face-background 'popup-scroll-bar-background-face "#444")
+(set-face-background 'popup-scroll-bar-foreground-face "#444")
 
 ;; 略語展開・補完を行うコマンドをまとめる
 ;; (setq hippie-expand-try-functions-list

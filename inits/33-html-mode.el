@@ -49,6 +49,7 @@
 ;; FlymakeHtml
 ;; http://www.emacswiki.org/emacs/FlymakeHtml
 ;; (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+;; (defun flymake-html-init ()())
 (defun flymake-html-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace))
