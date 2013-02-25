@@ -64,7 +64,8 @@
 
 ;; マッチした行を強調表示させる
 (require 'highline)
-(set-face-background 'highline-face "purple4")
+(set-face-foreground 'highline-face "black")
+(set-face-background 'highline-face "yellow")
 
 ;;; 更新日が当日のファイルは色を変える
 (defface dired-todays-face '((t (:foreground "green"))) nil)
