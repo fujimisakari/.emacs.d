@@ -52,6 +52,8 @@
 (setq dired-listing-switches "-lahF")
 ;; ディレクトリを再帰的にコピー可能にする
 (setq dired-recursive-copies 'always)
+;; コピーしたファイルの更新時間は現在の時間にする
+(setq dired-copy-preserve-time nil)
 
 ;; ファイル名のコピーはpathを含める
 (defadvice dired-copy-filename-as-kill (before dired-copy-prefix activate)

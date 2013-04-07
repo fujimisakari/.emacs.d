@@ -5,7 +5,7 @@
 ;;;--------------------------------------------------------------------------;;;
 
 ;; C-x b でバッファ切り替えを強化する
-(iswitchb-mode 1)
+(iswitchb-mode 0)
 ;; バッファ読み取り関数を isswitchbにする
 (setq read-buffer-function 'iswitchb-read-buffer)
 ;; 部分文字列の代りに正規表現を使う場合は t に設定する

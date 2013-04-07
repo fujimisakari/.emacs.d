@@ -12,6 +12,7 @@
 (global-set-key (kbd "C-M-;") 'delete-other-windows) ; 現在のウィンドウ以外を消す
 (global-set-key (kbd "M-/") 'hippie-expand)          ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)              ; M-g で指定行へジャンプ
+(global-unset-key (kbd "C-x b"))                     ; switch bufferは使用してないので無効
 (defalias 'yes-or-no-p 'y-or-n-p)                    ; "yes or no" の表示を "y or n"に変える
 (defalias 'exit 'save-buffers-kill-emacs)            ; M-x exit で Emacsが終了できるようにする
 (defalias 'qr 'replace-regexp)                       ; 一括置換(正規表現置換)
