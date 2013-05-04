@@ -774,7 +774,7 @@ See also `anything-set-source-filter'.")
     (define-key map (kbd "C-k")             'anything-delete-minibuffer-contents)
 
     (define-key map (kbd "C-r")             'undefined)
-    ;; (define-key map (kbd "C-t")             'anything-toggle-resplit-window)
+    (define-key map (kbd "C-t")             'anything-toggle-resplit-window)
     (define-key map (kbd "C-}")             'anything-narrow-window)
     (define-key map (kbd "C-{")             'anything-enlarge-window)
     
@@ -977,11 +977,7 @@ which affects `anything-samewindow'.")
 
 (defvar anything-delayed-init-executed nil)
 
-(defvar anything-mode-line-string "\\<anything-map>\\[anything-help]:help \
-\\[anything-select-action]:Acts \
-\\[anything-exit-minibuffer]/\\[anything-select-2nd-action-or-end-of-line]/\
-\\[anything-select-3rd-action]:NthAct \
-\\[anything-send-bug-report-from-anything]:BugReport"
+(defvar anything-mode-line-string nil
   "Help string displayed in mode-line in `anything'.
 It can be a string or a list of two args, in this case,
 first arg is a string that will be used as name for candidates number,
@@ -1731,7 +1727,8 @@ ANY-KEYMAP ANY-DEFAULT ANY-HISTORY See `anything'."
                    anything-source-name
                    anything-in-persistent-action
                    anything-quit
-                   (case-fold-search t)
+                   ;; [2012-10-16] move to `anything-update' to show right value of `case-fold-search'
+                   ;; (case-fold-search t)
                    (anything-buffer (or any-buffer anything-buffer))
                    ;; cua-mode ; avoid error when region is selected
                    )
@@ -2510,6 +2507,7 @@ is done on whole `anything-buffer' and not on current source."
     (when anything-enable-shortcuts
       (mapc 'delete-overlay anything-digit-overlays))
     (let (delayed-sources
+          (case-fold-search t)
           normal-sources)
       (unwind-protect ; Process normal sources and store delayed one's.
            (setq delayed-sources
@@ -3321,7 +3319,7 @@ if optional NOUPDATE is non-nil, anything buffer is not changed."
                 (accept-empty)
                 (match identity)
                 (filtered-candidate-transformer . anything-dummy-candidate)
-                (disable-shortcuts)
+                ;;(disable-shortcuts)
                 (volatile)))
       source))
 

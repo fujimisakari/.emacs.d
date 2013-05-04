@@ -1,11 +1,7 @@
 #! /bin/bash
 
-PYLINT="${HOME}/.pythonbrew/pythons/Python-2.7.2/bin/epylint"
-PYFLAKES="${HOME}/.pythonbrew/pythons/Python-2.7.2/bin/pyflakes"
-PIP8="${HOME}/.pythonbrew/pythons/Python-2.7.2/bin/pep8"
-
-${PYLINT} "$1" 2>/dev/null
-${PYFLAKES} "$1"
-${PIP8} --ignore=E221,E501,E701,E202 --repeat "$1"
+/Users/fujimo/.pyenv/shims/epylint "$1" 2>/dev/null
+/Users/fujimo/.pyenv/shims/pyflakes "$1"
+/Users/fujimo/.pyenv/shims/pep8 --ignore=E221,E501,E701,E202 --repeat "$1"
 
 true

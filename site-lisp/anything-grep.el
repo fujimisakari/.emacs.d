@@ -157,7 +157,7 @@
 ;;; Code:
 
 (defvar anything-grep-version "$Id: anything-grep.el,v 1.27 2010-03-21 11:31:04 rubikitch Exp $")
-(require 'anything)
+(require 'anything-config)
 (require 'grep)
 
 (defvar anything-grep-save-buffers-before-grep nil
@@ -298,6 +298,11 @@ GNU grep is expected for COMMAND. The grep result is colorized."
     (setq agrep-do-after-minibuffer-exit nil)))
 (add-hook 'minibuffer-exit-hook 'agrep-minibuffer-exit-hook)
 
+(defun agrep-highlight-line-after-persistent-action ()
+  (when anything-in-persistent-action
+    (anything-persistent-highlight-point (point-at-bol) (point-at-eol))))
+(add-hook 'anything-grep-goto-hook 'agrep-highlight-line-after-persistent-action)
+
 (defun agrep-show (func)
   (if (active-minibuffer-window)
       (setq agrep-do-after-minibuffer-exit func)
@@ -347,13 +352,16 @@ Its contents is fontified grep result."
 
 (defun agrep-goto  (file-line-content)
   "Visit the source for the grep result at point."
-  (string-match ":\\([0-9]+\\):" file-line-content)
-  (save-match-data
-    (funcall anything-grep-find-file-function
-             (expand-file-name (substring file-line-content
-                                          0 (match-beginning 0))
-                               (anything-attr 'pwd))))
-  (goto-line (string-to-number (match-string 1 file-line-content)))
+  (if (not (string-match ":\\([0-9]+\\):" file-line-content))
+      ;; If lineno is unavailable, just open file
+      (funcall anything-grep-find-file-function
+               (expand-file-name file-line-content (anything-attr 'pwd)))
+    (save-match-data
+      (funcall anything-grep-find-file-function
+               (expand-file-name (substring file-line-content
+                                            0 (match-beginning 0))
+                                 (anything-attr 'pwd))))
+    (goto-line (string-to-number (match-string 1 file-line-content))))
   (run-hooks 'anything-grep-goto-hook))
 
 ;; (@* "simple grep interface")

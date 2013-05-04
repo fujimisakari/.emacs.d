@@ -42,6 +42,9 @@
   ;; (migemo-init)
   )
 
+;; allの拡張
+(require 'all-ext)
+
 ;; 複数のgrepバッファを扱う
 (require 'grep-a-lot)
 ;; (grep-a-lot-setup-keys)
