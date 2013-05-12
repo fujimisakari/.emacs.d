@@ -66,7 +66,7 @@
           (forward-line) ;; bugfix (next-line)
           )))))
 
-(global-set-key (kbd "C-c G") 'mo-git-blame-current-view)
+(global-set-key (kbd "<f3>") 'mo-git-blame-current-view)
 (define-key mo-git-blame-mode-map (kbd "q") 'mo-git-blame-display-quit)
 
 ;; git-blameを開くときはelscreenを消す

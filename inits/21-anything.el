@@ -41,7 +41,7 @@
 
 ;; キーバインド設定
 (global-set-key (kbd "C-;") 'my-anything)                                     ; anythingの起動
-(global-set-key (kbd "C-M-p") 'anything-imenu)                                ; anything-imenuの起動
+(global-set-key (kbd "C-M-i") 'anything-imenu)                                ; anything-imenuの起動
 (define-key anything-map (kbd "M-k") 'anything-delete-minibuffer-contents)    ; カレントバッファ削除ができるようにする
 (define-key anything-map (kbd "C-t") 'other-window-or-split)                  ; ウィンドウを切り替える
 (define-key anything-c-moccur-anything-map (kbd "C-h") 'delete-backward-char) ; 削除

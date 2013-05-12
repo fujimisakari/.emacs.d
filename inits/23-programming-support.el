@@ -37,6 +37,8 @@
 
 ;; プログラムを実行する
 (require 'quickrun)
+(global-set-key (kbd "C-l q") 'quickrun)
+(global-set-key (kbd "C-l C-q") 'quickrun-region)
 
 ;; HTML XML の要素を隠して見栄えをよくする
 ;; (require 'html-fold)
@@ -76,9 +78,6 @@
 (delete (assoc 'which-func-mode mode-line-format) mode-line-format)
 (setq-default header-line-format '(which-func-mode ("" which-func-format)))
 (set-face-foreground 'which-func "pink")
-
-;; リアルタイムの文法チェック
-;; (add-hook 'c-mode-common-hook (lambda() (flymake-mode t)))
 
 ;; ネストしてるカッコわかりやすくする
 (when (require 'rainbow-delimiters nil 'noerror)

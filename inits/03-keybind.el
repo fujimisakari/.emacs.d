@@ -29,7 +29,8 @@
 (global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)
 (global-set-key (kbd "C-l C-j") 'delete-horizontal-space)
 (global-set-key (kbd "C-l j") 'just-one-space)
-(global-set-key (kbd "C-l C-;") 'flyspell-region)
+(global-set-key (kbd "C-l C-'") 'flyspell-region)
+(global-set-key (kbd "C-l C-M-'") 'ispell-word)
 
 ;; 行全体を削除
 (defun kill-all-line (&optional numlines)
@@ -58,10 +59,10 @@
 ;; 別窓(フレーム)でバッファを開く
 (key-chord-define-global "ru" 'find-file-other-frame)
 ;;; git statusを表示
-(key-chord-define-global "ei" 'magit-status)
+(global-set-key (kbd "<f4>") 'magit-status)
 
 ;; 行番号表示
-(global-set-key (kbd "<S-f5>") 'linum-mode)
+(global-set-key (kbd "<f1>") 'linum-mode)
 
 ;; emacs-lisp-modeでC-cC-dを押すと注釈される
 ;; (require 'lispxmp)

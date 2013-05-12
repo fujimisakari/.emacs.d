@@ -32,6 +32,21 @@
   (setq indent-tabs-mode nil)
   (c-toggle-hungry-state 1))
 
+(require 'flymake)
+(require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
+(global-set-key (kbd "C-M-p") 'flymake-goto-prev-error)
+(global-set-key (kbd "C-M-n") 'flymake-goto-next-error)
+;; 文法チェックの頻度の設定
+(setq flymake-no-changes-timeout 1)
+;; 改行時に文法チェックを行うかどうかの設定
+(setq flymake-start-syntax-check-on-newline nil)
+;; 自動でリアルタイムの文法チェックを有効
+;; (add-hook 'c-mode-common-hook (lambda() (flymake-mode t)))
+;; syntax checkが異常終了しても無視する
+(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
+  (setq flymake-check-was-interrupted t))
+(ad-activate 'flymake-post-syntax-check)
+
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)
 ;; text-mode

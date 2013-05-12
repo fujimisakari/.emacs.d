@@ -49,12 +49,12 @@
 (when (fboundp 'terminal-init-bobcat)
   (terminal-init-bobcat))
 
-;; システム関連
+;; ;; システム関連
 (setq echo-keystrokes 0.1)                                       ; キーストロークをエコーエリアに早く表示させる
 (setq gc-cons-threshold (* 50 gc-cons-threshold))                ; GCを減らして軽くする（デフォルトの50倍）
 (setq x-select-enable-clipboard t)                               ; X11とクリップボードを共有する
 (setq use-dialog-box nil)                                        ; ダイアログボックスを使わないようにする
-(setq scroll-step 1)                                             ; スクロールは一行にする
+(setq scroll-conservatively 35 scroll-margin 0 scroll-step 1)    ; スクロールは一行にする
 
 ;; 履歴関連
 (setq backup-inhibited t)                                        ; バックアップファイルを作らない
@@ -74,7 +74,7 @@
 (setq recentf-max-saved-items 5000)
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
-;;(setq recentf-exclude '("/TAGS$" "/var/tmp/"))
+;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 
 ;; ファイル内のカーソル位置を記憶する
 (require 'saveplace)

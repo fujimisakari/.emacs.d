@@ -17,4 +17,4 @@
 (autoload 'id-manager "id-manager" nil t)
 (setq epa-file-cache-passphrase-for-symmetric-encryption t)  ; パスワードのキャッシュ
 ;; (setenv "GPG_AGENT_INFO" nil)                                ; minibufferでパスワードを入力する場合
-;; (global-set-key (kbd "M-7") 'id-manager)
+(global-set-key (kbd "<f6>") 'id-manager)

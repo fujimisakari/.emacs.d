@@ -7,9 +7,9 @@
 (require 'gtags)
 
 ;; キーバインド
-(global-set-key (kbd "C-:") 'gtags-find-tag-other-window)  ; (別バッファで)関数の定義元(関数の実体)へジャンプ
-(global-set-key (kbd "C-M-:") 'gtags-find-tag)             ; 変数等のジャンプ
-(global-set-key (kbd "C-]") 'gtags-pop-stack)              ; ジャンプした場合にジャンプ前の場所に戻る
+(global-set-key (kbd "C-'") 'gtags-find-tag-other-window)  ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-M-'") 'gtags-find-tag)             ; 変数等のジャンプ
+;; (global-set-key (kbd "C-]") 'gtags-pop-stack)              ; ジャンプした場合にジャンプ前の場所に戻る
 ;; (global-set-key "\M-r" 'gtags-find-rtag)                   ; 関数の参照元(関数のプロトタイプ宣言、関数をコールしている部分)へジャンプ
 ;; (global-set-key (kbd "C-M-:") 'gtags-find-symbol)          ; 変数等のジャンプ
 ;; (global-set-key "\M-p" 'gtags-find-pattern)                ; マッチした行にジャンプ
@@ -19,12 +19,11 @@
 (setq gtags-auto-UPDATE t)
 
 ;; 相対pathで表示
-(setq gtags-path-style 'relative)
+(setq gtags-path-style 'absolete)
+;; (setq gtags-path-style 'relative)
 
 ;; *GTAGS SELECT* のバッファは1つだけ生成する
-(setq gtags-mode-hook
-      '(lambda ()
-         (setq gtags-select-buffer-single t)))
+(setq gtags-select-buffer-single t)
 
 ;; 複数のタグテーブルを切り替え
 (setq my-gtags-tag-table-alist
@@ -66,4 +65,4 @@
   (my-gtags-hide-tag-table-alist)
   (cd gtags-rootdir))
 
-(global-set-key [f12] 'my-gtags-select-tag-table)
+(global-set-key (kbd "<f2>") 'my-gtags-select-tag-table)
