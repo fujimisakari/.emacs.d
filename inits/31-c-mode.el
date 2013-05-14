@@ -4,6 +4,18 @@
 ;;                                 c-mode関連                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
+
+;; c, c++の基本設定
+(defun my-c-mode-common-hook()
+  (c-set-style "stroustrup")
+  (c-set-offset 'comment-intro 0)
+  (setq tab-width 4)
+  (setq c-hanging-comment-ender-p nil)
+  (setq indent-tabs-mode nil)
+  (c-toggle-hungry-state 1))
+
+
+;; fly-make設定
 (setq gcc-warning-options
       '("-Wall" "-Wextra" "-Wformat=2" "-Wstrict-aliasing=2" "-Wcast-qual"
       "-Wcast-align" "-Wwrite-strings" "-Wfloat-equal"
@@ -26,7 +38,6 @@
     (list "gcc" `(,@gcc-warning-options ,@gcc-cpu-options "-fsyntax-only" "-std=c99" ,local-file))
     ))
 (push '(".+\\.c$" flymake-c-init) flymake-allowed-file-name-masks)
-(add-hook 'c-mode-hook '(lambda () (flymake-mode t)) )
 
 (defun flymake-c++-init ()
   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
@@ -38,6 +49,9 @@
     ))
 (push '(".+\\.h$" flymake-c++-init) flymake-allowed-file-name-masks)
 (push '(".+\\.cpp$" flymake-c++-init) flymake-allowed-file-name-masks)
+
+
+(add-hook 'c-mode-hook '(lambda () (flymake-mode t)) )
 (add-hook 'c++-mode-hook '(lambda () (flymake-mode t)) )
 
 ;; ファイルを保存したときに自動でコンパイルする

@@ -23,15 +23,6 @@
   (c-toggle-hungry-state 1)
   (orgtbl-mode))
 
-;; c-modeのインデント設定
-(defun my-c-mode-hook()
-  (c-set-style "stroustrup")
-  (c-set-offset 'comment-intro 0)
-  (setq tab-width 4)
-  (setq c-hanging-comment-ender-p nil)
-  (setq indent-tabs-mode nil)
-  (c-toggle-hungry-state 1))
-
 (require 'flymake)
 (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
 (global-set-key (kbd "C-M-p") 'flymake-goto-prev-error)

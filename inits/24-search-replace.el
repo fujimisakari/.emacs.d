@@ -27,7 +27,7 @@
   ;; cmigemoを使う
   (setq migemo-command "/usr/local/bin/cmigemo")
   ;; migemoのコマンドラインオプション
-  (setq migemo-options '("-q" "--emacs" "-i" "\a"))
+  (setq migemo-options '("-q" "--emacs"))
   ;; migemo辞書の場所
   (setq migemo-dictionary "../share/migemo/utf-8/migemo-dict")
   ;; cmigemoで必須の設定
