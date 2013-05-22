@@ -22,7 +22,6 @@
 
 ;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (require 'auto-complete-config)
-(require 'auto-complete-etags)
 (ac-config-default)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/share/ac-dict")
 ;; ソートファイルの保存場所を変更

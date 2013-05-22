@@ -171,3 +171,10 @@
   "Return face used at point."
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
+
+;; rainbow設定
+(setq rainbow-html-colors t)
+(setq rainbow-x-colors t)
+(setq rainbow-latex-colors t)
+(setq rainbow-ansi-colors t)
+
