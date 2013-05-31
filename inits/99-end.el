@@ -12,3 +12,7 @@
 (define-key global-map [menu-bar summary] 'undefined)
 (define-key global-map [menu-bar edit] 'undefined)
 (define-key global-map [menu-bar w3m] 'undefined)
+
+;; macbook air 11インチでフルスクリーン
+(ns-toggle-fullscreen)
+(set-frame-size (selected-frame) 170 45)
