@@ -5,109 +5,50 @@
 ;;;--------------------------------------------------------------------------;;;
 
 (require 'powerline)
+(setq powerline-arrow-shape 'arrow14)  ;; フォントサイズが小さい場合
+;; モードラインの色
+(custom-set-faces
+ ;; アクティブ時
+ '(mode-line ((t (:foreground "white" :background "SlateBlue3" :box nil))))
+ ;; 非アクティブ時
+ '(mode-line-inactive ((t (:foreground "white" :background "gray23" :box nil)))))
+;; モードライン2色目
+(setq powerline-color1 "gray23")
+;; モードライン3色目
+(setq powerline-color2 "gray40")
 
-(defun arrow-right-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\".           \",
-\"..          \",
-\"...         \",
-\"....        \",
-\".....       \",
-\"......      \",
-\".......     \",
-\"........    \",
-\".........   \",
-\".........   \",
-\"........    \",
-\".......     \",
-\"......      \",
-\".....       \",
-\"....        \",
-\"...         \",
-\"..          \",
-\".           \"};"  color1 color2))
+;; なぜかモードラインの色が変ってしまうので再設定
+(set-face-foreground 'modeline "white")
+(set-face-background 'modeline "SlateBlue3")
 
-(defun arrow-left-xpm (color1 color2)
-  "Return an XPM right arrow string representing."
-  (format "/* XPM */
-static char * arrow_right[] = {
-\"12 18 2 1\",
-\". c %s\",
-\"  c %s\",
-\"           .\",
-\"          ..\",
-\"         ...\",
-\"        ....\",
-\"       .....\",
-\"      ......\",
-\"     .......\",
-\"    ........\",
-\"   .........\",
-\"   .........\",
-\"    ........\",
-\"     .......\",
-\"      ......\",
-\"       .....\",
-\"        ....\",
-\"         ...\",
-\"          ..\",
-\"           .\"};"  color2 color1))
+;; バッファ情報の書式
+(defpowerline buffer-id (propertize (concat (abbreviate-file-name default-directory) "%b")
+                                    'face (powerline-make-face color1)))
+(defpowerline row     "%l")    ; 行番号の書式
+(defpowerline column  "%c")    ; 列番号の書式
+(defpowerline percent "%p")    ; カーソル位置の割合
+(defpowerline time    "%M")    ; 時計の書式
 
-(defconst color1 "SlateBlue3")
-(defconst color2 "gray23")
-(defconst active-back-color "gray45")
+;; 右部分の位置合わせ(右端から何文字分を左に寄せるか、デフォルト+15文字)
+(defun powerline-make-fill (color)
+  (let ((plface (powerline-make-face color)))
+    (if (eq 'right (get-scroll-bar-mode))
+      (propertize " " 'display '((space :align-to (- right-fringe 36))) 'face plface)
+      (propertize " " 'display '((space :align-to (- right-fringe 32))) 'face plface))))
 
-(defvar arrow-right-1 (create-image (arrow-right-xpm color1 color2) 'xpm t :ascent 'center))
-(defvar arrow-right-2 (create-image (arrow-right-xpm color2 "None") 'xpm t :ascent 'center))
-(defvar arrow-left-1  (create-image (arrow-left-xpm color2 color1) 'xpm t :ascent 'center))
-(defvar arrow-left-2  (create-image (arrow-left-xpm "None" color2) 'xpm t :ascent 'center))
-(defvar arrow-left-3  (create-image (arrow-left-xpm color2 active-back-color) 'xpm t :ascent 'center))
+;; Powerlineの書式
+(setq-default mode-line-format (list
+ '("-" mode-line-mule-info mode-line-modified)
+ '(:eval (concat
+           (powerline-buffer-id   'left   nil powerline-color1)
+           (powerline-major-mode  'left       powerline-color1)
+           (powerline-minor-modes 'left       powerline-color1)
+           (powerline-narrow      'left       powerline-color1 powerline-color2)
+           (powerline-vc          'center                      powerline-color2)
+           (powerline-make-fill                                powerline-color2)
+           (powerline-row         'right      powerline-color1 powerline-color2)
+           (powerline-make-text   ": "        powerline-color1)
+           (powerline-column      'right      powerline-color1)
+           (powerline-time        'right  nil powerline-color1)
+           (powerline-make-text   "  "    nil )))))
 
-(make-face 'mode-line-color-1)
-(set-face-attribute 'mode-line-color-1 nil
-                    :foreground "white"
-                    :background color1)
-
-(make-face 'mode-line-color-2)
-(set-face-attribute 'mode-line-color-2 nil
-                    :foreground "white"
-                    :background color2)
-
-(make-face 'mode-line-color-3)
-(set-face-attribute 'mode-line-color-3 nil
-                    :foreground "white"
-                    :background active-back-color)
-
-;; アクティブ時
-(set-face-attribute 'mode-line nil
-                    :foreground "gray5"
-                    :background "gray40"
-                    :box nil)
-
-;; 非アクティブ時
-(set-face-attribute 'mode-line-inactive nil
-                    :foreground "gray75"
-                    :background "gray15")
-
-(setq-default mode-line-format
- (list  '(:eval (concat (propertize (concat " %Z:%* " (abbreviate-file-name default-directory) "%b ") 'face 'mode-line-color-1)
-                        (propertize " " 'display arrow-right-1)))
-        '(:eval (concat (powerline-major-mode 'left color2)
-                        (powerline-minor-modes 'left color2)
-                        (propertize " " 'face 'mode-line-color-2)
-                        (propertize " " 'display arrow-right-2)))
-
-        ;; Justify right by filling with spaces to right fringe - 16
-        ;; (16 should be computed rahter than hardcoded)
-        '(:eval (propertize " " 'display '((space :align-to (- right-fringe 20)))))
-
-        '(:eval (concat (propertize " " 'display arrow-left-2)
-                        (propertize "%4l:%2c " 'face 'mode-line-color-2)))
-        '(:eval (concat (propertize " " 'display arrow-left-1)
-                        (propertize " %p                         " 'face 'mode-line-color-1)))
-))

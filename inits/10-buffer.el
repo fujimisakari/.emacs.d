@@ -107,6 +107,6 @@
 ))
 
 ;; アクティブ/インアクティブなウィンドウの背景色変更
-(require 'hiwin)
-(hiwin-activate)
-(set-face-background 'hiwin-face "gray12")
+;; (require 'hiwin)
+;; (hiwin-activate)
+;; (set-face-background 'hiwin-face "gray12")

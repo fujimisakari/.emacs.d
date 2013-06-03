@@ -83,7 +83,7 @@
 
 ;; 日付・時刻の表示設定
 (setq display-time-string-forms
-      '((format "%s/%s/%s(%s) %s:%s" year month day dayname 24-hours minutes)))
+      '((format "%s/%s(%s) %s:%s" month day dayname 24-hours minutes)))
 (display-time)                                                       ; 時間を表示
 (setq display-time-kawakami-form t)                                  ; 時刻表示の左隣に日付を追加
 (setq display-time-24hr-format t)                                    ; 24 時間制
