@@ -35,8 +35,9 @@
                nil)))
 
 ;; キーバインド設定
-;; (define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
+(define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
 (define-key web-mode-map (kbd "C-;") nil)
+
 
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-face "lime green")

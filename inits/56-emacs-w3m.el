@@ -42,25 +42,130 @@
 ;; w3m でhtml パートを表示する。
 (require 'mime-w3m)
 
-;; w3mのバッファーでは、デフォルトで、inline image 表示
-(setq w3m-default-display-inline-images t)
-
-;; wanderlust の、message buffer では、html メールに関しては、デフォルトでは
-;; inline image off にしておく。
+;; wanderlust の、message buffer では、html メールに関しては、デフォルトで画像表示
 (setq mime-w3m-safe-url-regexp nil)
-(setq mime-w3m-display-inline-images nil)
+(setq mime-w3m-display-inline-images t)
 
 ;; message buffer で、C-u M-i で、inline image 表示
 ;; 安全だと思われる、メールだけ、表示する。
-(defun wl-summary-w3m-safe-toggle-inline-images (&optional arg)
-  "Toggle displaying of all images in the message buffer.
-If the prefix arg is given, all images are considered to be safe."
-  (interactive "P")
-  (save-excursion
-    (set-buffer wl-message-buffer)
-    (w3m-safe-toggle-inline-images arg)))
+;; (defun wl-summary-w3m-safe-toggle-inline-images (&optional arg)
+;;   "Toggle displaying of all images in the message buffer.
+;; If the prefix arg is given, all images are considered to be safe."
+;;   (interactive "P")
+;;   (save-excursion
+;;     (set-buffer wl-message-buffer)
+;;     (w3m-safe-toggle-inline-images arg)))
 
-(eval-after-load "wl-summary"
-  '(define-key wl-summary-mode-map
-     "\M-i" 'wl-summary-w3m-safe-toggle-inline-images))
+;; (eval-after-load "wl-summary"
+;;   '(define-key wl-summary-mode-map
+;;      "\M-i" 'wl-summary-w3m-safe-toggle-inline-images))
 
+;; SEMI override
+
+;; (eval-after-load "mime-image"
+;;   '(progn
+;;      (let ((rule '(image jpg jpeg)))
+;;        (ctree-set-calist-strictly
+;;         'mime-preview-condition
+;;         (list (cons 'type (car rule))(cons 'subtype (nth 1 rule))
+;;               '(body . visible)
+;;               (cons 'body-presentation-method #'mime-display-image)
+;;               (cons 'image-format (nth 2 rule)))))
+
+;;      (require 'concurrent)
+
+;;      (defvar mime-display-image-semaphore (cc:semaphore-create 1))
+;;      (defvar mime-display-image-orgfile "/tmp/_mime_org.")
+;;      (defvar mime-display-image-tmpfile "/tmp/_mime_image.jpg")
+;;      (defvar mime-display-image-size '(600 . 400))
+
+;;      (defun mime-display-image-winsize ()
+;;        (let* ((win (selected-window))
+;;               (ww (* (window-width win) (frame-char-width)))
+;;               (wh (* (- (window-height win) 2) (frame-char-height))))
+;;          (cons ww wh)))
+
+;;      (defun mime-display-image-save-rawdata (d rawdata filename)
+;;        (lexical-let ((rawdata rawdata) (filename filename))
+;;          (deferred:nextc d
+;;            (lambda (x) 
+;;              (with-temp-buffer
+;;                (let ((save-buffer-coding-system 'raw-text)
+;;                      (buffer-file-coding-system 'raw-text)
+;;                      (coding-system-for-read 'raw-text))
+;;                  (insert rawdata)
+;;                  (write-region nil nil filename)))))))
+
+;;      (defun mime-display-image-convert (d filename dim)
+;;        (lexical-let ((filename filename)
+;;                      (dim mime-display-image-size))
+;;          (deferred:$
+;;            (deferred:nextc d
+;;              (lambda (x) 
+;;                (when (file-exists-p mime-display-image-tmpfile)
+;;                  (delete-file mime-display-image-tmpfile))))
+;;            (deferred:processc it "convert" "-resize" 
+;;              (format "%sx%s" (car dim) (cdr dim))
+;;              filename mime-display-image-tmpfile)
+;;            (deferred:nextc it
+;;              (lambda (x) 
+;;                (unless (file-exists-p mime-display-image-tmpfile)
+;;                  (error "Could not convert image : %s" filename)))))))
+
+;;      (defun mime-display-image-load (filename)
+;;        (let ((buf (find-file-noselect filename t t)))
+;;          (prog1 (with-current-buffer buf (buffer-string))
+;;            (kill-buffer buf))))
+
+;;      (defun mime-display-image-show (d img-buf img-pos)
+;;        (lexical-let ((img-buf img-buf) (img-pos img-pos))
+;;          (deferred:nextc d
+;;            (lambda (x) 
+;;              (clear-image-cache)
+;;              (let* ((raw (mime-display-image-load mime-display-image-tmpfile))
+;;                     (image (mime-image-create raw 'jpeg 'data)))
+;;                (with-current-buffer img-buf
+;;                  (let ((flg buffer-read-only))
+;;                    (setq buffer-read-only nil)
+;;                    (put-text-property img-pos (1+ img-pos) 'display image)
+;;                    (setq buffer-read-only flg)))
+;;                (message "IMAGE : [%s]" (cons img-buf img-pos)))))))
+
+;;      (defun mime-display-image-clean (d filename)
+;;        (lexical-let ((filename filename))
+;;          (deferred:nextc d
+;;            (lambda (x) 
+;;              (when (file-exists-p mime-display-image-tmpfile)
+;;                (delete-file mime-display-image-tmpfile))
+;;              (when (file-exists-p filename)
+;;                (delete-file filename))))))
+
+;;      (defun mime-display-image (entity situation)
+;;        (message "Decoding image...")
+;;        (lexical-let* ((format (cdr (assq 'image-format situation))) 
+;;                       (rawdata (mime-entity-content entity))
+;;                       (org-filename (or (cdr (assq 'filename situation))
+;;                                         (cdr (assoc "name" situation))))
+;;                       (filename (concat 
+;;                                  mime-display-image-orgfile
+;;                                  (file-name-extension org-filename)))
+;;                       (img-buf (current-buffer))
+;;                       (img-pos (point))
+;;                       (dim (mime-display-image-winsize)))
+;;          (insert (substring-no-properties " \n"))
+;;          (deferred:$
+;;            (cc:semaphore-acquire mime-display-image-semaphore)
+;;            (mime-display-image-save-rawdata it rawdata filename)
+;;            (mime-display-image-convert it filename dim)
+;;            (mime-display-image-show it img-buf img-pos)
+;;            (mime-display-image-clean it filename)
+;;            (deferred:error it
+;;              (lambda (err) (message "Image Error : %s" err)))
+;;            (deferred:nextc it
+;;              (lambda (x)
+;;                (cc:semaphore-release mime-display-image-semaphore)
+;;                (message "Image Done : %s" org-filename))))))
+
+;;      ;; (cc:semaphore-release-all mime-display-image-semaphore)
+
+;;      ))

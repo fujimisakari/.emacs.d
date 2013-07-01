@@ -21,6 +21,10 @@
 ; diredバッファに対してtempbufを有効にする
 ;(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
 
+;; *Completions*バッファを，使用後に消す
+(require 'lcomp)
+(lcomp-install)
+
 ;; 最近閉じたバッファを復元
 ;; http://d.hatena.ne.jp/kitokitoki/20100608/p2
 (require 'cl)

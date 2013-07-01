@@ -79,3 +79,11 @@
   (interactive)
   (elscreen-toggle-display-tab)
   (mo-git-blame-quit))
+
+;; リジョン選択をghで開く
+(require 'open-github-from-here)
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program
+(if (file-exists-p "/usr/bin/open")
+"/usr/bin/open"))
+(global-set-key (kbd "C-l g") 'open-github-from-here)
