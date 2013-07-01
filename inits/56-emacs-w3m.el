@@ -21,8 +21,8 @@
 ;; browse-url w3m
 ;; 以下のように設定しておくと、URI に類似した文字列がある場所で C-x m と
 ;; 入力すれば、w3m で表示されるようになる。
-(setq browse-url-browser-function 'w3m-browse-url)
-(autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
+;; (setq browse-url-browser-function 'w3m-browse-url)
+;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
 (global-set-key (kbd "C-x m") 'browse-url-at-point)
 
 ;; `dired' バッファで `C-x m' キーをタイプすることによって、

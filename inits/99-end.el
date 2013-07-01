@@ -16,3 +16,11 @@
 ;; macbook air 11インチでフルスクリーン
 (ns-toggle-fullscreen)
 (set-frame-size (selected-frame) 170 45)
+
+;; ブラウザはmacを使用する
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program
+(if (file-exists-p "/usr/bin/open")
+"/usr/bin/open"))
+(global-set-key (kbd "C-l g") 'open-github-from-here)
+
