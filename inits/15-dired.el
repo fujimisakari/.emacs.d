@@ -47,9 +47,11 @@
 ;; ディレクトリから先頭表示されるようにする
 (load "ls-lisp")
 (setq ls-lisp-dirs-first t)
-(setq ls-lisp-use-insert-directory-program nil) ; needed on unix
+(when (executable-find "gls")
+  (setq insert-directory-program "gls"))
+;; (setq ls-lisp-use-insert-directory-program nil) ; needed on unix
 ;; lsのオプション 「l」(小文字のエル)は必須
-(setq dired-listing-switches "-lahF")
+(setq dired-listing-switches "-lahFv")
 ;; ディレクトリを再帰的にコピー可能にする
 (setq dired-recursive-copies 'always)
 ;; コピーしたファイルの更新時間は現在の時間にする
