@@ -26,8 +26,8 @@
          (setq fixed-width-use-QuickDraw-for-ascii t)
          (setq mac-allow-anti-aliasing t)
          (set-face-attribute 'default nil
-                             :family "monaco"
-                             :height 125)
+                             :family "Menlo"
+                             :height 150)
          (set-fontset-font (frame-parameter nil 'font)
           'japanese-jisx0208
           '("Ricty" . "iso10646-1"))
@@ -43,7 +43,7 @@
           '("Ricty" . "iso10646-1"))
          (setq face-font-rescale-alist
                '(("^-apple-hiragino.*" . 1.2)
-                 (".*ricty.*" . 1.3)
+                 (".*ricty.*" . 1.2)
                  (".*osaka-bold.*" . 1.2)
                  (".*osaka-medium.*" . 1.2)
                  (".*courier-bold-.*-mac-roman" . 1.0)
