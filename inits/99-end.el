@@ -23,4 +23,3 @@
 (if (file-exists-p "/usr/bin/open")
 "/usr/bin/open"))
 (global-set-key (kbd "C-l g") 'open-github-from-here)
-

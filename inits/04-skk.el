@@ -7,7 +7,7 @@
 ;; 基本設定
 (require 'skk-autoloads)
 (setq default-input-method "japanese-skk")
-(key-chord-define-global "jk" 'skk-mode)
+(key-chord-define-global "ui" 'skk-mode)
 
 ;; ddskk の読み込みを Emacs の起動時に行う
 (setq skk-preload t)

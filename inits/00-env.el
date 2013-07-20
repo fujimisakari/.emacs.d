@@ -76,6 +76,10 @@
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 
+;; バッファは左右分割で開くようにする
+;; (setq split-height-threshold nil)
+;; (setq split-width-threshold 40)
+
 ;; ファイル内のカーソル位置を記憶する
 (require 'saveplace)
 (setq-default save-place t)

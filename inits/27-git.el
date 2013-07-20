@@ -80,5 +80,5 @@
   (elscreen-toggle-display-tab)
   (mo-git-blame-quit))
 
-;; リジョン選択をghで開く
+;; リジョン選択をgithubで開く
 (require 'open-github-from-here)

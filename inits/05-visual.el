@@ -28,29 +28,29 @@
          (set-face-attribute 'default nil
                              :family "monaco"
                              :height 125)
-         (set-fontset-font
-          (frame-parameter nil 'font)
+         (set-fontset-font (frame-parameter nil 'font)
           'japanese-jisx0208
-          '("Hiragino Maru Gothic Pro" . "iso10646-1"))
-         (set-fontset-font
-          (frame-parameter nil 'font)
+          '("Ricty" . "iso10646-1"))
+         (set-fontset-font (frame-parameter nil 'font)
+          'japanese-jisx0212
+          '("Ricty" . "iso10646-1"))
+         (set-fontset-font (frame-parameter nil 'font)
           'katakana-jisx0201
-          '("Hiragino Maru Gothic Pro" . "iso10646-1"))
+          '("Ricty" . "iso10646-1"))
          ;; Unicode フォント
-         (set-fontset-font
-          (frame-parameter nil 'font)
+         (set-fontset-font (frame-parameter nil 'font)
           'mule-unicode-0100-24ff
-          '("monaco" . "iso10646-1"))
+          '("Ricty" . "iso10646-1"))
          (setq face-font-rescale-alist
                '(("^-apple-hiragino.*" . 1.2)
+                 (".*ricty.*" . 1.3)
                  (".*osaka-bold.*" . 1.2)
                  (".*osaka-medium.*" . 1.2)
                  (".*courier-bold-.*-mac-roman" . 1.0)
                  (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
                  (".*monaco-bold-.*-mac-roman" . 0.9)
                  ("-cdac$" . 1.3))))
-
-       (define-key global-map [?¥] [?\\]))) ;; ¥の代わりにバックスラッシュを入力する
+         (define-key global-map [?¥] [?\\]))) ;; ¥の代わりにバックスラッシュを入力する
 
 ;; フォントのサイズ等を一覧表示確認できるようにする
 (require 'my-sample-ascii)
