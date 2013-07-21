@@ -59,7 +59,7 @@
 ;; 履歴関連
 (setq backup-inhibited t)                                        ; バックアップファイルを作らない
 (setq delete-auto-save-files t)                                  ; 終了時にオートセーブファイルを消す
-(setq history-length 2000)                                       ; 履歴をたくさん保存する
+(setq history-length 1000)                                       ; 履歴をたくさん保存する
 (setq message-log-max 1000)                                      ; ログ記録行数を増やす
 (setq enable-recursive-minibuffers t)                            ; ミニバッファを再帰的に呼び出せるようにする
 (setq vc-follow-symlinks t)                                      ; シンボリックファイルを開く時にいちいち聞かない
@@ -69,16 +69,16 @@
 
 ;; 最近使ったファイルを履歴で残すようにする
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/recentf-ext.el")
-;; 最近のファイルを2500個を保存する
+;; 最近のファイルを1000個を保存する
 (require 'recentf-ext)
-(setq recentf-max-saved-items 2000)
+(setq recentf-max-saved-items 1000)
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 
 ;; バッファは左右分割で開くようにする
 ;; (setq split-height-threshold nil)
-;; (setq split-width-threshold 40)
+(setq split-width-threshold 100)
 
 ;; ファイル内のカーソル位置を記憶する
 (require 'saveplace)

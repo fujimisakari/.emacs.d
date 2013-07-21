@@ -10,6 +10,7 @@
 (setq browse-url-browser-function 'browse-url-firefox)  ; リンクはemacs-w3mで開く
 (setq org-return-follows-link t)                        ; リンクはRETで開く
 (setq org-startup-truncated nil)                        ; org-mode開始時は折り返しするよう設定
+(setq org-startup-with-inline-images t)                 ; 画像をインライン表示
 (set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
 (set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
 
@@ -68,3 +69,29 @@
 
 (setq org-log-done 'tilme)                    ; DONEの時刻を記録する
 (setq org-agenda-files (list org-directory))  ; 予定表に使うorgファイルのリスト
+
+;; フォントサイズ設定
+(set-face-attribute 'org-level-1 nil :bold t :height 1.2)
+(set-face-attribute 'org-level-2 nil :bold nil :height 1.1)
+(set-face-attribute 'org-level-3 nil :bold nil :height 1.0)
+(set-face-attribute 'org-level-4 nil :bold nil :height 1.0)
+;; (set-face-attribute 'org-checkbox nil :background "gray" :foreground "black"
+;;                                    :box '(:line-width 1 :style released-button))
+
+;; src のハイライト設定
+(setq org-src-fontify-natively t)
+
+(defface org-block-begin-line
+  '((t (:foreground "purple1" :background "gray17")))
+  "Face used for the line delimiting the begin of source blocks.")
+(set-face-foreground 'org-block-begin-line "purple1")
+
+(defface org-block-background
+  '((t (:background "gray17")))
+  "Face used for the source block background.")
+(set-face-background 'org-block-background "gray17")
+
+(defface org-block-end-line
+  '((t (:foreground "purple1" :background "gray17")))
+  "Face used for the line delimiting the end of source blocks.")
+(set-face-foreground 'org-block-end-line "purple1")
