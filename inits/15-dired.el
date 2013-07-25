@@ -35,12 +35,28 @@
   (if (eq major-mode 'dired-mode)
       (kill-buffer my-dired-before-buffer)))
 
+; spとfpのディレクトリを切り替える
+(defun dired-sp-fp-directory-toggle ()
+  (interactive)
+  (let ((current-directory (elscreen-current-directory))
+        (tmp-directory (elscreen-current-directory)))
+    (cond ((or (string-match "/smartphone/" current-directory) (string-match "/sp/" current-directory))
+           (setq tmp-directory (replace-regexp-in-string "/smartphone/" "/featurephone/" tmp-directory))
+           (setq tmp-directory (replace-regexp-in-string "/sp/" "/fp/" tmp-directory)))
+          ((or (string-match "/featurephone/" current-directory) (string-match "/fp/" current-directory))
+           (setq tmp-directory (replace-regexp-in-string "/featurephone/" "/smartphone/" tmp-directory))
+           (setq tmp-directory (replace-regexp-in-string "/fp/" "/sp/" tmp-directory))))
+    (unless (eq current-directory tmp-directory)
+      (kill-buffer (current-buffer))
+      (dired tmp-directory))))
+
 ;; キーバインド設定
 (add-hook 'dired-mode-hook
           (lambda ()
             (local-set-key (kbd "C-f") 'dired-advertised-find-file) ; ディレクトリ, ファイルを展開
             (local-set-key (kbd "C-u") 'dired-up-directory)         ; 上位ディレクトリへ
             (local-set-key (kbd "C-t") 'other-window-or-split)      ; ウィンドウを切り替える
+            (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)    ; spとfpのディレクトリを切り替える
             ))
 
 ;; Dired表示設定

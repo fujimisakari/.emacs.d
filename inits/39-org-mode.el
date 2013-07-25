@@ -71,8 +71,8 @@
 (setq org-agenda-files (list org-directory))  ; 予定表に使うorgファイルのリスト
 
 ;; フォントサイズ設定
-(set-face-attribute 'org-level-1 nil :bold t :height 1.2)
-(set-face-attribute 'org-level-2 nil :bold nil :height 1.1)
+(set-face-attribute 'org-level-1 nil :bold t :height 1.0)
+(set-face-attribute 'org-level-2 nil :bold nil :height 1.0)
 (set-face-attribute 'org-level-3 nil :bold nil :height 1.0)
 (set-face-attribute 'org-level-4 nil :bold nil :height 1.0)
 ;; (set-face-attribute 'org-checkbox nil :background "gray" :foreground "black"
@@ -82,9 +82,9 @@
 (setq org-src-fontify-natively t)
 
 (defface org-block-begin-line
-  '((t (:foreground "purple1" :background "gray17")))
+  '((t (:foreground "SlateBlue1" :background "gray17")))
   "Face used for the line delimiting the begin of source blocks.")
-(set-face-foreground 'org-block-begin-line "purple1")
+(set-face-foreground 'org-block-begin-line "SlateBlue1")
 
 (defface org-block-background
   '((t (:background "gray17")))
@@ -92,6 +92,6 @@
 (set-face-background 'org-block-background "gray17")
 
 (defface org-block-end-line
-  '((t (:foreground "purple1" :background "gray17")))
+  '((t (:foreground "SlateBlue1" :background "gray17")))
   "Face used for the line delimiting the end of source blocks.")
-(set-face-foreground 'org-block-end-line "purple1")
+(set-face-foreground 'org-block-end-line "SlateBlue1")

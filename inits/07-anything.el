@@ -28,7 +28,7 @@
                            anything-c-source-bookmarks
                            anything-c-source-recentf
                            anything-c-source-filelist)
-                         "* my anything *"))
+                         "*my anything*"))
 
 ;; imenu, gtagsのgtagsから読み込み
 (require 'anything-gtags)
@@ -40,10 +40,10 @@
    "*anything gtags*"))
 
 ;; anytingバッファは左右分割にする
-(defadvice anything-default-display-buffer (around my-anything-default-display-buffer activate)
-  (delete-other-windows)
-  (split-window (selected-window) nil t)
-  (pop-to-buffer buf))
+;; (defadvice anything-default-display-buffer (around my-anything-default-display-buffer activate)
+;;   (delete-other-windows)
+;;   (split-window (selected-window) nil t)
+;;   (pop-to-buffer buf))
 
 ;; anything-c-moccur: MoccurのAnythingインターフェイス
 (require 'anything-c-moccur nil t)
