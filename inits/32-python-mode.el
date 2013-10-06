@@ -16,4 +16,8 @@
 (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pyflakes-init))
 
-(add-hook 'python-mode-hook '(lambda () (mode-init-func)))
+(add-hook 'python-mode-hook
+          (lambda ()
+            (mode-init-func)
+            (local-set-key (kbd "C-M-a") 'gh-sh-file-toggle) ; ghとshのディレクトリを切り替える
+            ))

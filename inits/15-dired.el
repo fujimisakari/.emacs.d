@@ -50,6 +50,21 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
+
+; ghとshのディレクトリを切り替える
+(defun dired-gh-sh-directory-toggle ()
+  (interactive)
+  (let ((current-directory (elscreen-current-directory))
+        (tmp-directory (elscreen-current-directory)))
+    (cond ((string-match "/genju-hime/" current-directory)
+           (setq tmp-directory (replace-regexp-in-string "/genju-hime/" "/seishun-hime/" tmp-directory)))
+          ((string-match "/seishun-hime/" current-directory)
+           (setq tmp-directory (replace-regexp-in-string "/seishun-hime/" "/genju-hime/" tmp-directory))))
+    (unless (eq current-directory tmp-directory)
+      (kill-buffer (current-buffer))
+      (dired tmp-directory))))
+
+
 ;; キーバインド設定
 (add-hook 'dired-mode-hook
           (lambda ()
@@ -57,6 +72,7 @@
             (local-set-key (kbd "C-u") 'dired-up-directory)         ; 上位ディレクトリへ
             (local-set-key (kbd "C-t") 'other-window-or-split)      ; ウィンドウを切り替える
             (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)    ; spとfpのディレクトリを切り替える
+            (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)    ; ghとshのディレクトリを切り替える
             ))
 
 ;; Dired表示設定

@@ -31,8 +31,9 @@
   (define-key map (kbd "<up>")    'zlc-select-previous-vertical)
   (define-key map (kbd "<right>") 'zlc-select-next)
   (define-key map (kbd "<left>")  'zlc-select-previous)
+
   ;; reset selection
-  (define-key map (kbd "C-c g") 'zlc-reset)
+  (define-key map (kbd "C-c") 'zlc-reset)
   )
 ;; 補完候補一覧での候補の色
 (set-face-foreground 'zlc-selected-completion-face "gray10")
@@ -78,3 +79,10 @@
       (setq bookmark-alist (cons latest (delq latest bookmark-alist))))
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
+
+;; バイナリファイルを開く
+(openwith-mode 1)
+(setq openwith-associations
+      '(("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp[34]\\|flv\\|wav\\|ogg\\|swf\\|xls\\|xlsx\\)\\'" "open" (file))))
+(setq large-file-warning-threshold nil)
+

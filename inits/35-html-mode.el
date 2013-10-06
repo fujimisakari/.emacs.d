@@ -34,10 +34,23 @@
               (delete-trailing-whitespace)
                nil)))
 
+; spとfpのファイルを切り替える
+(defun sp-fp-file-toggle ()
+  (interactive)
+  (let ((current-file (buffer-file-name))
+        (tmp-file (buffer-file-name)))
+    (cond ((string-match "/smartphone/" current-file)
+           (setq tmp-file (replace-regexp-in-string "/smartphone/" "/featurephone/" tmp-file)))
+          ((string-match "/featurephone/" current-file)
+           (setq tmp-file (replace-regexp-in-string "/featurephone/" "/smartphone/" tmp-file))))
+    (unless (eq current-file tmp-file)
+      (find-file tmp-file))))
+
 ;; キーバインド設定
 (define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
 (define-key web-mode-map (kbd "C-;") nil)
-
+(define-key web-mode-map (kbd "C-M-'") 'sp-fp-file-toggle)
+(define-key web-mode-map (kbd "C-M-a") 'gh-sh-file-toggle)
 
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-face "lime green")
@@ -63,7 +76,7 @@
 (add-to-list 'flymake-err-line-patterns
              '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
                nil 1 2 4))
-;; (add-hook 'html-mode-hook '(lambda () (flymake-mode t)))
+(add-hook 'html-mode-hook '(lambda () (flymake-mode t)))
 
 ;; css-mode
 (defun css-mode-hooks ()

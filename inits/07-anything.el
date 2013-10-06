@@ -26,8 +26,8 @@
   (interactive)
   (anything-other-buffer '(anything-c-source-buffers-list
                            anything-c-source-bookmarks
-                           anything-c-source-recentf
-                           anything-c-source-filelist)
+                           anything-c-source-recentf)
+                           ;; anything-c-source-filelist)
                          "*my anything*"))
 
 ;; imenu, gtagsのgtagsから読み込み

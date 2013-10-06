@@ -38,6 +38,18 @@
   (setq flymake-check-was-interrupted t))
 (ad-activate 'flymake-post-syntax-check)
 
+; spとfpのファイルを切り替える
+(defun gh-sh-file-toggle ()
+  (interactive)
+  (let ((current-file (buffer-file-name))
+        (tmp-file (buffer-file-name)))
+    (cond ((string-match "/genju-hime/" current-file)
+           (setq tmp-file (replace-regexp-in-string "/genju-hime/" "/seishun-hime/" tmp-file)))
+          ((string-match "/seishun-hime/" current-file)
+           (setq tmp-file (replace-regexp-in-string "/seishun-hime/" "/genju-hime/" tmp-file))))
+    (unless (eq current-file tmp-file)
+      (find-file tmp-file))))
+
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)
 ;; text-mode
