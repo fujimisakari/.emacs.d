@@ -58,12 +58,6 @@
 ;; ruby-mode
 (add-hook 'ruby-mode-hook 'mode-init-func)
 
-;; view-mode
-(add-hook 'view-mode-hook
-          '(lambda()
-             (skk-mode nil)
-             (hl-line-mode t)))
-
 ;; dired-mode
 (add-hook 'dired-mode-hook
           '(lambda()

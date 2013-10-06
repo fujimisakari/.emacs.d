@@ -52,9 +52,9 @@
 ;; キーボードの同時押しでコマンドを実行する
 ;; (install-elisp-from-emacswiki key-chord.el)
 (require 'key-chord)
-(setq key-chord-two-keys-delay 0.04)     ; 許容誤差は0.04秒
+(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
 (key-chord-mode 1)
-;; メジャーモードへの設定：emacs-lisp-mode で df を押すと describe-bindings を実行
+;; メジャーモードへの設定：emacs-lisp-mode で qp を押すと describe-bindings を実行
 (key-chord-define-global "qp" 'describe-bindings)
 ;; 別窓(フレーム)でバッファを開く
 (key-chord-define-global "ru" 'find-file-other-frame)
