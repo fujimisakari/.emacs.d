@@ -7,3 +7,24 @@
 [submodule "site-lisp/emacs-skype"]
 	path = site-lisp/emacs-skype
 	url = https://github.com/kiwanami/emacs-skype.git
+[submodule "site-lisp/emacs-open-github-from-here"]
+	path = site-lisp/emacs-open-github-from-here
+	url = git://github.com/shibayu36/emacs-open-github-from-here.git
+[submodule "site-lisp/emacs-powerline"]
+	path = site-lisp/emacs-powerline
+	url = git://github.com/jonathanchu/emacs-powerline.git
+[submodule "site-lisp/emacs-zlc"]
+	path = site-lisp/emacs-zlc
+	url = https://github.com/mooz/emacs-zlc.git
+[submodule "site-lisp/yasnipppet"]
+	path = site-lisp/yasnipppet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "site-lisp/yasnippet"]
+	path = site-lisp/yasnippet
+	url = https://github.com/capitaomorte/yasnippet.git
+[submodule "site-lisp/multi-mode-util"]
+	path = site-lisp/multi-mode-util
+	url = https://github.com/tarao/multi-mode-util.git
+[submodule "site-lisp/popwin-el"]
+	path = site-lisp/popwin-el
+	url = https://github.com/m2ym/popwin-el.git
