@@ -6,7 +6,7 @@
 
 ;; git blame
 (require 'mo-git-blame)
-(setq mo-git-blame-blame-window-width 75)
+(setq mo-git-blame-blame-window-width 37)
 ;; format of blame
 (defun mo-git-blame-process-filter-process-entry (entry)
   (with-current-buffer (plist-get mo-git-blame-vars :blame-buffer)

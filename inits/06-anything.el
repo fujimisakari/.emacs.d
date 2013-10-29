@@ -75,3 +75,7 @@
 (set-face-foreground 'anything-ff-symlink "cyan")
 (set-face-foreground 'anything-candidate-number nil)
 (set-face-background 'anything-candidate-number nil)
+
+(custom-set-faces
+ '(anything-header
+   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.2 :family "S2Gうにフォント")))))

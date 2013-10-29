@@ -29,7 +29,7 @@
   ;; migemoのコマンドラインオプション
   (setq migemo-options '("-q" "--emacs"))
   ;; migemo辞書の場所
-  (setq migemo-dictionary "../share/migemo/utf-8/migemo-dict")
+  (setq migemo-dictionary "/usr/local/share/migemo/utf-8/migemo-dict")
   ;; cmigemoで必須の設定
   (setq migemo-user-dictionary nil)
   (setq migemo-regex-dictionary nil)
@@ -39,7 +39,7 @@
   (setq migemo-pattern-alist-length 1000)
   (setq migemo-coding-system 'utf-8-unix)
   ;; migemoを起動する
-  ;; (migemo-init)
+  (migemo-init)
   )
 
 ;; allの拡張
