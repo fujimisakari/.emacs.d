@@ -78,4 +78,4 @@
 
 (custom-set-faces
  '(anything-header
-   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.2 :family "S2Gうにフォント")))))
+   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))

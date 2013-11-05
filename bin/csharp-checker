@@ -1,0 +1,7 @@
+#! /bin/bash
+
+/usr/bin/mcs $1
+exe_file=`echo $1 | sed -e "s/\.cs/.exe/"`
+ls ${exe_file} && rm ${exe_file}
+
+true

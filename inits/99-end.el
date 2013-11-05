@@ -16,7 +16,7 @@
 ;; macbook air 11インチでフルスクリーン
 (ns-toggle-fullscreen)
 ;; (set-frame-size (selected-frame) 170 45)
-(set-frame-size (selected-frame) 75 42)
+(set-frame-size (selected-frame) 150 42)
 
 ;; ブラウザはmacを使用する
 (setq browse-url-browser-function 'browse-url-generic)
