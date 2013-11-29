@@ -1,0 +1,4 @@
+# name: Console.WriteLine ...;
+# key: write
+# --
+Console.WriteLine($1);
