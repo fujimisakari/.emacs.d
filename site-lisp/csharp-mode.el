@@ -5561,8 +5561,8 @@ Key bindings:
         ;; `imenu-generic-expression'; imenu will do a "generic scan" for you.
         ;; csharp-mode uses the former method.
         ;;
-        (setq imenu-create-index-function 'csharp-imenu-create-index)
-        (imenu-add-menubar-index)))
+        (setq imenu-create-index-function 'csharp-imenu-create-index)))
+        ;; (imenu-add-menubar-index)))
 
     ;; The paragraph-separate variable was getting stomped by
     ;; other hooks, so it must reside here.
