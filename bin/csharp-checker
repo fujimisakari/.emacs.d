@@ -1,7 +1,19 @@
 #! /bin/bash
 
-/usr/bin/mcs $1
-exe_file=`echo $1 | sed -e "s/\.cs/.exe/"`
-ls ${exe_file} && rm ${exe_file}
+/usr/bin/mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll $1 -target:library
+dll_file=`echo $1 | sed -e "s/\.cs/.dll/"`
+ls ${dll_file} && rm ${dll_file}
+/usr/bin/mono ~/.emacs.d/bin/StyleCopCLI.exe -cs $PWD/$1 -out /tmp/stylecop.log
+cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1126\|SA1208\|SA1307\|SA1400\|SA1401\|SA1515\|SA1600\|SA1633"
+ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
+
+# SA1126 The call to xxxx must begin with the 'this.', 'base.', 'object.' or 'XXX.' prefix to indicate the intended method call.
+# SA1208 System using directives must be placed before all other using directives.
+# SA1307 Public and internal fields must start with an upper-case letter: xxxx
+# SA1400 The method must have an access modifier.
+# SA1401 Fields must be declared with private access. Use properties to expose fields.
+# SA1515 A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.
+# SA1600 The class must have a documentation header.
+# SA1633 The file has no header, the header Xml is invalid, or the header is not located at the top of the file.
 
 true
