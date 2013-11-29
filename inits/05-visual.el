@@ -64,7 +64,7 @@
 (set-face-foreground 'font-lock-function-name-face "lime green")     ; 関数名の色
 (set-face-foreground 'font-lock-variable-name-face "magenta")        ; 変数名の色
 (set-face-foreground 'font-lock-negation-char-face "coral")          ; 文字(char)部分の色
-(set-face-foreground 'font-lock-type-face "yellow")                  ; ユーザ定義のデータ型の色
+(set-face-foreground 'font-lock-type-face "DeepSkyBlue")             ; ユーザ定義のデータ型の色
 (set-face-foreground 'font-lock-builtin-face "orange")               ; 組込み関数の色
 (set-face-foreground 'font-lock-constant-face "cyan")                ; 定数名の色
 (set-face-foreground 'font-lock-warning-face "lightcyan")            ; 独特な構文の色

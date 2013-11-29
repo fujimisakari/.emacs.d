@@ -103,6 +103,11 @@
 (set-face-foreground 'highline-face "black")
 (set-face-background 'highline-face "yellow")
 
+;; ヘッダーを強調表示させる
+(custom-set-faces
+ '(dired-header
+   ((t (:foreground "yellow" :weight bold :height 1.3 :family "Menlo")))))
+
 ;;; 更新日が当日のファイルは色を変える
 (defface dired-todays-face '((t (:foreground "green"))) nil)
 (defvar dired-todays-face 'dired-todays-face)
