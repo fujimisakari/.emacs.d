@@ -57,7 +57,7 @@
 ;; メジャーモードへの設定：emacs-lisp-mode で qp を押すと describe-bindings を実行
 (key-chord-define-global "qp" 'describe-bindings)
 ;; 別窓(フレーム)でバッファを開く
-(key-chord-define-global "ru" 'find-file-other-frame)
+;; (key-chord-define-global "ru" 'find-file-other-frame)
 ;;; git statusを表示
 (global-set-key (kbd "<f4>") 'magit-status)
 

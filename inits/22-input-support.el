@@ -28,6 +28,7 @@
 ;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (require 'auto-complete-config)
 (ac-config-default)
+(setq ac-delay 0.8)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/share/ac-dict")
 ;; ソートファイルの保存場所を変更
 (setq ac-comphist-file

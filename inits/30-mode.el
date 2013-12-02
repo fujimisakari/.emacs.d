@@ -25,8 +25,8 @@
 
 (require 'flymake)
 (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
-(global-set-key (kbd "C-M-p") 'flymake-goto-prev-error)
-(global-set-key (kbd "C-M-n") 'flymake-goto-next-error)
+;; (global-set-key (kbd "C-M-p") 'flymake-goto-prev-error)
+;; (global-set-key (kbd "C-M-n") 'flymake-goto-next-error)
 ;; 文法チェックの頻度の設定
 (setq flymake-no-changes-timeout 1)
 ;; 改行時に文法チェックを行うかどうかの設定
