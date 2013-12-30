@@ -40,6 +40,25 @@
     (switch-to-buffer (get-buffer "*scratch*"))))
 (global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)
 
+;; 選択拡張
+(require 'expand-region)
+(global-set-key (kbd "C-,") 'er/expand-region)
+(global-set-key (kbd "C-M-,") 'er/contract-region)
+
+;; カーソル拡張
+(require 'multiple-cursors)
+(global-unset-key (kbd "C-q"))
+(smartrep-define-key global-map "C-q"
+  '(("n"        . 'mc/mark-next-like-this)
+    ("p"        . 'mc/mark-previous-like-this)
+    ("m"        . 'mc/mark-more-like-this-extended)
+    ("u"        . 'mc/unmark-next-like-this)
+    ("U"        . 'mc/unmark-previous-like-this)
+    ("s"        . 'mc/skip-to-next-like-this)
+    ("S"        . 'mc/skip-to-previous-like-this)
+    ("*"        . 'mc/mark-all-like-this)
+    ("i"        . 'mc/insert-numbers)))
+
 ;; キーボードの同時押しでコマンドを実行する
 ;; (install-elisp-from-emacswiki key-chord.el)
 (require 'key-chord)
@@ -47,7 +66,6 @@
 (key-chord-mode 1)
 (key-chord-define-global "qp" 'describe-bindings)
 (key-chord-define-global "ui" 'skk-mode)
-
 
 ;; 行全体を削除
 (defun kill-all-line (&optional numlines)

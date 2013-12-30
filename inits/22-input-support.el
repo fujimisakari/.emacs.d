@@ -4,6 +4,9 @@
 ;;                               入力支援関連                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
+;; prifixの入力ショートカット
+(require 'smartrep)
+
 ;; 未来へやり直しできるようにる(redo)
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
 (require 'redo+)
