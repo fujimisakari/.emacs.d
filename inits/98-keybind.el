@@ -13,13 +13,8 @@
 (global-set-key (kbd "M-/") 'hippie-expand)          ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)              ; M-g で指定行へジャンプ
 (global-unset-key (kbd "C-x b"))                     ; switch bufferは使用してないので無効
-(defalias 'yes-or-no-p 'y-or-n-p)                    ; "yes or no" の表示を "y or n"に変える
-(defalias 'exit 'save-buffers-kill-emacs)            ; M-x exit で Emacsが終了できるようにする
-(defalias 'qr 'replace-regexp)                       ; 一括置換(正規表現置換)
-(defalias 'qrr 'query-replace-regexp)                ; 対話型置換(正規表現置換)
 
-;; private用prefixを追加
-(global-unset-key (kbd "C-l"))
+;; C-lはprivate用prefixを追加
 (winner-mode 1)
 (global-set-key (kbd "C-l C-u") 'winner-undo)
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
@@ -31,6 +26,28 @@
 (global-set-key (kbd "C-l j") 'just-one-space)
 (global-set-key (kbd "C-l C-'") 'flyspell-region)
 (global-set-key (kbd "C-l C-M-'") 'ispell-word)
+(global-set-key (kbd "C-l l") 'ace-jump-line-mode)
+(global-set-key (kbd "C-l '") 'ace-jump-mode)
+(global-set-key (kbd "C-l b") 'browse-url-at-point)
+;; anzu
+(global-set-key (kbd "C-l r") 'anzu-query-replace-regexp)
+(global-set-key (kbd "C-l R") 'anzu-query-replace)
+;; *scratch* バッファに移動できるようにした
+(defun my-switch-to-scratch/current-buffer ()
+  (interactive)
+  (if (string-equal (buffer-name) "*scratch*")
+      (switch-to-buffer (cadr (buffer-list)))
+    (switch-to-buffer (get-buffer "*scratch*"))))
+(global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)
+
+;; キーボードの同時押しでコマンドを実行する
+;; (install-elisp-from-emacswiki key-chord.el)
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
+(key-chord-mode 1)
+(key-chord-define-global "qp" 'describe-bindings)
+(key-chord-define-global "ui" 'skk-mode)
+
 
 ;; 行全体を削除
 (defun kill-all-line (&optional numlines)
@@ -49,13 +66,6 @@
                 '(lambda ()
                    (interactive)(kill-line 0)))
 
-;; キーボードの同時押しでコマンドを実行する
-;; (install-elisp-from-emacswiki key-chord.el)
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
-(key-chord-mode 1)
-;; メジャーモードへの設定：emacs-lisp-mode で qp を押すと describe-bindings を実行
-(key-chord-define-global "qp" 'describe-bindings)
 ;; 別窓(フレーム)でバッファを開く
 ;; (key-chord-define-global "ru" 'find-file-other-frame)
 ;;; git statusを表示
@@ -64,7 +74,7 @@
 ;; 行番号表示
 (global-set-key (kbd "<f1>") 'linum-mode)
 
-;; emacs-lisp-modeでC-cC-dを押すと注釈される
+;; emacs-lisp-modeでC-c C-dを押すと注釈される
 ;; (require 'lispxmp)
 ;; (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 

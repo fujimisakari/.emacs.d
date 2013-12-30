@@ -55,7 +55,7 @@
 
 ;; 瞬時にメモを取る
 (org-remember-insinuate)  ; org-rememberの初期化
-(key-chord-define global-map "fj" 'org-remember)
+;; (key-chord-define global-map "fj" 'org-remember)
 
 ;; メモを格納するorgファイルの設定
 ;; (setq org-directory "~/.emacs.d/org/todo-memo/")

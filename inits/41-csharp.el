@@ -48,6 +48,6 @@
 (add-to-list 'quickrun-file-alist '("\\.cs$" . "c#/mono"))
 (quickrun-add-command "c#/mono"
                       '((:command . "mono")
-                        (:exec    . ("mcs -unsafe %s" "%c %n.exe"))
+                        (:exec    . ("mcs %s" "%c %n.exe"))
                         (:remove  . ("%n.exe")))
                       :mode 'csharp-mode)

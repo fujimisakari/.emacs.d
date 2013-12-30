@@ -23,7 +23,7 @@
 ;; 入力すれば、w3m で表示されるようになる。
 ;; (setq browse-url-browser-function 'w3m-browse-url)
 ;; (autoload 'w3m-browse-url "w3m" "Ask a WWW browser to show a URL." t)
-(global-set-key (kbd "C-x m") 'browse-url-at-point)
+;; (global-set-key (kbd "C-x m") 'browse-url-at-point)
 
 ;; `dired' バッファで `C-x m' キーをタイプすることによって、
 ;; emacs-w3m を使って HTML ファイルを閲覧することができるようにする
