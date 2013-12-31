@@ -6,7 +6,7 @@
 dll_file=`echo $1 | sed -e "s/\.cs/.dll/"`
 ls ${dll_file} && rm ${dll_file}
 /usr/bin/mono ~/.emacs.d/bin/StyleCopCLI.exe -cs $PWD/$1 -out /tmp/stylecop.log
-cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1012\|SA1025\|SA1027\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1202\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1501\|SA1502\|SA1503\|SA1506\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
+cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1012\|SA1025\|SA1027\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
 ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 
 # SA1001 Invalid spacing around the comma.
@@ -22,10 +22,9 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1126 The call to xxxx must begin with the 'this.', 'base.', 'object.' or 'XXX.' prefix to indicate the intended method call.
 # SA1201 All enums must be placed after all fields.
 # SA1202 All protected methods must be placed after all public methods.
-# SA1202 All protected methods must be placed after all public methods.
+# SA1204 All static public fields must be placed before all non-static public fields.
 # SA1208 System using directives must be placed before all other using directives.
 # SA1212 A get-accessor within a property or indexer must be placed before a set-accessor.
-
 # SA1305 The variable name 'xxxx' begins with a prefix that looks like Hungarian notation. Remove the prefix or add it to the list of allowed prefixes.
 # SA1307 Public and internal fields must start with an upper-case letter: xxxx
 # SA1310 Field names must not contain underscores.
@@ -36,6 +35,7 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1502 The enum must not be placed on a single line. The opening and closing curly brackets must each be placed on their own line.
 # SA1503 The body of the if statement must be wrapped in opening and closing curly brackets.
 # SA1506 A documentation header line must not be followed by a blank line.
+# SA1512 A single-line comment must not be followed by a blank line. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.
 # SA1513 Statements or elements wrapped in curly brackets must be followed by a blank line.
 # SA1515 A single-line comment must be preceded by a blank line or another single-line comment, or must be the first item in its scope. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.
 # SA1516 Adjacent elements must be separated by a blank line.

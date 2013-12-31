@@ -1,4 +1,4 @@
 # name: debug Debug.Log(...)
 # key: debug
 # --
-Debug.Log(\"$0\")
+Debug.Log(\"$0\");

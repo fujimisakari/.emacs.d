@@ -12,6 +12,7 @@
 (global-set-key (kbd "C-M-;") 'delete-other-windows) ; 現在のウィンドウ以外を消す
 (global-set-key (kbd "M-/") 'hippie-expand)          ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)              ; M-g で指定行へジャンプ
+(global-set-key (kbd "<C-tab>") 'tabify)             ; TAB生成
 (global-unset-key (kbd "C-x b"))                     ; switch bufferは使用してないので無効
 
 ;; C-lはprivate用prefixを追加
