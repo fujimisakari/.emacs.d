@@ -36,21 +36,21 @@
                 (face-spec-set 'jaspace-highlight-tab-face
                                '((((class color) (background light))
                                   (:foreground "red"
-                                   :background "unspecified"
+                                   :background "gray10"
                                    :strike-through nil
                                    :underline t))
                                  (t (:foreground "purple"
-                                     :background "unspecified"
+                                     :background "gray10"
                                      :strike-through nil
                                      :underline t))))
                 (face-spec-set 'trailing-whitespace
                                '((((class color) (background light))
                                   (:foreground "red"
-                                   :background "unspecified"
+                                   :background "gray10"
                                    :strike-through nil
                                    :underline t))
                                  (t (:foreground "purple"
-                                     :background "unspecified"
+                                     :background "gray10"
                                      :strike-through nil
                                      :underline t))))))))
 

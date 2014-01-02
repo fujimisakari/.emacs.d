@@ -92,6 +92,9 @@
 ;; (setq split-height-threshold nil)
 (setq split-width-threshold 100)
 
+;; 関数の呼び出し規定回数を拡張(デフォルト:600)
+(setq max-lisp-eval-depth 1500)
+
 ;; ファイル内のカーソル位置を記憶する
 (require 'saveplace)
 (setq-default save-place t)
