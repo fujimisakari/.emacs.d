@@ -13,6 +13,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)          ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)              ; M-g で指定行へジャンプ
 (global-set-key (kbd "<C-tab>") 'tabify)             ; TAB生成
+(global-set-key (kbd "<C-M-tab>") 'untabify)         ; TAB削除
 (global-unset-key (kbd "C-x b"))                     ; switch bufferは使用してないので無効
 
 ;; C-lはprivate用prefixを追加
@@ -58,6 +59,8 @@
     ("s"        . 'mc/skip-to-next-like-this)
     ("S"        . 'mc/skip-to-previous-like-this)
     ("*"        . 'mc/mark-all-like-this)
+    ("SPC"      . 'mc/mark-all-in-region)
+    ("C-SPC"    . 'mc/edit-lines)
     ("i"        . 'mc/insert-numbers)))
 
 ;; キーボードの同時押しでコマンドを実行する

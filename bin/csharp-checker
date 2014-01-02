@@ -1,12 +1,12 @@
 #! /bin/bash
 
 #/usr/bin/mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll,/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll,/Users/username/project/Unity/project/simpledata/Library/ScriptAssemblies/Assembly-CSharp.dll $1 -target:library
-/usr/bin/mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll,/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll $1 -target:library
+/usr/bin/mcs -r:/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEngine.dll,/Applications/Unity/Unity.app/Contents/Frameworks/Managed/UnityEditor.dll,/Users/fujimo/dev/unity/create_game/oni/Library/ScriptAssemblies/Assembly-CSharp.dll,/Users/fujimo/projects/punk/Library/ScriptAssemblies/Assembly-CSharp.dll $1 -target:library
 
 dll_file=`echo $1 | sed -e "s/\.cs/.dll/"`
 ls ${dll_file} && rm ${dll_file}
 /usr/bin/mono ~/.emacs.d/bin/StyleCopCLI.exe -cs $PWD/$1 -out /tmp/stylecop.log
-cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1012\|SA1025\|SA1027\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
+cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1009\|SA1012\|SA1025\|SA1027\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1500\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
 ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 
 # SA1001 Invalid spacing around the comma.
@@ -14,6 +14,7 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1004 The documentation header line must start with a single space.
 # SA1005 The comment must start with a single space. To ignore this error when commenting out a line of code, begin the comment with '////' rather than '//'.
 # SA1008 Invalid spacing around the opening parenthesis.
+# SA1009 Invalid spacing around the closing parenthesis.
 # SA1012 Invalid spacing around the opening curly bracket.
 # SA1025 The code contains multiple spaces in a row. Only one space is needed. [2 times]
 # SA1027 Tabs are not allowed. Use spaces instead.
@@ -31,6 +32,7 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1400 The method must have an access modifier.
 # SA1401 Fields must be declared with private access. Use properties to expose fields.
 # SA1407 Insert parenthesis within the arithmetic expression to declare the operator precedence.
+# SA1500 If a statement spans multiple lines, the closing curly bracket must be placed on its own line.
 # SA1501 A statement containing curly brackets must not be placed on a single line. The opening and closing curly brackets must each be placed on their own line.
 # SA1502 The enum must not be placed on a single line. The opening and closing curly brackets must each be placed on their own line.
 # SA1503 The body of the if statement must be wrapped in opening and closing curly brackets.

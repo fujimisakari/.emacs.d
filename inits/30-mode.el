@@ -37,6 +37,9 @@
 (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
   (setq flymake-check-was-interrupted t))
 (ad-activate 'flymake-post-syntax-check)
+;; htmlとxmlはflymakeは起動しないようにする
+(delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+(delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
 ; spとfpのファイルを切り替える
 (defun gh-sh-file-toggle ()
