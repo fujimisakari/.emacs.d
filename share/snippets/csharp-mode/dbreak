@@ -1,0 +1,4 @@
+# name: debug Debug.Break()
+# key: dbreak
+# --
+Debug.Break();

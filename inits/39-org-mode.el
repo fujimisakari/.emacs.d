@@ -21,6 +21,7 @@
 (define-key org-mode-map (kbd "C-<down>") 'outline-next-visible-heading)
 (define-key org-mode-map (kbd "C-M-<up>") 'outline-backward-same-level)
 (define-key org-mode-map (kbd "C-M-<down>") 'outline-forward-same-level)
+(define-key org-mode-map (kbd "C-,") nil)
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")      ; 言語は日本語

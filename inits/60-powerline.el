@@ -18,10 +18,11 @@
 (setq powerline-color2 "gray40")
 
 ;; なぜかモードラインの色が変ってしまうので再設定
-(set-face-foreground 'modeline "white")
-(set-face-background 'modeline "SlateBlue3")
+(set-face-foreground 'mode-line "white")
+(set-face-background 'mode-line "SlateBlue3")
 
 ;; バッファ情報の書式
+(abbreviate-file-name default-directory)
 (defpowerline buffer-id (propertize (concat (abbreviate-file-name default-directory) "%b")
                                     'face (powerline-make-face color1)))
 (defpowerline row     "%l")    ; 行番号の書式
@@ -34,7 +35,7 @@
   (let ((plface (powerline-make-face color)))
     (if (eq 'right (get-scroll-bar-mode))
       (propertize " " 'display '((space :align-to (- right-fringe 36))) 'face plface)
-      (propertize " " 'display '((space :align-to (- right-fringe 32))) 'face plface))))
+      (propertize " " 'display '((space :align-to (- right-fringe 20))) 'face plface))))
 
 ;; Powerlineの書式
 (setq-default mode-line-format (list
@@ -49,6 +50,5 @@
            (powerline-row         'right      powerline-color1 powerline-color2)
            (powerline-make-text   ": "        powerline-color1)
            (powerline-column      'right      powerline-color1)
-           (powerline-time        'right  nil powerline-color1)
+           (powerline-percent     'right  nil powerline-color1)
            (powerline-make-text   "  "    nil )))))
-

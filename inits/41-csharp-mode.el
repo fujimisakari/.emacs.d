@@ -23,10 +23,14 @@
              (c-set-offset 'arglist-close 0)
              (hl-line-mode)
              (skk-mode)
-             (auto-complete-mode)
+             (omnisharp-mode)
+             ;; (auto-complete-mode)
              (flymake-mode)
              )
           )
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-omnisharp))
 
 ;; csharp-modeの不要機能をoff
 (setq csharp-want-flymake-fixup nil)

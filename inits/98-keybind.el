@@ -70,6 +70,7 @@
 (key-chord-mode 1)
 (key-chord-define-global "qp" 'describe-bindings)
 (key-chord-define-global "ui" 'skk-mode)
+(key-chord-define-global "kl" 'view-mode)
 
 ;; 行全体を削除
 (defun kill-all-line (&optional numlines)

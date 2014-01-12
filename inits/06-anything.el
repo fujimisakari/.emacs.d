@@ -80,14 +80,65 @@
  '(anything-header
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))
 
-(setq anything-c-buffers-not-modified-colors-orig
-      (cons (face-foreground 'font-lock-type-face)
-            (face-background 'font-lock-type-face)))
-(setq anything-c-buffers-not-modified-colors '("magenta1" . nil))
-(defadvice anything-c-highlight-buffers (before face-change activate)
-  (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors))
-  (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors)))
-(defun anything-cleanup-hook--restore-font-lock-type-face ()
-  (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors-orig))
-  (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors-orig)))
-(add-hook 'anything-cleanup-hook 'anything-cleanup-hook--restore-font-lock-type-face)
+;; (setq anything-c-buffers-not-modified-colors-orig
+;;       (cons (face-foreground 'font-lock-type-face)
+;;             (face-background 'font-lock-type-face)))
+;; (setq anything-c-buffers-not-modified-colors '("magenta1" . nil))
+;; (defadvice anything-c-highlight-buffers (before face-change activate)
+;;   (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors))
+;;   (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors)))
+;; (defun anything-cleanup-hook--restore-font-lock-type-face ()
+;;   (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors-orig))
+;;   (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors-orig)))
+;; (add-hook 'anything-cleanup-hook 'anything-cleanup-hook--restore-font-lock-type-face)
+
+(defun anything-c-highlight-buffers (buffers)
+  "Transformer function to highlight BUFFERS list.
+Should be called after others transformers i.e (boring buffers)."
+  (loop with buflist = (if anything-allow-skipping-current-buffer
+                           buffers
+                           (cons (pop (cdr buffers)) buffers))
+        for i in buflist
+        for buf = (get-buffer i)
+        for bfname = (buffer-file-name buf)
+        collect
+        (cond (;; A dired buffer.
+               (rassoc buf dired-buffers)
+               (propertize i 'face 'anything-ff-directory
+                           'help-echo (car (rassoc buf dired-buffers))))
+              ;; A buffer file modified somewhere outside of emacs.
+              ((and bfname (not (file-remote-p bfname))
+                    (file-exists-p bfname)
+                    (not (verify-visited-file-modtime buf)))
+               (propertize i 'face 'anything-buffer-saved-out
+                           'help-echo bfname))
+              ;; A new buffer file not already saved on disk.
+              ((and bfname (not (file-remote-p bfname))
+                    (not (verify-visited-file-modtime buf)))
+               (propertize i 'face 'anything-buffer-not-saved
+                           'help-echo bfname))
+              ;; A Remote buffer file modified and not saved on disk.
+              ((and bfname (file-remote-p bfname) (buffer-modified-p buf))
+               (let ((prefix (propertize
+                              " " 'display
+                              (propertize "@ " 'face 'anything-ff-prefix))))
+                 (cons (concat prefix (propertize i 'face 'anything-ff-symlink
+                                                  'help-echo bfname)) i)))
+              ;; A buffer file modified and not saved on disk.
+              ((and bfname (buffer-modified-p buf))
+               (propertize i 'face 'anything-ff-symlink
+                           'help-echo bfname))
+              ;; A remote buffer file not modified and saved on disk.
+              ((and bfname (file-remote-p bfname))
+               (let ((prefix (propertize
+                              " " 'display
+                              (propertize "@ " 'face 'anything-ff-prefix))))
+                 (cons (concat prefix (propertize i 'face 'font-lock-variable-name-face
+                                                  'help-echo bfname)) i)))
+              ;; A buffer file not modified and saved on disk.
+              (bfname
+               (propertize i 'face 'font-lock-variable-name-face
+                           'help-echo bfname))
+              ;; Any non--file buffer.
+              (t (propertize i 'face 'italic)))))
+

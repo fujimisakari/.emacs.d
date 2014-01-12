@@ -75,8 +75,8 @@
 (set-face-bold-p 'font-lock-warning-face nil)                        ; 太字設定
 
 ;; モードライン設定
-(set-face-foreground 'modeline "MediumPurple1")                      ; アクティブなモードラインの文字の色設定
-(set-face-background 'modeline "gray15")                             ; アクディブなモードラインの背景色設定
+(set-face-foreground 'mode-line "MediumPurple1")                      ; アクティブなモードラインの文字の色設定
+(set-face-background 'mode-line "gray15")                             ; アクディブなモードラインの背景色設定
 (set-face-background 'mode-line-inactive "gray15")                   ; インアクティブなモードラインの背景色設定
 (column-number-mode t)                                               ; モードラインにカーソル列の位置表示
 (line-number-mode t)                                                 ; モードラインにカーソル行の位置表示
@@ -127,10 +127,15 @@
 (toggle-scroll-bar nil)                           ; スクロールバーを消す
 (menu-bar-mode nil)                               ; メニューバーを消す
 (tool-bar-mode 0)                                 ; ツールバーを消す
-;; (global-linum-mode)                               ; 行番号表示
 (setq ring-bell-function 'ignore)                 ; ビープ音、画面フラッシュどちらも起こさない
 (auto-image-file-mode)                            ; 画像表示を有効
 (setq inhibit-startup-screen t)                   ; 起動画面を表示させない
+
+;; 行番号表示
+;; (global-linum-mode)
+;; (setq linum-delay t)
+;; (defadvice linum-schedule (around my-linum-schedule () activate)
+;;   (run-with-idle-timer 0.2 nil #'linum-update-current))
 
 ;; タイトルバーのフォーマット設定
 (setq frame-title-format `("GNU/Emacs " emacs-version " -- %b " (buffer-file-name "( %f )")))

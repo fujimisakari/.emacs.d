@@ -6,7 +6,7 @@
 dll_file=`echo $1 | sed -e "s/\.cs/.dll/"`
 ls ${dll_file} && rm ${dll_file}
 /usr/bin/mono ~/.emacs.d/bin/StyleCopCLI.exe -cs $PWD/$1 -out /tmp/stylecop.log
-cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1009\|SA1012\|SA1025\|SA1027\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1500\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
+cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1009\|SA1012\|SA1013\|SA1025\|SA1027\|SA1106\|SA1107\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1500\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
 ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 
 # SA1001 Invalid spacing around the comma.
@@ -16,8 +16,10 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1008 Invalid spacing around the opening parenthesis.
 # SA1009 Invalid spacing around the closing parenthesis.
 # SA1012 Invalid spacing around the opening curly bracket.
+# SA1013 Invalid spacing around the closing curly bracket.
 # SA1025 The code contains multiple spaces in a row. Only one space is needed. [2 times]
 # SA1027 Tabs are not allowed. Use spaces instead.
+# SA1106 The code contains an extra semicolon.
 # SA1107 A line may only contain a single statement.
 # SA1119 The line contains unnecessary parenthesis.
 # SA1126 The call to xxxx must begin with the 'this.', 'base.', 'object.' or 'XXX.' prefix to indicate the intended method call.

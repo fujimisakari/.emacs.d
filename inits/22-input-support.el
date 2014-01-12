@@ -49,6 +49,10 @@
 (set-face-background 'ac-candidate-face "#444")
 (set-face-foreground 'ac-selection-face "#fff")
 (set-face-background 'ac-selection-face "SlateBlue2")
+(set-face-foreground 'ac-gtags-candidate-face "#fff")
+(set-face-background 'ac-gtags-candidate-face "SlateBlue2")
+(set-face-foreground 'ac-gtags-selection-face "#fff")
+(set-face-background 'ac-gtags-selection-face "SlateBlue2")
 
 (set-face-foreground 'popup-menu-face "#ccc")
 (set-face-background 'popup-menu-face "#444")

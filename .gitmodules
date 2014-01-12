@@ -37,3 +37,6 @@
 [submodule "site-lisp/expand-region"]
 	path = site-lisp/expand-region
 	url = https://github.com/magnars/expand-region.el.git
+[submodule "site-lisp/omnisharp-emacs"]
+	path = site-lisp/omnisharp-emacs
+	url = https://github.com/sp3ctum/omnisharp-emacs.git

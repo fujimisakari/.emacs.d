@@ -14,7 +14,9 @@
 (define-key global-map [menu-bar w3m] 'undefined)
 
 ;; macbook air 11インチでフルスクリーン
+(setq ns-use-native-fullscreen nil)
 (ns-toggle-fullscreen)
+
 ;; 28インチ
 ;; (set-frame-size (selected-frame) 211 60)
 ;; macbook air 11インチ
