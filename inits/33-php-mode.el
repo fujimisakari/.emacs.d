@@ -19,7 +19,7 @@
 ;;     :back "\\?>")))
 ;; (add-to-list 'auto-mode-alist '("\\.php?\\'" . xml-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.ctp?\\'" . xml-mode))
-(define-key ac-menu-map (kbd "C-k") 'ac-)
+;; (define-key ac-menu-map (kbd "C-k") 'ac-)
 
 (add-hook 'php-mode-hook '(lambda()
                             (mode-init-func)
