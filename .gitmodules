@@ -40,3 +40,6 @@
 [submodule "site-lisp/omnisharp-emacs"]
 	path = site-lisp/omnisharp-emacs
 	url = https://github.com/sp3ctum/omnisharp-emacs.git
+[submodule "site-lisp/Omnisharp"]
+	path = site-lisp/Omnisharp
+	url = https://github.com/nosami/Omnisharp.git
