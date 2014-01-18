@@ -25,16 +25,14 @@
              (hl-line-mode)
              (skk-mode)
              (omnisharp-mode)
-             ;; (auto-complete-mode)
+             (auto-complete-mode)
              (flymake-mode)
              )
           )
 
 (eval-after-load 'company
   '(add-to-list 'company-backends 'company-omnisharp))
-
-;; csharp-modeの不要機能をoff
-(setq csharp-want-flymake-fixup nil)
+(define-key omnisharp-mode-map (kbd "TAB") 'omnisharp-auto-complete)
 
 ;; Flymake
 (defun flymake-csharp-init ()

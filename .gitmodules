@@ -40,3 +40,15 @@
 [submodule "site-lisp/OmniSharpServer"]
 	path = site-lisp/OmniSharpServer
 	url = https://github.com/nosami/OmniSharpServer.git
+[submodule "site-lisp/omnisharp-emacs"]
+	path = site-lisp/omnisharp-emacs
+	url = https://github.com/sp3ctum/omnisharp-emacs.git
+[submodule "site-lisp/flycheck"]
+	path = site-lisp/flycheck
+	url = https://github.com/flycheck/flycheck.git
+[submodule "site-lisp/s"]
+	path = site-lisp/s
+	url = https://github.com/magnars/s.el.git
+[submodule "site-lisp/f"]
+	path = site-lisp/f
+	url = https://github.com/rejeep/f.el.git

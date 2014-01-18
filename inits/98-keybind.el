@@ -48,20 +48,20 @@
 (global-set-key (kbd "C-M-,") 'er/contract-region)
 
 ;; カーソル拡張
-(require 'multiple-cursors)
-(global-unset-key (kbd "C-q"))
-(smartrep-define-key global-map "C-q"
-  '(("n"        . 'mc/mark-next-like-this)
-    ("p"        . 'mc/mark-previous-like-this)
-    ("m"        . 'mc/mark-more-like-this-extended)
-    ("u"        . 'mc/unmark-next-like-this)
-    ("U"        . 'mc/unmark-previous-like-this)
-    ("s"        . 'mc/skip-to-next-like-this)
-    ("S"        . 'mc/skip-to-previous-like-this)
-    ("*"        . 'mc/mark-all-like-this)
-    ("SPC"      . 'mc/mark-all-in-region)
-    ("C-SPC"    . 'mc/edit-lines)
-    ("i"        . 'mc/insert-numbers)))
+;; (require 'multiple-cursors)
+;; (global-unset-key (kbd "C-q"))
+;; (smartrep-define-key global-map "C-q"
+;;   '(("n"        . 'mc/mark-next-like-this)
+;;     ("p"        . 'mc/mark-previous-like-this)
+;;     ("m"        . 'mc/mark-more-like-this-extended)
+;;     ("u"        . 'mc/unmark-next-like-this)
+;;     ("U"        . 'mc/unmark-previous-like-this)
+;;     ("s"        . 'mc/skip-to-next-like-this)
+;;     ("S"        . 'mc/skip-to-previous-like-this)
+;;     ("*"        . 'mc/mark-all-like-this)
+;;     ("SPC"      . 'mc/mark-all-in-region)
+;;     ("C-SPC"    . 'mc/edit-lines)
+;;     ("i"        . 'mc/insert-numbers)))
 
 ;; キーボードの同時押しでコマンドを実行する
 ;; (install-elisp-from-emacswiki key-chord.el)
