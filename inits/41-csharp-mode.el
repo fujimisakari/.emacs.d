@@ -5,7 +5,7 @@
 ;;;--------------------------------------------------------------------------;;;
 
 (require 'csharp-mode)
-(require 'omnisharp)
+;; (require 'omnisharp)
 (setq auto-mode-alist
    (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
 
@@ -24,15 +24,15 @@
              (c-set-offset 'arglist-close 0)
              (hl-line-mode)
              (skk-mode)
-             (omnisharp-mode)
+             ;; (omnisharp-mode)
              (auto-complete-mode)
              (flymake-mode)
              )
           )
 
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-omnisharp))
-(define-key omnisharp-mode-map (kbd "TAB") 'omnisharp-auto-complete)
+;; (eval-after-load 'company
+;;   '(add-to-list 'company-backends 'company-omnisharp))
+;; (define-key omnisharp-mode-map (kbd "TAB") 'omnisharp-auto-complete)
 
 ;; Flymake
 (defun flymake-csharp-init ()
