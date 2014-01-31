@@ -15,7 +15,7 @@
              (setq comment-column 40)
              (setq c-basic-offset 4)
              (setq tab-width 4)
-             (setq indent-tabs-mode t)
+             (setq indent-tabs-mode nil)
              ;; (font-lock-add-magic-number)
              ;; オフセットの調整
              (c-set-offset 'substatement-open 0)

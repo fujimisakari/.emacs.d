@@ -6,7 +6,7 @@
 dll_file=`echo $1 | sed -e "s/\.cs/.dll/"`
 ls ${dll_file} && rm ${dll_file}
 /usr/bin/mono ~/.emacs.d/bin/StyleCopCLI.exe -cs $PWD/$1 -out /tmp/stylecop.log
-cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1009\|SA1012\|SA1013\|SA1025\|SA1027\|SA1101\|SA1106\|SA1107\|SA1111\|SA1119\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1500\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
+cat /tmp/stylecop.log | sed -e "s/\"//g" | sed -e "s/>/ /g" | grep -v "SA1001\|SA1002\|SA1004\|SA1005\|SA1008\|SA1009\|SA1012\|SA1013\|SA1025\|SA1027\|SA1101\|SA1106\|SA1107\|SA1108\|SA1111\|SA1119\|SA1121\|SA1126\|SA1201\|SA1202\|SA1204\|SA1208\|SA1212\|SA1300\|SA1305\|SA1307\|SA1310\|SA1400\|SA1401\|SA1407\|SA1500\|SA1501\|SA1502\|SA1503\|SA1506\|SA1512\|SA1513\|SA1515\|SA1516\|SA1600\|SA1602\|SA1604\|SA1633\|SA1634"
 ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 
 # SA1001 Invalid spacing around the comma.
@@ -22,14 +22,17 @@ ls $PWD/StyleCop.Cache && rm $PWD/StyleCop.Cache
 # SA1101 The call to Name must begin with the 'this.' prefix to indicate that the item is a member of the class.
 # SA1106 The code contains an extra semicolon.
 # SA1107 A line may only contain a single statement.
+# SA1108 A comment may not be placed within the bracketed statement.
 # SA1111 The closing parenthesis or bracket must be placed on the same line as the last parameter in the parameter list.
 # SA1119 The line contains unnecessary parenthesis.
+# SA1121 Use the built-in type alias 'object' rather than Object or System.Object.
 # SA1126 The call to xxxx must begin with the 'this.', 'base.', 'object.' or 'XXX.' prefix to indicate the intended method call.
 # SA1201 All enums must be placed after all fields.
 # SA1202 All protected methods must be placed after all public methods.
 # SA1204 All static public fields must be placed before all non-static public fields.
 # SA1208 System using directives must be placed before all other using directives.
 # SA1212 A get-accessor within a property or indexer must be placed before a set-accessor.
+# SA1300 method names begin with an upper-case letter
 # SA1305 The variable name 'xxxx' begins with a prefix that looks like Hungarian notation. Remove the prefix or add it to the list of allowed prefixes.
 # SA1307 Public and internal fields must start with an upper-case letter: xxxx
 # SA1310 Field names must not contain underscores.
