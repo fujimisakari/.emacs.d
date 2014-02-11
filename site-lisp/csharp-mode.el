@@ -9,380 +9,9 @@
 ;; X-URL      : http://code.google.com/p/csharpmode/
 ;; Last-saved : <2011-May-21 20:28:30>
 
-;;
-;; This program is free software; you can redistribute it and/or modify
-;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 2 of the License, or
-;; (at your option) any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
-;; but WITHOUT ANY WARRANTY; without even the implied warranty of
-;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-;; GNU General Public License for more details.
-;;
-;; You should have received a copy of the GNU General Public License
-;; along with this program; see the file COPYING.  If not, write to
-;; the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
-;; Boston, MA 02111-1307, USA.
-
-;;; Commentary:
-;;
-;;    This is a major mode for editing C# code. It performs automatic
-;;    indentation of C# syntax; font locking; and integration with compile.el;
-;;    flymake.el; yasnippet.el; and imenu.el.
-;;
-;;    csharp-mode requires CC Mode 5.30 or later.  It works with
-;;    cc-mode 5.31.3, which is current at this time.
-;;
-;; Features:
-;;
-;;   - font-lock and indent of C# syntax including:
-;;       all c# keywords and major syntax
-;;       attributes that decorate methods, classes, fields, properties
-;;       enum types
-;;       #if/#endif  #region/#endregion
-;;       instance initializers
-;;       anonymous functions and methods
-;;       verbatim literal strings (those that begin with @)
-;;       generics
-;;
-;;   - automagic code-doc generation when you type three slashes.
-;;
-;;   - intelligent insertion of matched pairs of curly braces.
-;;
-;;   - compile tweaks. Infers the compile command from special comments
-;;     in the file header.  Also, sets the regex for next-error, so that
-;;     compile.el can handle csc.exe output.
-;;
-;;   - flymake integration
-;;       - select flymake command from code comments
-;;       - infer flymake command otherwise (presence of makefile, etc)
-;;       - Turn off query-on-exit-flag for the flymake process.
-;;       - define advice to flymake-goto-line , to allow it to goto the
-;;         appropriate column for the error on a given line. This works
-;;         with `flymake-goto-next-error' etc.
-;;
-;;   - yasnippet integration
-;;       - preloaded snippets
-;;
-;;   - imenu integration - generates an index of namespaces, classes,
-;;     interfaces, methods, and properties for easy navigation within
-;;     the buffer.
-;;
-
-
-;; Installation instructions
-;; --------------------------------
-;;
-;; Put csharp-mode.el somewhere in your load path, optionally byte-compile
-;; it, and add the following to your .emacs file:
-;;
-;;   (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
-;;   (setq auto-mode-alist
-;;      (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
-;;
-;;
-;; Optionally, define and register a mode-hook function. To do so, use
-;; something like this in your .emacs file:
-;;
-;;   (defun my-csharp-mode-fn ()
-;;      "function that runs when csharp-mode is initialized for a buffer."
-;;      (turn-on-auto-revert-mode)
-;;      (setq indent-tabs-mode nil)
-;;      (require 'flymake)
-;;      (flymake-mode 1)
-;;      (require 'yasnippet)
-;;      (yas/minor-mode-on)
-;;      (require 'rfringe)
-;;      ...insert more code here...
-;;      ...including any custom key bindings you might want ...
-;;   )
-;;   (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
-;;
-;;
-;;  General
-;;  ----------------------------
-;;
-;;  Mostly C# mode will "just work."  Use `describe-mode' to see the
-;;  default keybindings and the highlights of the mode.
-;;
-;;
-;;  Flymake Integration
-;;  ----------------------------
-;;
-;;  You can use flymake with csharp mode to automatically check the
-;;  syntax of your csharp code, and highlight errors.  To do so, add a
-;;  comment line like this to each .cs file that you use flymake with:
-;;
-;;   //  flymake: c:\.net3.5\csc.exe /t:module /nologo /R:Foo.dll @@FILE@@
-;;
-;;  That lines specifies a command "stub".  Flymake appends the name of
-;;  the file to compile, and then runs the command to check
-;;  syntax. Flymake assumes that syntax errors will be noted in the
-;;  output of the command in a form that fits one of the regexs in the
-;;  `compilation-error-regexp-alist-alist'. Check the flymake module for
-;;  more information on that.
-;;
-;;  Some rules for the command:
-;;
-;;    1. it must appear all on a single line.
-;;
-;;    2. csharp-mode generally looks for the marker line in the first N
-;;       lines of the file, where N is set in
-;;       `csharp-cmd-line-limit'.  See the documentation on that
-;;       variable for more information.
-;;
-;;    3. the command SHOULD use @@FILE@@ in place of the name of the
-;;       source file to be compiled, normally the file being edited.
-;;       This is because normally flymake saves a copy of the buffer
-;;       into a temporary file with a unique name, and then compiles
-;;       that temporary file. The token @@FILE@@ is replaced by
-;;       csharp-mode with the name of the temporary file created by
-;;       flymake, before invoking the command.
-;;
-;;    4. The command should include /R options specifying external
-;;       libraries that the code depends on.
-;;
-;;  If you have no external dependencies, then you need not specify any
-;;  flymake command at all. csharp-mode will implicitly act as if you had
-;;  specified the command:
-;;
-;;      // flymake: c:\.net3.5\csc.exe /t:module /nologo @@FILE@@
-;;
-;;
-;;  If you use csc.exe as the syntax check tool (as almost everyone
-;;  will), the /t:module is important. csharp-mode assumes that the
-;;  syntax-check compile command will produce a file named
-;;  NAME.netmodule, which is the default when using /t:module. (Remember
-;;  than NAME is dynamically generated).  csharp-mode will remove the
-;;  generated netmodule file after the syntax check is complete. If you
-;;  don't specify /t:module, then csharp-mode won't know what file to
-;;  delete.
-;;
-;;  csharp-mode also fiddles with some other flymake things.  In
-;;  particular it: adds .cs to the flymake "allowed filename masks";
-;;  adds parsing for csc error messages; and adds advice to the error
-;;  parsing logic. This all should be pretty benign for all other
-;;  flymake buffers.  But it might not be.
-;;
-;;  You can explicitly turn the flymake integration for C# off by
-;;  setting `csharp-want-flymake-fixup' to nil.
-;;
-;;
-;;  Compile Integration
-;;  ----------------------------
-;;
-;;  csharp-mode binds the function `csharp-invoke-compile-interactively'
-;;  to "\C-x\C-e" .  This function attempts to intellgently guess the
-;;  format of the compile command to use for a buffer.  It looks in the
-;;  comments at the head of the buffer for a line that begins with
-;;  compile: .  If found, csharp-mode suggests the text that follows as
-;;  the compilation command when running `compile' .  If such a line is
-;;  not found, csharp-mode falls back to a msbuild or nmake command.
-;;  See the documentation on `csharp-cmd-line-limit' for further
-;;  information.
-;;
-;;  Also, csharp-mode installs an error regexp for csc.exe into
-;;  `compilation-error-regexp-alist-alist', which allows `next-error'
-;;  and `previous-error' (defined in compile.el) to navigate to the next
-;;  and previous compile errors in the cs buffer, after you've run `compile'.
-;;
-;;
-;;  YASnippet integration
-;;  -----------------------------
-;;
-;;  csharp-mode defines some built-in snippets for
-;;  convenience.  For example, if statements, for, foreach, and
-;;  so on.  You can see them on the YASnippet menu that is displayed
-;;  when a csharp-mode buffer is opened.  csharp-mode defines this
-;;  snippets happens only if ya-snippet is available. (It is done in an
-;;  `eval-after-load' clause.)  The builtin snippets will not overwrite
-;;  snippets that use the same name, if they are defined in the normal
-;;  way (in a compiled bundle) with ya-snippet.
-;;
-;;  You can explicitly turn off ya-snippet integration. See the var,
-;;  `csharp-want-yasnippet-fixup'.
-;;
-;;
-;;  imenu integration
-;;  -----------------------------
-;;
-;;  This should just work. For those who don't know what imenu is, it
-;;  allows navigation to different points within the file from an
-;;  "Index" menu, in the window's menubar.  csharp-mode computes the
-;;  menu containing the namespaces, classes, methods, and so on, in the
-;;  buffer.  This happens at the time the file is loaded; for large
-;;  files it takes a bit of time to complete the scan.  If you don't
-;;  want this capability, set `csharp-want-imenu' to nil.
-;;
-;;
-
-
-;;; Known Bugs:
-;;
-;;   The imenu scan is text-based and naive. For example, if you
-;;   intersperse comments between the name of a class/method/namespace,
-;;   and the curly brace, the scan will not recognize the thing being
-;;   declared. This is fixable - would need to extract the buffer
-;;   substring then remove comments before doing the regexp checks - but
-;;   it would make the scan much slower.  Also, the scan doesn't deal
-;;   with preproc symbol definitions and #if/#else. Those things are
-;;   invisible to the scanner csharp-mode uses to build the imenu menu.
-;;
-;;   Leading identifiers are no longer being fontified, for some reason.
-;;   See matchers-before. (Not sure this is still a problem - 19 may
-;;   2011 DPC)
-;;
-;;   Method names with a preceding attribute are not fontified.
-;;
-;;   The symbol followng #if is not fontified.  It should be treated like
-;;   define and get font-lock-variable-name-face .
-;;
-;;   This code doesn't seem to work when you compile it, then
-;;   load/require in the emacs file. You will get an error (error
-;;   "`c-lang-defconst' must be used in a file") which happens because
-;;   cc-mode doesn't think it is in a buffer while loading directly
-;;   from the init. However, if you call it based on a file extension,
-;;   it works properly. Interestingly enough, this doesn't happen if
-;;   you don't byte-compile cc-mode.
-;;
-;;
-;;
-;;  Todo:
-;;
-;;   imenu should scan for and find delegates and events, in addition
-;;   to the classes, structs, properties and methods it does currently.
-;;
-;;   Get csharp-mode.el accepted as part of the emacs standard distribution.
-;;   Must contact monnier at iro.umontreal.ca to make this happen.
-;;
-;;   Add refactoring capabilities?
-;;     - extract as method - extract a block of code into a method
-;;     - extract as Func<> - extract a block of code into an Action<T>
-;;
-;;   More code-gen power:
-;;     - interface implementation - I think would require csharp-shell
-;;
-;;
-;;  Acknowledgements:
-;;
-;;    Thanks to Alan Mackenzie and Stefan Monnier for answering questions
-;;    and making suggestions. And to Trey Jackson for sharing his
-;;    knowledge of emacs lisp.
-;;
-;;
-
-;;; Versions:
-;;
-;;    0.1.0 - Initial release.
-;;    0.2.0 - Fixed the identification on the "enum" keyword.
-;;          - Fixed the font-lock on the "base" keyword
-;;    0.3.0 - Added a regex to fontify attributes. It isn't the
-;;            the best method, but it handles single-like attributes
-;;            well.
-;;          - Got "super" not to fontify as a keyword.
-;;          - Got extending classes and interfaces to fontify as something.
-;;    0.4.0 - Removed the attribute matching because it broke more than
-;;            it fixed.
-;;          - Corrected a bug with namespace not being properly identified
-;;            and treating the class level as an inner object, which screwed
-;;            up formatting.
-;;          - Added "partial" to the keywords.
-;;    0.5.0 - Found bugs with compiled cc-mode and loading from init files.
-;;          - Updated the eval-when-compile to code to let the mode be
-;;            compiled.
-;;    0.6.0 - Added the c-filter-ops patch for 5.31.1 which made that
-;;            function in cc-langs.el unavailable.
-;;          - Added a csharp-lineup-region for indention #region and
-;;            #endregion block differently.
-;;    0.7.0 - Added autoload so update-directory-autoloads works
-;;            (Thank you, Nikolaj Schumacher)
-;;          - Fontified the entire #region and #endregion lines.
-;;          - Initial work to get get, set, add, remove font-locked.
-;;    0.7.1 - Added option to indent #if/endif with code
-;;          - Fixed c-opt-cpp-prefix defn (it must not include the BOL
-;;            char (^).
-;;          - proper fontification and indent of classes that inherit
-;;            (previously the colon was confusing the parser)
-;;          - reclassified namespace as a block beginner
-;;          - removed $ as a legal symbol char - not legal in C#.
-;;          - added struct to c-class-decl-kwds so indent is correct
-;;            within a struct.
-;;    0.7.2 - Added automatic codedoc insertion.
-;;    0.7.3 - Instance initializers (new Type { ... } ) and
-;;            (new Type() { ...} ) are now indented properly.
-;;          - proper fontification and indent of enums as brace-list-*,
-;;            including special treatment for enums that explicitly
-;;            inherit from an int type. Previously the colon was
-;;            confusing the parser.
-;;          - proper fontification of verbatim literal strings,
-;;            including those that end in slash. This edge case was not
-;;            handled at all before; it is now handled correctly.
-;;          - code cleanup and organization; removed the formfeed.
-;;          - intelligent curly-brace insertion with
-;;            `csharp-insert-open-brace'
-;;    0.7.4 - added a C# style
-;;          - using is now a keyword and gets fontified correctly
-;;          - fixed a bug that had crept into the codedoc insertion.
-;;    0.7.5 - now fontify namespaces in the using statements. This is
-;;            done in the csharp value for c-basic-matchers-before .
-;;          - also fontify the name following namespace decl.
-;;            This is done in the csharp value for c-basic-matchers-after .
-;;          - turn on recognition of generic types. They are now
-;;            fontified correctly.
-;;          - <> are now treated as syntactic parens and can be jumped
-;;            over with c-forward-sexp.
-;;          - Constructors are now fontified.
-;;          - Field/Prop names inside object initializers are now fontified.
-;;
-;;    0.7.7 - relocate running c-run-mode-hooks to the end of
-;;            csharp-mode, to allow user to modify key bindings in a
-;;            hook if he doesn't like the defaults.
-;;
-;;    0.7.8 - redefine csharp-log to insert timestamp.
-;;          - Fix byte-compile errors on emacs 23.2 ?  Why was
-;;            c-filter-ops duplicated here?  What was the purpose of its
-;;            presence here, I am not clear.
-;;
-;;    0.8.0 - include flymake magic into this module.
-;;          - include yasnippet integration
-;;
-;;    0.8.2 2011 April DPC
-;;          - small tweaks; now set a one-time bool for flymake installation
-;;          - some doc updates on flymake
-;;
-;;    0.8.3 2011 May 17  DPC
-;;          - better help on csharp-mode
-;;          - csharp-move-* functions for manual navigation.
-;;          - imenu integration for menu-driven navigation - navigate to
-;;            named methods, classes, etc.
-;;          - adjusted the flymake regexp to handle output from fxcopcmd,
-;;            and extended the help to provide examples how to use this.
-;;
-;;    0.8.4 DPC 2011 May 18
-;;          - fix a basic bug in the `csharp-yasnippet-fixup' fn.
-;;
-;;    0.8.5 DPC 2011 May 21
-;;          - imenu: correctly parse Properties that are part of an
-;;            explicitly specified interface. Probably need to do this
-;;            for methods, too.
-;;          - fontify the optional alias before namespace in a using (import).
-;;          - Tweak open-curly magic insertion for object initializers.
-;;          - better fontification of variables and references
-;;          - "sealed" is now fontified as a keyword
-;;          - imenu: correctly index ctors that call this or base.
-;;          - imenu: correctly index Extension methods (this System.Enum e)
-;;          - imenu: correctly scan  method params tagged with out, ref, params
-;;          - imenu scan: now handle curlies within strings.
-;;          - imenu: split menus now have better labels, are sorted correctly.
-;;
-;;    0.8.6 DPC 2011 May ??
-;;          -
-
 (require 'cc-mode)
 
 (message  (concat "Loading " load-file-name))
-
 
 ;; ==================================================================
 ;; c# upfront stuff
@@ -2829,7 +2458,8 @@ more open-curlies are found.
                                  (point))))
               (setq submenu
                     (list
-                     (concat this-flavor " " container-name)
+                     ""
+                     ;; (concat this-flavor " " container-name)
                      (cons "(top)" top)))
 
               ;; find all contained items
@@ -2839,13 +2469,18 @@ more open-curlies are found.
                 (let* ((yok (string= this-flavor "namespace"))
                        (child-menu
                         (csharp--imenu-create-index-helper container-name
-                                                           (concat indent-level "  ")
+                                                           ""
+                                                           ;; (concat indent-level "  ")
                                                            yok yok)))
                   (if child-menu
                       (setq submenu
-                            (append submenu
-                                    (sort child-menu
-                                          'csharp--imenu-item-basic-comparer))))))
+                            (append submenu child-menu)))))
+
+                  ;; (if child-menu
+                  ;;     (setq submenu
+                  ;;           (append submenu
+                  ;;                   (sort child-menu
+                  ;;                         'csharp--imenu-item-basic-comparer))))))
               (setq submenu
                     (append submenu
                             (list (cons "(bottom)" close-curly))))
@@ -2904,7 +2539,8 @@ more open-curlies are found.
                   (append this-menu
                           (list
                            (cons (concat
-                                  "method "
+                                  ;; " "
+                                  ;; "method "
                                   (match-string-no-properties 2) ;; return type
                                   " "
                                   (match-string-no-properties 3) ;; func name
@@ -2985,7 +2621,7 @@ It had better be a string!"
    ((string= s "prop") "properties")
    ((string= s "class") "classes")
    ((string= s "ctor") "constructors")
-   (t (concat s "s"))))
+   (t (concat s ""))))
 
 (defun csharp--imenu-counts (list)
   "Returns an alist, each item is a cons cell where the car is a
@@ -3125,11 +2761,11 @@ Returns a new list, containing sublists.
     (cond
      ;; a small number, and all the same flavor
      ((and (< len csharp-imenu-min-size-for-sub-submenu) (= (length counts) 1))
-      (csharp--imenu-remove-category-names
-       (sort menu-list
-             (if (string= (caar counts) "methods")
-                 'csharp--imenu-item-method-name-comparer
-               'csharp--imenu-item-basic-comparer))))
+      (csharp--imenu-remove-category-names menu-list))
+       ;; (sort menu-list
+       ;;       (if (string= (caar counts) "methods")
+       ;;           'csharp--imenu-item-method-name-comparer
+       ;;         'csharp--imenu-item-basic-comparer))))
 
      ;; is the length already pretty short?
      ((< len csharp-imenu-min-size-for-sub-submenu)
@@ -3139,10 +2775,11 @@ Returns a new list, containing sublists.
       menu-list)
 
      (t
-      (let* ((lst    (sort menu-list
-                           (if (string= (caar counts) "methods")
-                               'csharp--imenu-item-method-name-comparer
-                             'csharp--imenu-item-basic-comparer)))
+      (let* ((lst menu-list)
+             ;; (lst    (sort menu-list
+             ;;               (if (string= (caar counts) "methods")
+             ;;                   'csharp--imenu-item-method-name-comparer
+             ;;                 'csharp--imenu-item-basic-comparer)))
              new
              (sz     (csharp--imenu-get-submenu-size len)) ;; goal max size of sublist
              (n      (ceiling (/ (* 1.0 len) sz))) ;; total number of sublists
@@ -3160,7 +2797,7 @@ Returns a new list, containing sublists.
                             (nthcdr (- len chunksz) lst))
                 lst (nbutlast lst chunksz)
                 ;;label (format "%s %d" plural-name (- n i))
-                label (concat "from " (csharp--imenu-submenu-label (caar this-chunk) base-name))
+                ;; label (concat "from " (csharp--imenu-submenu-label (caar this-chunk) base-name))
                 new (cons (cons label this-chunk) new)
                 len (- len chunksz))
           (incf i))
@@ -3270,9 +2907,9 @@ out into multiple submenus."
                          csharp-imenu-max-similar-items-before-extraction)
                       (cons topic (list elt)))
 
-                     ((imenu--subalist-p elt)
-                      (cons (car elt)
-                            (csharp--imenu-reorg-alist-intelligently (cdr elt))))
+                     ;; ((imenu--subalist-p elt)
+                     ;;  (cons (car elt)
+                     ;;        (csharp--imenu-reorg-alist-intelligently (cdr elt))))
                      (t
                       elt))
 
@@ -3406,7 +3043,7 @@ attempts to disable the weird re-jiggering that imenu performs."
 ;; appropriate syntax-table text properties for verblit strings. Also setting
 ;; `parse-sexp-lookup-properties' to t tells `parse-partial-sexp'
 ;; to use the syntax-table text properties set up by the scan as it does
-;; its parse.
+;; its Parse.
 ;;
 ;; Also need to re-scan after any changes in the buffer, but on a more
 ;; limited region.
@@ -4236,8 +3873,8 @@ Key bindings:
         ;; `imenu-generic-expression'; imenu will do a "generic scan" for you.
         ;; csharp-mode uses the former method.
         ;;
-        (setq imenu-create-index-function 'csharp-imenu-create-index)
-        (imenu-add-menubar-index)))
+        (setq imenu-create-index-function 'csharp-imenu-create-index)))
+        ;; (imenu-add-menubar-index)))
 
     ;; The paragraph-separate variable was getting stomped by
     ;; other hooks, so it must reside here.
