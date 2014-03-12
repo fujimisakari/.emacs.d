@@ -1,0 +1,4 @@
+# name: debug Debug.LogWarning(...)
+# key: debugw
+# --
+Debug.LogWarning(\"$0\");

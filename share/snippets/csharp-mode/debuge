@@ -1,0 +1,4 @@
+# name: debug Debug.LogError(...)
+# key: debuge
+# --
+Debug.LogError(\"$0\");
