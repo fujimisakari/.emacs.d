@@ -83,16 +83,16 @@
 (setq org-src-fontify-natively t)
 
 (defface org-block-begin-line
-  '((t (:foreground "SlateBlue1" :background "gray17")))
+  '((t (:foreground "SlateBlue1" :background "gray0")))
   "Face used for the line delimiting the begin of source blocks.")
-(set-face-foreground 'org-block-begin-line "SlateBlue1")
+(set-face-foreground 'org-block-begin-line "gray0")
 
 (defface org-block-background
-  '((t (:background "gray17")))
+  '((t (:background "gray0")))
   "Face used for the source block background.")
-(set-face-background 'org-block-background "gray17")
+(set-face-background 'org-block-background "gray0")
 
 (defface org-block-end-line
-  '((t (:foreground "SlateBlue1" :background "gray17")))
+  '((t (:foreground "SlateBlue1" :background "gray0")))
   "Face used for the line delimiting the end of source blocks.")
-(set-face-foreground 'org-block-end-line "SlateBlue1")
+(set-face-foreground 'org-block-end-line "gray0")

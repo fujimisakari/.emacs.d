@@ -5,10 +5,12 @@
 ;;;--------------------------------------------------------------------------;;;
 
 ;; javascript-mode
-;; (autoload 'js2-mode "js2-mode" nil t)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(autoload 'js2-mode "js2-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
+
 ;; (defun js-indent-hook ()
-;;   ;; インデント幅を4にする
+;;   ;; インデント幅を2にする
 ;;   (setq js-indent-level 2
 ;;         js-expr-indent-offset 2
 ;;         indent-tabs-mode nil)
@@ -27,7 +29,8 @@
 ;;   (set (make-local-variable 'indent-line-function) 'my-js-indent-line)
 ;;   ;; ここまでcaseラベルを調整する設定
 ;;   )
-;; ;; js-modeの起動時にhookを追加
-;; (add-hook 'js-mode-hook'(lambda()
-;;                           (mode-init-func)
-;;                           (js-indent-hook)))
+
+;; js-modeの起動時にhookを追加
+(add-hook 'js-mode-hook'(lambda()
+                          (mode-init-func)))
+
