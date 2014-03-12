@@ -1441,7 +1441,7 @@ wrote this alternative.
   ;; The following fn allows this:
   ;;    (csharp-log 3 "scan result...'%s'" state)
 
-(defcustom csharp-log-level 0
+(defcustom csharp-log-level -1
     "The current log level for CSharp-mode-specific operations.
 This is used in particular by the verbatim-literal
 string scanning.
@@ -2353,35 +2353,35 @@ more open-curlies are found.
        ((re-search-forward "{" (point-max) t)
         (if (= pos-last-curly (point))
             (progn
-              ;;(csharp-log -1 "imenu: No advance? quitting (%d)" (point))
+              (csharp-log -1 "imenu: No advance? quitting (%d)" (point))
               (setq done t)) ;; haven't advanced- likely a loop
 
           (setq pos-last-curly (point))
           (let ((literal (csharp-in-literal)))
             ;; skip over comments?
             (cond
-
              ((memq literal '(c c++))
+              (csharp-log -1 "hogeimenu: No advance? quitting (%s)" (literal))
               (while (memq literal '(c c++))
                 (end-of-line)
                 (forward-char 1)
                 (setq literal (csharp-in-literal)))
               (if (re-search-forward "{" (point-max) t)
                   (forward-char -1)
-                ;;(csharp-log -1 "imenu: No more curlies (A) (%d)" (point))
+                (csharp-log -1 "imenu: No more curlies (A) (%d)" (point))
                 (setq done t)))
 
              ((eq literal 'string)
               (if  (re-search-forward "\"" (point-max) t)
                   (forward-char 1)
-                ;;(csharp-log -1 "imenu: Never-ending string? posn(%d)" (point))
+                (csharp-log -1 "imenu: Never-ending string? posn(%d)" (point))
                 (setq done t)))
 
              (t
               (forward-char -1)))))) ;; backup onto the curly
 
        (t
-        ;;(csharp-log -1 "imenu: No more curlies (B) posn(%d)" (point))
+        (csharp-log -1 "imenu: No more curlies (B) posn(%d)" (point))
         (setq done t)))
 
       (if (not done)
@@ -2417,8 +2417,8 @@ more open-curlies are found.
 
            ;; case 4: an interface or enum inside the container
            ;; (must come before class / namespace )
-           ((or (csharp--on-intf-open-curly-p)
-                (csharp--on-enum-open-curly-p))
+           ((or (csharp--on-enum-open-curly-p)
+                (csharp--on-intf-open-curly-p))
               (setq consider-namespaces nil
                     consider-usings nil
                     this-menu
@@ -2504,32 +2504,32 @@ more open-curlies are found.
             (forward-sexp 1))
 
            ;; case 7: an indexer
-           ((csharp--on-indexer-open-curly-p)
-            (setq consider-namespaces nil
-                    consider-usings nil
-                    this-menu
-                    (append this-menu
-                            (list
-                             (cons (concat
-                                    "indexer "
-                                    (match-string-no-properties 4)) ;; index type
-                                   (match-beginning 1)))))
-            (forward-sexp 1))
+           ;; ((csharp--on-indexer-open-curly-p)
+           ;;  (setq consider-namespaces nil
+           ;;          consider-usings nil
+           ;;          this-menu
+           ;;          (append this-menu
+           ;;                  (list
+           ;;                   (cons (concat
+           ;;                          "indexer "
+           ;;                          (match-string-no-properties 4)) ;; index type
+           ;;                         (match-beginning 1)))))
+           ;;  (forward-sexp 1))
 
            ;; case 8: a constructor inside the container
-           ((csharp--on-ctor-open-curly-p)
-            (setq consider-namespaces nil
-                  consider-usings nil
-                  this-menu
-                  (append this-menu
-                          (list
-                           (cons (concat
-                                  "ctor "
-                                  (match-string-no-properties 2) ;; ctor name
-                                  (csharp--imenu-remove-param-names-from-paramlist
-                                   (match-string-no-properties 3))) ;; ctor params
-                                 (match-beginning 1)))))
-            (forward-sexp 1))
+           ;; ((csharp--on-ctor-open-curly-p)
+           ;;  (setq consider-namespaces nil
+           ;;        consider-usings nil
+           ;;        this-menu
+           ;;        (append this-menu
+           ;;                (list
+           ;;                 (cons (concat
+           ;;                        "ctor "
+           ;;                        (match-string-no-properties 2) ;; ctor name
+           ;;                        (csharp--imenu-remove-param-names-from-paramlist
+           ;;                         (match-string-no-properties 3))) ;; ctor params
+           ;;                       (match-beginning 1)))))
+           ;;  (forward-sexp 1))
 
            ;; case 9: a method inside the container
            ((csharp--on-defun-open-curly-p)
@@ -2970,6 +2970,7 @@ attempts to disable the weird re-jiggering that imenu performs."
   ;; So I use `c-save-buffer-state' so that the buffer is not
   ;; marked modified when the scan completes.
 
+  (message "C#: csharp-imenu-create-index")
   (c-save-buffer-state ()
       (save-excursion
         (save-restriction
@@ -3839,7 +3840,7 @@ Key bindings:
     ;; analysis and similar things working.
     (c-common-init 'csharp-mode)
 
-    (local-set-key (kbd "{") 'csharp-insert-open-brace)
+    ;; (local-set-key (kbd "{") 'csharp-insert-open-brace)
 
     ;; Need the following for parse-partial-sexp to work properly with
     ;; verbatim literal strings Setting this var to non-nil tells
