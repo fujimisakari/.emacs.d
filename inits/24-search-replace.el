@@ -19,7 +19,6 @@
   (when (and (executable-find "cmigemo")
              (require 'migemo nil t))
     (setq moccur-use-migemo t)))
-(global-set-key (kbd "C-l f") 'moccur-grep-find)
 
 ;; ローマ字のまま日本語をインクリメンタルサーチする(C/Migemoを使う)
 (when (and (executable-find "cmigemo")

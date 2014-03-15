@@ -7,7 +7,7 @@
 ;; ELScreen関連PKG
 (require 'elscreen)
 (require 'elscreen-color-theme)
-(require 'elscreen-wl)
+;; (require 'elscreen-wl)
 (require 'elscreen-dired)
 (require 'elscreen-dnd)
 (require 'elscreen-gf)
