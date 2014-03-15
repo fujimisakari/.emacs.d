@@ -1,5 +1,5 @@
 ;;; skk-setup.el --- initial setup for SKK  -*- emacs-lisp -*-
-;; This file was generated automatically by SKK-MK at Sat Apr 14 19:40:33 2012
+;; This file was generated automatically by SKK-MK at Sun Mar 16 01:17:57 2014
 
 ;; Copyright (C) 2000 NAKAJIMA Mikio <minakaji@osaka.email.ne.jp>
 
@@ -42,7 +42,7 @@
 ;;; Dictionaries.
 ;;(defvar skk-large-jisyo "@DIC@")
 ;;(defvar skk-aux-large-jisyo "@AUXDIC@")
-(defvar skk-tut-file "/Users/fujimo/.emacs.d/share/skk/SKK.tut")
+(defvar skk-tut-file "/usr/local/Cellar/emacs/HEAD/share/skk/SKK.tut")
 
 ;;; Isearch setting.
 (defun skk-isearch-setup-maybe ()
