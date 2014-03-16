@@ -35,14 +35,17 @@
 ;;                (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
 ;;                (local-set-key (kbd "C-t") 'helm-gtags-pop-stack))))
 
-;; キーバインド設定
-(global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
-(global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動
-(global-set-key (kbd "C-x C-f") 'helm-find-files)         ; ファイルリスト検索
-;; (global-set-key (kbd "M-o") 'helm-occur)
-(global-set-key (kbd "C-M-.") 'helm-resume)
-(define-key global-map (kbd "M-y") 'helm-show-kill-ring)  ; 過去のkill-ringの内容を取り出す
-(define-key global-map (kbd "M-x") 'helm-M-x)             ; helmでM-x
+;; ;; キーバインド設定
+;; (global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
+;; (global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動
+;; (global-set-key (kbd "C-x C-f") 'helm-find-files)         ; ファイルリスト検索
+;; ;; (global-set-key (kbd "M-o") 'helm-occur)
+;; (global-set-key (kbd "C-M-.") 'helm-resume)
+;; (define-key global-map (kbd "M-y") 'helm-show-kill-ring)  ; 過去のkill-ringの内容を取り出す
+;; (define-key global-map (kbd "M-x") 'helm-M-x)             ; helmでM-x
+
+;; ミニバッファ内の先頭でない特定の位置からC-kできるようにする
+(setq helm-delete-minibuffer-contents-from-point t)
 
 ;; カラー設定
 (custom-set-faces

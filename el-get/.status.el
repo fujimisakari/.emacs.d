@@ -9,8 +9,6 @@
                        (popup fuzzy)))
  (auto-install status "installed" recipe
                (:name auto-install :description "Auto install elisp file" :type emacswiki))
- (calfw status "installed" recipe
-        (:name calfw :type github :pkgname "kiwanami/emacs-calfw" :load-path "." :description "A calendar framework for Emacs (with support for `org-mode', `howm' and iCal files)" :website "https://github.com/kiwanami/emacs-calfw"))
  (color-moccur status "installed" recipe
                (:name color-moccur :type http :url "http://www.bookshelf.jp/elc/color-moccur.el" :description "multi-buffer occur (grep) mode" :website "http://www.bookshelf.jp/soft/meadow_50.html"))
  (column-marker status "installed" recipe
