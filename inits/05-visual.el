@@ -159,7 +159,7 @@
 
 (require 'highlight-indentation)
 (setq highlight-indentation-offset 4)  ;; default: 4
-(set-face-background 'highlight-indent-face "MediumPurple4")
+;; (set-face-background 'highlight-indent-face "MediumPurple4")
 ;; (set-face-background 'highlight-indentation-current-column-face "#e3e3d3")
 ;; (add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
 ;; (add-hook 'html-mode-hook 'highlight-indentation-current-column-mode)
