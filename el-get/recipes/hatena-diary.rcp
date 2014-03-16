@@ -1,0 +1,4 @@
+(:name hatena-diary
+       :type git
+       :depends flim
+       :url "https://gist.github.com/4465244.git")

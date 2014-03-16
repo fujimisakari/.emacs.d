@@ -9,8 +9,8 @@
 
 ;; 未来へやり直しできるようにる(redo)
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
-(require 'redo+)
-(global-set-key (kbd "C-.") 'redo)
+;; (require 'redo+)
+;; (global-set-key (kbd "C-.") 'redo)
 
 ;; 過去のundoがredoされないようにする
 (setq undo-no-redo t)

@@ -4,13 +4,13 @@
 ;;                                 viewer設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(require 'viewer)
+;; (require 'viewer)
 
 ;; C-x C-r は view-modeでファイルを開く
 (setq view-read-only t)
 
 ;; 書き込み不能ファイルはview-modeから抜けなくする
-(viewer-stay-in-setup)
+;; (viewer-stay-in-setup)
 
 ;; 特定のファイルを view-mode で開くようにする
 (setq view-mode-by-default-regexp "\\.log$")
@@ -22,7 +22,7 @@
 (setq viewer-modeline-color-view "orange")
 ;; view-modeの切り替え時のデフォルト色
 (setq viewer-modeline-color-default "SlateBlue3")
-(viewer-change-modeline-color-setup)
+;; (viewer-change-modeline-color-setup)
 
 ;;; view-modeのキーバインド
 (defvar pager-keybind

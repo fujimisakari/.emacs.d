@@ -18,6 +18,17 @@
 ;; (package-refresh-contents) ;; list-packagesしなくてもpackage-installできるように
 (package-initialize)
 
+;;; el-get
+(setq el-get-dir "~/.emacs.d/el-get/")
+;; (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get/recipes")
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.github.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+(el-get 'sync)
+
 ;;; 自動バイトコンパイル
 (require 'auto-async-byte-compile)
 ;; 自動バイトコンパイルを無効にするファイル名の正規表現

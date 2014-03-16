@@ -55,7 +55,7 @@
         ("Todo" ?t "** TODO %?\n" nil "Inbox-Todo")))
 
 ;; 瞬時にメモを取る
-(org-remember-insinuate)  ; org-rememberの初期化
+;; (org-remember-insinuate)  ; org-rememberの初期化
 ;; (key-chord-define global-map "fj" 'org-remember)
 
 ;; メモを格納するorgファイルの設定

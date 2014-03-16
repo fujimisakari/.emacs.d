@@ -32,6 +32,7 @@
 (global-set-key (kbd "C-l '") 'ace-jump-mode)
 (global-set-key (kbd "C-l b") 'browse-url-at-point)
 (global-set-key (kbd "C-l f") 'moccur-grep-find)
+(global-set-key (kbd "C-l g") 'open-github-from-here)
 ;; anzu
 (global-set-key (kbd "C-l r") 'anzu-query-replace-regexp)
 (global-set-key (kbd "C-l R") 'anzu-query-replace)
