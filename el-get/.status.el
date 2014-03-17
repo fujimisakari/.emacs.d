@@ -74,6 +74,8 @@
                (:name sml-modeline :description "Show position in a scrollbar like way in mode-line" :type http :url "http://bazaar.launchpad.net/~nxhtml/nxhtml/main/download/head%3A/smlmodeline.el-20100318165023-n7kkswg6dlq8l6b3-1/sml-modeline.el" :features "sml-modeline"))
  (stem status "installed" recipe
        (:name stem :description "routines for stemming" :type github :pkgname "yuutayamada/stem"))
+ (tabbar status "installed" recipe
+         (:name tabbar :type emacswiki :description "Display a tab bar in the header line" :lazy t :load-path "."))
  (twittering-mode status "installed" recipe
                   (:name twittering-mode :description "Major mode for Twitter" :type github :pkgname "hayamiz/twittering-mode" :features twittering-mode :compile "twittering-mode.el"))
  (vline status "installed" recipe

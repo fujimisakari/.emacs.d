@@ -10,8 +10,8 @@
 (mapcar (lambda (x)
           (define-key my-keyjack-mode-map (car x) (cdr x))
           (global-set-key (car x) (cdr x)))
-        '(("\C-\M-l" . elscreen-next)
-          ("\C-\M-h" . elscreen-previous)))
+        '(("\C-\M-l" . tabbar-forward-tab)
+          ("\C-\M-h" . tabbar-backward-tab)))
 
 (easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
                               t " Keyjack" my-keyjack-mode-map)

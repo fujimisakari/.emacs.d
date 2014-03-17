@@ -4,13 +4,6 @@
 ;;                                外観設定                                    ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;; カラーテーマを利用する
-;; color-theme
-;; (when window-system
-;;   (require 'color-theme nil t)
-;;   (color-theme-initialize)
-;;   (color-theme-charcoal-black))
-
 ;; フォント設定
 (cond ((eq my-os-type 'linux)
        (when window-system

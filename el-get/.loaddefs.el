@@ -1064,82 +1064,6 @@ Major mode for editing PHP code.
 
 ;;;***
 
-;;;### (autoloads nil "powerline/powerline" "powerline/powerline.el"
-;;;;;;  (21285 52120 0 0))
-;;; Generated autoloads from powerline/powerline.el
-
-(autoload 'powerline-hud "powerline/powerline" "\
-Return an XPM of relative buffer location using FACE1 and FACE2 of optional WIDTH.
-
-\(fn FACE1 FACE2 &optional WIDTH)" nil nil)
-
-(autoload 'powerline-mouse "powerline/powerline" "\
-Return mouse handler for CLICK-GROUP given CLICK-TYPE and STRING.
-
-\(fn CLICK-GROUP CLICK-TYPE STRING)" nil nil)
-
-(autoload 'powerline-concat "powerline/powerline" "\
-Concatonate STRINGS and pad sides by spaces.
-
-\(fn &rest STRINGS)" nil nil)
-
-(autoload 'defpowerline "powerline/powerline" "\
-Create function NAME by wrapping BODY with powerline padding an propetization.
-
-\(fn NAME BODY)" nil t)
-
-(autoload 'powerline-raw "powerline/powerline" "\
-Render STR as mode-line data using FACE and optionally PAD import on left (l) or right (r).
-
-\(fn STR &optional FACE PAD)" nil nil)
-
-(autoload 'powerline-fill "powerline/powerline" "\
-Return empty space using FACE and leaving RESERVE space on the right.
-
-\(fn FACE RESERVE)" nil nil)
-
-(defpowerline powerline-major-mode (propertize (format-mode-line mode-name) 'mouse-face 'mode-line-highlight 'help-echo "Major mode\nmouse-1: Display major mode menu\nmouse-2: Show help for major mode\nmouse-3: Toggle minor modes" 'local-map (let ((map (make-sparse-keymap))) (define-key map [mode-line down-mouse-1] `(menu-item ,(purecopy "Menu Bar") ignore :filter (lambda (_) (mouse-menu-major-mode-map)))) (define-key map [mode-line mouse-2] 'describe-mode) (define-key map [mode-line down-mouse-3] mode-line-mode-menu) map)))
-
-(defpowerline powerline-minor-modes (mapconcat (lambda (mm) (propertize mm 'mouse-face 'mode-line-highlight 'help-echo "Minor mode\n mouse-1: Display minor mode menu\n mouse-2: Show help for minor mode\n mouse-3: Toggle minor modes" 'local-map (let ((map (make-sparse-keymap))) (define-key map [mode-line down-mouse-1] (powerline-mouse 'minor 'menu mm)) (define-key map [mode-line mouse-2] (powerline-mouse 'minor 'help mm)) (define-key map [mode-line down-mouse-3] (powerline-mouse 'minor 'menu mm)) (define-key map [header-line down-mouse-3] (powerline-mouse 'minor 'menu mm)) map))) (split-string (format-mode-line minor-mode-alist)) (propertize " " 'face face)))
-
-(defpowerline powerline-narrow (let (real-point-min real-point-max) (save-excursion (save-restriction (widen) (setq real-point-min (point-min) real-point-max (point-max)))) (when (or (/= real-point-min (point-min)) (/= real-point-max (point-max))) (propertize "Narrow" 'mouse-face 'mode-line-highlight 'help-echo "mouse-1: Remove narrowing from the current buffer" 'local-map (make-mode-line-mouse-map 'mouse-1 'mode-line-widen)))))
-
-(defpowerline powerline-vc (when (and (buffer-file-name (current-buffer)) vc-mode) (format-mode-line '(vc-mode vc-mode))))
-
-(defpowerline powerline-buffer-size (propertize (if powerline-buffer-size-suffix "%I" "%i") 'mouse-face 'mode-line-highlight 'local-map (make-mode-line-mouse-map 'mouse-1 (lambda nil (interactive) (setq powerline-buffer-size-suffix (not powerline-buffer-size-suffix)) (force-mode-line-update)))))
-
-(defpowerline powerline-buffer-id (format-mode-line mode-line-buffer-identification))
-
-(defpowerline powerline-process (cond ((symbolp mode-line-process) (symbol-value mode-line-process)) ((listp mode-line-process) (format-mode-line mode-line-process)) (t mode-line-process)))
-
-;;;***
-
-;;;### (autoloads nil "powerline/powerline-themes" "powerline/powerline-themes.el"
-;;;;;;  (21285 52120 0 0))
-;;; Generated autoloads from powerline/powerline-themes.el
-
-(autoload 'powerline-default-theme "powerline/powerline-themes" "\
-Setup the default mode-line.
-
-\(fn)" t nil)
-
-(autoload 'powerline-center-theme "powerline/powerline-themes" "\
-Setup a mode-line with major and minor modes centered.
-
-\(fn)" t nil)
-
-(autoload 'powerline-vim-theme "powerline/powerline-themes" "\
-Setup a Vim-like mode-line.
-
-\(fn)" t nil)
-
-(autoload 'powerline-nano-theme "powerline/powerline-themes" "\
-Setup a nano-like mode-line.
-
-\(fn)" t nil)
-
-;;;***
-
 ;;;### (autoloads nil "quickrun/quickrun" "quickrun/quickrun.el"
 ;;;;;;  (21285 47265 0 0))
 ;;; Generated autoloads from quickrun/quickrun.el
@@ -1277,6 +1201,169 @@ option `scroll-bar-mode'.
 
 ;;;***
 
+;;;### (autoloads nil "tabbar/tabbar" "tabbar/tabbar.el" (21285 65159
+;;;;;;  0 0))
+;;; Generated autoloads from tabbar/tabbar.el
+
+(autoload 'tabbar-backward "tabbar/tabbar" "\
+Select the previous available tab.
+Depend on the setting of the option `tabbar-cycle-scope'.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-forward "tabbar/tabbar" "\
+Select the next available tab.
+Depend on the setting of the option `tabbar-cycle-scope'.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-backward-group "tabbar/tabbar" "\
+Go to selected tab in the previous available group.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-forward-group "tabbar/tabbar" "\
+Go to selected tab in the next available group.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-backward-tab "tabbar/tabbar" "\
+Select the previous visible tab.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-forward-tab "tabbar/tabbar" "\
+Select the next visible tab.
+
+\(fn)" t nil)
+
+(autoload 'tabbar-press-home "tabbar/tabbar" "\
+Press the tab bar home button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'tabbar-press-scroll-left "tabbar/tabbar" "\
+Press the tab bar scroll-left button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'tabbar-press-scroll-right "tabbar/tabbar" "\
+Press the tab bar scroll-right button.
+That is, simulate a mouse click on that button.
+A numeric prefix ARG value of 2, or 3, respectively simulates a
+mouse-2, or mouse-3 click.  The default is a mouse-1 click.
+
+\(fn &optional ARG)" t nil)
+
+(autoload 'tabbar-mwheel-backward "tabbar/tabbar" "\
+Select the previous available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-forward "tabbar/tabbar" "\
+Select the next available tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-backward-group "tabbar/tabbar" "\
+Go to selected tab in the previous available group.
+If there is only one group, select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-group'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-forward-group "tabbar/tabbar" "\
+Go to selected tab in the next available group.
+If there is only one group, select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-group'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-backward-tab "tabbar/tabbar" "\
+Select the previous visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-backward-tab'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-forward-tab "tabbar/tabbar" "\
+Select the next visible tab.
+EVENT is the mouse event that triggered this command.
+Mouse-enabled equivalent of the command `tabbar-forward-tab'.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-switch-tab "tabbar/tabbar" "\
+Select the next or previous tab according to EVENT.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-mwheel-switch-group "tabbar/tabbar" "\
+Select the next or previous group of tabs according to EVENT.
+
+\(fn EVENT)" t nil)
+
+(autoload 'tabbar-local-mode "tabbar/tabbar" "\
+Toggle local display of the tab bar.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+When turned on, if a local header line is shown, it is hidden to show
+the tab bar.  The tab bar is locally hidden otherwise.  When turned
+off, if a local header line is hidden or the tab bar is locally
+hidden, it is shown again.  Signal an error if Tabbar mode is off.
+
+\(fn &optional ARG)" t nil)
+
+(defvar tabbar-mode nil "\
+Non-nil if Tabbar mode is enabled.
+See the command `tabbar-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `tabbar-mode'.")
+
+(custom-autoload 'tabbar-mode "tabbar/tabbar" nil)
+
+(autoload 'tabbar-mode "tabbar/tabbar" "\
+Toggle display of a tab bar in the header line.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+
+\\{tabbar-mode-map}
+
+\(fn &optional ARG)" t nil)
+
+(defvar tabbar-mwheel-mode nil "\
+Non-nil if Tabbar-Mwheel mode is enabled.
+See the command `tabbar-mwheel-mode' for a description of this minor mode.
+Setting this variable directly does not take effect;
+either customize it (see the info node `Easy Customization')
+or call the function `tabbar-mwheel-mode'.")
+
+(custom-autoload 'tabbar-mwheel-mode "tabbar/tabbar" nil)
+
+(autoload 'tabbar-mwheel-mode "tabbar/tabbar" "\
+Toggle use of the mouse wheel to navigate through tabs or groups.
+With prefix argument ARG, turn on if positive, otherwise off.
+Returns non-nil if the new state is enabled.
+
+\\{tabbar-mwheel-mode-map}
+
+\(fn &optional ARG)" t nil)
+
+;;;***
+
 ;;;### (autoloads nil "twittering-mode/twittering-mode" "twittering-mode/twittering-mode.el"
 ;;;;;;  (21285 46958 0 0))
 ;;; Generated autoloads from twittering-mode/twittering-mode.el
@@ -1333,14 +1420,13 @@ Major mode for editing web templates (HTML documents with embedded parts and blo
 
 ;;;### (autoloads nil nil ("auto-async-byte-compile/auto-async-byte-compile.el"
 ;;;;;;  "auto-complete/auto-complete-config.el" "auto-complete/auto-complete-pkg.el"
-;;;;;;  "auto-install/auto-install.el" "calfw/calfw-cal.el" "calfw/calfw-howm.el"
-;;;;;;  "calfw/calfw-ical.el" "calfw/calfw-org.el" "calfw/calfw.el"
-;;;;;;  "color-moccur/color-moccur.el" "emacs-w3m/mew-w3m.el" "emacs-w3m/w3m-bug.el"
-;;;;;;  "emacs-w3m/w3m-ccl.el" "emacs-w3m/w3m-ems.el" "emacs-w3m/w3m-favicon.el"
-;;;;;;  "emacs-w3m/w3m-hist.el" "emacs-w3m/w3m-image.el" "emacs-w3m/w3m-load.el"
-;;;;;;  "emacs-w3m/w3m-mail.el" "emacs-w3m/w3m-proc.el" "emacs-w3m/w3m-rss.el"
-;;;;;;  "emacs-w3m/w3m-tabmenu.el" "emacs-w3m/w3m-ucs.el" "emacs-w3m/w3m-util.el"
-;;;;;;  "emacs-w3m/w3m-xmas.el" "emacs-w3m/w3mhack.el" "expand-region/cc-mode-expansions.el"
+;;;;;;  "auto-install/auto-install.el" "color-moccur/color-moccur.el"
+;;;;;;  "emacs-w3m/mew-w3m.el" "emacs-w3m/w3m-bug.el" "emacs-w3m/w3m-ccl.el"
+;;;;;;  "emacs-w3m/w3m-ems.el" "emacs-w3m/w3m-favicon.el" "emacs-w3m/w3m-hist.el"
+;;;;;;  "emacs-w3m/w3m-image.el" "emacs-w3m/w3m-load.el" "emacs-w3m/w3m-mail.el"
+;;;;;;  "emacs-w3m/w3m-proc.el" "emacs-w3m/w3m-rss.el" "emacs-w3m/w3m-tabmenu.el"
+;;;;;;  "emacs-w3m/w3m-ucs.el" "emacs-w3m/w3m-util.el" "emacs-w3m/w3m-xmas.el"
+;;;;;;  "emacs-w3m/w3mhack.el" "expand-region/cc-mode-expansions.el"
 ;;;;;;  "expand-region/clojure-mode-expansions.el" "expand-region/cperl-mode-expansions.el"
 ;;;;;;  "expand-region/css-mode-expansions.el" "expand-region/enh-ruby-mode-expansions.el"
 ;;;;;;  "expand-region/er-basic-expansions.el" "expand-region/erlang-mode-expansions.el"
@@ -1369,10 +1455,9 @@ Major mode for editing web templates (HTML documents with embedded parts and blo
 ;;;;;;  "navi2ch/navi2ch-splash.el" "navi2ch/navi2ch-thumbnail.el"
 ;;;;;;  "navi2ch/navi2ch-util.el" "navi2ch/navi2ch-vars.el" "navi2ch/navi2ch-version.el"
 ;;;;;;  "navi2ch/navi2ch-xmas.el" "open-junk-file/open-junk-file.el"
-;;;;;;  "php-mode/php-mode-test.el" "popup/popup.el" "powerline/powerline-separators.el"
-;;;;;;  "quickrun/test-quickrun.el" "recentf-ext/recentf-ext.el"
-;;;;;;  "shell-pop/shell-pop.el" "twittering-mode/test.el" "web-mode/wfs-mode.el")
-;;;;;;  (21285 52121 869541 0))
+;;;;;;  "php-mode/php-mode-test.el" "popup/popup.el" "quickrun/test-quickrun.el"
+;;;;;;  "recentf-ext/recentf-ext.el" "shell-pop/shell-pop.el" "twittering-mode/test.el"
+;;;;;;  "web-mode/wfs-mode.el") (21285 65160 93076 0))
 
 ;;;***
 
