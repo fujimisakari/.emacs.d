@@ -23,11 +23,6 @@
 (custom-set-variables
  '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))))
 
-;; dmacro 2回同じ操作をすると自動でマクロ登録
-(defconst *dmacro-key* (kbd "C-M-m"))
-(global-set-key *dmacro-key* 'dmacro-exec)
-(autoload 'dmacro-exec "dmacro" nil t)
-
 ;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (require 'auto-complete-config)
 (ac-config-default)
