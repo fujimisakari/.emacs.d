@@ -30,17 +30,17 @@
 (set-face-attribute
  'tabbar-default nil
  :family "Comic Sans MS"
- :background "black"
+ :background "gray23"
  :foreground "white"
  :height 1.1)
 (set-face-attribute
  'tabbar-unselected nil
- :background "black"
+ :background "gray23"
  :foreground "white"
  :box nil)
 (set-face-attribute
  'tabbar-selected nil
- :background "black"
+ :background "gray23"
  :foreground "MediumPurple1"
  :box nil)
 (set-face-attribute

@@ -4,15 +4,9 @@
 [submodule "site-lisp/emacs-open-github-from-here"]
 	path = site-lisp/emacs-open-github-from-here
 	url = git://github.com/shibayu36/emacs-open-github-from-here.git
-[submodule "site-lisp/emacs-powerline"]
-	path = site-lisp/emacs-powerline
-	url = git://github.com/jonathanchu/emacs-powerline.git
 [submodule "site-lisp/emacs-zlc"]
 	path = site-lisp/emacs-zlc
 	url = https://github.com/mooz/emacs-zlc.git
-[submodule "site-lisp/yasnipppet"]
-	path = site-lisp/yasnipppet
-	url = https://github.com/capitaomorte/yasnippet.git
 [submodule "site-lisp/yasnippet"]
 	path = site-lisp/yasnippet
 	url = https://github.com/capitaomorte/yasnippet.git
@@ -34,3 +28,6 @@
 [submodule "site-lisp/el-get"]
 	path = site-lisp/el-get
 	url = https://github.com/dimitri/el-get.git
+[submodule "inits/site-lisp/emacs-powerline"]
+	path = inits/site-lisp/emacs-powerline
+	url = git://github.com/jonathanchu/emacs-powerline.git
