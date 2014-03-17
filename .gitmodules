@@ -1,9 +1,6 @@
 [submodule "site-lisp/ac-slime"]
 	path = site-lisp/ac-slime
 	url = https://github.com/purcell/ac-slime.git
-[submodule "site-lisp/emacs-skype"]
-	path = site-lisp/emacs-skype
-	url = https://github.com/kiwanami/emacs-skype.git
 [submodule "site-lisp/emacs-open-github-from-here"]
 	path = site-lisp/emacs-open-github-from-here
 	url = git://github.com/shibayu36/emacs-open-github-from-here.git
