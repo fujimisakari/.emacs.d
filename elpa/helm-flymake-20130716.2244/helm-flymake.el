@@ -4,7 +4,7 @@
 
 ;; Author: Akira Tamamori <tamamori5917@gmail.com>
 ;; URL: https://github.com/tam17aki
-;; Version: 20130717.1444
+;; Version: 20130716.2244
 ;; X-Original-Version: 0.1.7
 ;; Package-Requires: ((helm "1.0"))
 

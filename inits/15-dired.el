@@ -99,9 +99,9 @@
 (define-key dired-mode-map "/" 'dired-ex-isearch) ;; お好みのキーバインド
 
 ;; マッチした行を強調表示させる
-;; (require 'highline)
-;; (set-face-foreground 'highline-face "black")
-;; (set-face-background 'highline-face "yellow")
+(require 'highline)
+(set-face-foreground 'highline-face "black")
+(set-face-background 'highline-face "yellow")
 
 ;; ヘッダーを強調表示させる
 (custom-set-faces

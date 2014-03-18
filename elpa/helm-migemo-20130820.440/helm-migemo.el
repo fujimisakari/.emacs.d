@@ -4,7 +4,7 @@
 ;; Copyright (C) 2012 Yuhei Maeda <yuhei.maeda_at_gmail.com>
 ;; Author: rubikitch <rubikitch@ruby-lang.org>
 ;; Maintainer: Yuhei Maeda <yuhei.maeda_at_gmail.com>
-;; Version: 20130820.2040
+;; Version: 20130820.440
 ;; X-Original-Version: 1.20
 ;; Package-version: 1.20
 ;; Package-Requires: ((helm "1.5.3") (migemo "1.9"))

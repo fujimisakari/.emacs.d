@@ -18,6 +18,17 @@
 ;; 個人環境変数の読み込み
 (require 'private-env)
 
+;; init loader
 (require 'init-loader)
 (init-loader-load "~/.emacs.d/inits")   ; 設定ファイルがあるディレクトリを指定
 (put 'set-goal-column 'disabled nil)
+
+;; after init
+;; (add-hook 'after-init-hook
+;;           (lambda ()
+;;             (toggle-frame-fullscreen)))
+;;             ;; ;; split window
+;;             ;; (split-window-horizontally)
+;;             ;; ;; show init time
+;;             ;; (message "init time: %.3f sec"
+;;             ;;          (float-time (time-subtract after-init-time before-init-time)))))
