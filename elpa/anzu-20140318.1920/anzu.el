@@ -4,8 +4,8 @@
 
 ;; Author: Syohei YOSHIDA <syohex@gmail.com>
 ;; URL: https://github.com/syohex/emacs-anzu
-;; Version: 20140308.136
-;; X-Original-Version: 0.32
+;; Version: 20140318.1920
+;; X-Original-Version: 0.33
 ;; Package-Requires: ((cl-lib "0.5") (emacs "24"))
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -259,12 +259,12 @@
     (remove-hook 'isearch-mode-end-hook 'anzu--reset-mode-line t)
     (anzu--reset-mode-line)))
 
+(defun anzu--turn-on ()
+  (unless (minibufferp)
+    (anzu-mode +1)))
+
 ;;;###autoload
-(define-global-minor-mode global-anzu-mode
-  anzu-mode
-  (lambda ()
-    (unless (minibufferp)
-      (anzu-mode t)))
+(define-global-minor-mode global-anzu-mode anzu-mode anzu--turn-on
   :group 'anzu)
 
 (defsubst anzu--query-prompt-base (use-region use-regexp)

@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "flycheck" "flycheck.el" (21287 11705 0 0))
+;;;### (autoloads nil "flycheck" "flycheck.el" (21289 46566 0 0))
 ;;; Generated autoloads from flycheck.el
 
 (defconst flycheck-mode-line-lighter " FlyC" "\
@@ -121,7 +121,7 @@ The following PROPERTIES constitute an error level:
 
 ;;;***
 
-;;;### (autoloads nil nil ("flycheck-pkg.el") (21287 11705 185419
+;;;### (autoloads nil nil ("flycheck-pkg.el") (21289 46566 620715
 ;;;;;;  0))
 
 ;;;***

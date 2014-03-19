@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "anzu" "anzu.el" (21287 7362 0 0))
+;;;### (autoloads nil "anzu" "anzu.el" (21289 46580 0 0))
 ;;; Generated autoloads from anzu.el
 
 (autoload 'anzu-mode "anzu" "\
@@ -27,7 +27,7 @@ otherwise, disable it.  If called from Lisp, enable the mode if
 ARG is omitted or nil.
 
 Anzu mode is enabled in all buffers where
-`(lambda nil (unless (minibufferp) (anzu-mode t)))' would do it.
+`anzu--turn-on' would do it.
 See `anzu-mode' for more information on Anzu mode.
 
 \(fn &optional ARG)" t nil)
