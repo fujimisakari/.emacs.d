@@ -1,7 +1,7 @@
 ;; -*- Emacs-lisp -*-
 
 ;;;--------------------------------------------------------------------------;;;
-;;                                外観設定                                    ;;
+;;                                 Visual設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
 ;; フォント設定
@@ -45,10 +45,7 @@
                  ("-cdac$" . 1.3))))
          (define-key global-map [?¥] [?\\]))) ;; ¥の代わりにバックスラッシュを入力する
 
-;; フォントのサイズ等を一覧表示確認できるようにする
-(require 'my-sample-ascii)
-
-;; カラー関連
+;;; font-lock設定
 (global-font-lock-mode t)                                            ; 特定のモードで色を付ける(Font-Lookモード有効にする)
 (setq font-lock-maximum-decoration t)                                ; 色づけは最大限に
 (set-face-foreground 'font-lock-comment-face "dodgerblue")           ; コメントの色
@@ -99,13 +96,6 @@
 (setq eol-mnemonic-dos "(CRLF)")
 (setq eol-mnemonic-mac "(CR)")
 (setq eol-mnemonic-unix "(LF)")
-
-;; モードラインのスクロールバーをnyancatにする
-(require 'nyan-mode)
-;; 自動起動したいとき
-;; アニメーションを使いたいとき
-(nyan-mode)
-(nyan-start-animation)
 
 ;; フレーム設定
 (setq default-frame-alist
@@ -175,22 +165,3 @@
 (setq rainbow-x-colors t)
 (setq rainbow-latex-colors t)
 (setq rainbow-ansi-colors t)
-
-;; ReST-mode設定
-(require 'rst)
-;; (set-face-foreground 'rst-level-1-face "lime green")
-;; (set-face-background 'rst-level-1-face nil)
-;; (set-face-foreground 'rst-level-2-face "magenta")
-;; (set-face-background 'rst-level-2-face nil)
-;; (set-face-foreground 'rst-level-3-face "dodgerblue")
-;; (set-face-background 'rst-level-3-face nil)
-;; (set-face-foreground 'rst-level-4-face "orange")
-;; (set-face-background 'rst-level-4-face nil)
-;; (set-face-foreground 'rst-level-5-face "cyan")
-;; (set-face-background 'rst-level-5-face nil)
-;; (set-face-foreground 'rst-level-6-face nil)
-;; (set-face-background 'rst-level-6-face nil)
-;; (set-face-attribute 'rst-level-1-face nil :bold nil :height 1.8)
-;; (set-face-attribute 'rst-level-2-face nil :bold nil :height 1.2)
-;; (set-face-attribute 'rst-level-3-face nil :bold nil :height 1.1)
-

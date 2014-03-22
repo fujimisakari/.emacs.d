@@ -70,9 +70,6 @@
 (defalias 'qr 'replace-regexp)                                   ; 一括置換(正規表現置換)
 (defalias 'qrr 'query-replace-regexp)                            ; 対話型置換(正規表現置換)
 
-;; private用にprefixキーを追加
-(global-unset-key (kbd "C-l"))
-
 ;; 新しいフレームで開かない
 (setq ns-pop-up-frames nil)
 

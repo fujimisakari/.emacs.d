@@ -48,9 +48,6 @@
                  poss word cursor-location start end cursor-location)))
       (ispell-pdict-save t)))))
 
-;; 修正したい単語の上にカーソルをもっていき候補を表示
-(global-set-key (kbd "C-l C-M-;") 'flyspell-correct-word-popup-el)
-
 ;; flyspell-mode を自動的に開始させたいファイルを指定
 ;; (add-to-list 'auto-mode-alist '("\\.txt" . flyspell-mode))
 ;; (add-to-list 'auto-mode-alist '("\\.py" . flyspell-mode))

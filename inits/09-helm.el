@@ -1,7 +1,7 @@
 ;; -*- Emacs-lisp -*-
 
 ;;;--------------------------------------------------------------------------;;;
-;;                                  helm関連                                  ;;
+;;                                  helm設定                                  ;;
 ;;;--------------------------------------------------------------------------;;;
 
 (require 'helm-config)
@@ -53,7 +53,7 @@
 ;;                (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
 ;;                (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
 ;;                (local-set-key (kbd "C-t") 'helm-gtags-pop-stack))))
- 
+
 ;; キーバインド設定
 (global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
 (global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動

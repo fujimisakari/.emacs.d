@@ -1,7 +1,7 @@
 ;; -*- Emacs-lisp -*-
 
 ;;;--------------------------------------------------------------------------;;;
-;;                            キーバインド設定                                ;;
+;;                                KeyBind設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
 (global-set-key (kbd "C-h") 'delete-backward-char)          ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
@@ -20,6 +20,12 @@
 
 ;; C-lはprivate用prefixを追加
 (winner-mode 1)
+;; private用にprefixキーを追加
+(global-unset-key (kbd "C-l"))
+;; 修正したい単語の上にカーソルをもっていき候補を表示
+(global-set-key (kbd "C-l C-M-;") 'flyspell-correct-word-popup-el)
+(global-set-key (kbd "C-l q") 'quickrun)
+(global-set-key (kbd "C-l C-q") 'quickrun-region)
 (global-set-key (kbd "C-l C-u") 'winner-undo)
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
 (global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)

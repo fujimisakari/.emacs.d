@@ -78,15 +78,3 @@
 (custom-set-faces
  '(anything-header
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))
-
-;; (setq anything-c-buffers-not-modified-colors-orig
-;;       (cons (face-foreground 'font-lock-type-face)
-;;             (face-background 'font-lock-type-face)))
-;; (setq anything-c-buffers-not-modified-colors '("magenta1" . nil))
-;; (defadvice anything-c-highlight-buffers (before face-change activate)
-;;   (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors))
-;;   (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors)))
-;; (defun anything-cleanup-hook--restore-font-lock-type-face ()
-;;   (set-face-foreground 'font-lock-type-face (car anything-c-buffers-not-modified-colors-orig))
-;;   (set-face-background 'font-lock-type-face (cdr anything-c-buffers-not-modified-colors-orig)))
-;; (add-hook 'anything-cleanup-hook 'anything-cleanup-hook--restore-font-lock-type-face)
