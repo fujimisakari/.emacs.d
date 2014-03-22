@@ -79,13 +79,6 @@ are always included."
       (cons cur-buf tabs))))
 (setq tabbar-buffer-list-function 'my-tabbar-buffer-list)
 
-;; タブ移動キーバインド
-(global-set-key (kbd "C-M-l") 'tabbar-forward-tab)
-(global-set-key (kbd "C-M-h") 'tabbar-backward-tab)
-
-;; タブモードのオン/オフをトグル
-;; (global-set-key (kbd "M-4") 'tabbar-mode)
-
 ;;
 ;; Buffer Modification
 ;;
@@ -132,6 +125,3 @@ are always included."
   "Move current tab to left"
   (interactive)
   (tabbar+move -1))
-(global-set-key (kbd "C-M-<right>") 'tabbar+move-right)
-(global-set-key (kbd "C-M-<left>") 'tabbar+move-left)
-

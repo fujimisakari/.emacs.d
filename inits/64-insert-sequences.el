@@ -15,7 +15,6 @@
     (beginning-of-line)
     (dotimes (i n)
       (insert-buffer-substring (current-buffer) (point-at-bol)(1+ (point-at-eol))))))
-(global-set-key (kbd "C-M-f") 'duplicate-this-line-forward)
 
 ;; M-x seq 数字 で同じ行を作成する
 (defun count-string-matches (regexp string)

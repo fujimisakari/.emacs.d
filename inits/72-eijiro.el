@@ -56,7 +56,7 @@
 ;; /word (先頭に / )：word 全文検索 ex: fixed-word-length computer
 ;; (global-set-key (kbd "M-") 'sdic-describe-word-at-point)     ; カーソル上の語句を引く
 ;; (global-set-key (kbd "C-M-;") 'sdic-describe-word)           ; ミニバッファに問い合わせて語句を引く
-(global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)        ; リージョンの語句を引く
+;; (global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)        ; リージョンの語句を引く
 ;; (global-set-key [end]     'sdic-close-window)                ; 検索結果表示ウィンドウを閉じる
 ;; (global-set-key [next]    'scroll-other-window)              ; 検索結果表示ウィンドウをスクロールする
 ;; (global-set-key [prior]   'scroll-other-window-down)         ; 検索結果表示ウィンドウをスクロールする

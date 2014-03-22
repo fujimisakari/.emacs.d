@@ -8,4 +8,3 @@
 (require 'text-translator)
 (setq text-translator-auto-selection-func
       'text-translator-translate-by-auto-selection-enja)
-(global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)  ; 自動翻訳

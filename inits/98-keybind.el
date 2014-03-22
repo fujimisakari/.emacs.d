@@ -4,22 +4,26 @@
 ;;                            キーバインド設定                                ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(global-set-key (kbd "C-h") 'delete-backward-char)   ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
-(global-set-key (kbd "M-h") 'backward-kill-word)     ; 直前の単語を削除
-(global-set-key (kbd "C-x C-c") 'server-edit)        ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
-(global-set-key (kbd "C-m") 'newline-and-indent)     ; "C-m" に newline-and-indent を割り当てる。初期値は newline
-(global-set-key (kbd "M-k") 'kill-this-buffer)       ; カレントバッファを閉じる。初期値は kill-sentence
-(global-set-key (kbd "C-M-;") 'delete-other-windows) ; 現在のウィンドウ以外を消す
-(global-set-key (kbd "M-/") 'hippie-expand)          ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
-(global-set-key (kbd "M-g") 'goto-line)              ; M-g で指定行へジャンプ
-(global-set-key (kbd "<C-tab>") 'tabify)             ; TAB生成
-(global-set-key (kbd "<C-M-tab>") 'untabify)         ; TAB削除
-(global-unset-key (kbd "C-x b"))                     ; switch bufferは使用してないので無効
+(global-set-key (kbd "C-h") 'delete-backward-char)          ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
+(global-set-key (kbd "M-h") 'backward-kill-word)            ; 直前の単語を削除
+(global-set-key (kbd "C-x C-c") 'server-edit)               ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
+(global-set-key (kbd "C-m") 'newline-and-indent)            ; "C-m" に newline-and-indent を割り当てる。初期値は newline
+(global-set-key (kbd "M-k") 'kill-this-buffer)              ; カレントバッファを閉じる。初期値は kill-sentence
+(global-set-key (kbd "C-M-;") 'delete-other-windows)        ; 現在のウィンドウ以外を消す
+(global-set-key (kbd "M-/") 'hippie-expand)                 ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
+(global-set-key (kbd "M-g") 'goto-line)                     ; M-g で指定行へジャンプ
+(global-set-key (kbd "<C-tab>") 'tabify)                    ; TAB生成
+(global-set-key (kbd "<C-M-tab>") 'untabify)                ; TAB削除
+(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward) ; 直前行を削除する
+(global-set-key (kbd "<f6>") 'id-manager)                   ; id-managerの起動
+(global-unset-key (kbd "C-x b"))                            ; switch bufferは使用してないので無効
 
 ;; C-lはprivate用prefixを追加
 (winner-mode 1)
 (global-set-key (kbd "C-l C-u") 'winner-undo)
 (global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
+(global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)
+(global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)                 ; リージョンの語句を英辞郎で引く
 (global-set-key (kbd "C-l r") 'query-replace-regexp)
 (global-set-key (kbd "C-l R") 'replace-regexp)
 (global-set-key (kbd "C-l w") 'whitespace-cleanup)
@@ -44,6 +48,12 @@
       (switch-to-buffer (cadr (buffer-list)))
     (switch-to-buffer (get-buffer "*scratch*"))))
 (global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)
+
+;; tabbar
+(global-set-key (kbd "C-M-<right>") 'tabbar+move-right)  ; タブの配置位置ずらし(右)
+(global-set-key (kbd "C-M-<left>") 'tabbar+move-left)    ; タブの配置位置ずらし(左)
+(global-set-key (kbd "C-M-l") 'tabbar-forward-tab)       ; タブ移動(右)
+(global-set-key (kbd "C-M-h") 'tabbar-backward-tab)      ; タブ移動(左)
 
 ;; 選択拡張
 (require 'expand-region)
@@ -83,10 +93,8 @@
   (kill-line numlines)
   (move-to-column pos))
 (global-set-key (kbd "C-c C-k") 'kill-all-line)
-
 ;; カーソル位置より前(右)を削除
 (global-set-key (kbd "C-k") 'kill-line)
-
 ;; カーソル位置より前(左)を削除
 (global-set-key (kbd "C-M-k")
                 '(lambda ()
