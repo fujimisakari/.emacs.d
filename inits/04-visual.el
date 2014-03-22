@@ -45,7 +45,7 @@
                  ("-cdac$" . 1.3))))
          (define-key global-map [?¥] [?\\]))) ;; ¥の代わりにバックスラッシュを入力する
 
-;;; font-lock設定
+;; font-lock設定
 (global-font-lock-mode t)                                            ; 特定のモードで色を付ける(Font-Lookモード有効にする)
 (setq font-lock-maximum-decoration t)                                ; 色づけは最大限に
 (set-face-foreground 'font-lock-comment-face "dodgerblue")           ; コメントの色
@@ -159,9 +159,3 @@
   "Return face used at point."
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
-
-;; rainbow設定
-(setq rainbow-html-colors t)
-(setq rainbow-x-colors t)
-(setq rainbow-latex-colors t)
-(setq rainbow-ansi-colors t)
