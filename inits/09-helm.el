@@ -10,22 +10,41 @@
 (helm-mode 1)
 
 ;; 基本設定
-;; (setq
-;;   ;; 候補を表示するばでの時間 デフォルトは0.3
-;;   helm-idle-delay 0.1
-;;   ;; タイプして再描画するまでの時間。デフォルトは0.3
-;;   helm-input-idle-delay 0.2
-;;   ;; 候補の最大表示数。デフォルトは100
-;;   helm-candidate-number-limit 30
-;;   ;; 候補が多いときに体感速度を早くする
-;;   helm-quick-update t)
+(setq
+  ;; 候補を表示するばでの時間 デフォルトは0.3
+  helm-idle-delay 0.1
+  ;; タイプして再描画するまでの時間。デフォルトは0.3
+  helm-input-idle-delay 0.2
+  ;; 候補の最大表示数。デフォルトは100
+  helm-candidate-number-limit 30
+  ;; 候補が多いときに体感速度を早くする
+  helm-quick-update t)
 
 ;; (setq helm-buffer-max-length 35) ; バッファ名の最大文字数
 (setq helm-split-window-default-side 'rigth) ; 左右分割
-;; ;; ディレクトリの自動補完を切る
-;; (setq helm-ff-auto-update-initial-value nil)
-;; ;; スマート補完
-;; (setq helm-ff-smart-completion t)
+;; ディレクトリの自動補完を切る
+(setq helm-ff-auto-update-initial-value nil)
+;; スマート補完
+(setq helm-ff-smart-completion t)
+;; ミニバッファ内の先頭でない特定の位置からC-kできるようにする
+(setq helm-delete-minibuffer-contents-from-point t)
+;; C-h でバックスペースと同じように文字を削除できるようにする
+(define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
+;; TAB で補完する
+(define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
+
+;; customize
+(progn
+  (custom-set-variables
+   '(helm-truncate-lines t)
+   '(helm-buffer-max-length 35)
+   '(helm-delete-minibuffer-contents-from-point t)
+   '(helm-ff-skip-boring-files t)
+   '(helm-boring-file-regexp-list '("~$" "\\.elc$"))
+   '(helm-mini-default-sources '(helm-source-buffers-list
+                                 helm-source-bookmarks
+                                 helm-source-recentf
+                                 helm-source-buffer-not-found))))
 
 ;; (when (require 'helm-gtags nil t)
 ;;   (add-hook 'helm-gtags-mode-hook
@@ -34,18 +53,15 @@
 ;;                (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
 ;;                (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
 ;;                (local-set-key (kbd "C-t") 'helm-gtags-pop-stack))))
-
+ 
 ;; キーバインド設定
-;; (global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
-;; (global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動
-;; (global-set-key (kbd "C-x C-f") 'helm-find-files)         ; ファイルリスト検索
+(global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
+(global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動
+(global-set-key (kbd "C-x C-f") 'helm-find-files)         ; ファイルリスト検索
 ;; (global-set-key (kbd "M-o") 'helm-occur)
 ;; (global-set-key (kbd "C-M-.") 'helm-resume)
-;; (define-key global-map (kbd "M-y") 'helm-show-kill-ring)  ; 過去のkill-ringの内容を取り出す
-;; (define-key global-map (kbd "M-x") 'helm-M-x)             ; helmでM-x
-
-;; ミニバッファ内の先頭でない特定の位置からC-kできるようにする
-(setq helm-delete-minibuffer-contents-from-point t)
+(define-key global-map (kbd "M-y") 'helm-show-kill-ring)  ; 過去のkill-ringの内容を取り出す
+(define-key global-map (kbd "M-x") 'helm-M-x)             ; helmでM-x
 
 ;; カラー設定
 (custom-set-faces
@@ -53,5 +69,6 @@
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo"))))
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
  '(helm-ff-symlink ((t (:foreground "cyan" :background nil))))
+ '(helm-buffer-directory ((t (:foreground "dodgerblue" :background nil))))
  '(helm-ff-directory ((t (:foreground "dodgerblue" :background nil))))
  '(helm-candidate-number ((t (:foreground nil :background nil)))))

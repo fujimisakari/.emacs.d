@@ -27,6 +27,22 @@
 (add-to-list 'tramp-default-proxies-alist '("\\." "\\`root\\'" "/ssh:%h:"))
 (setq tramp-shell-prompt-pattern "^.*[#$%>] *")
 
+
+(defun current-directory-to-terminal ()
+  (let* (current-dir
+         (current-buffer
+          (nth 1 (assoc 'buffer-list
+                        (nth 1 (nth 1 (current-frame-configuration))))))
+         (active-file-name
+          (with-current-buffer current-buffer
+            (progn
+              (setq current-dir (expand-file-name (cadr (split-string (pwd)))))
+              (buffer-file-name)))))
+    (if active-file-name
+        (file-name-directory active-file-name)
+      current-dir)))
+
+
 ;; shell-pop設定
 ;; 独自ansi-term関数の呼び出し
 ;; (defvar my-shell-pop-key (kbd "<f3>"))

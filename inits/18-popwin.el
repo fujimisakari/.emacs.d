@@ -11,6 +11,8 @@
 
 (setq anything-samewindow nil)
 (push '("*Messages*") popwin:special-display-config)
+(push '("*Warnings*") popwin:special-display-config)
+(push '("*Backtrace*") popwin:special-display-config)
 (push '("*Moccur*") popwin:special-display-config)
 (push '("*Buffer List*") popwin:special-display-config)
 (push '("*helm mini*") popwin:special-display-config)

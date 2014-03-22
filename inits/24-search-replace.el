@@ -49,8 +49,8 @@
 ;; (grep-a-lot-setup-keys)
 
 ;; grepコマンドパラメータを変更する
-(grep-apply-setting 'grep-command "grep -nHr -e \"\" .")
-(setq grep-find-command "find . -type f -not -name \"*.svn*\" -and  -not -name \"*.elc\" -and -not -name \"*.zsh_history\"  -print0 | xargs -0 -e grep -nHr -e \"\"")
+;; (grep-apply-setting 'grep-command "grep -nHr -e \"\" .")
+;; (setq grep-find-command "find . -type f -not -name \"*.svn*\" -and  -not -name \"*.elc\" -and -not -name \"*.zsh_history\"  -print0 | xargs -0 -e grep -nHr -e \"\"")
 
 ;; grep検索結果を編集できるようにする
 (require 'grep-edit)

@@ -49,6 +49,10 @@
 (set-face-attribute
  'tabbar-separator nil
  :height 1.0)
+(set-face-attribute
+ 'tabbar-modified nil
+ :foreground "white"
+ :box nil)
 
 ;; タブに表示させるバッファの設定
 (defvar my-tabbar-displayed-buffers
@@ -91,18 +95,6 @@ are always included."
                  (buffer-file-name (tabbar-tab-value tab)))
             (concat " + " (concat ad-return-value " "))
           (concat " " (concat ad-return-value " ")))))
-;; Called each time the modification state of the buffer changed.
-(defun ztl-modification-state-change ()
-  (tabbar-set-template tabbar-current-tabset nil)
-  (tabbar-display-update))
-;; First-change-hook is called BEFORE the change is made.
-(defun ztl-on-buffer-modification ()
-  (set-buffer-modified-p t)
-  (ztl-modification-state-change))
-(add-hook 'after-save-hook 'ztl-modification-state-change)
-;; This doesn't work for revert, I don't know.
-;;(add-hook 'after-revert-hook 'ztl-modification-state-change)
-(add-hook 'first-change-hook 'ztl-on-buffer-modification)
 
 ;;
 ;; Tab Position

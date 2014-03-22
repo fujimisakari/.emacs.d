@@ -4,23 +4,6 @@
 ;;                              バッファ関連                                  ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;; C-x b でバッファ切り替えを強化する
-(iswitchb-mode 0)
-;; バッファ読み取り関数を isswitchbにする
-(setq read-buffer-function 'iswitchb-read-buffer)
-;; 部分文字列の代りに正規表現を使う場合は t に設定する
-(setq iswitchb-regexp nil)
-;; 新しいバッファを作成するときにいちいち聞いてこない
-(setq iswitchb-prompt-newbuffer nil)
-
-;; 使わないバッファを自動的に消す
-;; (install-elisp-from-emacswiki tempbuf.el)
-;(require 'tempbuf)
-; ファイルを開いたら自動的にtempbufを有効にする
-;(add-hook 'find-file-hooks 'turn-on-tempbuf-mode)
-; diredバッファに対してtempbufを有効にする
-;(add-hook 'dired-mode-hook 'turn-on-tempbuf-mode)
-
 ;; *Completions*バッファを，使用後に消す
 (require 'lcomp)
 (lcomp-install)
@@ -109,8 +92,3 @@
       (set minibuffer-history-variable (delete (buffer-substring-no-properties (minibuffer-prompt-end) (point-max)) (symbol-value minibuffer-history-variable)))
       (goto-history-element minibuffer-history-position)
 ))
-
-;; アクティブ/インアクティブなウィンドウの背景色変更
-;; (require 'hiwin)
-;; (hiwin-activate)
-;; (set-face-background 'hiwin-face "gray12")

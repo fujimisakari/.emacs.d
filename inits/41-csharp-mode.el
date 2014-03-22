@@ -48,11 +48,3 @@
              '("cs\(\\([0-9]+\\),\\([0-9]+\\)\)\: \\(error\\|warning\\) \\(.+\\)$" nil 1 2 4))
 (add-to-list 'flymake-err-line-patterns
              '("LineNumber=\\([0-9]+\\) .* RuleId=\\(.+\\)</Violation" nil 1 1 2))
-
-;; csharpの実行環境
-(add-to-list 'quickrun-file-alist '("\\.cs$" . "c#/mono"))
-(quickrun-add-command "c#/mono"
-                      '((:command . "mono")
-                        (:exec    . ("mcs %s" "%c %n.exe"))
-                        (:remove  . ("%n.exe")))
-                      :mode 'csharp-mode)

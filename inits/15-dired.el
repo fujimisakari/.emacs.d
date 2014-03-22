@@ -64,7 +64,6 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-
 ;; キーバインド設定
 (add-hook 'dired-mode-hook
   (lambda ()

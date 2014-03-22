@@ -31,38 +31,12 @@
   (define-key map (kbd "<up>")    'zlc-select-previous-vertical)
   (define-key map (kbd "<right>") 'zlc-select-next)
   (define-key map (kbd "<left>")  'zlc-select-previous)
-
   ;; reset selection
   (define-key map (kbd "C-c") 'zlc-reset)
   )
 ;; 補完候補一覧での候補の色
 (set-face-foreground 'zlc-selected-completion-face "gray10")
 (set-face-background 'zlc-selected-completion-face "MediumPurple1")
-
-;; speedbar設定
-;; (require 'speedbar)
-
-;; (defun my-speedbar-expand-line ()
-;;   (interactive)
-;;   (if (= (point-max) (progn (speedbar-expand-line) (point-max)))
-;;       (save-current-buffer
-;;         (speedbar-edit-line))))
-
-;; ;; ディレクトリを開閉 ;;デフォルト: "=" "+", "-"
-;; (define-key speedbar-file-key-map (kbd "C-f") 'my-speedbar-expand-line)
-;; (define-key speedbar-file-key-map (kbd "C-b") 'speedbar-contract-line)
-
-;; ;; 上位ディレクトリへ ;;デフォルト: "U"
-;; (define-key speedbar-file-key-map (kbd "C-h") 'speedbar-up-directory)
-
-;; ;; Speedbar で表示するファイルタイプ
-;; (add-hook 'speedbar-mode-hook
-;;           '(lambda ()
-;;              (speedbar-add-supported-extension '("java" "pl" "pm" "py" "sh" "js" "as" "html" "css" "php")))) ;
-
-;; sr-speedbar
-;; (require 'sr-speedbar)
-;; (setq sr-speedbar-right-side nil)
 
 ;; bookmack設定
 ;; ブックマークの保存先を指定

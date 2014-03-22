@@ -4,6 +4,9 @@
 ;;                               入力支援関連                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
+(setq kill-whole-line t)            ; C-kは行末改行を削除しないが、改行までまとめて行カットする
+(setq next-screen-context-lines 1)  ; C-v/M-vで前のページの１行を残す
+
 ;; prifixの入力ショートカット
 (require 'smartrep)
 
@@ -11,17 +14,62 @@
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
 (require 'redo+)
 (global-set-key (kbd "C-.") 'redo)
-
 ;; 過去のundoがredoされないようにする
 (setq undo-no-redo t)
-
 ;; 大量のundoに 耐えられるようにする
 (setq undo-limit 600000)
 (setq undo-strong-limit 900000)
 
+;; Tabの代わりにスペースでインデント
+(setq-default tab-width 4 indent-tabs-mode nil)
 ;; M-iで字下げは4の倍数にする
 (custom-set-variables
  '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))))
+
+;; 矩形をより簡単にする
+(cua-mode t)
+(setq cua-enable-cua-keys nil) ;; 変なキーバインドを禁止
+
+;; 物理行でカーソル移動する
+;; (install-elisp http://homepage1.nifty.com/bmonkey/emacs/elisp/screen-lines.el)
+(require 'screen-lines)
+;; text-modeかそれを継承したメジャーモードで自動的に有効にする
+(add-hook 'text-mode-hook 'turn-on-screen-lines-mode)
+
+;; \C-aでインデントを飛ばした行頭に移動
+(defun beginning-of-indented-line (current-point)
+  "インデント文字を飛ばした行頭に戻る。ただし、ポイントから行頭までの間にインデント文字しかない場合は、行頭に戻る。"
+  (interactive "d")
+  (if (string-match
+       "^[ ¥t]+$"
+       (save-excursion
+         (buffer-substring-no-properties
+          (progn (beginning-of-line) (point))
+          current-point)))
+      (beginning-of-line)
+    (back-to-indentation)))
+(global-set-key (kbd "C-a") 'beginning-of-indented-line)
+
+;; 同じコマンドを連続実行したときの振舞いを変更する
+;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
+(require 'sequential-command-config)
+(sequential-command-setup-keys)
+
+;; ファイルの末尾に[EOF]を表示
+(defun my-mark-eob ()
+  (let ((existing-overlays (overlays-in (point-max) (point-max)))
+        (eob-mark (make-overlay (point-max) (point-max) nil t t))
+        (eob-text "[EOF]"))
+    ;; 急EOFマークを削除
+    (dolist (next-overlay existing-overlays)
+      (if (overlay-get next-overlay 'eob-overlay)
+          (delete-overlay next-overlay)))
+    ;; 新規EOF マークの表示
+    (put-text-property 0 (length eob-text)
+                       'face '(foreground-color . "gray30") eob-text)
+    (overlay-put eob-mark 'eob-overlay t)
+    (overlay-put eob-mark 'after-string eob-text)))
+(add-hook 'find-file-hooks 'my-mark-eob)
 
 ;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (require 'auto-complete-config)
@@ -70,67 +118,3 @@
 ;;     try-complete-lisp-symbol-partially                     ; Lispシンボル名の一部
 ;;     try-complete-lisp-symbol                               ; Lispシンボル名の全体
 ;;    ))
-
-;; one-keyの設定
-;; (require 'one-key-default)                                 ; one-key.el も一緒に読み込んでくれる
-;; (require 'one-key-config)                                  ; one-key.el をより便利にする
-;; (one-key-default-setup-keys)                               ; one-key- で始まるメニュー使える様になる
-;; (define-key global-map (kbd "C-x") 'one-key-menu-C-x)      ; C-x にコマンドを定義
-
-;; 矩形をより簡単にする
-(cua-mode t)
-(setq cua-enable-cua-keys nil) ;; 変なキーバインドを禁止
-
-;; Tabの代わりにスペースでインデント
-(setq-default tab-width 4 indent-tabs-mode nil)
-
-;; 物理行でカーソル移動する
-;; (install-elisp http://homepage1.nifty.com/bmonkey/emacs/elisp/screen-lines.el)
-(require 'screen-lines)
-;; text-modeかそれを継承したメジャーモードで自動的に有効にする
-(add-hook 'text-mode-hook 'turn-on-screen-lines-mode)
-
-;; 最後の変更箇所へジャンプする
-;; (require 'goto-chg)
-;; (global-set-key (kbd "<f8>") 'goto-last-change)
-;; (global-set-key (kbd "S-<f8>") 'goto-last-change-reverse)
-
-;; \C-aでインデントを飛ばした行頭に移動
-(defun beginning-of-indented-line (current-point)
-  "インデント文字を飛ばした行頭に戻る。ただし、ポイントから行頭までの間にインデント文字しかない場合は、行頭に戻る。"
-  (interactive "d")
-  (if (string-match
-       "^[ ¥t]+$"
-       (save-excursion
-         (buffer-substring-no-properties
-          (progn (beginning-of-line) (point))
-          current-point)))
-      (beginning-of-line)
-    (back-to-indentation)))
-(global-set-key (kbd "C-a") 'beginning-of-indented-line)
-
-;; 同じコマンドを連続実行したときの振舞いを変更する
-;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
-
-;(setq-default show-trailing-whitespace t)              ; 行の末尾に入った空白文字を強調表示
-;(setq-default indicate-empty-lines t)                  ; ファイルの最後の空行表示
-(setq kill-whole-line t)                                ; C-kは行末改行を削除しないが、改行までまとめて行カットする
-(setq next-screen-context-lines 1)                      ; C-v/M-vで前のページの１行を残す
-
-;; ファイルの末尾に[EOF]を表示
-(defun my-mark-eob ()
-  (let ((existing-overlays (overlays-in (point-max) (point-max)))
-        (eob-mark (make-overlay (point-max) (point-max) nil t t))
-        (eob-text "[EOF]"))
-    ;; 急EOFマークを削除
-    (dolist (next-overlay existing-overlays)
-      (if (overlay-get next-overlay 'eob-overlay)
-          (delete-overlay next-overlay)))
-    ;; 新規EOF マークの表示
-    (put-text-property 0 (length eob-text)
-                       'face '(foreground-color . "gray30") eob-text)
-    (overlay-put eob-mark 'eob-overlay t)
-    (overlay-put eob-mark 'after-string eob-text)))
-(add-hook 'find-file-hooks 'my-mark-eob)
