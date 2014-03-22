@@ -24,11 +24,19 @@
 (put 'set-goal-column 'disabled nil)
 
 ;; after init
-;; (add-hook 'after-init-hook
-;;           (lambda ()
-;;             (toggle-frame-fullscreen)))
-;;             ;; ;; split window
-;;             ;; (split-window-horizontally)
-;;             ;; ;; show init time
-;;             ;; (message "init time: %.3f sec"
-;;             ;;          (float-time (time-subtract after-init-time before-init-time)))))
+(add-hook 'after-init-hook
+          (lambda ()
+            ;; 不要なメニューを非表示
+            (define-key global-map [menu-bar Anything] 'undefined)
+            (define-key global-map [menu-bar SKK] 'undefined)
+            (define-key global-map [menu-bar file] 'undefined)
+            (define-key global-map [menu-bar options] 'undefined)
+            (define-key global-map [menu-bar tools] 'undefined)
+            (define-key global-map [menu-bar javascript] 'undefined)
+            (define-key global-map [menu-bar summary] 'undefined)
+            (define-key global-map [menu-bar edit] 'undefined)
+            (define-key global-map [menu-bar YASnippet] 'undefined)
+            (define-key global-map [menu-bar w3m] 'undefined)
+            ;; show init time
+            (message "init time: %.3f sec"
+                     (float-time (time-subtract after-init-time before-init-time)))))

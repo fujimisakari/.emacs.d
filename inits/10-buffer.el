@@ -20,38 +20,19 @@
   (unless (null my-killed-file-name-list)
     (find-file (pop my-killed-file-name-list))))
 (add-hook 'kill-buffer-hook 'my-push-killed-file-name-list)
-(global-set-key (kbd "C-x /") 'my-pop-killed-file-name-list)
 
-;; バッファの画面サイズの変更
-(defun my-window-resizer ()
-  "Control window size and position."
+;; ウィンドウを分割していないときは、左右分割して新しいウィンドウを作る
+(defun other-window-or-split ()
   (interactive)
-  (let ((window-obj (selected-window))
-        (current-width (window-width))
-        (current-height (window-height))
-        (dx (if (= (nth 0 (window-edges)) 0) 1
-              -1))
-        (dy (if (= (nth 1 (window-edges)) 0) 1
-              -1))
-        c)
-    (catch 'end-flag
-      (while t
-        (message "size[%dx%d]"
-                 (window-width) (window-height))
-        (setq c (read-char))
-        (cond ((= c ?l)
-               (enlarge-window-horizontally dx))
-              ((= c ?h)
-               (shrink-window-horizontally dx))
-              ((= c ?j)
-               (enlarge-window dy))
-              ((= c ?k)
-               (shrink-window dy))
-              ;; otherwise
-              (t
-               (message "Quit")
-               (throw 'end-flag t)))))))
-(global-set-key (kbd "C-c r") 'my-window-resizer)
+  (when (one-window-p) (split-window-horizontally))
+  (other-window 1))
+
+;; *scratch* バッファに移動できるようにした
+(defun my-switch-to-scratch/current-buffer ()
+  (interactive)
+  (if (string-equal (buffer-name) "*scratch*")
+      (switch-to-buffer (cadr (buffer-list)))
+    (switch-to-buffer (get-buffer "*scratch*"))))
 
 ;; *scratch*バッファを消さない
 (defun my-make-scratch (&optional arg)
@@ -74,21 +55,3 @@
             (if (string= "*scratch*" (buffer-name))
                 (progn (my-make-scratch 0) nil)
               t)))
-
-;; scratch バッファを次回起動時に復元。ログも記録する。
-;; (install-elisp "http://github.com/kitokitoki/scratch-log/raw/master/scratch-log.el")
-;; (when (require 'scratch-log.el nil t)
-;;   (setq sl-scratch-log-file "~/.emacs.d/var/scratch/.scratch-log")
-;;   (setq sl-prev-scratch-string-file "~/.emacs.d/var/scratch/.scratch")
-;;   ;; nil なら emacs 起動時に，最後に終了したときの スクラッチバッファの内容を復元しない。初期値は t です。
-;;   (setq sl-restore-scratch-p t)
-;;   ;; nil なら スクラッチバッファを削除できるままにする。初期値は t です。
-;;   (setq sl-prohibit-kill-scratch-buffer-p t))
-
-;; ミニバッファの履歴を消す
-(define-key minibuffer-local-map (kbd "S-<delete>")
-  '(lambda ()
-      (interactive)
-      (set minibuffer-history-variable (delete (buffer-substring-no-properties (minibuffer-prompt-end) (point-max)) (symbol-value minibuffer-history-variable)))
-      (goto-history-element minibuffer-history-position)
-))

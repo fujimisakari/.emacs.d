@@ -40,7 +40,7 @@
 
 ;; bookmack設定
 ;; ブックマークの保存先を指定
-(setq bookmark-default-file "~/.emacs.bmk")
+(setq bookmark-default-file "~/.emacs.d/private/emacs.bmk")
 
 ;; ファイル内の特定の位置をブックマークする
 ;; ブックマークを変更したら即保存する

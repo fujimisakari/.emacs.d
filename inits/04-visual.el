@@ -85,13 +85,6 @@
            '(:eval (concat " (" (abbreviate-file-name default-directory) ")"))
            (cdr ls))))
 
-;; sml-modeline
-;; (load "sml-modeline.el")
-;; (sml-mode t)
-;; ;; フェイスの設定
-;; (set-face-background 'sml-end-face "SlateGray3")                     ; 背景色
-;; (set-face-background 'sml-vis-face "RoyalBlue2")                     ; 表示領域の背景色
-
 ;; モードラインに改行コードを表示
 (setq eol-mnemonic-dos "(CRLF)")
 (setq eol-mnemonic-mac "(CR)")
@@ -114,12 +107,6 @@
 (auto-image-file-mode)                            ; 画像表示を有効
 (setq inhibit-startup-screen t)                   ; 起動画面を表示させない
 
-;; 行番号表示
-;; (global-linum-mode)
-;; (setq linum-delay t)
-;; (defadvice linum-schedule (around my-linum-schedule () activate)
-;;   (run-with-idle-timer 0.2 nil #'linum-update-current))
-
 ;; タイトルバーのフォーマット設定
 (setq frame-title-format `("GNU/Emacs " emacs-version " -- %b " (buffer-file-name "( %f )")))
 
@@ -133,19 +120,6 @@
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
 (set-face-background 'region "SlateBlue4")
-
-;; カーソル桁をハイライト表示
-;(require 'col-highlight)
-;(column-highlight-mode 1)
-;(custom-set-faces
-; '(col-highlight ((t (:background "gray20")))))
-
-(require 'highlight-indentation)
-(setq highlight-indentation-offset 4)  ;; default: 4
-;; (set-face-background 'highlight-indent-face "MediumPurple4")
-;; (set-face-background 'highlight-indentation-current-column-face "#e3e3d3")
-;; (add-hook 'python-mode-hook 'highlight-indentation-current-column-mode)
-;; (add-hook 'html-mode-hook 'highlight-indentation-current-column-mode)
 
 ;; paren: 対応する括弧を光らせる
 (setq show-paren-delay 0)

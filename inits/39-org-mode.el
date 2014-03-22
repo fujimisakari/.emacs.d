@@ -14,15 +14,6 @@
 (set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
 (set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
 
-;; キーバインド設定
-(global-set-key (kbd "C-c l") 'org-store-link)          ; ハイパーリンク作成
-(global-set-key (kbd "C-c a") 'org-agenda)              ; 予定表の表示
-(define-key org-mode-map (kbd "C-<up>") 'outline-previous-visible-heading)
-(define-key org-mode-map (kbd "C-<down>") 'outline-next-visible-heading)
-(define-key org-mode-map (kbd "C-M-<up>") 'outline-backward-same-level)
-(define-key org-mode-map (kbd "C-M-<down>") 'outline-forward-same-level)
-(define-key org-mode-map (kbd "C-,") nil)
-
 ;; エクスポート処理
 (setq org-export-default-language "ja")      ; 言語は日本語
 (setq org-export-html-coding-system 'utf-8)  ; 文字コードはUTF-8
@@ -45,7 +36,6 @@
     (4  (org-insert-subheading nil))    ; C-u
     (16 (org-insert-upheading  nil))    ; C-u C-u
     (t  (org-insert-heading    nil))))
-(define-key org-mode-map (kbd "C-]") 'org-insert-heading-dwim)
 
 ;; org-remember設定
 ;; テンプレートの設定
@@ -53,14 +43,6 @@
 (setq org-remember-templates
       '(("Note" ?n "** %?\n" nil "Note")
         ("Todo" ?t "** TODO %?\n" nil "Inbox-Todo")))
-
-;; 瞬時にメモを取る
-;; (org-remember-insinuate)  ; org-rememberの初期化
-;; (key-chord-define global-map "fj" 'org-remember)
-
-;; メモを格納するorgファイルの設定
-;; (setq org-directory "~/.emacs.d/org/todo-memo/")
-;; (setq org-default-notes-file (expand-file-name "memo.org" org-directory))
 
 ;; genda関連設定
 ;; TODOリストを作成する

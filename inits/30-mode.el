@@ -20,13 +20,10 @@
   (hl-line-mode t)
   (skk-mode t)
   (setq indent-level 4)
-  (c-toggle-hungry-state 1)
-  (orgtbl-mode))
+  (c-toggle-hungry-state 1))
 
 (require 'flymake)
 (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
-;; (global-set-key (kbd "C-M-p") 'flymake-goto-prev-error)
-;; (global-set-key (kbd "C-M-n") 'flymake-goto-next-error)
 ;; 文法チェックの頻度の設定
 (setq flymake-no-changes-timeout 1)
 ;; 改行時に文法チェックを行うかどうかの設定
@@ -77,6 +74,3 @@
           '(lambda()
              (skk-mode)
              (hl-line-mode)))
-
-;; ratpoisnrc編集を支援するメジャーモード
-;; (require 'ratpoison)

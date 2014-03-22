@@ -11,4 +11,3 @@
   (interactive)
   (occur "^\\(#+\\|.*\n===+\\|.*\n\---+\\)")
   (other-window 1))
-(define-key markdown-mode-map (kbd "C-c C-s") 'markdown-header-list)

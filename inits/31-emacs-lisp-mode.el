@@ -13,7 +13,6 @@
 
 ;; 式の評価結果を注釈する
 (require 'lispxmp)
-(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
 
 ;; Emacs-lisp関数・変数のヘルプをエコーエリアに表示する
 (require 'eldoc-extension)                ; 拡張版

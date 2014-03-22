@@ -5,10 +5,7 @@
 ;;;--------------------------------------------------------------------------;;;
 
 ;; moccur検索
-;; (install-elisp-from-emacswiki color-moccur.el)
-;; (install-elisp-from-emacswiki moccur-edit.el)
 (when (require 'color-moccur nil t)
-  (global-set-key (kbd "C-M-o") 'occur-by-moccur)
   (set-face-background 'moccur-face "pale green") ; 検索結果に対応した色
   (setq moccur-split-word t) ; スペース区切りでAND検索
   ;; ディレクトリ検索のとき除外するファイル
@@ -38,8 +35,7 @@
   (setq migemo-pattern-alist-length 1000)
   (setq migemo-coding-system 'utf-8-unix)
   ;; migemoを起動する
-  (migemo-init)
-  )
+  (migemo-init))
 
 ;; allの拡張
 (require 'all-ext)
@@ -47,10 +43,6 @@
 ;; 複数のgrepバッファを扱う
 (require 'grep-a-lot)
 ;; (grep-a-lot-setup-keys)
-
-;; grepコマンドパラメータを変更する
-;; (grep-apply-setting 'grep-command "grep -nHr -e \"\" .")
-;; (setq grep-find-command "find . -type f -not -name \"*.svn*\" -and  -not -name \"*.elc\" -and -not -name \"*.zsh_history\"  -print0 | xargs -0 -e grep -nHr -e \"\"")
 
 ;; grep検索結果を編集できるようにする
 (require 'grep-edit)

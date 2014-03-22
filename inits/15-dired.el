@@ -64,16 +64,6 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-;; キーバインド設定
-(add-hook 'dired-mode-hook
-  (lambda ()
-    (local-set-key (kbd "C-f") 'dired-advertised-find-file)      ; ディレクトリ, ファイルを展開
-    (local-set-key (kbd "C-M-m") 'dired-up-directory)            ; 上位ディレクトリへ
-    (local-set-key (kbd "C-t") 'other-window-or-split)           ; ウィンドウを切り替える
-    (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)  ; spとfpのディレクトリを切り替える
-    (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)  ; ghとshのディレクトリを切り替える
-    ))
-
 ;; Dired表示設定
 ;; ディレクトリから先頭表示されるようにする
 (load "ls-lisp")
@@ -95,7 +85,6 @@
 
 ;; Diredのパス移動
 (require 'dired-ex-isearch)
-(define-key dired-mode-map "/" 'dired-ex-isearch) ;; お好みのキーバインド
 
 ;; マッチした行を強調表示させる
 (require 'highline)

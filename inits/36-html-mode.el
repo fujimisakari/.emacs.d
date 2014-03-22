@@ -46,12 +46,6 @@
     (unless (eq current-file tmp-file)
       (find-file tmp-file))))
 
-;; キーバインド設定
-(define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
-(define-key web-mode-map (kbd "C-;") nil)
-(define-key web-mode-map (kbd "C-M-'") 'sp-fp-file-toggle)
-(define-key web-mode-map (kbd "C-M-a") 'gh-sh-file-toggle)
-
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-face "lime green")
 (set-face-foreground 'web-mode-html-attr-name-face "magenta")

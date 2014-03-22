@@ -4,10 +4,7 @@
 ;;                           プログラミング支援設定                           ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;; バッファのサマリを表示する
-(require 'summarye)
-
-;; プログラムを実行する
+;; プログラムをインタラクティブに実行する
 (require 'quickrun)
 
 ;; 現在の関数名を画面の上に表示する
@@ -36,11 +33,6 @@
 (set-face-foreground 'rainbow-delimiters-depth-7-face "magenta2")
 (set-face-foreground 'rainbow-delimiters-depth-8-face "IndianRed4")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "DeepPink3")
-
-;; 現在行に色をつけて記録し、移動が可能となる
-(global-set-key (kbd "M-[") 'bm-previous)
-(global-set-key (kbd "M-]") 'bm-next)
-(global-set-key (kbd "M-SPC") 'bm-toggle)
 
 ;; 関数定義開始などで目印をつけた場合は画面最上部にもっていく
 ;; 正規表現とメジャーモードを指定する

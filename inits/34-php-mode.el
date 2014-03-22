@@ -5,6 +5,8 @@
 ;;;--------------------------------------------------------------------------;;;
 
 (require 'php-mode)
+(require 'php-completion)
+
 (setq auto-mode-alist (cons '("\\.ctp$" . php-mode) auto-mode-alist))
 ;; mmm-mode in php
 ;; (require 'mmm-mode)
@@ -32,9 +34,7 @@
                             (setq comment-start "// "
                                   comment-end ""
                                   comment-start-skip "// *")
-                            (require 'php-completion)
                             (php-completion-mode t)
-                            (define-key php-mode-map (kbd "C-o") 'phpcmp-complete)
                             (add-to-list 'dummy 'php-mode)
                             (make-variable-buffer-local 'ac-sources)
                             (add-to-list 'ac-sources 'ac-source-php-completion)

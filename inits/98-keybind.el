@@ -4,124 +4,120 @@
 ;;                                KeyBind設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(global-set-key (kbd "C-h") 'delete-backward-char)          ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
-(global-set-key (kbd "M-h") 'backward-kill-word)            ; 直前の単語を削除
-(global-set-key (kbd "C-x C-c") 'server-edit)               ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
-(global-set-key (kbd "C-m") 'newline-and-indent)            ; "C-m" に newline-and-indent を割り当てる。初期値は newline
-(global-set-key (kbd "M-k") 'kill-this-buffer)              ; カレントバッファを閉じる。初期値は kill-sentence
-(global-set-key (kbd "C-M-;") 'delete-other-windows)        ; 現在のウィンドウ以外を消す
-(global-set-key (kbd "M-/") 'hippie-expand)                 ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
-(global-set-key (kbd "M-g") 'goto-line)                     ; M-g で指定行へジャンプ
-(global-set-key (kbd "<C-tab>") 'tabify)                    ; TAB生成
-(global-set-key (kbd "<C-M-tab>") 'untabify)                ; TAB削除
-(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward) ; 直前行を削除する
-(global-set-key (kbd "<f6>") 'id-manager)                   ; id-managerの起動
-(global-unset-key (kbd "C-x b"))                            ; switch bufferは使用してないので無効
+;; Fn
+(global-set-key (kbd "<f1>") 'linum-mode)                          ; 行番号表示
+(global-set-key (kbd "<f4>") 'magit-status)                        ; git statusを表示
+(global-set-key (kbd "<f5>") 'wl)                                  ; wanderlustの起動
+(global-set-key (kbd "<f6>") 'id-manager)                          ; id-managerの起動
 
-;; C-lはprivate用prefixを追加
-(winner-mode 1)
-;; private用にprefixキーを追加
+;; key-chord
+(key-chord-define-global "qp" 'describe-bindings)                  ; キーバインド設定の参照
+(key-chord-define-global "ui" 'skk-mode)                           ; skk-modeを有効
+(key-chord-define-global "kl" 'view-mode)                          ; view-modeを有効
+
+;; C-
+(global-set-key (kbd "C-k") 'kill-line)                            ; カーソル位置より前(右)を削除
+(global-set-key (kbd "C-t") 'other-window-or-split)                ; ウィンドウを切り替える
+(global-set-key (kbd "C-.") 'redo)                                 ; redo
+(global-set-key (kbd "C-a") 'beginning-of-indented-line)           ; インデントを飛ばした行頭に移動
+(global-set-key (kbd "C-h") 'delete-backward-char)                 ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
+(global-set-key (kbd "C-x C-c") 'server-edit)                      ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
+(global-set-key (kbd "C-m") 'newline-and-indent)                   ; "C-m" に newline-and-indent を割り当てる。初期値は newline
+(global-set-key (kbd "C-M-;") 'delete-other-windows)               ; 現在のウィンドウ以外を消す
+(global-set-key (kbd "C-M-o") 'occur-by-moccur)                    ; 現在開いているファイルをmoccur検索する
+(global-set-key (kbd "C-<tab>") 'tabify)                           ; TAB生成
+(global-set-key (kbd "C-M-<tab>") 'untabif)                        ; TAB削除
+(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)        ; 直前行を削除する
+(global-set-key (kbd "C-'") 'gtags-find-tag-other-window)          ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-M-'") 'gtags-find-tag)                     ; 変数等のジャンプ
+(global-set-key (kbd "C-M-<right>") 'tabbar+move-right)            ; タブの配置位置ずらし(右)
+(global-set-key (kbd "C-M-<left>") 'tabbar+move-left)              ; タブの配置位置ずらし(左)
+(global-set-key (kbd "C-M-l") 'tabbar-forward-tab)                 ; タブ移動(右)
+(global-set-key (kbd "C-M-h") 'tabbar-backward-tab)                ; タブ移動(左)
+(global-set-key (kbd "C-,") 'er/expand-region)                     ; 拡張リジョン選択
+(global-set-key (kbd "C-M-,") 'er/contract-region)                 ; 拡張リジョン選択(戻す)
+;; (global-unset-key (kbd "C-x b"))                                   ; switch bufferは使用してないので無効
+
+;; M-
+(global-set-key (kbd "M-/") 'hippie-expand)                        ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
+(global-set-key (kbd "M-g") 'goto-line)                            ; M-g で指定行へジャンプ
+(global-set-key (kbd "M-h") 'backward-kill-word)                   ; 直前の単語を削除
+(global-set-key (kbd "M-k") 'kill-this-buffer)                     ; カレントバッファを閉じる。初期値は kill-sentence
+(global-set-key (kbd "M-<right>") 'flymake-goto-prev-error)        ; flymakeの警告・エラーに移動(前)
+(global-set-key (kbd "M-<left>") 'flymake-goto-next-error)         ; flymakeの警告・エラーに移動(次)
+(global-set-key (kbd "M-[") 'bm-previous)                          ; bm-goto 前へ移動
+(global-set-key (kbd "M-]") 'bm-next)                              ; bm-goto 次へ移動
+(global-set-key (kbd "M-SPC") 'bm-toggle)                          ; bm-goto 現在行に色をつけて記録
+
+;; C-l
 (global-unset-key (kbd "C-l"))
-;; 修正したい単語の上にカーソルをもっていき候補を表示
-(global-set-key (kbd "C-l C-M-;") 'flyspell-correct-word-popup-el)
-(global-set-key (kbd "C-l q") 'quickrun)
-(global-set-key (kbd "C-l C-q") 'quickrun-region)
-(global-set-key (kbd "C-l C-u") 'winner-undo)
-(global-set-key (kbd "C-l C-l") 'recenter-top-bottom)
-(global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)
-(global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)                 ; リージョンの語句を英辞郎で引く
-(global-set-key (kbd "C-l r") 'query-replace-regexp)
-(global-set-key (kbd "C-l R") 'replace-regexp)
-(global-set-key (kbd "C-l w") 'whitespace-cleanup)
-(global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)
-(global-set-key (kbd "C-l C-j") 'delete-horizontal-space)
-(global-set-key (kbd "C-l j") 'just-one-space)
-(global-set-key (kbd "C-l C-'") 'flyspell-region)
-(global-set-key (kbd "C-l C-M-'") 'ispell-word)
-(global-set-key (kbd "C-l l") 'ace-jump-line-mode)
-(global-set-key (kbd "C-l '") 'ace-jump-mode)
-(global-set-key (kbd "C-l b") 'browse-url-at-point)
-(global-set-key (kbd "C-l g") 'open-github-from-here)
-(global-set-key (kbd "C-l f") 'helm-ag)
-(global-set-key (kbd "C-l C-f") 'moccur-grep-find)
-;; anzu
-(global-set-key (kbd "C-l r") 'anzu-query-replace-regexp)
-(global-set-key (kbd "C-l R") 'anzu-query-replace)
-;; *scratch* バッファに移動できるようにした
-(defun my-switch-to-scratch/current-buffer ()
-  (interactive)
-  (if (string-equal (buffer-name) "*scratch*")
-      (switch-to-buffer (cadr (buffer-list)))
-    (switch-to-buffer (get-buffer "*scratch*"))))
-(global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)
+(global-set-key (kbd "C-l C-'") 'flyspell-region)                        ; スペルが正しいかチェック
+(global-set-key (kbd "C-l C-M-'") 'ispell-word)                          ; 現在のスペルから候補を表示
+(global-set-key (kbd "C-l l") 'ace-jump-line-mode)                       ; 行のace-jump
+(global-set-key (kbd "C-l C-l") 'ace-jump-mode)                          ; 検索のace-jump
+(global-set-key (kbd "C-l q") 'quickrun)                                 ; quickrun(バッファ)
+(global-set-key (kbd "C-l C-q") 'quickrun-region)                        ; quickrun(リジョン)
+(global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)  ; Webで翻訳
+(global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)                 ; 英辞郎で翻訳
+(global-set-key (kbd "C-l C-j") 'delete-horizontal-space)                ; 行の不要な空白を削除
+(global-set-key (kbd "C-l j") 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
+(global-set-key (kbd "C-l w") 'whitespace-cleanup)                       ; TABを空白に置換
+(global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
+(global-set-key (kbd "C-l i") 'recenter-top-bottom)                      ; 現在の行の位置調整
+(global-set-key (kbd "C-l b") 'browse-url-at-point)                      ; URLをブラウザで開く
+(global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
+(global-set-key (kbd "C-l f") 'helm-ag)                                  ; helm-ag検索
+(global-set-key (kbd "C-l C-f") 'moccur-grep-find)                       ; moccur-grep検索
+;; (global-set-key (kbd "C-l r") 'query-replace-regexp)                     ; インタラクティブ置換
+;; (global-set-key (kbd "C-l R") 'replace-regexp)                           ; 一括置換
+(global-set-key (kbd "C-l r") 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
+(global-set-key (kbd "C-l R") 'anzu-query-replace)                       ; 一括置換
+(global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
 
-;; tabbar
-(global-set-key (kbd "C-M-<right>") 'tabbar+move-right)  ; タブの配置位置ずらし(右)
-(global-set-key (kbd "C-M-<left>") 'tabbar+move-left)    ; タブの配置位置ずらし(左)
-(global-set-key (kbd "C-M-l") 'tabbar-forward-tab)       ; タブ移動(右)
-(global-set-key (kbd "C-M-h") 'tabbar-backward-tab)      ; タブ移動(左)
+;; emacs-lisp-mode
+(define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)                ; 実行結果を注釈してくれる
 
-;; 選択拡張
-(require 'expand-region)
-(global-set-key (kbd "C-,") 'er/expand-region)
-(global-set-key (kbd "C-M-,") 'er/contract-region)
+;; python-mode
+(define-key python-mode-map (kbd "C-M-a") 'gh-sh-file-toggle)            ; ghとshのディレクトリを切り替える
 
-;; カーソル拡張
-;; (require 'multiple-cursors)
-;; (global-unset-key (kbd "C-q"))
-;; (smartrep-define-key global-map "C-q"
-;;   '(("n"        . 'mc/mark-next-like-this)
-;;     ("p"        . 'mc/mark-previous-like-this)
-;;     ("m"        . 'mc/mark-more-like-this-extended)
-;;     ("u"        . 'mc/unmark-next-like-this)
-;;     ("U"        . 'mc/unmark-previous-like-this)
-;;     ("s"        . 'mc/skip-to-next-like-this)
-;;     ("S"        . 'mc/skip-to-previous-like-this)
-;;     ("*"        . 'mc/mark-all-like-this)
-;;     ("SPC"      . 'mc/mark-all-in-region)
-;;     ("C-SPC"    . 'mc/edit-lines)
-;;     ("i"        . 'mc/insert-numbers)))
+;; php-mode
+(define-key php-mode-map (kbd "C-o") 'phpcmp-complete)                   ; 補完
 
-;; キーボードの同時押しでコマンドを実行する
-;; (install-elisp-from-emacswiki key-chord.el)
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
-(key-chord-mode 1)
-(key-chord-define-global "qp" 'describe-bindings)
-(key-chord-define-global "ui" 'skk-mode)
-(key-chord-define-global "kl" 'view-mode)
+;; perl-mode
+;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完
+;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
 
-;; 行全体を削除
-(defun kill-all-line (&optional numlines)
-  (interactive)
-  (setq pos(current-column))
-  (beginning-of-line)
-  (kill-line numlines)
-  (move-to-column pos))
-(global-set-key (kbd "C-c C-k") 'kill-all-line)
-;; カーソル位置より前(右)を削除
-(global-set-key (kbd "C-k") 'kill-line)
-;; カーソル位置より前(左)を削除
-(global-set-key (kbd "C-M-k")
-                '(lambda ()
-                   (interactive)(kill-line 0)))
+;; web-mode
+(define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
+(define-key web-mode-map (kbd "C-;") nil)
+(define-key web-mode-map (kbd "C-M-'") 'sp-fp-file-toggle)
+(define-key web-mode-map (kbd "C-M-a") 'gh-sh-file-toggle)
 
-;; 別窓(フレーム)でバッファを開く
-;; (key-chord-define-global "ru" 'find-file-other-frame)
-;;; git statusを表示
-(global-set-key (kbd "<f4>") 'magit-status)
+;; markdown-mode
+(define-key markdown-mode-map (kbd "C-c C-s") 'markdown-header-list)     ; markdown-headerの一覧表示
 
-;; 行番号表示
-(global-set-key (kbd "<f1>") 'linum-mode)
+;; org-mode
+(define-key org-mode-map (kbd "C-<up>") 'outline-previous-visible-heading)
+(define-key org-mode-map (kbd "C-<down>") 'outline-next-visible-heading)
+(define-key org-mode-map (kbd "C-M-<up>") 'outline-backward-same-level)
+(define-key org-mode-map (kbd "C-M-<down>") 'outline-forward-same-level)
+(define-key org-mode-map (kbd "C-,") nil)
+(define-key org-mode-map (kbd "C-]") 'org-insert-heading-dwim)
 
-;; emacs-lisp-modeでC-c C-dを押すと注釈される
-;; (require 'lispxmp)
-;; (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)
+;; dired-mode
+(add-hook 'dired-mode-hook
+  (lambda ()
+    (local-set-key (kbd "C-f") 'dired-advertised-find-file)      ; ディレクトリ, ファイルを展開
+    (local-set-key (kbd "C-M-m") 'dired-up-directory)            ; 上位ディレクトリへ
+    (local-set-key (kbd "C-t") 'other-window-or-split)           ; ウィンドウを切り替える
+    (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)  ; spとfpのディレクトリを切り替える
+    (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)  ; ghとshのディレクトリを切り替える
+    (local-set-key (kbd "/") 'dired-ex-isearch)                  ; Diredのパス移動
+    ))
 
-;; ウィンドウを切り替える。
-;; ウィンドウを分割していないときは、左右分割して新しいウィンドウを作る
-(defun other-window-or-split ()
-  (interactive)
-  (when (one-window-p) (split-window-horizontally))
-  (other-window 1))
-(global-set-key (kbd "C-t") 'other-window-or-split)
+;; auto-complete-mode
+(define-key ac-mode-map (kbd "TAB") 'auto-complete)
+(define-key ac-menu-map (kbd "C-n") 'ac-next)
+(define-key ac-menu-map (kbd "C-p") 'ac-previous)
+(define-key ac-menu-map (kbd "C-j") 'ac-complete)
+(define-key ac-menu-map (kbd "C-i") 'ac-expand)

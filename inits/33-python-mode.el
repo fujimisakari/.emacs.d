@@ -4,6 +4,8 @@
 ;;                              python-mode設定                               ;;
 ;;;--------------------------------------------------------------------------;;;
 
+(require 'python-mode)
+
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (defun flymake-pyflakes-init ()
@@ -18,6 +20,4 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (mode-init-func)
-            (local-set-key (kbd "C-M-a") 'gh-sh-file-toggle) ; ghとshのディレクトリを切り替える
-            ))
+            (mode-init-func)))

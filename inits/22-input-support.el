@@ -7,18 +7,26 @@
 (setq kill-whole-line t)            ; C-kは行末改行を削除しないが、改行までまとめて行カットする
 (setq next-screen-context-lines 1)  ; C-v/M-vで前のページの１行を残す
 
-;; prifixの入力ショートカット
-(require 'smartrep)
+;; キーボードの同時押しでコマンドを実行する
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
+(key-chord-mode 1)
+
+;; リジョン選択拡張
+(require 'expand-region)
 
 ;; 未来へやり直しできるようにる(redo)
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
 (require 'redo+)
-(global-set-key (kbd "C-.") 'redo)
 ;; 過去のundoがredoされないようにする
 (setq undo-no-redo t)
 ;; 大量のundoに 耐えられるようにする
 (setq undo-limit 600000)
 (setq undo-strong-limit 900000)
+
+;; スペルチェッカは aspell を使う
+(when (executable-find "aspell")
+  (setq-default ispell-program-name "aspell"))
 
 ;; Tabの代わりにスペースでインデント
 (setq-default tab-width 4 indent-tabs-mode nil)
@@ -36,7 +44,7 @@
 ;; text-modeかそれを継承したメジャーモードで自動的に有効にする
 (add-hook 'text-mode-hook 'turn-on-screen-lines-mode)
 
-;; \C-aでインデントを飛ばした行頭に移動
+;; インデントを飛ばした行頭に移動
 (defun beginning-of-indented-line (current-point)
   "インデント文字を飛ばした行頭に戻る。ただし、ポイントから行頭までの間にインデント文字しかない場合は、行頭に戻る。"
   (interactive "d")
@@ -48,7 +56,6 @@
           current-point)))
       (beginning-of-line)
     (back-to-indentation)))
-(global-set-key (kbd "C-a") 'beginning-of-indented-line)
 
 ;; 同じコマンドを連続実行したときの振舞いを変更する
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
@@ -76,19 +83,14 @@
 (ac-config-default)
 (setq ac-auto-start nil)
 (setq ac-delay 0.8)
-(define-key ac-mode-map (kbd "TAB") 'auto-complete)
 (add-to-list 'ac-dictionary-directories "~/.emacs.d/share/ac-dict")
 ;; ソートファイルの保存場所を変更
 (setq ac-comphist-file
       (expand-file-name (concat user-emacs-directory "/cache/ac-comphist.dat")))
 ;; クイックヘルプを利用しない
 (setq ac-use-quick-help nil)
-;; キーバインド設定
-(setq ac-use-menu-map t)  ; 補完メニューのときだけキーバインドを有効にする
-(define-key ac-menu-map (kbd "C-n") 'ac-next)
-(define-key ac-menu-map (kbd "C-p") 'ac-previous)
-(define-key ac-menu-map (kbd "C-j") 'ac-complete)
-(define-key ac-menu-map (kbd "C-i") 'ac-expand)
+;; 補完メニューのときだけキーバインドを有効にする
+(setq ac-use-menu-map t)
 ;; 色の設定
 (set-face-foreground 'ac-candidate-face "#fff")
 (set-face-background 'ac-candidate-face "#444")

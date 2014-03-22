@@ -8,8 +8,6 @@
 (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
 (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
-(global-set-key (kbd "<f5>") 'wl)
-
 ;; アイコンを置くディレクトリ。初期設定は Emacs 固有のデフォルト値。
 (setq wl-icon-directory "~/.emacs.d/elisp/wl/icons")
 

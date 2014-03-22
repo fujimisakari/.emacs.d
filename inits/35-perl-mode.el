@@ -19,6 +19,4 @@
              (mode-init-func)
              (hs-minor-mode)
              (cperl-set-style "PerlStyle") ;
-             (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)
-             (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db) ; デバッガの起動
              (perlplus-setup)))
