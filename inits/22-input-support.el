@@ -44,19 +44,6 @@
 ;; text-modeかそれを継承したメジャーモードで自動的に有効にする
 (add-hook 'text-mode-hook 'turn-on-screen-lines-mode)
 
-;; インデントを飛ばした行頭に移動
-(defun beginning-of-indented-line (current-point)
-  "インデント文字を飛ばした行頭に戻る。ただし、ポイントから行頭までの間にインデント文字しかない場合は、行頭に戻る。"
-  (interactive "d")
-  (if (string-match
-       "^[ ¥t]+$"
-       (save-excursion
-         (buffer-substring-no-properties
-          (progn (beginning-of-line) (point))
-          current-point)))
-      (beginning-of-line)
-    (back-to-indentation)))
-
 ;; 同じコマンドを連続実行したときの振舞いを変更する
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
 (require 'sequential-command-config)

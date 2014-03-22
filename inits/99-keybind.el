@@ -16,10 +16,12 @@
 (key-chord-define-global "kl" 'view-mode)                          ; view-modeを有効
 
 ;; C-
+(global-set-key (kbd "C-;") 'helm-mini)                            ; helmの起動
+(global-set-key (kbd "C-M-i") 'helm-imenu)                         ; helm-imenuの起動
+(global-set-key (kbd "C-x C-f") 'helm-find-files)                  ; helmでファイルリスト検索
 (global-set-key (kbd "C-k") 'kill-line)                            ; カーソル位置より前(右)を削除
 (global-set-key (kbd "C-t") 'other-window-or-split)                ; ウィンドウを切り替える
 (global-set-key (kbd "C-.") 'redo)                                 ; redo
-(global-set-key (kbd "C-a") 'beginning-of-indented-line)           ; インデントを飛ばした行頭に移動
 (global-set-key (kbd "C-h") 'delete-backward-char)                 ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (global-set-key (kbd "C-x C-c") 'server-edit)                      ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
 (global-set-key (kbd "C-m") 'newline-and-indent)                   ; "C-m" に newline-and-indent を割り当てる。初期値は newline
@@ -36,9 +38,10 @@
 (global-set-key (kbd "C-M-h") 'tabbar-backward-tab)                ; タブ移動(左)
 (global-set-key (kbd "C-,") 'er/expand-region)                     ; 拡張リジョン選択
 (global-set-key (kbd "C-M-,") 'er/contract-region)                 ; 拡張リジョン選択(戻す)
-;; (global-unset-key (kbd "C-x b"))                                   ; switch bufferは使用してないので無効
 
 ;; M-
+(global-set-key (kbd "M-x") 'helm-M-x)                             ; helmでM-x
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)                  ; 過去のkill-ringの内容を取り出す
 (global-set-key (kbd "M-/") 'hippie-expand)                        ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)                            ; M-g で指定行へジャンプ
 (global-set-key (kbd "M-h") 'backward-kill-word)                   ; 直前の単語を削除
@@ -48,6 +51,7 @@
 (global-set-key (kbd "M-[") 'bm-previous)                          ; bm-goto 前へ移動
 (global-set-key (kbd "M-]") 'bm-next)                              ; bm-goto 次へ移動
 (global-set-key (kbd "M-SPC") 'bm-toggle)                          ; bm-goto 現在行に色をつけて記録
+(global-set-key (kbd "M-o") 'anything-c-moccur-occur-by-moccur)    ; anything-c-moccurの起動
 
 ;; C-l
 (global-unset-key (kbd "C-l"))
@@ -96,6 +100,10 @@
 ;; markdown-mode
 (define-key markdown-mode-map (kbd "C-c C-s") 'markdown-header-list)     ; markdown-headerの一覧表示
 
+;; helm-read-file
+(define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)             ; C-h でバックスペースと同じように文字を削除できるようにする
+(define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action) ; TAB で補完する
+
 ;; org-mode
 (define-key org-mode-map (kbd "C-<up>") 'outline-previous-visible-heading)
 (define-key org-mode-map (kbd "C-<down>") 'outline-next-visible-heading)
@@ -121,3 +129,6 @@
 (define-key ac-menu-map (kbd "C-p") 'ac-previous)
 (define-key ac-menu-map (kbd "C-j") 'ac-complete)
 (define-key ac-menu-map (kbd "C-i") 'ac-expand)
+
+;; anything-c-moccur-anything
+(define-key anything-c-moccur-anything-map (kbd "C-h") 'delete-backward-char)  ; 削除

@@ -104,12 +104,6 @@
 ;; フルスクリーン設定(24.3以降)
 (setq ns-use-native-fullscreen nil)
 
-;; ブラウザはmacを使用する
-(setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program
-      (if (file-exists-p "/usr/bin/open")
-          "/usr/bin/open"))
-
 ;; 会社と自宅の読み込みを切り分け 
 ;; 元ネタ(http://e-arrows.sakura.ne.jp/2010/12/emacs-anywhere.html)
 ;; (defvar *network-interface-names* '("eth0" "eth1")

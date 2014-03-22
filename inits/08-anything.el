@@ -58,14 +58,12 @@
  anything-c-moccur-enable-initial-pattern t)
 
 ;; キーバインド設定
-(global-set-key (kbd "C-;") 'my-anything)                                     ; anythingの起動
-(global-set-key (kbd "C-M-i") 'anything-imenu)                                ; anything-imenuの起動
-(define-key anything-map (kbd "M-k") 'anything-delete-minibuffer-contents)    ; カレントバッファ削除ができるようにする
-(define-key anything-map (kbd "C-t") 'other-window-or-split)                  ; ウィンドウを切り替える
-(define-key anything-c-moccur-anything-map (kbd "C-h") 'delete-backward-char) ; 削除
-(anything-complete-shell-history-setup-key (kbd "C-o"))                       ; シェルコマンドの履歴から補完する
-(global-set-key (kbd "M-y") 'anything-show-kill-ring)                         ; 過去のkill-ringの内容を取り出す
-(global-set-key (kbd "M-o") 'anything-c-moccur-occur-by-moccur)
+;; (global-set-key (kbd "C-;") 'my-anything)                                     ; anythingの起動
+;; (global-set-key (kbd "C-M-i") 'anything-imenu)                                ; anything-imenuの起動
+;; (global-set-key (kbd "M-y") 'anything-show-kill-ring)                         ; 過去のkill-ringの内容を取り出す
+;; (define-key anything-map (kbd "M-k") 'anything-delete-minibuffer-contents)    ; カレントバッファ削除ができるようにする
+;; (define-key anything-map (kbd "C-t") 'other-window-or-split)                  ; ウィンドウを切り替える
+;; (anything-complete-shell-history-setup-key (kbd "C-o"))                       ; シェルコマンドの履歴から補完する
 
 ;; カラー設定
 (set-face-foreground 'anything-ff-file "gray75")

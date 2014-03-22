@@ -28,16 +28,12 @@
 (setq helm-ff-smart-completion t)
 ;; ミニバッファ内の先頭でない特定の位置からC-kできるようにする
 (setq helm-delete-minibuffer-contents-from-point t)
-;; C-h でバックスペースと同じように文字を削除できるようにする
-(define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)
-;; TAB で補完する
-(define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
 
 ;; customize
 (progn
   (custom-set-variables
    '(helm-truncate-lines t)
-   '(helm-buffer-max-length 35)
+   '(helm-buffer-max-length 37)
    '(helm-delete-minibuffer-contents-from-point t)
    '(helm-ff-skip-boring-files t)
    '(helm-boring-file-regexp-list '("~$" "\\.elc$"))
@@ -53,15 +49,6 @@
 ;;                (local-set-key (kbd "M-r") 'helm-gtags-find-rtag)
 ;;                (local-set-key (kbd "M-s") 'helm-gtags-find-symbol)
 ;;                (local-set-key (kbd "C-t") 'helm-gtags-pop-stack))))
-
-;; キーバインド設定
-(global-set-key (kbd "C-;") 'helm-mini)                   ; helmの起動
-(global-set-key (kbd "C-M-i") 'helm-imenu)                ; helm-imenuの起動
-(global-set-key (kbd "C-x C-f") 'helm-find-files)         ; ファイルリスト検索
-;; (global-set-key (kbd "M-o") 'helm-occur)
-;; (global-set-key (kbd "C-M-.") 'helm-resume)
-(define-key global-map (kbd "M-y") 'helm-show-kill-ring)  ; 過去のkill-ringの内容を取り出す
-(define-key global-map (kbd "M-x") 'helm-M-x)             ; helmでM-x
 
 ;; カラー設定
 (custom-set-faces
