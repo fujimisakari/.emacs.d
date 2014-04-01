@@ -1,6 +1,6 @@
 ;;; text-translator-load.el --- Text Translator
 
-;; Copyright (C) 2007-2009  khiker
+;; Copyright (C) 2007-2008  khiker
 
 ;; Author: khiker <khiker.mail+elisp@gmail.com>
 ;;         plus   <MLB33828@nifty.com>

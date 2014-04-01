@@ -66,19 +66,5 @@
           (forward-line) ;; bugfix (next-line)
           )))))
 
-(global-set-key (kbd "<f3>") 'mo-git-blame-current-view)
-(define-key mo-git-blame-mode-map (kbd "q") 'mo-git-blame-display-quit)
-
-;; git-blameを開くときはelscreenを消す
-(defun mo-git-blame-current-view ()
-  (interactive)
-  (elscreen-toggle-display-tab)
-  (mo-git-blame-current))
-
-(defun mo-git-blame-display-quit ()
-  (interactive)
-  (elscreen-toggle-display-tab)
-  (mo-git-blame-quit))
-
 ;; リジョン選択をgithubで開く
 (require 'open-github-from-here)

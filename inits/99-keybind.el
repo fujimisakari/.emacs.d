@@ -6,6 +6,7 @@
 
 ;; Fn
 (global-set-key (kbd "<f1>") 'linum-mode)                          ; 行番号表示
+(global-set-key (kbd "<f3>") 'mo-git-blame-current)                ; git-blame表示
 (global-set-key (kbd "<f4>") 'magit-status)                        ; git statusを表示
 (global-set-key (kbd "<f5>") 'wl)                                  ; wanderlustの起動
 (global-set-key (kbd "<f6>") 'id-manager)                          ; id-managerの起動
@@ -70,6 +71,7 @@
 (global-set-key (kbd "C-l i") 'recenter-top-bottom)                      ; 現在の行の位置調整
 (global-set-key (kbd "C-l b") 'browse-url-at-point)                      ; URLをブラウザで開く
 (global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
+(global-set-key (kbd "C-l u") 'revert-buffer)                            ; バッファ更新
 (global-set-key (kbd "C-l f") 'helm-ag)                                  ; helm-ag検索
 (global-set-key (kbd "C-l C-f") 'moccur-grep-find)                       ; moccur-grep検索
 ;; (global-set-key (kbd "C-l r") 'query-replace-regexp)                     ; インタラクティブ置換
@@ -132,3 +134,6 @@
 
 ;; anything-c-moccur-anything
 (define-key anything-c-moccur-anything-map (kbd "C-h") 'delete-backward-char)  ; 削除
+
+;; mo-git-blame
+(define-key mo-git-blame-mode-map (kbd "q") 'mo-git-blame-quit)

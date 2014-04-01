@@ -11,7 +11,8 @@
           (define-key my-keyjack-mode-map (car x) (cdr x))
           (global-set-key (car x) (cdr x)))
         '(("\C-\M-l" . tabbar-forward-tab)
-          ("\C-\M-h" . tabbar-backward-tab)))
+          ("\C-\M-h" . tabbar-backward-tab)
+          ("\C-\M-i" . helm-imenu)))
 
 (easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
                               t " Keyjack" my-keyjack-mode-map)
