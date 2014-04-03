@@ -6,6 +6,9 @@
 
 (require 'python-mode)
 
+(set-face-foreground 'py-variable-name-face "magenta")   ; 変数名の色
+(set-face-foreground 'py-pseudo-keyword-face "cyan")     ; Face for None, True, False, self, and Ellipsis
+
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (defun flymake-pyflakes-init ()

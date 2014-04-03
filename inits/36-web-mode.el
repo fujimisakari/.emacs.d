@@ -14,6 +14,9 @@
 (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
 
+;; 拡張子がhtmlの場合はdjangoテンプレートとみなす
+(add-to-list 'web-mode-engine-file-regexps '("django" . "\\.html\\'"))
+
 ;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
@@ -30,10 +33,12 @@
                nil)))
 
 ;; カラー設定
+(set-face-foreground 'web-mode-html-tag-bracket-face "lime green")
 (set-face-foreground 'web-mode-html-tag-face "lime green")
 (set-face-foreground 'web-mode-html-attr-name-face "magenta")
 (set-face-foreground 'web-mode-variable-name-face "orange")
 (set-face-foreground 'web-mode-preprocessor-face "MediumPurple1")
+(set-face-background 'web-mode-block-face "gray10")
 
 (add-hook 'web-mode-hook 'web-mode-hook)
 
