@@ -4,19 +4,6 @@
 ;;                              モードの基本設定                              ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;;; あらゆるモードで有効なキーバインドの設定(my-keyjack-mode)
-(setq my-keyjack-mode-map (make-sparse-keymap))
-
-(mapcar (lambda (x)
-          (define-key my-keyjack-mode-map (car x) (cdr x))
-          (global-set-key (car x) (cdr x)))
-        '(("\C-\M-l" . tabbar-forward-tab)
-          ("\C-\M-h" . tabbar-backward-tab)
-          ("\C-\M-i" . helm-imenu)))
-
-(easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
-                              t " Keyjack" my-keyjack-mode-map)
-
 (defun mode-init-func()
   (hl-line-mode t)
   (skk-mode t)
@@ -39,20 +26,9 @@
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 
-; spとfpのファイルを切り替える
-(defun gh-sh-file-toggle ()
-  (interactive)
-  (let ((current-file (buffer-file-name))
-        (tmp-file (buffer-file-name)))
-    (cond ((string-match "/genju-hime/" current-file)
-           (setq tmp-file (replace-regexp-in-string "/genju-hime/" "/seishun-hime/" tmp-file)))
-          ((string-match "/seishun-hime/" current-file)
-           (setq tmp-file (replace-regexp-in-string "/seishun-hime/" "/genju-hime/" tmp-file))))
-    (unless (eq current-file tmp-file)
-      (find-file tmp-file))))
-
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)
+
 ;; text-mode
 (add-hook 'text-mode-hook 'mode-init-func)
 

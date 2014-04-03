@@ -70,6 +70,9 @@
 (defalias 'qr 'replace-regexp)                                   ; 一括置換(正規表現置換)
 (defalias 'qrr 'query-replace-regexp)                            ; 対話型置換(正規表現置換)
 
+;; 自動インデントは無効
+(electric-indent-mode 0)
+
 ;; 新しいフレームで開かない
 (setq ns-pop-up-frames nil)
 
@@ -103,20 +106,3 @@
 
 ;; フルスクリーン設定(24.3以降)
 (setq ns-use-native-fullscreen nil)
-
-;; 会社と自宅の読み込みを切り分け 
-;; 元ネタ(http://e-arrows.sakura.ne.jp/2010/12/emacs-anywhere.html)
-;; (defvar *network-interface-names* '("eth0" "eth1")
-;;   "Candidates for the network devices.")
-;; 使い方：(if (officep) (require 'init-jabber)) ; jabber設定
-(defun machine-ip-address ()
-  "Return IP address of a network device."
-  (let ((mia-info (network-interface-info "eth0")))
-    (if mia-info
-        (format-network-address (car mia-info) t))))
-
-(defun officep ()
-  "Am I in the office? If I am in the office, my IP address must start with '172.16.0.'."
-  (let ((ip (machine-ip-address)))
-    (and ip
-         (eq 0 (string-match "^10\\.0\\.8\\." ip)))))

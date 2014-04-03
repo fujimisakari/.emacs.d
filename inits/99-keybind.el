@@ -4,6 +4,17 @@
 ;;                                KeyBind設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
+;; あらゆるモードで有効なキーバインドの設定(my-keyjack-mode)
+(setq my-keyjack-mode-map (make-sparse-keymap))
+(mapcar (lambda (x)
+          (define-key my-keyjack-mode-map (car x) (cdr x))
+          (global-set-key (car x) (cdr x)))
+        '(("\C-\M-l" . tabbar-forward-tab)
+          ("\C-\M-h" . tabbar-backward-tab)
+          ("\C-\M-i" . helm-imenu)))
+(easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
+                              t " Keyjack" my-keyjack-mode-map)
+
 ;; Fn
 (global-set-key (kbd "<f1>") 'linum-mode)                          ; 行番号表示
 (global-set-key (kbd "<f3>") 'mo-git-blame-current)                ; git-blame表示

@@ -1,19 +1,10 @@
 ;; -*- Emacs-lisp -*-
 
 ;;;--------------------------------------------------------------------------;;;
-;;                               html-mode設定                                ;;
+;;                                web-mode設定                                ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;; htmlはweb-modeを使う
 (require 'web-mode)
-
-(setq web-mode-markup-indent-offset 4) ;; html indent
-(setq web-mode-css-indent-offset 4)    ;; css indent
-(setq web-mode-code-indent-offset 4)   ;; script indent(js,php,etc..)
-
-;; emacs 23以下の互換
-(when (< emacs-major-version 24)
-  (defalias 'prog-mode 'fundamental-mode))
 
 ;; 適用する拡張子
 (add-to-list 'auto-mode-alist '("\\.phtml$"     . web-mode))
@@ -37,18 +28,6 @@
             (lambda ()
               (delete-trailing-whitespace)
                nil)))
-
-; spとfpのファイルを切り替える
-(defun sp-fp-file-toggle ()
-  (interactive)
-  (let ((current-file (buffer-file-name))
-        (tmp-file (buffer-file-name)))
-    (cond ((string-match "/smartphone/" current-file)
-           (setq tmp-file (replace-regexp-in-string "/smartphone/" "/featurephone/" tmp-file)))
-          ((string-match "/featurephone/" current-file)
-           (setq tmp-file (replace-regexp-in-string "/featurephone/" "/smartphone/" tmp-file))))
-    (unless (eq current-file tmp-file)
-      (find-file tmp-file))))
 
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-face "lime green")
@@ -74,16 +53,3 @@
 ;;              '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
 ;;                nil 1 2 4))
 ;; (add-hook 'html-mode-hook '(lambda () (flymake-mode t)))
-
-;; css-mode
-(defun css-mode-hooks ()
-  "css-mode hooks"
-  ;; インデントをCスタイルにする
-  (setq cssm-indent-function #'cssm-c-style-indenter)
-  ;; インデント幅を4にする
-  (setq cssm-indent-level 4)
-  ;; インデントにタブ文字を使わない
-  (setq-default indent-tabs-mode nil))
-(add-hook 'css-mode-hook '(lambda()
-                            (css-mode-hooks)
-                            (mode-init-func)))

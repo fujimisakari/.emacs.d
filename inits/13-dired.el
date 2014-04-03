@@ -35,34 +35,6 @@
   (if (eq major-mode 'dired-mode)
       (kill-buffer my-dired-before-buffer)))
 
-; spとfpのディレクトリを切り替える
-(defun dired-sp-fp-directory-toggle ()
-  (interactive)
-  (let ((current-directory default-directory)
-        (tmp-directory default-directory))
-    (cond ((or (string-match "/smartphone/" current-directory) (string-match "/sp/" current-directory))
-           (setq tmp-directory (replace-regexp-in-string "/smartphone/" "/featurephone/" tmp-directory))
-           (setq tmp-directory (replace-regexp-in-string "/sp/" "/fp/" tmp-directory)))
-          ((or (string-match "/featurephone/" current-directory) (string-match "/fp/" current-directory))
-           (setq tmp-directory (replace-regexp-in-string "/featurephone/" "/smartphone/" tmp-directory))
-           (setq tmp-directory (replace-regexp-in-string "/fp/" "/sp/" tmp-directory))))
-    (unless (eq current-directory tmp-directory)
-      (kill-buffer (current-buffer))
-      (dired tmp-directory))))
-
-; ghとshのディレクトリを切り替える
-(defun dired-gh-sh-directory-toggle ()
-  (interactive)
-  (let ((current-directory default-directory)
-        (tmp-directory default-directory))
-    (cond ((string-match "/genju-hime/" current-directory)
-           (setq tmp-directory (replace-regexp-in-string "/genju-hime/" "/seishun-hime/" tmp-directory)))
-          ((string-match "/seishun-hime/" current-directory)
-           (setq tmp-directory (replace-regexp-in-string "/seishun-hime/" "/genju-hime/" tmp-directory))))
-    (unless (eq current-directory tmp-directory)
-      (kill-buffer (current-buffer))
-      (dired tmp-directory))))
-
 ;; Dired表示設定
 ;; ディレクトリから先頭表示されるようにする
 (load "ls-lisp")
