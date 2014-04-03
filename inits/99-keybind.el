@@ -95,7 +95,7 @@
 ;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
 
 ;; web-mode
-(define-key web-mode-map (kbd "M-;") 'web-mode-comment-uncomment)
+(define-key web-mode-map (kbd "M-;") 'web-mode-comment-or-uncomment)
 (define-key web-mode-map (kbd "C-;") nil)
 (define-key web-mode-map (kbd "C-M-'") 'sp-fp-file-toggle)
 (define-key web-mode-map (kbd "C-M-a") 'gh-sh-file-toggle)

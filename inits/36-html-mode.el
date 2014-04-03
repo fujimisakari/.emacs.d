@@ -7,6 +7,10 @@
 ;; htmlはweb-modeを使う
 (require 'web-mode)
 
+(setq web-mode-markup-indent-offset 4) ;; html indent
+(setq web-mode-css-indent-offset 4)    ;; css indent
+(setq web-mode-code-indent-offset 4)   ;; script indent(js,php,etc..)
+
 ;; emacs 23以下の互換
 (when (< emacs-major-version 24)
   (defalias 'prog-mode 'fundamental-mode))
@@ -22,12 +26,12 @@
 ;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-html-offset   4)
-  (setq web-mode-css-offset    4)
-  (setq web-mode-script-offset 4)
-  (setq web-mode-php-offset    4)
-  (setq web-mode-java-offset   4)
-  (setq web-mode-asp-offset    4)
+  (setq web-mode-markup-indent-offset 4)   ;; html indent
+  (setq web-mode-css-indent-offset    4)   ;; css indent
+  (setq web-mode-code-indent-offset   4)   ;; script indent(js,php,etc..)
+  (setq web-mode-enable-auto-indentation nil)
+  (setq web-mode-enable-block-face t)
+  (setq web-mode-enable-part-face t)
   (skk-mode t)
   (add-hook 'local-write-file-hooks
             (lambda ()

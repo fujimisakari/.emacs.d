@@ -38,8 +38,8 @@
 ; spとfpのディレクトリを切り替える
 (defun dired-sp-fp-directory-toggle ()
   (interactive)
-  (let ((current-directory (elscreen-current-directory))
-        (tmp-directory (elscreen-current-directory)))
+  (let ((current-directory default-directory)
+        (tmp-directory default-directory))
     (cond ((or (string-match "/smartphone/" current-directory) (string-match "/sp/" current-directory))
            (setq tmp-directory (replace-regexp-in-string "/smartphone/" "/featurephone/" tmp-directory))
            (setq tmp-directory (replace-regexp-in-string "/sp/" "/fp/" tmp-directory)))
@@ -50,12 +50,11 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-
 ; ghとshのディレクトリを切り替える
 (defun dired-gh-sh-directory-toggle ()
   (interactive)
-  (let ((current-directory (elscreen-current-directory))
-        (tmp-directory (elscreen-current-directory)))
+  (let ((current-directory default-directory)
+        (tmp-directory default-directory))
     (cond ((string-match "/genju-hime/" current-directory)
            (setq tmp-directory (replace-regexp-in-string "/genju-hime/" "/seishun-hime/" tmp-directory)))
           ((string-match "/seishun-hime/" current-directory)
