@@ -9,9 +9,10 @@
 (mapcar (lambda (x)
           (define-key my-keyjack-mode-map (car x) (cdr x))
           (global-set-key (car x) (cdr x)))
-        '(("\C-\M-l" . tabbar-forward-tab)
-          ("\C-\M-h" . tabbar-backward-tab)
-          ("\C-\M-i" . helm-imenu)))
+        '(("\C-\M-l" . tabbar-forward-tab)           ; タブの右移動
+          ("\C-\M-h" . tabbar-backward-tab)          ; タブの左移動
+          ("\C-\M-d" . duplicate-this-line-forward)  ; 直前行をコピーする
+          ("\C-\M-i" . helm-imenu)))                 ; imenu起動
 (easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
                               t " Keyjack" my-keyjack-mode-map)
 
@@ -41,9 +42,9 @@
 (global-set-key (kbd "C-M-o") 'occur-by-moccur)                    ; 現在開いているファイルをmoccur検索する
 (global-set-key (kbd "C-<tab>") 'tabify)                           ; TAB生成
 (global-set-key (kbd "C-M-<tab>") 'untabif)                        ; TAB削除
-(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)        ; 直前行を削除する
-(global-set-key (kbd "C-'") 'helm-gtags-find-tag)                  ; 関数の定義元(関数の実体)へジャンプ
-;; (global-set-key (kbd "C-'") 'gtags-find-tag-other-window)          ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)        ; 直前行をコピーする
+;; (global-set-key (kbd "C-'") 'helm-gtags-find-tag)                  ; 関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-'") 'helm-gtags-find-tag-other-window)     ; (別バッファで)関数の定義元(関数の実体)へジャンプ
 (global-set-key (kbd "C-M-'") 'gtags-find-tag)                     ; 変数等のジャンプ
 (global-set-key (kbd "C-M-<right>") 'tabbar+move-right)            ; タブの配置位置ずらし(右)
 (global-set-key (kbd "C-M-<left>") 'tabbar+move-left)              ; タブの配置位置ずらし(左)

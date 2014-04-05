@@ -57,14 +57,6 @@
  ;; 起動時にポイントの位置の単語を初期パターンにする
  anything-c-moccur-enable-initial-pattern t)
 
-;; キーバインド設定
-;; (global-set-key (kbd "C-;") 'my-anything)                                     ; anythingの起動
-;; (global-set-key (kbd "C-M-i") 'anything-imenu)                                ; anything-imenuの起動
-;; (global-set-key (kbd "M-y") 'anything-show-kill-ring)                         ; 過去のkill-ringの内容を取り出す
-;; (define-key anything-map (kbd "M-k") 'anything-delete-minibuffer-contents)    ; カレントバッファ削除ができるようにする
-;; (define-key anything-map (kbd "C-t") 'other-window-or-split)                  ; ウィンドウを切り替える
-;; (anything-complete-shell-history-setup-key (kbd "C-o"))                       ; シェルコマンドの履歴から補完する
-
 ;; カラー設定
 (set-face-foreground 'anything-ff-file "gray75")
 (set-face-foreground 'anything-ff-directory "dodgerblue")

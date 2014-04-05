@@ -4,10 +4,10 @@
 ;;                              python-mode設定                               ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(require 'python-mode)
+(require 'python)
 
-(set-face-foreground 'py-variable-name-face "magenta")   ; 変数名の色
-(set-face-foreground 'py-pseudo-keyword-face "cyan")     ; Face for None, True, False, self, and Ellipsis
+;; imenuが動かなかったので対応
+(semantic-mode 1)
 
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
@@ -23,4 +23,6 @@
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (mode-init-func)))
+            (mode-init-func)
+            (setq imenu-create-index-function #'python-imenu-create-index)
+            (imenu)))
