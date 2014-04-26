@@ -72,3 +72,49 @@
     (unless (eq current-directory tmp-directory)
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
+
+; gree staticディレクトリへ切り替える
+(defun dired-move-gree-static-directory ()
+  (interactive)
+  (let ((current-directory default-directory)
+        (tmp-directory default-directory))
+    (cond ((or (string-match "/static_m/" current-directory) (string-match "/static_d/" current-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static_m/" "/static/" tmp-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static_d/" "/static/" tmp-directory))))
+    (unless (eq current-directory tmp-directory)
+      (kill-buffer (current-buffer))
+      (dired tmp-directory))))
+
+; mbge staticディレクトリへ切り替える
+(defun dired-move-mbge-static-directory ()
+  (interactive)
+  (let ((current-directory default-directory)
+        (tmp-directory default-directory))
+    (cond ((or (string-match "/static/" current-directory) (string-match "/static_d/" current-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static/" "/static_m/" tmp-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static_d/" "/static_m/" tmp-directory))))
+    (unless (eq current-directory tmp-directory)
+      (kill-buffer (current-buffer))
+      (dired tmp-directory))))
+
+; dgame staticディレクトリへ切り替える
+(defun dired-move-dgame-static-directory ()
+  (interactive)
+  (let ((current-directory default-directory)
+        (tmp-directory default-directory))
+    (cond ((or (string-match "/static_m/" current-directory) (string-match "/static/" current-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static_m/" "/static_d/" tmp-directory))
+           (setq tmp-directory (replace-regexp-in-string "/static/" "/static_d/" tmp-directory))))
+    (unless (eq current-directory tmp-directory)
+      (kill-buffer (current-buffer))
+      (dired tmp-directory))))
+
+; アプリケーションディレクトリを開く
+(defun dired-move-application-directory ()
+  (interactive)
+  (dired "~/projects/genju-hime/application"))
+
+; テンプレートディレクトリを開く
+(defun dired-move-template-directory ()
+  (interactive)
+  (dired "~/projects/genju-hime/application/website/templates/smartphone"))

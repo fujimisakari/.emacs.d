@@ -9,8 +9,8 @@
 (mapcar (lambda (x)
           (define-key my-keyjack-mode-map (car x) (cdr x))
           (global-set-key (car x) (cdr x)))
-        '(("\C-\M-l" . tabbar-forward-tab)           ; タブの右移動
-          ("\C-\M-h" . tabbar-backward-tab)          ; タブの左移動
+        '(("\C-\M-l" . elscreen-next)                ; タブの右移動
+          ("\C-\M-h" . elscreen-previous)            ; タブの左移動
           ("\C-\M-d" . duplicate-this-line-forward)  ; 直前行をコピーする
           ("\C-\M-i" . helm-imenu)))                 ; imenu起動
 (easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
@@ -115,6 +115,12 @@
 ;; markdown-mode
 (define-key markdown-mode-map (kbd "C-c C-s") 'markdown-header-list)     ; markdown-headerの一覧表示
 
+;; ELSscreen固有のキーバインド
+(define-key elscreen-map (kbd "c") 'create-newscreen)
+(define-key elscreen-map (kbd "C-a") 'create-maxscreen)
+(define-key elscreen-map (kbd "C-k") 'elscreen-kill-screen-and-buffers)
+(define-key elscreen-map (kbd "k") 'elscreen-kill-screen-and-buffers)
+
 ;; helm-read-file
 (define-key helm-read-file-map (kbd "C-h") 'delete-backward-char)             ; C-h でバックスペースと同じように文字を削除できるようにする
 (define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action) ; TAB で補完する
@@ -130,12 +136,17 @@
 ;; dired-mode
 (add-hook 'dired-mode-hook
   (lambda ()
-    (local-set-key (kbd "C-f") 'dired-advertised-find-file)      ; ディレクトリ, ファイルを展開
-    (local-set-key (kbd "C-M-m") 'dired-up-directory)            ; 上位ディレクトリへ
-    (local-set-key (kbd "C-t") 'other-window-or-split)           ; ウィンドウを切り替える
-    (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)  ; spとfpのディレクトリを切り替える
-    (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)  ; ghとshのディレクトリを切り替える
-    (local-set-key (kbd "/") 'dired-ex-isearch)                  ; Diredのパス移動
+    (local-set-key (kbd "C-f") 'dired-advertised-find-file)          ; ディレクトリ, ファイルを展開
+    (local-set-key (kbd "C-M-m") 'dired-up-directory)                ; 上位ディレクトリへ
+    (local-set-key (kbd "C-t") 'other-window-or-split)               ; ウィンドウを切り替える
+    (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)      ; spとfpのディレクトリを切り替える
+    (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)      ; ghとshのディレクトリを切り替える
+    (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)  ; gree staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c m") 'dired-move-mbge-static-directory)  ; mbge staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c d") 'dired-move-dgame-static-directory) ; dgame staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c a") 'dired-move-application-directory)  ; アプリケーションディレクトリへ切り替える
+    (local-set-key (kbd "C-c t") 'dired-move-template-directory)     ; テンプレートディレクトリへ切り替える
+    (local-set-key (kbd "/") 'dired-ex-isearch)                      ; Diredのパス移動
     ))
 
 ;; auto-complete-mode

@@ -93,3 +93,97 @@
   '(font-lock-add-keywords
     'dired-mode
     (list '(dired-today-search . dired-todays-face))))
+
+
+(require 'dired)
+(defun dired-maybe-insert-subdir-or-go-up (&optional arg)
+  "Try to make `i' more reproducable in dired. Hitting `i' twice
+will bring dired-status back. With arg, move point to next
+directory."
+  (interactive "p")
+  (cond
+   ((not (file-accessible-directory-p (dired-get-file-for-visit)))
+    (error "%s is not readable directory" (dired-get-file-for-visit)))
+   ((string= (file-name-nondirectory (dired-get-file-for-visit)) "..")
+    (let ((dir (dired-current-directory)))
+      (dired-goto-file (directory-file-name dir))
+      (if arg (dired-next-line arg))))
+   (t ; default `i' behavior
+    (call-interactively 'dired-maybe-insert-subdir)
+    (if (ignore-errors (dired-get-file-for-visit))
+        (dired-prev-dirline 1)
+      (funcall (if (eobp) 're-search-backward 're-search-forward) "\\.\\./?$" nil t)
+      (goto-char (match-beginning 0))))))
+(define-key dired-mode-map (kbd "i") 'dired-maybe-insert-subdir-or-go-up)
+
+
+;; diredには元々、表示中のディレクトリを隠すことができます。
+
+;; それをちょっとアレンジすることで、
+;; org-modeと同等の操作性を獲得できます。
+
+;; 以下の設定を加えると次のようなことができます。
+
+;; - TAB: 現在のディレクトリを折り畳む・展開
+;; - S-TAB: diredバッファ内すべてのディレクトリを折り畳む・展開
+
+
+;; まあelispプログラムはいろんな人によって書かれているし、
+;; 操作体系に規定がないので、人によってまちまちなのは
+;; 仕方ないですね。
+
+(defun dired-hide-subdir-and-stay (arg) ; steal from dired-aux.el
+  "Hide or unhide the current subdirectory and DO NOT move to next directory.
+Optional prefix arg is a repeat factor.  Use \\[dired-hide-all]
+to (un)hide all directories."
+  (interactive "p")
+  (dired-hide-check)
+  (let ((modflag (buffer-modified-p)))
+    (while (>=  (setq arg (1- arg)) 0)
+      (let* ((cur-dir (dired-current-directory))
+         (hidden-p (dired-subdir-hidden-p cur-dir))
+         (elt (assoc cur-dir dired-subdir-alist))
+         (end-pos (1- (dired-get-subdir-max elt)))
+         buffer-read-only)
+    ;; keep header line visible, hide rest
+    (goto-char (dired-get-subdir-min elt))
+    (skip-chars-forward "^\n\r")
+    (if hidden-p
+        (subst-char-in-region (point) end-pos ?\r ?\n)
+      (subst-char-in-region (point) end-pos ?\n ?\r)))
+      ;; (dired-next-subdir 1 t)) ; comment out by TK January 13, 2014 (Mon)
+      )
+    (restore-buffer-modified-p modflag)))
+
+(defun dired-fold-like-org (arg)
+  (interactive "P")
+  (if arg
+      (dired-hide-all)
+    (dired-hide-subdir-and-stay 1)))
+
+(define-key dired-mode-map (kbd "<tab>") 'dired-fold-like-org)
+(define-key dired-mode-map (kbd "S-<tab>") 'dired-hide-all)
+(define-key dired-mode-map (kbd "<backtab>") 'dired-hide-all)
+
+(require 'dired-subtree)
+(define-key dired-mode-map (kbd "i") 'dired-subtree-insert)
+(define-key dired-mode-map (kbd "<tab>") 'dired-subtree-remove)
+(define-key dired-mode-map (kbd "C-x n n") 'dired-subtree-narrow)
+(define-key dired-mode-map (kbd "C-x n d") 'dired-subtree-narrow)
+(define-key dired-mode-map (kbd "^") 'dired-subtree-up)
+(define-key dired-mode-map (kbd "C-c C-n") 'dired-subtree-next-sibling)
+(define-key dired-mode-map (kbd "C-c C-p") 'dired-subtree-previous-sibling)
+(define-key dired-mode-map (kbd "C-c C-a") 'dired-subtree-beginning)
+(define-key dired-mode-map (kbd "C-c C-e") 'dired-subtree-end)
+(define-key dired-mode-map (kbd "C-M-@") 'dired-subtree-mark-subtree)
+(define-key dired-mode-map (kbd "C-c C-f") 'dired-subtree-only-this-file)
+(define-key dired-mode-map (kbd "C-c C-d") 'dired-subtree-only-this-directory)
+
+;; (require 'dired-details)
+;; (dired-details-install)
+;; (setq dired-details-hidden-string " ")
+;; (setq dired-details-hide-link-targets nil)
+;; (require 'dired-master)
+;; (setq dired-at-left-width 30)
+;; (global-set-key (kbd "C-x C-d") 'dired-at-left)
+;; (dired-dedicated-install)
