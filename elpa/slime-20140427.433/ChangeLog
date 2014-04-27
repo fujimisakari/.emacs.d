@@ -1,3 +1,17 @@
+2014-04-27  Christophe Rhodes  <csr21@cantab.net>
+
+	* slime.el (slime-eval-with-transcript): Fix typo in docstring.
+
+2014-04-27  João Távora  <joaotavora@gmail.com>
+
+	* slime.el (slime-init-command): Also use `slime-to-lisp-filename'
+	for the port-filename.
+
+2014-04-26  João Távora  <joaotavora@gmail.com>
+
+	* slime.el (sldb-exit): An indirect, non-interactive exit from an
+	*sldb* buffer should just kill the buffer.
+
 2014-04-15  João Távora  <joaotavora@gmail.com>
 
 	* slime-tests.el (compile-defun-with-reader-conditionals): Renamed

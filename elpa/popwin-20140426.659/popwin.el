@@ -4,7 +4,7 @@
 
 ;; Author: Tomohiro Matsuyama <tomo@cx4a.org>
 ;; Keywords: convenience
-;; Version: 20140418.2058
+;; Version: 20140426.659
 ;; X-Original-Version: 0.7.0alpha
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -683,6 +683,7 @@ be closed by `popwin:close-popup-window'."
 
 (defcustom popwin:special-display-config
   '(;; Emacs
+    ("*Miniedit Help*" :noselect t)
     help-mode
     (completion-list-mode :noselect t)
     (compilation-mode :noselect t)
