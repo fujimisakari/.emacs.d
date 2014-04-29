@@ -72,7 +72,7 @@
 (global-set-key (kbd "C-l C-'") 'flyspell-region)                        ; スペルが正しいかチェック
 (global-set-key (kbd "C-l C-M-'") 'ispell-word)                          ; 現在のスペルから候補を表示
 (global-set-key (kbd "C-l l") 'ace-jump-line-mode)                       ; 行のace-jump
-(global-set-key (kbd "C-l C-l") 'ace-jump-mode)                          ; 検索のace-jump
+(global-set-key (kbd "C-l C-l") 'line-to-top-of-window)                  ; 現在行を最上部にする
 (global-set-key (kbd "C-l q") 'quickrun)                                 ; quickrun(バッファ)
 (global-set-key (kbd "C-l C-q") 'quickrun-region)                        ; quickrun(リジョン)
 (global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)  ; Webで翻訳
@@ -136,6 +136,7 @@
 ;; dired-mode
 (add-hook 'dired-mode-hook
   (lambda ()
+    (local-set-key (kbd "C-m") 'dired-advertised-find-file)          ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-f") 'dired-advertised-find-file)          ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-M-m") 'dired-up-directory)                ; 上位ディレクトリへ
     (local-set-key (kbd "C-t") 'other-window-or-split)               ; ウィンドウを切り替える

@@ -49,6 +49,11 @@
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 
+;; 現在行を最上部にする
+(defun line-to-top-of-window ()
+  (interactive)
+  (recenter 0))
+
 ;; ファイルの末尾に[EOF]を表示
 (defun my-mark-eob ()
   (let ((existing-overlays (overlays-in (point-max) (point-max)))
