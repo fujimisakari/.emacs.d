@@ -9,10 +9,10 @@
 (mapcar (lambda (x)
           (define-key my-keyjack-mode-map (car x) (cdr x))
           (global-set-key (car x) (cdr x)))
-        '(("\C-\M-l" . elscreen-next)                ; タブの右移動
-          ("\C-\M-h" . elscreen-previous)            ; タブの左移動
-          ("\C-\M-d" . duplicate-this-line-forward)  ; 直前行をコピーする
-          ("\C-\M-i" . helm-imenu)))                 ; imenu起動
+        '(("\C-\M-l" . elscreen-next)                       ; タブの右移動
+          ("\C-\M-h" . elscreen-previous)                   ; タブの左移動
+          ("\C-\M-d" . duplicate-this-line-forward)         ; 直前行をコピーする
+          ("\C-\M-i" . helm-imenu)))                        ; imenu起動
 (easy-mmode-define-minor-mode my-keyjack-mode "Grab keys"
                               t " Keyjack" my-keyjack-mode-map)
 
@@ -45,11 +45,9 @@
 (global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)        ; 直前行をコピーする
 ;; (global-set-key (kbd "C-'") 'helm-gtags-find-tag)                  ; 関数の定義元(関数の実体)へジャンプ
 (global-set-key (kbd "C-'") 'helm-gtags-find-tag-other-window)     ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)           ; タブの配置位置ずらし(右)
+(global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)        ; タブの配置位置ずらし(左)
 (global-set-key (kbd "C-M-'") 'gtags-find-tag)                     ; 変数等のジャンプ
-(global-set-key (kbd "C-M-<right>") 'tabbar+move-right)            ; タブの配置位置ずらし(右)
-(global-set-key (kbd "C-M-<left>") 'tabbar+move-left)              ; タブの配置位置ずらし(左)
-(global-set-key (kbd "C-M-l") 'tabbar-forward-tab)                 ; タブ移動(右)
-(global-set-key (kbd "C-M-h") 'tabbar-backward-tab)                ; タブ移動(左)
 (global-set-key (kbd "C-,") 'er/expand-region)                     ; 拡張リジョン選択
 (global-set-key (kbd "C-M-,") 'er/contract-region)                 ; 拡張リジョン選択(戻す)
 
@@ -59,7 +57,7 @@
 (global-set-key (kbd "M-/") 'hippie-expand)                        ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (global-set-key (kbd "M-g") 'goto-line)                            ; M-g で指定行へジャンプ
 (global-set-key (kbd "M-h") 'backward-kill-word)                   ; 直前の単語を削除
-(global-set-key (kbd "M-k") 'kill-this-buffer)                     ; カレントバッファを閉じる。初期値は kill-sentence
+(global-set-key (kbd "M-k") 'kill-buffer-for-elscreen)             ; カレントバッファを閉じる
 (global-set-key (kbd "M-<right>") 'flymake-goto-prev-error)        ; flymakeの警告・エラーに移動(前)
 (global-set-key (kbd "M-<left>") 'flymake-goto-next-error)         ; flymakeの警告・エラーに移動(次)
 (global-set-key (kbd "M-[") 'bm-previous)                          ; bm-goto 前へ移動
@@ -148,7 +146,7 @@
     (local-set-key (kbd "C-c a") 'dired-move-application-directory)  ; アプリケーションディレクトリへ切り替える
     (local-set-key (kbd "C-c t") 'dired-move-template-directory)     ; テンプレートディレクトリへ切り替える
     (local-set-key (kbd "/") 'dired-ex-isearch)                      ; Diredのパス移動
-    ))
+    (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
 
 ;; auto-complete-mode
 (define-key ac-mode-map (kbd "TAB") 'auto-complete)

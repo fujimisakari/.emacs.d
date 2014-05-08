@@ -11,8 +11,7 @@
 (setq org-return-follows-link t)                        ; リンクはRETで開く
 (setq org-startup-truncated nil)                        ; org-mode開始時は折り返しするよう設定
 (setq org-startup-with-inline-images t)                 ; 画像をインライン表示
-(set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
-(set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
+(setq org-edit-src-content-indentation 0)               ; BEGIN_SRCブロック内をインデントをしない
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")      ; 言語は日本語
@@ -78,3 +77,6 @@
   '((t (:foreground "SlateBlue1" :background "gray0")))
   "Face used for the line delimiting the end of source blocks.")
 (set-face-foreground 'org-block-end-line "gray0")
+
+(set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
+(set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更

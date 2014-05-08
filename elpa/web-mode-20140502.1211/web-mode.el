@@ -3,7 +3,7 @@
 
 ;; Copyright 2011-2014 François-Xavier Bois
 
-;; Version: 8.0.71
+;; Version: 8.0.77
 ;; Author: François-Xavier Bois <fxbois AT Google Mail Service>
 ;; Maintainer: François-Xavier Bois
 ;; Created: July 2011
@@ -54,7 +54,7 @@
 ;;todo : passer les content-types en symboles
 ;;todo : tester shortcut A -> pour pomme
 
-(defconst web-mode-version "8.0.71"
+(defconst web-mode-version "8.0.77"
   "Web Mode version.")
 
 (defgroup web-mode nil
@@ -706,14 +706,11 @@ The *first* thing between '\\(' '\\)' will be extracted as tag content
   "content types")
 
 (defvar web-mode-engine-attr-regexp nil
- "Engine custom attributes"
-  )
+ "Engine custom attributes")
 
 (defvar web-mode-engine-attr-regexps
-  '(("angular" . "ng-")
-    )
-  "Engine custom attributes"
-  )
+  '(("angular" . "ng-"))
+  "Engine custom attributes")
 
 (defvar web-mode-engine-file-regexps
   '(("asp"              . "\\.asp\\'")
@@ -1513,7 +1510,7 @@ The *first* thing between '\\(' '\\)' will be extracted as tag content
 
 (defvar web-mode-velocity-font-lock-keywords
   (list
-   '("#\\([[:alpha:]]+\\)\\>"
+   '("#\\([[:alpha:]_]+\\)\\>"
      (1 'web-mode-block-control-face))
    (cons (concat "[ ]\\(" web-mode-velocity-keywords "\\)[ ]") '(1 'web-mode-keyword-face t t))
    '("#macro([ ]*\\([[:alpha:]]+\\)[ ]+" 1 'web-mode-function-name-face)
@@ -4939,7 +4936,7 @@ The *first* thing between '\\(' '\\)' will be extracted as tag content
       (while continue
         (skip-chars-forward "a-zA-Z0-9_-")
         (when (member (char-after) '(?\())
-          (search-forward ")")
+          (search-forward ")" nil t)
           )
         (if (member (char-after) '(?\.))
             (forward-char)
@@ -6137,11 +6134,9 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
             ))
         )
 
-       ;;       ((get-text-property pos 'tag-beg)
        ((and (get-text-property pos 'tag-beg)
              (not (get-text-property pos 'part-side))
              (not (member web-mode-content-type '("jsx"))))
-        ;; (message "ici")
         (setq offset (web-mode-markup-indentation pos))
         )
 
@@ -6170,13 +6165,6 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
                (string-match-p "^\\." prev-line))
           (setq offset prev-indentation)
           )
-
-         ;; ((and (string= language "razor")
-         ;;       (string-match-p "^}" line))
-         ;;  (goto-char (web-mode-opening-paren-position (point)))
-         ;;  (back-to-indentation)
-         ;;  (setq offset (current-column))
-         ;;  )
 
         ((and (string= language "razor")
               (string-match-p "^case " line)
@@ -7570,6 +7558,18 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
     (eq (get-text-property (point) 'tag-type) 'void)
     ))
 
+(defun web-mode-toggle-current-element-highlight ()
+  "toggle current element highliht"
+  (interactive)
+  (if web-mode-enable-current-element-highlight
+      (progn
+        (web-mode-delete-tag-overlays)
+        (setq web-mode-enable-current-element-highlight nil)
+        (remove-hook 'post-command-hook 'web-mode-highlight-current-element t))
+    (setq web-mode-enable-current-element-highlight t)
+    (add-hook 'post-command-hook 'web-mode-highlight-current-element nil t))
+  )
+
 (defun web-mode-fold-or-unfold (&optional pos)
   "Toggle folding on an HTML element or a control block."
   (interactive)
@@ -7607,17 +7607,14 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
          )
         ;; *** block folding
         ((cdr (web-mode-block-is-control (point)))
-         (setq beg-outside (point))
-         (web-mode-block-end)
-         (setq beg-inside (point))
-         (goto-char beg-outside)
-         (when (web-mode-tag-match)
+         (setq beg-outside (web-mode-block-beginning-position (point)))
+         (setq beg-inside (1+ (web-mode-block-end-position (point))))
+         (when (web-mode-block-match)
            (setq end-inside (point))
-           (web-mode-block-end)
-           (setq end-outside (point)))
-         )
+           (setq end-outside (1+ (web-mode-block-end-position (point)))))
+         ) ;block-control
         ) ;cond
-       (when end-outside
+       (when (and beg-inside beg-outside end-inside end-outside)
          ;;(message "beg-out(%d) beg-in(%d) end-in(%d) end-out(%d)" beg-outside beg-inside end-inside end-outside)
          (setq overlay (make-overlay beg-outside end-outside))
          (overlay-put overlay 'font-lock-face 'web-mode-folded-face)
@@ -8349,10 +8346,14 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
     (setq atomic-insertion (and (= len 0)
                                 (= 1 (- end beg))))
 
-    (if (not (= (point-max) (+ (buffer-size) 1)))
 
+    (if (buffer-narrowed-p)
+;;    (if (not (= (point-max) (+ (buffer-size) 1)))
        (setq web-mode-is-narrowed t)
 
+      ;;else
+
+      (setq web-mode-is-narrowed nil)
       ;;-- auto-closing and auto-pairing
 
       (when (and (> web-mode-jshint-errors 0)
@@ -8376,8 +8377,17 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
                             (get-text-property end 'tag-name)))
           (setq auto-opened t)
           (newline-and-indent)
-          ;;(newline)
-          ;;(indent-for-tab-command)
+          (forward-line -1)
+          (indent-for-tab-command)
+          )
+
+        (when (and (not auto-opened)
+                   (get-text-property beg 'block-side)
+                   (string= web-mode-engine "php")
+                   (looking-back "<\\?php[ ]*\n")
+                   (looking-at-p "[ ]*\\?>"))
+          (setq auto-opened t)
+          (newline-and-indent)
           (forward-line -1)
           (indent-for-tab-command)
           )
@@ -8909,7 +8919,13 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
       pt
       )))
 
-(defun web-mode-opening-paren-block-position (pos limit)
+(defun web-mode-block-opening-paren (pos limit)
+  "opening paren"
+  (setq pos (web-mode-block-opening-paren-position pos limit))
+  (when pos (goto-char pos))
+  )
+
+(defun web-mode-block-opening-paren-position (pos limit)
   "Is opened code line."
   (save-excursion
     (goto-char pos)
@@ -10080,6 +10096,18 @@ BLOCK-BEGIN. Loops to start at INDENT-OFFSET."
       (setq sub (time-subtract (current-time) web-mode-time))
       (message "%18s: time elapsed = %Ss %9Sµs" msg (nth 1 sub) (nth 2 sub))
       )))
+
+(defun web-mode-reveal ()
+  "Display text properties at point"
+  (interactive)
+  (let (symbol symbols)
+    (setq symbols (append web-mode-scan-properties '(face)))
+    (message "properties at pos(%S) [%S-%S]" (point) web-mode-engine web-mode-content-type)
+    (dolist (symbol symbols)
+      (when symbol
+        (message "%s: %S" (symbol-name symbol) (get-text-property (point) symbol)))
+      )
+    ))
 
 (defun web-mode-debug ()
   "Display informations useful for debuging"

@@ -3,7 +3,7 @@
 ;;; Code:
 (add-to-list 'load-path (or (file-name-directory #$) (car load-path)))
 
-;;;### (autoloads nil "quickrun" "quickrun.el" (21338 46906 0 0))
+;;;### (autoloads nil "quickrun" "quickrun.el" (21348 60803 0 0))
 ;;; Generated autoloads from quickrun.el
 
 (autoload 'quickrun-set-default "quickrun" "\
@@ -57,11 +57,6 @@ Run commands in shell for interactive programs
 
 
 \(fn)" t nil)
-
-;;;***
-
-;;;### (autoloads nil nil ("quickrun-pkg.el") (21338 46906 386142
-;;;;;;  0))
 
 ;;;***
 

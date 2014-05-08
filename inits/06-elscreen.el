@@ -32,13 +32,74 @@
 
 ;; 起動時に自動で10個スクリーンを立ち上げる
 (defun create-maxscreen ()
-  "`8-elscreen-create'"
+  "8-elscreen-create"
   (let (( counter 0))
     (while (< counter 7)
       (elscreen-create)
       (setq counter(1+ counter)))))
 (create-maxscreen)
 (elscreen-next)
+
+;; elscreen用バッファ削除
+(defvar elscreen-ignore-buffer-list
+ '("*scratch*" "*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*vc-" "*Minibuf-" "*Messages" "*WL:Message"))
+(defun kill-buffer-for-elscreen ()
+  "バッファを削除時の次のバッファは直近で開いてたバッファを選択するようにする"
+  (interactive)
+  (kill-buffer)
+  (let* ((next-buffer nil)
+         (re (regexp-opt elscreen-ignore-buffer-list))
+         (next-buffer-list (mapcar (lambda (buf)
+                                     (let ((name (buffer-name buf)))
+                                       (when (not (string-match re name))
+                                         name)))
+                                   (buffer-list))))
+    (dolist (buf next-buffer-list)
+      (if (equal next-buffer nil)
+          (setq next-buffer buf)))
+    (switch-to-buffer next-buffer)))
+
+(defun elscreen-swap-previous()
+  "Interchange screens selected currently and previous."
+  (interactive)
+  (cond
+   ((elscreen-one-screen-p)
+    (elscreen-message "There is only one screen, cannot swap"))
+   (t
+    (let* ((screen-list (sort (elscreen-get-screen-list) '>))
+           (previous-screen
+            (or (nth 1 (memq (elscreen-get-current-screen) screen-list))
+               (car screen-list)))
+           (current-screen (elscreen-get-current-screen))
+           (current-screen-property
+            (elscreen-get-screen-property current-screen))
+           (previous-screen-property
+            (elscreen-get-screen-property previous-screen)))
+      (elscreen-set-screen-property current-screen previous-screen-property)
+      (elscreen-set-screen-property previous-screen current-screen-property)
+      (elscreen-goto-internal (elscreen-get-current-screen)))))
+  (elscreen-previous))
+
+(defun elscreen-swap-next()
+  "Interchange screens selected currently and next."
+  (interactive)
+  (cond
+   ((elscreen-one-screen-p)
+    (elscreen-message "There is only one screen, cannot swap"))
+   (t
+    (let* ((screen-list (sort (elscreen-get-screen-list) '<))
+           (next-screen
+            (or (nth 1 (memq (elscreen-get-current-screen) screen-list))
+               (car screen-list)))
+           (current-screen (elscreen-get-current-screen))
+           (current-screen-property
+            (elscreen-get-screen-property current-screen))
+           (next-screen-property
+            (elscreen-get-screen-property next-screen)))
+      (elscreen-set-screen-property current-screen next-screen-property)
+      (elscreen-set-screen-property next-screen current-screen-property)
+      (elscreen-goto-internal (elscreen-get-current-screen)))))
+     (elscreen-next))
 
 ;; カラー設定
 (set-face-foreground 'elscreen-tab-current-screen-face "MediumPurple1")
