@@ -92,3 +92,9 @@
   '(font-lock-add-keywords
     'dired-mode
     (list '(dired-today-search . dired-todays-face))))
+
+;; 現在開いているバッファをdierdで開く
+(defun dired-open-current-directory ()
+    (interactive)
+    (other-window-or-split)
+    (dired default-directory))

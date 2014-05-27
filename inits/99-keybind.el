@@ -84,6 +84,7 @@
 (global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
 (global-set-key (kbd "C-l u") 'revert-buffer)                            ; バッファ更新
 (global-set-key (kbd "C-l f") 'helm-ag)                                  ; helm-ag検索
+(global-set-key (kbd "C-l d") 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (global-set-key (kbd "C-l C-f") 'moccur-grep-find)                       ; moccur-grep検索
 ;; (global-set-key (kbd "C-l r") 'query-replace-regexp)                     ; インタラクティブ置換
 ;; (global-set-key (kbd "C-l R") 'replace-regexp)                           ; 一括置換
