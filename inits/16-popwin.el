@@ -26,6 +26,7 @@
 (push '("*Kill Ring*") popwin:special-display-config)
 (push '("*sdic*") popwin:special-display-config)
 ;; (push '("*translated*") popwin:special-display-config)
+(push '("*auto-async-byte-compile*") popwin:special-display-config)
 (push '("*Completions*") popwin:special-display-config)
 (push '("*quickrun*") popwin:special-display-config)
 (push '("*help*") popwin:special-display-config)
