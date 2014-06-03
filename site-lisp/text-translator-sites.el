@@ -1026,7 +1026,7 @@
      "/world/english/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("EN" . "JA") ("JA" . "EN"))
      (("EN" . "en") ("JA" . "ja")))
     ("excite.co.jp"
@@ -1034,7 +1034,7 @@
      "/world/chinese/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "CH") ("CH" . "JA"))
      (("JA" . "ja") ("CH" . "ch")))
     ("excite.co.jp"
@@ -1042,7 +1042,7 @@
      "/world/chinese/ HTTP/1.1"
      "wb_lp=%o%t&big5=yes&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "CH") ("CH" . "JA"))
      (("JA" . "ja") ("CH" . "tw")))
     ("excite.co.jp"
@@ -1050,7 +1050,7 @@
      "/world/korean/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "KO") ("KO" . "JA"))
      (("JA" . "ja") ("KO" . "ko")))
     ("excite.co.jp"
@@ -1058,7 +1058,7 @@
      "/world/french/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "FR") ("FR" . "JA")
       ("EN" . "FR") ("FR" . "EN"))
      (("JA" . "ja") ("FR" . "fr")
@@ -1068,7 +1068,7 @@
      "/world/german/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "DE") ("DE" . "JA")
       ("EN" . "DE") ("DE" . "EN"))
      (("JA" . "ja") ("DE" . "de")
@@ -1078,7 +1078,7 @@
      "/world/italian/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "IT") ("IT" . "JA")
       ("EN" . "IT") ("IT" . "EN"))
      (("JA" . "ja") ("IT" . "it")
@@ -1088,7 +1088,7 @@
      "/world/spanish/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "ES") ("ES" . "JA")
       ("EN" . "ES") ("ES" . "EN"))
      (("JA" . "ja") ("ES" . "es")
@@ -1098,11 +1098,11 @@
      "/world/portuguese/ HTTP/1.1"
      "wb_lp=%o%t&before=%s"
      utf-8
-     "<textarea name=\"after\" id=\"after\">\\([^<]*\\)</textarea>"
+     "<textarea id=\"after\"[^>]*>\\([^<]*\\)</textarea>"
      (("JA" . "PT") ("PT" . "JA")
       ("EN" . "PT") ("PT" . "EN"))
      (("JA" . "ja") ("PT" . "pt")
-      ("EN" . "en")))
+      ("EN" . "en"))))
 
     ;; Yahoo.co.jp requires a value of hidden input tag that have id "TTcrumb" to translate.
     ;; So, Text-translator have to visit a http://honyaku.yahoo.co.jp once.
@@ -1123,16 +1123,16 @@
 ;;      ("K" . "ko")))
 
     ;; Ocn.ne.jp
-    ("ocn.ne.jp"
-     "cgi01.ocn.ne.jp"
-     "/cgi-bin/translation/index.cgi HTTP/1.1"
-     "langpair=%o%t&sourceText=%s"
-     utf-8
-     "<TEXTAREA NAME=\"responseText\" ROWS=\"5\" COLS=\"41\" WRAP=\"virtual\" CLASS=\"in2\">\\([^<]*\\)</TEXTAREA>"
-     (("en" . "ja") ("ja" . "en")
-      ("ja" . "ko") ("ko" . "ja")
-      ("ja" . "zh") ("zh" . "ja"))
-     (("zh" . "ch"))))
+    ;; ("ocn.ne.jp"
+    ;;  "cgi01.ocn.ne.jp"
+    ;;  "/cgi-bin/translation/index.cgi HTTP/1.1"
+    ;;  "langpair=%o%t&sourceText=%s"
+    ;;  utf-8
+    ;;  "<TEXTAREA NAME=\"responseText\" ROWS=\"5\" COLS=\"41\" WRAP=\"virtual\" CLASS=\"in2\">\\([^<]*\\)</TEXTAREA>"
+    ;;  (("en" . "ja") ("ja" . "en")
+    ;;   ("ja" . "ko") ("ko" . "ja")
+    ;;   ("ja" . "zh") ("zh" . "ja"))
+    ;;  (("zh" . "ch"))))
   "The alist where setting of the site which is used for text translation is
 described. To update site-data, evalute `text-translator-site-data-init`."
   :type '(repeat
