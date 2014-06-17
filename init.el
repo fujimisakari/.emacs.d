@@ -13,7 +13,7 @@
         (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
             (normal-top-level-add-subdirs-to-load-path))))))
 ;; site-lispとconfディレクトリをサブディレクトリごとload-pathに追加する
-(add-to-load-path "site-lisp" "elpa" "el-get" "private")
+(add-to-load-path "site-lisp" "elpa" "el-get" "private/env")
 
 ;; 個人環境変数の読み込み
 (require 'private-env)
