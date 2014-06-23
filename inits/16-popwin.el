@@ -30,6 +30,8 @@
 (push '("*Completions*") popwin:special-display-config)
 (push '("*quickrun*") popwin:special-display-config)
 (push '("*help*") popwin:special-display-config)
+(push '("*hatena-keyword*") popwin:special-display-config)
+
 ;; M-!
 (push "*Shell Command Output*" popwin:special-display-config)
 ;; M-x compile

@@ -80,7 +80,7 @@
 (global-set-key (kbd "C-l w") 'whitespace-cleanup)                       ; TABを空白に置換
 (global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (global-set-key (kbd "C-l i") 'recenter-top-bottom)                      ; 現在の行の位置調整
-(global-set-key (kbd "C-l b") 'browse-url-at-point)                      ; URLをブラウザで開く
+(global-set-key (kbd "C-l b") 'open-browse-by-url)                       ; URLをブラウザで開く
 (global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
 (global-set-key (kbd "C-l u") 'revert-buffer)                            ; バッファ更新
 (global-set-key (kbd "C-l f") 'helm-ag)                                  ; helm-ag検索
