@@ -75,6 +75,7 @@
 (global-set-key (kbd "C-l C-q") 'quickrun-region)                        ; quickrun(リジョン)
 (global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)  ; Webで翻訳
 (global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)                 ; 英辞郎で翻訳
+(global-set-key (kbd "C-l C-M-h") 'hatena-keyword-start)                 ; 英辞郎で翻訳
 (global-set-key (kbd "C-l C-j") 'delete-horizontal-space)                ; 行の不要な空白を削除
 (global-set-key (kbd "C-l j") 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
 (global-set-key (kbd "C-l w") 'whitespace-cleanup)                       ; TABを空白に置換
@@ -91,6 +92,8 @@
 (global-set-key (kbd "C-l r") 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (global-set-key (kbd "C-l R") 'anzu-query-replace)                       ; 一括置換
 (global-set-key (kbd "C-l s") 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
+(global-set-key (kbd "C-l v s") 'smeargle)                               ; 更新履歴を可視化する
+(global-set-key (kbd "C-l v c") 'smeargle-clear)                         ; smeargleを消す
 
 ;; emacs-lisp-mode
 (define-key emacs-lisp-mode-map (kbd "C-c C-d") 'lispxmp)                ; 実行結果を注釈してくれる

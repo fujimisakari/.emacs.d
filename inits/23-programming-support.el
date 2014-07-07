@@ -16,6 +16,9 @@
 ;; (setq-default header-line-format '(which-func-mode ("" which-func-format)))
 ;; (set-face-foreground 'which-func "pink")
 
+;; 更新履歴を可視化する
+(require 'smeargle)
+
 ;; ネストしてるカッコわかりやすくする
 (when (require 'rainbow-delimiters nil 'noerror)
   (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
