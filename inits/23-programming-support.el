@@ -55,3 +55,7 @@
 (defadvice bm-goto (after bm-goto-top activate)
   (when (bm-goto-top-p)
     (recenter 0)))
+
+
+(require 'highlight-symbol)
+(setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1" "SpringGreen1" "burlywood4" "RoyalBlue1" "OliveDrab"))

@@ -17,65 +17,70 @@
                               t " Keyjack" my-keyjack-mode-map)
 
 ;; Fn
-(global-set-key (kbd "<f1>") 'linum-mode)                          ; 行番号表示
-(global-set-key (kbd "<f3>") 'mo-git-blame-current)                ; git-blame表示
-(global-set-key (kbd "<f4>") 'magit-status)                        ; git statusを表示
-(global-set-key (kbd "<f5>") 'wl)                                  ; wanderlustの起動
-(global-set-key (kbd "<f6>") 'id-manager)                          ; id-managerの起動
+(global-set-key (kbd "<f1>") 'linum-mode)                                ; 行番号表示
+(global-set-key (kbd "<f3>") 'mo-git-blame-current)                      ; git-blame表示
+(global-set-key (kbd "<f4>") 'magit-status)                              ; git statusを表示
+(global-set-key (kbd "<f5>") 'wl)                                        ; wanderlustの起動
+(global-set-key (kbd "<f6>") 'id-manager)                                ; id-managerの起動
 
 ;; key-chord
-(key-chord-define-global "qp" 'describe-bindings)                  ; キーバインド設定の参照
-(key-chord-define-global "ui" 'skk-mode)                           ; skk-modeを有効
-(key-chord-define-global "kl" 'view-mode)                          ; view-modeを有効
+(key-chord-define-global "qp" 'describe-bindings)                        ; キーバインド設定の参照
+(key-chord-define-global "ui" 'skk-mode)                                 ; skk-modeを有効
+(key-chord-define-global "kl" 'view-mode)                                ; view-modeを有効
 
 ;; C-
-(global-set-key (kbd "C-;") 'helm-mini)                            ; helmの起動
-(global-set-key (kbd "C-M-i") 'helm-imenu)                         ; helm-imenuの起動
-(global-set-key (kbd "C-x C-f") 'helm-find-files)                  ; helmでファイルリスト検索
-(global-set-key (kbd "C-k") 'kill-line)                            ; カーソル位置より前(右)を削除
-(global-set-key (kbd "C-t") 'other-window-or-split)                ; ウィンドウを切り替える
-(global-set-key (kbd "C-.") 'redo)                                 ; redo
-(global-set-key (kbd "C-h") 'delete-backward-char)                 ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
-(global-set-key (kbd "C-x C-c") 'server-edit)                      ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
-(global-set-key (kbd "C-m") 'newline-and-indent)                   ; "C-m" に newline-and-indent を割り当てる。初期値は newline
-(global-set-key (kbd "C-M-;") 'delete-other-windows)               ; 現在のウィンドウ以外を消す
-(global-set-key (kbd "C-M-o") 'occur-by-moccur)                    ; 現在開いているファイルをmoccur検索する
-(global-set-key (kbd "C-<tab>") 'tabify)                           ; TAB生成
-(global-set-key (kbd "C-M-<tab>") 'untabif)                        ; TAB削除
-(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)        ; 直前行をコピーする
-;; (global-set-key (kbd "C-'") 'helm-gtags-find-tag)                  ; 関数の定義元(関数の実体)へジャンプ
-(global-set-key (kbd "C-'") 'helm-gtags-find-tag-other-window)     ; (別バッファで)関数の定義元(関数の実体)へジャンプ
-(global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)           ; タブの配置位置ずらし(右)
-(global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)        ; タブの配置位置ずらし(左)
-(global-set-key (kbd "C-M-'") 'gtags-find-tag)                     ; 変数等のジャンプ
-(global-set-key (kbd "C-,") 'er/expand-region)                     ; 拡張リジョン選択
-(global-set-key (kbd "C-M-,") 'er/contract-region)                 ; 拡張リジョン選択(戻す)
+(global-set-key (kbd "C-;") 'helm-mini)                                  ; helmの起動
+(global-set-key (kbd "C-M-i") 'helm-imenu)                               ; helm-imenuの起動
+(global-set-key (kbd "C-x C-f") 'helm-find-files)                        ; helmでファイルリスト検索
+(global-set-key (kbd "C-k") 'kill-line)                                  ; カーソル位置より前(右)を削除
+(global-set-key (kbd "C-t") 'other-window-or-split)                      ; ウィンドウを切り替える
+(global-set-key (kbd "C-.") 'redo)                                       ; redo
+(global-set-key (kbd "C-h") 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
+(global-set-key (kbd "C-x C-c") 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
+(global-set-key (kbd "C-m") 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
+(global-set-key (kbd "C-M-;") 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
+(global-set-key (kbd "C-M-o") 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
+(global-set-key (kbd "C-<tab>") 'tabify)                                 ; TAB生成
+(global-set-key (kbd "C-M-<tab>") 'untabif)                              ; TAB削除
+(global-set-key (kbd "C-M-d") 'duplicate-this-line-forward)              ; 直前行をコピーする
+;; (global-set-key (kbd "C-'") 'helm-gtags-find-tag)                        ; 関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-'") 'helm-gtags-find-tag-other-window)           ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)                 ; タブの配置位置ずらし(右)
+(global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)              ; タブの配置位置ずらし(左)
+(global-set-key (kbd "C-M-<up>") 'highlight-symbol-prev-in-defun)        ; 関数内のhighlight-symbolの移動(前)
+(global-set-key (kbd "C-M-<down>") 'highlight-symbol-next-in-defun)      ; 関数内のhighlight-symbolの移動(次)
+(global-set-key (kbd "C-M-'") 'gtags-find-tag)                           ; 変数等のジャンプ
+(global-set-key (kbd "C-,") 'er/expand-region)                           ; 拡張リジョン選択
+(global-set-key (kbd "C-M-,") 'er/contract-region)                       ; 拡張リジョン選択(戻す)
 
 ;; M-
-(global-set-key (kbd "M-x") 'helm-M-x)                             ; helmでM-x
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)                  ; 過去のkill-ringの内容を取り出す
-(global-set-key (kbd "M-/") 'hippie-expand)                        ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
-(global-set-key (kbd "M-g") 'goto-line)                            ; M-g で指定行へジャンプ
-(global-set-key (kbd "M-h") 'backward-kill-word)                   ; 直前の単語を削除
-(global-set-key (kbd "M-k") 'kill-buffer-for-elscreen)             ; カレントバッファを閉じる
-(global-set-key (kbd "M-<right>") 'flymake-goto-prev-error)        ; flymakeの警告・エラーに移動(前)
-(global-set-key (kbd "M-<left>") 'flymake-goto-next-error)         ; flymakeの警告・エラーに移動(次)
-(global-set-key (kbd "M-[") 'bm-previous)                          ; bm-goto 前へ移動
-(global-set-key (kbd "M-]") 'bm-next)                              ; bm-goto 次へ移動
-(global-set-key (kbd "M-SPC") 'bm-toggle)                          ; bm-goto 現在行に色をつけて記録
-(global-set-key (kbd "M-o") 'anything-c-moccur-occur-by-moccur)    ; anything-c-moccurの起動
+(global-set-key (kbd "M-x") 'helm-M-x)                                   ; helmでM-x
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)                        ; 過去のkill-ringの内容を取り出す
+(global-set-key (kbd "M-/") 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
+(global-set-key (kbd "M-g") 'goto-line)                                  ; M-g で指定行へジャンプ
+(global-set-key (kbd "M-h") 'backward-kill-word)                         ; 直前の単語を削除
+(global-set-key (kbd "M-k") 'kill-buffer-for-elscreen)                   ; カレントバッファを閉じる
+(global-set-key (kbd "M-<right>") 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
+(global-set-key (kbd "M-<left>") 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
+(global-set-key (kbd "M-<up>") 'highlight-symbol-prev)                   ; highlight-symbolの移動(前)
+(global-set-key (kbd "M-<down>") 'highlight-symbol-next)                 ; highlight-symbolの移動(次)
+(global-set-key (kbd "M-[") 'bm-previous)                                ; bm-goto 前へ移動
+(global-set-key (kbd "M-]") 'bm-next)                                    ; bm-goto 次へ移動
+(global-set-key (kbd "M-SPC") 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
+(global-set-key (kbd "M-o") 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
 
 ;; C-l
 (global-unset-key (kbd "C-l"))
 (global-set-key (kbd "C-l C-'") 'flyspell-region)                        ; スペルが正しいかチェック
 (global-set-key (kbd "C-l C-M-'") 'ispell-word)                          ; 現在のスペルから候補を表示
-(global-set-key (kbd "C-l l") 'ace-jump-line-mode)                       ; 行のace-jump
-(global-set-key (kbd "C-l C-l") 'line-to-top-of-window)                  ; 現在行を最上部にする
+;; (global-set-key (kbd "C-l l") 'ace-jump-line-mode)                       ; 行のace-jump
+(global-set-key (kbd "C-l C-l") 'highlight-symbol-at-point)              ; symbolをhighlight表示
+(global-set-key (kbd "C-l C-M-l") 'highlight-symbol-remove-all)          ; symbolをhighlight表示を解除
 (global-set-key (kbd "C-l q") 'quickrun)                                 ; quickrun(バッファ)
 (global-set-key (kbd "C-l C-q") 'quickrun-region)                        ; quickrun(リジョン)
 (global-set-key (kbd "C-l C-;") 'text-translator-all-by-auto-selection)  ; Webで翻訳
 (global-set-key (kbd "C-l C-M-;") 'sdic-describe-region)                 ; 英辞郎で翻訳
-(global-set-key (kbd "C-l C-M-h") 'hatena-keyword-start)                 ; 英辞郎で翻訳
+(global-set-key (kbd "C-l C-M-h") 'hatena-keyword-start)                     ; 英辞郎で翻訳
 (global-set-key (kbd "C-l C-j") 'delete-horizontal-space)                ; 行の不要な空白を削除
 (global-set-key (kbd "C-l j") 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
 (global-set-key (kbd "C-l w") 'whitespace-cleanup)                       ; TABを空白に置換
@@ -84,6 +89,7 @@
 (global-set-key (kbd "C-l b") 'open-browse-by-url)                       ; URLをブラウザで開く
 (global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
 (global-set-key (kbd "C-l u") 'revert-buffer)                            ; バッファ更新
+(global-set-key (kbd "C-l o") 'line-to-top-of-window)                    ; 現在行を最上部にする
 (global-set-key (kbd "C-l f") 'helm-ag)                                  ; helm-ag検索
 (global-set-key (kbd "C-l d") 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (global-set-key (kbd "C-l C-f") 'moccur-grep-find)                       ; moccur-grep検索
