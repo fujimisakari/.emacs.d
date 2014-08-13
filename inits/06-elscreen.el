@@ -5,7 +5,7 @@
 ;;;--------------------------------------------------------------------------;;;
 
 ;; ELScreen関連PKG
-;; (require 'elscreen)
+(require 'elscreen)
 (elscreen-start)
 
 ;; EmacsでGNU screen風のインターフェイスを使う
