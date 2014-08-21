@@ -317,17 +317,18 @@
             ;; create description
             (setq html (hatena-keyword-html-formatter html))
             (insert html)
-            ;; A new-line is arranged.
-            (hatena-keyword-line-formatter)
             ;; decorate subtitle
             (hatena-keyword-decorate-subtitle)
+            ;; A new-line is arranged.
+            (hatena-keyword-line-formatter)
             ;; create image
-            ;; (hatena-keyword-image-formatter)
+            (hatena-keyword-image-formatter)
             ;; remove html tag
             (goto-char (point-min))
             (while (re-search-forward "<.*?>" nil t)
               (replace-match ""))
             (insert "\n")))
+        (setq buffer-read-only t)
         (pop-to-buffer (current-buffer))
         (goto-char (point-min)))))
 
