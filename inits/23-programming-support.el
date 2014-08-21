@@ -58,4 +58,4 @@
 
 
 (require 'highlight-symbol)
-(setq highlight-symbol-colors '("DarkOrange" "DodgerBlue1" "DeepPink1" "SpringGreen1" "burlywood4" "RoyalBlue1" "OliveDrab"))
+(setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))

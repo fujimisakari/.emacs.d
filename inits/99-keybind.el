@@ -47,8 +47,8 @@
 (global-set-key (kbd "C-'") 'helm-gtags-find-tag-other-window)           ; (別バッファで)関数の定義元(関数の実体)へジャンプ
 (global-set-key (kbd "C-M-<right>") 'elscreen-swap-next)                 ; タブの配置位置ずらし(右)
 (global-set-key (kbd "C-M-<left>") 'elscreen-swap-previous)              ; タブの配置位置ずらし(左)
-(global-set-key (kbd "C-M-<up>") 'highlight-symbol-prev-in-defun)        ; 関数内のhighlight-symbolの移動(前)
-(global-set-key (kbd "C-M-<down>") 'highlight-symbol-next-in-defun)      ; 関数内のhighlight-symbolの移動(次)
+(global-set-key (kbd "C-M-p") 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
+(global-set-key (kbd "C-M-n") 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (global-set-key (kbd "C-M-'") 'gtags-find-tag)                           ; 変数等のジャンプ
 (global-set-key (kbd "C-,") 'er/expand-region)                           ; 拡張リジョン選択
 (global-set-key (kbd "C-M-,") 'er/contract-region)                       ; 拡張リジョン選択(戻す)
@@ -62,12 +62,12 @@
 (global-set-key (kbd "M-k") 'kill-buffer-for-elscreen)                   ; カレントバッファを閉じる
 (global-set-key (kbd "M-<right>") 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
 (global-set-key (kbd "M-<left>") 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
-(global-set-key (kbd "M-<up>") 'highlight-symbol-prev)                   ; highlight-symbolの移動(前)
-(global-set-key (kbd "M-<down>") 'highlight-symbol-next)                 ; highlight-symbolの移動(次)
 (global-set-key (kbd "M-[") 'bm-previous)                                ; bm-goto 前へ移動
 (global-set-key (kbd "M-]") 'bm-next)                                    ; bm-goto 次へ移動
 (global-set-key (kbd "M-SPC") 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
 (global-set-key (kbd "M-o") 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
+(global-set-key (kbd "M-P") 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
+(global-set-key (kbd "M-N") 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 
 ;; C-l
 (global-unset-key (kbd "C-l"))
@@ -144,8 +144,7 @@
 ;; dired-mode
 (add-hook 'dired-mode-hook
   (lambda ()
-    (local-set-key (kbd "C-m") 'dired-advertised-find-file)          ; ディレクトリ, ファイルを展開
-    (local-set-key (kbd "C-f") 'dired-advertised-find-file)          ; ディレクトリ, ファイルを展開
+    (local-set-key (kbd "C-f") 'dired-find-file)                     ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-M-m") 'dired-up-directory)                ; 上位ディレクトリへ
     (local-set-key (kbd "C-t") 'other-window-or-split)               ; ウィンドウを切り替える
     (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)      ; spとfpのディレクトリを切り替える
