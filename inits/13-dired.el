@@ -98,3 +98,12 @@
     (interactive)
     (other-window-or-split)
     (dired default-directory))
+
+;; subtreeの背景は無色にする
+(require 'dired-subtree)
+(set-face-background 'dired-subtree-depth-1-face nil)
+(set-face-background 'dired-subtree-depth-2-face nil)
+(set-face-background 'dired-subtree-depth-3-face nil)
+(set-face-background 'dired-subtree-depth-4-face nil)
+(set-face-background 'dired-subtree-depth-5-face nil)
+(set-face-background 'dired-subtree-depth-6-face nil)

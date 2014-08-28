@@ -26,7 +26,7 @@
 
 (defun dired-ex-isearch ()
   (interactive)
-  (let ((REGEX1 "[0-9] ") (REGEX2 "[^ \n]+$")
+  (let ((REGEX1 "[0-9] ") (REGEX2 "[^\n]+$")
         (input (read-quoted-char))
         (oldpoint (point)) regx str)
     (goto-char (point-min))
