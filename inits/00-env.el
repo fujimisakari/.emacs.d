@@ -84,6 +84,7 @@
 ;; 最近のファイルを1000個を保存する
 (require 'recentf-ext)
 (setq recentf-max-saved-items 1000)
+(setq recentf-save-file "~/.recentf")
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
