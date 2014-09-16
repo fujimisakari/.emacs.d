@@ -93,7 +93,7 @@
     (search :initform 'helm-bookmark-search-fn)))
 
 (defvar helm-source-bookmarks
-  (helm--make-source "Bookmarks" 'helm-source-basic-bookmarks)
+  (helm-make-source "Bookmarks" 'helm-source-basic-bookmarks)
   "See (info \"(emacs)Bookmarks\").")
 
 (defun helm-bookmark-transformer (candidates _source)
@@ -476,12 +476,12 @@ than `w3m-browse-url' use it."
                                       (car contacts)))
                            (append   (message-buffers)))
                       (if append
-                          (addressbook-set-mail-buffer1 bmk 'append)
-                        (addressbook-set-mail-buffer1 bmk))
+                          (addressbook-set-mail-buffer-1 bmk 'append)
+                        (addressbook-set-mail-buffer-1 bmk))
                       (setq contacts (cdr contacts))
                       (when contacts
                         (cl-loop for bmk in contacts do
-                              (addressbook-set-mail-buffer1 bmk 'append))))))
+                              (addressbook-set-mail-buffer-1 bmk 'append))))))
                ("Edit Bookmark"
                 . (lambda (candidate)
                     (let ((bmk (helm-bookmark-get-bookmark-from-name
