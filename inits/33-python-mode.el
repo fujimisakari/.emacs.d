@@ -24,5 +24,4 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (mode-init-func)
-            (setq imenu-create-index-function #'python-imenu-create-index)
-            (imenu)))
+            (setq imenu-create-index-function #'python-imenu-create-index)))

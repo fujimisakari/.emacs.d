@@ -97,7 +97,7 @@
              '(skk-comp-from-jisyo "~/.skk-jisyo"))
 ;; はてな辞書
 (add-to-list 'skk-completion-prog-list
-             '(skk-comp-from-jisyo "~/skkdic/SKK-JISYO.hatena"))
+             '(skk-comp-from-jisyo "~/Dropbox/skk/jisho/SKK-JISYO.hatena"))
 ;; server completion
 (add-to-list 'skk-search-prog-list
              '(skk-server-completion-search) t)

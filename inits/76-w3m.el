@@ -19,7 +19,7 @@
 
 ;; wanderlust の、message buffer では、html メールに関しては、デフォルトで画像表示
 (setq mime-w3m-safe-url-regexp nil)
-(setq mime-w3m-display-inline-images t)
+(setq mime-w3m-display-inline-images nil)
 
 ;; message buffer で、C-u M-i で、inline image 表示
 ;; 安全だと思われる、メールだけ、表示する。

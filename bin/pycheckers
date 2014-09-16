@@ -1,7 +1,7 @@
 #! /bin/bash
 
-/Users/fujimo/.pyenv/shims/epylint "$1" 2>/dev/null
-/Users/fujimo/.pyenv/shims/pyflakes "$1"
-/Users/fujimo/.pyenv/shims/pep8 --ignore=E221,E501,E701,E202 --repeat "$1"
+~/.pyenv/shims/epylint "$1" 2>/dev/null
+~/.pyenv/shims/pyflakes "$1"
+~/.pyenv/shims/pep8 --ignore=E221,E501,E701,E202 --repeat "$1"
 
 true
