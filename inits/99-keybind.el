@@ -50,6 +50,7 @@
 (global-set-key (kbd "C-M-p") 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 (global-set-key (kbd "C-M-n") 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (global-set-key (kbd "C-M-'") 'gtags-find-tag)                           ; 変数等のジャンプ
+(global-set-key (kbd "C-M-r") 'recenter-top-bottom)                      ; 現在の行の位置調整
 (global-set-key (kbd "C-,") 'er/expand-region)                           ; 拡張リジョン選択
 (global-set-key (kbd "C-M-,") 'er/contract-region)                       ; 拡張リジョン選択(戻す)
 
@@ -85,7 +86,6 @@
 (global-set-key (kbd "C-l j") 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
 (global-set-key (kbd "C-l w") 'whitespace-cleanup)                       ; TABを空白に置換
 (global-set-key (kbd "C-l k") 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
-(global-set-key (kbd "C-l i") 'recenter-top-bottom)                      ; 現在の行の位置調整
 (global-set-key (kbd "C-l b") 'open-browse-by-url)                       ; URLをブラウザで開く
 (global-set-key (kbd "C-l g") 'open-github-from-here)                    ; リジョン選択をgithubで開く
 (global-set-key (kbd "C-l u") 'revert-buffer)                            ; バッファ更新
