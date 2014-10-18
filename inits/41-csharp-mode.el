@@ -22,7 +22,7 @@
              (c-set-offset 'case-label '+)
              (c-set-offset 'arglist-intro '+)
              (c-set-offset 'arglist-close 0)
-             (hl-line-mode)
+             ;; (hl-line-mode)
              (skk-mode)
              ;; (omnisharp-mode)
              (auto-complete-mode)

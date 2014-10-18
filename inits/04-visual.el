@@ -114,7 +114,7 @@
 (blink-cursor-mode t)
 
 ;; カーソル行をハイライト表示
-(hl-line-mode)
+(hl-line-mode -1)
 (set-face-background 'hl-line "gray20")
 
 ;; 選択中のリージョンの色設定

@@ -53,8 +53,7 @@
 
 (defun view-mode-hook0 ()
   (define-many-keys view-mode-map pager-keybind)
-  (skk-mode 0)
-  (hl-line-mode 1))
+  (skk-mode 0))
 (add-hook 'view-mode-hook 'view-mode-hook0)
 
 (defun View-goto-line-last (&optional line)

@@ -5,7 +5,6 @@
 ;;;--------------------------------------------------------------------------;;;
 
 (defun mode-init-func()
-  (hl-line-mode t)
   (skk-mode t)
   (setq indent-level 4)
   (c-toggle-hungry-state 1))
@@ -43,11 +42,9 @@
 ;; org-mode
 (add-hook 'org-mode-hook
           '(lambda()
-             (skk-mode)
-             (hl-line-mode)))
+             (skk-mode)))
 
 ;; org-remember-mode
 (add-hook 'org-remember-mode-hook
           '(lambda()
-             (skk-mode)
-             (hl-line-mode)))
+             (skk-mode)))
