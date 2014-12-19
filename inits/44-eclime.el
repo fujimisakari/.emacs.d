@@ -6,14 +6,18 @@
 
 (require 'eclim)
 (require 'eclimd)
+(require 'help-at-pt)
 
 ;; java-mode で有効
-(add-hook 'java-mode-hook 'eclim-mode)
+(add-hook 'java-mode-hook
+          (lambda ()
+            (mode-init-func)
+            (eclim-mode)))
 
 (custom-set-variables
   '(eclim-eclipse-dirs '("/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse"))
   '(eclim-executable "/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse/eclim")
-  '(eclimd-default-workspace "~/projects/workspace"))
+  '(eclimd-default-workspace "~/Dropbox/dev/my/workspace"))
 
 ;; コード補完(auto-complete)
 (require 'ac-emacs-eclim-source)
@@ -28,4 +32,8 @@
 (setq help-at-pt-timer-delay 0.1)
 ;; (help-at-pt-set-timer)
 
-(define-key eclim-mode-map (kbd "C-c C-e ;") 'eclim-run-class)
+;; エラー箇所にカーソルを当て手動でエコーエリアに詳細を表示する
+
+(defun help-at-pt-display ()
+  (interactive)
+  (help-at-pt-maybe-display))

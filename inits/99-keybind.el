@@ -168,7 +168,7 @@
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
 
 ;; auto-complete-mode
-(bind-key "TAB" 'auto-complete ac-mode-map)
+(bind-key "<tab>" 'auto-complete ac-mode-map)
 (bind-key "C-n" 'ac-next ac-menu-map)
 (bind-key "C-p" 'ac-previous ac-menu-map)
 (bind-key "C-j" 'ac-complete ac-menu-map)
@@ -179,3 +179,7 @@
 
 ;; mo-git-blame
 (bind-key "q" 'mo-git-blame-quit mo-git-blame-mode-map)
+
+;; eclim-mode
+(bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)
+(bind-key "C-<tab>" 'help-at-pt-display eclim-mode-map)

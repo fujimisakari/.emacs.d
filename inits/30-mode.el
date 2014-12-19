@@ -21,9 +21,10 @@
 (defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
   (setq flymake-check-was-interrupted t))
 (ad-activate 'flymake-post-syntax-check)
-;; htmlとxmlはflymakeは起動しないようにする
+;; javaとhtml, xmlはflymakeは起動しないようにする
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
+(delete '("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) flymake-allowed-file-name-masks)
 
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)

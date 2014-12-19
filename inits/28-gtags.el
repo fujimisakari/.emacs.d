@@ -16,8 +16,7 @@
 ;; *GTAGS SELECT* のバッファは1つだけ生成する
 (setq gtags-select-buffer-single t)
 
-(defun helm-gtags-find-tag-other-window ()
-  "It opens gtags by other buffer"
-  (interactive)
-  (other-window-or-split)
-  (helm-gtags-find-tag))
+;; (defun helm-gtags-find-tag-other-window ()
+;;   "It opens gtags by other buffer"
+;;   (interactive p)
+;;   (helm-gtags-find-tag))
