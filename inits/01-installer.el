@@ -8,7 +8,7 @@
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/auto-install.el")
 (when (require 'auto-install nil t)
   (setq auto-install-directory "~/.emacs.d/site-lisp/")
-  (auto-install-update-emacswiki-package-name t)
+  ;; (auto-install-update-emacswiki-package-name t)
   (auto-install-compatibility-setup))
 
 ;; Emacs Lisp のパッケージマネージャー

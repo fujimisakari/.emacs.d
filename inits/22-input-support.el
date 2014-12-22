@@ -70,6 +70,16 @@
     (overlay-put eob-mark 'after-string eob-text)))
 (add-hook 'find-file-hooks 'my-mark-eob)
 
+;; undoやyank, kill-regionなどで挿入されたテキストを強調表示する
+(require 'volatile-highlights)
+(volatile-highlights-mode t)
+(set-face-foreground 'vhl/default-face "gray75")
+(set-face-background 'vhl/default-face "SlateBlue4")
+
+;; スクロールをスムーズにしてくれる
+(require 'smooth-scroll)
+(smooth-scroll-mode t)
+
 ;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (require 'auto-complete-config)
 (ac-config-default)

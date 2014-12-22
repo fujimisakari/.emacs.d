@@ -6,9 +6,6 @@
 
 (require 'python)
 
-;; imenuが動かなかったので対応
-(semantic-mode 1)
-
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (defun flymake-pyflakes-init ()
@@ -21,7 +18,8 @@
 (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pyflakes-init))
 
+(semantic-mode 1)
 (add-hook 'python-mode-hook
-          (lambda ()
-            (mode-init-func)
-            (setq imenu-create-index-function #'python-imenu-create-index)))
+          '(lambda ()
+            (mode-init-func)))
+            ;; (setq imenu-create-index-function #'python-imenu-create-index)))
