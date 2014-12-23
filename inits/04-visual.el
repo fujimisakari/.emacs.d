@@ -121,6 +121,12 @@
 (setq transient-mark-mode t)
 (set-face-background 'region "SlateBlue4")
 
+;; nyan-catのスクロールにする
+(require 'nyan-mode)
+(nyan-mode 1)
+(nyan-start-animation)
+(setq nyan-bar-length 24)
+
 ;; paren: 対応する括弧を光らせる
 (setq show-paren-delay 0)
 (show-paren-mode t)
