@@ -86,6 +86,11 @@ static char * arrow_right[] = {
     output))
 (buffer-name)
 
+(defun buffer-name-for-mode-line ()
+  (if (eq major-mode 'dired-mode)
+    ""
+    (buffer-name)))
+
 (defconst color1 "OliveDrab2")
 (defconst color2 "#1d1d1d")
 (defconst color3 "gray40")
@@ -99,7 +104,8 @@ static char * arrow_right[] = {
 (setq-default mode-line-format
               (list '(:eval (concat (propertize "-%Z%1*%1+ " 'face 'mode-line-color-1)
                                     (propertize (shorten-directory default-directory 15) 'face 'mode-line-color-1)
-                                    (propertize "%b " 'face 'mode-line-color-1)
+                                    (propertize (buffer-name-for-mode-line) 'face 'mode-line-color-1)
+                                    (propertize " " 'face 'mode-line-color-1)
                                     (propertize " " 'display arrow-right-1)))
                     '(:eval (concat (propertize " %m" 'face 'mode-line-color-2)
                                     (propertize (format-mode-line minor-mode-alist) 'face 'mode-line-color-2)
