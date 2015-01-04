@@ -111,7 +111,8 @@ static char * arrow_right[] = {
                                     ;; (propertize (format-mode-line minor-mode-alist) 'face 'mode-line-color-2)
                                     (propertize " " 'face 'mode-line-color-2)
                                     (propertize " " 'display arrow-right-2)))
-                    '(which-func-mode ("" which-func-format))
+                    (when (and (boundp 'which-func-mode) which-func-mode)
+                                       '(which-func-mode ("" which-func-format)))
 
                     ;; Justify right by filling with spaces to right fringe - 16
                     ;; (16 should be computed rahter than hardcoded)

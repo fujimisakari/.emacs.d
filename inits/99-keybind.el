@@ -21,7 +21,6 @@
 ;; C-
 (bind-key "C-;" 'helm-mini)                                  ; helmの起動
 (bind-key "C-'" 'ace-jump-word-mode)                         ; 単語でace-jump
-;; (bind-key "C-'" 'helm-gtags-find-tag)                        ; 関数の定義元(関数の実体)へジャンプ
 (bind-key "C-," 'er/expand-region)                           ; 拡張リジョン選択
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
@@ -31,15 +30,17 @@
 (bind-key "C-<tab>" 'tabify)                                 ; TAB生成
 (bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
 (bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
-(bind-key "C-M-;" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
-(bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
-(bind-key "C-M-<tab>" 'untabif)                              ; TAB削除
+
+;; C-M-
 (bind-key* "C-M-d" 'duplicate-this-line-forward)             ; 直前行をコピーする
 (bind-key* "C-M-i" 'helm-imenu)                              ; helm-imenuの起動
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key "C-M-<right>" 'elscreen-swap-next)                 ; タブの配置位置ずらし(右)
 (bind-key "C-M-<left>" 'elscreen-swap-previous)              ; タブの配置位置ずらし(左)
+(bind-key "C-M-<tab>" 'untabif)                              ; TAB削除
+(bind-key "C-M-;" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
+(bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (bind-key "C-M-r" 'recenter-top-bottom)                      ; 現在の行の位置調整
@@ -58,7 +59,7 @@
 (bind-key "M-[" 'bm-previous)                                ; bm-goto 前へ移動
 (bind-key "M-]" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
-(bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
+(bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 
