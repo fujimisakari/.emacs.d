@@ -6,7 +6,7 @@
 
 (require 'helm-config)
 (require 'helm-ag)
-;; (require 'helm-migemo)
+(require 'helm-migemo)
 (helm-mode 1)
 
 ;; 基本設定
@@ -21,7 +21,7 @@
   helm-quick-update t)
 
 ;; (setq helm-buffer-max-length 35) ; バッファ名の最大文字数
-(setq helm-split-window-default-side 'rigth) ; 左右分割
+(setq helm-split-window-default-side 'right) ; 分割
 ;; ディレクトリの自動補完を切る
 (setq helm-ff-auto-update-initial-value nil)
 ;; スマート補完

@@ -26,11 +26,15 @@
 (push '("*Kill Ring*") popwin:special-display-config)
 (push '("*sdic*") popwin:special-display-config)
 ;; (push '("*translated*") popwin:special-display-config)
+(push '("*Google Translate*") popwin:special-display-config)
 (push '("*auto-async-byte-compile*") popwin:special-display-config)
 (push '("*Completions*") popwin:special-display-config)
 (push '("*quickrun*") popwin:special-display-config)
 (push '("*help*") popwin:special-display-config)
 (push '("*hatena-keyword*") popwin:special-display-config)
+
+;; eclim
+(push '("*compilation*") popwin:special-display-config)
 
 ;; M-!
 (push "*Shell Command Output*" popwin:special-display-config)
