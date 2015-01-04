@@ -64,32 +64,6 @@
 (set-face-bold-p 'font-lock-function-name-face t)                    ; 太字設定
 (set-face-bold-p 'font-lock-warning-face nil)                        ; 太字設定
 
-;; モードライン設定
-(set-face-foreground 'mode-line "MediumPurple1")                      ; アクティブなモードラインの文字の色設定
-(set-face-background 'mode-line "gray15")                             ; アクディブなモードラインの背景色設定
-(set-face-background 'mode-line-inactive "gray15")                   ; インアクティブなモードラインの背景色設定
-(column-number-mode t)                                               ; モードラインにカーソル列の位置表示
-(line-number-mode t)                                                 ; モードラインにカーソル行の位置表示
-
-;; 日付・時刻の表示設定
-(setq display-time-string-forms
-      '((format "%s/%s(%s) %s:%s" month day dayname 24-hours minutes)))
-(display-time)                                                       ; 時間を表示
-(setq display-time-kawakami-form t)                                  ; 時刻表示の左隣に日付を追加
-(setq display-time-24hr-format t)                                    ; 24 時間制
-
-;; モードラインにカレントディレクトリを表示する
-(let ((ls (member 'mode-line-buffer-identification mode-line-format)))
-  (setcdr ls
-          (cons
-           '(:eval (concat " (" (abbreviate-file-name default-directory) ")"))
-           (cdr ls))))
-
-;; モードラインに改行コードを表示
-(setq eol-mnemonic-dos "(CRLF)")
-(setq eol-mnemonic-mac "(CR)")
-(setq eol-mnemonic-unix "(LF)")
-
 ;; フレーム設定
 (setq default-frame-alist
   (append '((foreground-color . "gray75")         ; 文字の色設定
@@ -121,18 +95,30 @@
 (setq transient-mark-mode t)
 (set-face-background 'region "SlateBlue4")
 
-;; nyan-catのスクロールにする
-(require 'nyan-mode)
-(nyan-mode 1)
-(nyan-start-animation)
-(setq nyan-bar-length 24)
-
 ;; paren: 対応する括弧を光らせる
 (setq show-paren-delay 0)
 (show-paren-mode t)
 (setq show-paren-style 'expression)                           ; カッコ内の色も変更
 (set-face-background 'show-paren-match-face nil)              ; カッコ内のフェイス
 (set-face-underline-p 'show-paren-match-face "yellow")        ; カッコ内のフェイス
+
+;; ネストしてるカッコわかりやすくする
+(when (require 'rainbow-delimiters nil 'noerror)
+  (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
+  (add-hook 'js2-mode 'rainbow-delimiters-mode)
+  (add-hook 'python-mode-hook 'rainbow-delimiters-mode))
+(set-face-foreground 'rainbow-delimiters-depth-1-face "SlateBlue2")
+(set-face-foreground 'rainbow-delimiters-depth-2-face "DarkOliveGreen2")
+(set-face-foreground 'rainbow-delimiters-depth-3-face "CornflowerBlue")
+(set-face-foreground 'rainbow-delimiters-depth-4-face "khaki2")
+(set-face-foreground 'rainbow-delimiters-depth-4-face "PaleGreen2")
+(set-face-foreground 'rainbow-delimiters-depth-5-face "DarkSlateGray2")
+(set-face-foreground 'rainbow-delimiters-depth-6-face "LightSalmon2")
+(set-face-foreground 'rainbow-delimiters-depth-7-face "magenta2")
+(set-face-foreground 'rainbow-delimiters-depth-8-face "IndianRed4")
+(set-face-foreground 'rainbow-delimiters-depth-9-face "DeepPink3")
 
 ;; カーソル位置のフェースを調べる関数
 (defun describe-face-at-point ()
