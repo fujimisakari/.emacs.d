@@ -19,8 +19,8 @@
 (bind-key "<f6>" 'id-manager)                                ; id-managerの起動
 
 ;; C-
-(bind-key "C-;" 'helm-mini)                                  ; helmの起動
-(bind-key "C-'" 'ace-jump-word-mode)                         ; 単語でace-jump
+(bind-key* "C-'" 'helm-mini)                                 ; helmの起動
+(bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-," 'er/expand-region)                           ; 拡張リジョン選択
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
@@ -39,27 +39,27 @@
 (bind-key "C-M-<right>" 'elscreen-swap-next)                 ; タブの配置位置ずらし(右)
 (bind-key "C-M-<left>" 'elscreen-swap-previous)              ; タブの配置位置ずらし(左)
 (bind-key "C-M-<tab>" 'untabif)                              ; TAB削除
-(bind-key "C-M-;" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
-(bind-key "C-M-r" 'recenter-top-bottom)                      ; 現在の行の位置調整
-(bind-key "C-M-'" 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
-(bind-key "C-M-," 'er/contract-region)                       ; 拡張リジョン選択(戻す)
+(bind-key "C-M-;" 'recenter-top-bottom)                      ; 現在の行の位置調整
+(bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
+(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
 
 ;; M-
+(bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
 (bind-key "M-x" 'helm-M-x)                                   ; helmでM-x
 (bind-key "M-y" 'helm-show-kill-ring)                        ; 過去のkill-ringの内容を取り出す
 (bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
 (bind-key "M-g" 'goto-line)                                  ; M-g で指定行へジャンプ
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
-(bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
 (bind-key "M-<right>" 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
 (bind-key "M-<left>" 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
 (bind-key "M-[" 'bm-previous)                                ; bm-goto 前へ移動
 (bind-key "M-]" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
-(bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
+;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
+(bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 
@@ -85,9 +85,8 @@
 (bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
 (bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
-;; (bind-key "C-l C-;" 'text-translator-all-by-auto-selection)  ; Webで翻訳
-(bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
+(bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
 (bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
 (bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; 英辞郎で翻訳
 ;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
@@ -97,9 +96,6 @@
 
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
-
-;; python-mode
-(bind-key "C-M-a" 'gh-sh-file-toggle python-mode-map)        ; ghとshのディレクトリを切り替える
 
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
@@ -112,7 +108,6 @@
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
 (bind-key "C-;" nil web-mode-map)
 (bind-key "C-M-'" 'sp-fp-file-toggle web-mode-map)
-(bind-key "C-M-a" 'gh-sh-file-toggle web-mode-map)
 
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map) ; markdown-headerの一覧表示
