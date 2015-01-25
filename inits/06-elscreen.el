@@ -42,7 +42,7 @@
 
 ;; elscreen用バッファ削除
 (defvar elscreen-ignore-buffer-list
- '("*scratch*" "*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*vc-" "*Minibuf-" "*Messages" "*WL:Message"))
+ '("*scratch*" "*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*Echo" "*vc-" "*Minibuf-" "*Messages" "*WL:Message"))
 (defun kill-buffer-for-elscreen ()
   "バッファを削除時の次のバッファは直近で開いてたバッファを選択するようにする"
   (interactive)
