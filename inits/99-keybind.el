@@ -107,7 +107,7 @@
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
 (bind-key "C-;" nil web-mode-map)
-(bind-key "C-M-'" 'sp-fp-file-toggle web-mode-map)
+(bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
 
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map) ; markdown-headerの一覧表示
@@ -136,8 +136,7 @@
     (local-set-key (kbd "C-f") 'dired-find-file)                     ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-M-m") 'dired-up-directory)                ; 上位ディレクトリへ
     (local-set-key (kbd "C-t") 'other-window-or-split)               ; ウィンドウを切り替える
-    (local-set-key (kbd "C-M-'") 'dired-sp-fp-directory-toggle)      ; spとfpのディレクトリを切り替える
-    (local-set-key (kbd "C-M-a") 'dired-gh-sh-directory-toggle)      ; ghとshのディレクトリを切り替える
+    (local-set-key (kbd "C-c '") 'dired-sp-fp-directory-toggle)      ; spとfpのディレクトリを切り替える
     (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)  ; gree staticディレクトリへ切り替える
     (local-set-key (kbd "C-c m") 'dired-move-mbge-static-directory)  ; mbge staticディレクトリへ切り替える
     (local-set-key (kbd "C-c d") 'dired-move-dgame-static-directory) ; dgame staticディレクトリへ切り替える
