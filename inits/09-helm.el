@@ -56,9 +56,10 @@
  '(helm-source-header
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo"))))
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
- '(helm-ff-symlink ((t (:foreground "cyan" :background nil))))
- '(helm-buffer-directory ((t (:foreground "dodgerblue" :background nil))))
- '(helm-ff-directory ((t (:foreground "dodgerblue" :background nil))))
+ '(helm-ff-symlink ((t (:foreground "orange" :background nil))))
+ '(helm-buffer-file ((t (:foreground "OliveDrab2" :background nil))))
+ '(helm-buffer-directory ((t (:foreground "dodger blue" :background nil))))
+ '(helm-ff-directory ((t (:foreground "dodger blue" :background nil))))
  '(helm-candidate-number ((t (:foreground nil :background nil)))))
 
 (set-face-foreground 'helm-match "white")
