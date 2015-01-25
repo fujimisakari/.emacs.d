@@ -151,6 +151,11 @@
     (local-set-key (kbd "/") 'dired-ex-isearch)                      ; Diredのパス移動
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
 
+;; objc-mode
+(bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
+(bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
+(bind-key (kbd "C-c '") 'ff-find-other-file objc-mode-map)
+
 ;; auto-complete-mode
 (bind-key "<tab>" 'auto-complete ac-mode-map)
 (bind-key "C-n" 'ac-next ac-menu-map)

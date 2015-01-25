@@ -4,33 +4,32 @@
 ;;                               objc-mode設定                                ;;
 ;;;--------------------------------------------------------------------------;;;
 
+;;; TODO
+;; - リアルタイムsytleチェック
+;; - gtags
+
 ;; 基本設定
 (add-hook 'objc-mode-hook
           '(lambda()
              (skk-mode t)
              (setq c-basic-offset 4)
              (setq tab-width 4)
-             (setq indent-tabs-mode nil)
-             (push 'ac-source-company-xcode ac-sources)
-             ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
-             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                 (flymake-mode t))
-             ))
+             (setq indent-tabs-mode nil)))
 
 ;; .hファイルをobjc-modeで開く
 (add-to-list 'magic-mode-alist
              `(,(lambda ()
                   (and (string= (file-name-extension buffer-file-name) "h")
-                       (re-search-forward "@\\<interface\\>" 
+                       (re-search-forward "@\\<interface\\>"
                                           magic-mode-regexp-match-limit t)))
                . objc-mode))
 
-;; Frameworkの.hファイルへジャンプ設定
+;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
 (setq cc-search-directories '("." "../include" "/usr/include" "/usr/local/include/*"
                               "/System/Library/Frameworks" "/Library/Frameworks"))
 (defadvice ff-get-file-name (around ff-get-file-name-framework
-                                    (search-dirs 
-                                     fname-stub 
+                                    (search-dirs
+                                     fname-stub
                                      &optional suffix-list))
   "Search for Mac framework headers as well as POSIX headers."
   (or
@@ -47,19 +46,28 @@
 (require 'find-file) ;; for the "cc-other-file-alist" variable
 (nconc (cadr (assoc "\\.h\\'" cc-other-file-alist)) '(".m" ".mm"))
 
-;; ac-company で company-xcode を有効にしてXCodeを利用した補完をする
-(require 'ac-company)
-(ac-company-define-source ac-source-company-xcode company-xcode)
-(setq ac-modes (append ac-modes '(objc-mode)))
-(add-hook 'objc-mode-hook
-          (lambda ()
-            (push 'ac-source-company-xcode ac-sources)))
+;; コード整形できるようにする
+(require 'clang-format)
 
-;; 文法チェック
+;; .hと.mを左右に並べて開く
+(defun open-header-and-method-file ()
+  (interactive)
+  (other-window-or-split)
+  (ff-find-other-file))
+
+;; quickrunにclangでの実行環境を追加
+(add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
+(quickrun-add-command "objc/clang"
+                      '((:command . "clang")
+                        (:exec    . ("%c -fobjc-arc -framework Foundation %s -o %e" "%e"))
+                        (:remove  . ("%e")))
+                      :default "objc")
+
+;; flymakeで文法チェック
 (defvar xcode:sdkpath "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer")
 (defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator.sdk"))
 (defvar flymake-objc-compiler (executable-find "clang"))
-(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fno-color-diagnostics" "-fobjc-arc" "-fblocks" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-isysroot" xcode:sdk))
+(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-isysroot" xcode:sdk))
 (defvar flymake-last-position nil)
 (defcustom flymake-objc-compile-options '("-I.")
   "Compile option for objc check."
@@ -99,28 +107,54 @@
        '("\\(.+\\):\\([0-9]+\\):\\([0-9]+\\): \\(.+\\)" 1 2 3 4)
        flymake-err-line-patterns))
 
-;; ;; (add-hook 'objc-mode-hook
-;; ;;          (lambda ()
-;; ;;            (push '("\\.m$" flymake-simple-make-init) flymake-allowed-file-name-masks)
-;; ;;            (push '("\\.h$" flymake-simple-make-init) flymake-allowed-file-name-masks)
-;; ;;            ;; (define-key objc-mode-map "\C-cd" 'flymake-display-err-minibuf)))
-;; ;;            (flymake-mode t)
+;; 拡張子 m と h に対して flymake を有効にする設定
+(add-hook 'objc-mode-hook
+          (lambda ()
+            (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
+            (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
+            ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
+            (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
+                (flymake-mode t))))
+
+;; objc で etags からの補完を可能にする
+(require 'etags-table)
+(add-to-list 'etags-table-alist
+             '("\\.[mh]$" "~/.emacs.d/share/tags/objc.TAGS"))
+
+;; auto-complete に etags の内容を認識させるための変数
+;; 以下の例だと3文字以上打たないと補完候補にならないように設定してあります。requires の次の数字で指定します
+(defvar ac-source-etags
+  '((candidates . (lambda ()
+                    (all-completions ac-target (tags-completion-table))))
+    (candidate-face . ac-candidate-face)
+    (selection-face . ac-selection-face)
+    (requires . 3))
+  "etags をソースにする")
+
+;; etags-tableでTAGSのpathが取れなかったので再定義
+(defun etags-table-build-table-list (filename)
+  "Build tags table list based on a filename"
+  (let (tables)
+    ;; Go through mapping alist
+    (mapc (lambda (mapping)
+            (let ((key (car mapping))
+                  (tag-files (cdr mapping)))
+              (when (string-match key filename)
+                (mapc (lambda (tag-file)
+                        (add-to-list 'tables tag-file t))
+                      tag-files))))
+          etags-table-alist)
+
+    ;; Return result or the original list
+    (setq etags-table-last-table-list
+          (or tables tags-table-list etags-table-last-table-list))))
+
+;; ac-company で company-xcode を有効にしてXCodeを利用した補完をする
+(require 'ac-company)
+(ac-company-define-source ac-source-company-xcode company-xcode)
+(setq ac-modes (append ac-modes '(objc-mode)))
 
 (add-hook 'objc-mode-hook
-         (lambda ()
-           (ad-activate 'flymake-post-syntax-check)
-           ;; 拡張子 m と h に対して flymake を有効にする設定 flymake-mode t の前に書く必要があります
-           (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
-           (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
-           (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-               (flymake-mode t))))
-
-;; (defadvice flymake-mode (before post-command-stuff activate compile)
-;;   "エラー行にカーソルが当ったら自動的にエラーが minibuffer に表示されるように
-;; post command hook に機能追加"
-;;   (set (make-local-variable 'post-command-hook)
-;;        (add-hook 'post-command-hook 'flymake-display-err-minibuffer)))
-
-;; ;; 自動的な表示に不都合がある場合は以下を設定してください
-;; ;; post-command-hook は anything.el の動作に影響する場合があります
-;; (define-key global-map (kbd "C-c d") 'flymake-display-err-minibuffer)
+          (lambda ()
+            (push 'ac-source-company-xcode ac-sources)
+            (push 'ac-source-etags ac-sources)))
