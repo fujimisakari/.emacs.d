@@ -112,21 +112,18 @@ static char * arrow_right[] = {
                                     (propertize " " 'face 'mode-line-color-2)
                                     (propertize " " 'display arrow-right-2)))
                     (when (and (boundp 'which-func-mode) which-func-mode)
-                                       '(which-func-mode ("" which-func-format)))
+                      '(which-func-mode ("" which-func-format)))
 
                     ;; Justify right by filling with spaces to right fringe - 16
                     ;; (16 should be computed rahter than hardcoded)
-                    '(:eval (propertize " " 'display '((space :align-to (- right-fringe 40)))))
+                    '(:eval (propertize " " 'display '((space :align-to (- right-fringe 34)))))
 
                     '(:eval (concat (propertize " " 'display arrow-left-2)
                                     (propertize "[" 'face 'mode-line-color-2)
                                     (propertize (nyan-create) 'face 'mode-line-color-2)
                                     (propertize "]" 'face 'mode-line-color-2)))
                     '(:eval (concat (propertize " " 'display arrow-left-1)
-                                    (propertize "%4l:%2c " 'face 'mode-line-color-1)
-                                    (propertize "(" 'face 'mode-line-color-1)
-                                    (propertize (number-to-string (point)) 'face 'mode-line-color-1)
-                                    (propertize ") " 'face 'mode-line-color-1)))))
+                                    (propertize "%4l:%2c  " 'face 'mode-line-color-1)))))
 
 (make-face 'mode-line-color-1)
 (set-face-attribute 'mode-line-color-1 nil
