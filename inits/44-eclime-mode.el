@@ -17,7 +17,7 @@
 (custom-set-variables
   '(eclim-eclipse-dirs '("/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse"))
   '(eclim-executable "/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse/eclim")
-  '(eclimd-default-workspace "~/Dropbox/dev/my/workspace"))
+  '(eclimd-default-workspace "~/Dropbox/dev/java_workspace"))
 
 ;; コード補完(auto-complete)
 (require 'ac-emacs-eclim-source)

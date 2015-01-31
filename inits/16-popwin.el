@@ -35,6 +35,7 @@
 
 ;; eclim
 (push '("*compilation*") popwin:special-display-config)
+(push '("*eclim: problems*") popwin:special-display-config)
 
 ;; M-!
 (push "*Shell Command Output*" popwin:special-display-config)

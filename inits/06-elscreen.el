@@ -13,7 +13,7 @@
 (if window-system
     (define-key elscreen-map (kbd "C-z") 'iconify-or-deiconify-frame)
   (define-key elscreen-map (kbd "C-z") 'suspend-emacs))
-(setq elscreen-display-tab 15)                ; tabの幅(6以上でないとダメ)
+(setq elscreen-display-tab 12)                ; tabの幅(6以上でないとダメ)
 (setq elscreen-tab-display-kill-screen nil)   ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
@@ -30,19 +30,21 @@
 (defadvice elscreen-toggle (around elscreen-create-automatically activate)
   (elscreen-create-automatically ad-do-it))
 
-;; 起動時に自動で10個スクリーンを立ち上げる
+;; 起動時に自動で9個スクリーンを立ち上げる
 (defun create-maxscreen ()
-  "8-elscreen-create"
+  "9-elscreen-create"
   (let (( counter 0))
-    (while (< counter 7)
+    (while (< counter 9)
       (elscreen-create)
-      (setq counter(1+ counter)))))
+      (setq counter(1+ counter))))
+  (elscreen-next))
 (create-maxscreen)
-(elscreen-next)
 
 ;; elscreen用バッファ削除
 (defvar elscreen-ignore-buffer-list
- '("*scratch*" "*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*Echo" "*vc-" "*Minibuf-" "*Messages" "*WL:Message"))
+ '("*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*Echo" "*vc-" "*Minibuf-"
+   "*Messages" "*WL:Message" "Folder" "*Org Agenda*" "inbox.org" "daily-projects.org"))
+
 (defun kill-buffer-for-elscreen ()
   "バッファを削除時の次のバッファは直近で開いてたバッファを選択するようにする"
   (interactive)
@@ -142,3 +144,28 @@
     (if active-file-name
         (file-name-directory active-file-name)
       current-dir)))
+
+;; screenを定位置に設定する
+(setq elscreen-custom-screen-alist
+      '((0 . ":home")
+        (1 . "Folder")
+        (2 . "*Org Agenda*")
+        (3 . "inbox.org")
+        (4 . "daily-projects.org")
+        (5 . "*scratch*")
+        (6 . "*scratch*")
+        (7 . "*scratch*")
+        (8 . "*scratch*")
+        (9 . "*scratch*")))
+
+(defun elscreen-set-custom-screen ()
+  (interactive)
+  (let ((screen-list (sort (elscreen-get-screen-list) '<))
+        (current-screen (elscreen-get-current-screen)))
+    (mapc (lambda (alist)
+            (let ((screen-num (car alist))
+                  (buffer-name (cdr alist)))
+              (elscreen-goto (nth screen-num screen-list))
+              (switch-to-buffer buffer-name))) elscreen-custom-screen-alist)
+    (elscreen-goto current-screen))
+  (message "set coustom screen done."))

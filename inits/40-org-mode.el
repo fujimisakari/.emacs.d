@@ -80,3 +80,24 @@
 
 (set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
 (set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
+
+;;;; org習慣仕事術
+;; 時刻の記録をagendaに表示させる
+(setq org-agenda-start-with-log-mode t)
+
+;; inbox.orgのサンプルにあわせ、今日から30日分の予定を表示させる
+(setq org-agenda-span 30)
+
+;; org-agendaで扱うorgファイルたち
+(setq org-agenda-files '("~/org/inbox.org" "~/org/daily-projects.org"))
+
+;; C-c a aでagendaを起動する
+;; agendaには、習慣・スケジュール・TODOを表示させる
+(setq org-agenda-custom-commands
+      '(("a" "Agenda and all TODO's"
+         ((tags "project-CLOCK=>\"<today>\"|repeatable") (agenda "") (alltodo)))))
+
+;;; <f6>で直接org習慣仕事術用agendaを起動させる
+(defun org-agenda-default ()
+  (interactive)
+  (org-agenda nil "a"))

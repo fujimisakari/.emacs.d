@@ -7,7 +7,7 @@
 (require 'bind-key)
 
 ;; key-chord
-(key-chord-define-global "qp" 'describe-bindings)            ; キーバインド設定の参照
+(key-chord-define-global "qp" 'helm-descbinds)               ; キーバインド設定の参照
 (key-chord-define-global "ui" 'skk-mode)                     ; skk-modeを有効
 (key-chord-define-global "kl" 'view-mode)                    ; view-modeを有効
 
@@ -79,6 +79,7 @@
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (bind-key "C-l R" 'anzu-query-replace)                       ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
+(bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'highlight-symbol-at-point)             ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
@@ -154,7 +155,9 @@
 ;; objc-mode
 (bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
 (bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
-(bind-key (kbd "C-c '") 'ff-find-other-file objc-mode-map)
+
+;; cc-mode
+(bind-key (kbd "C-c '") 'ff-find-other-file c-mode-base-map)
 
 ;; auto-complete-mode
 (bind-key "<tab>" 'auto-complete ac-mode-map)
