@@ -13,10 +13,10 @@
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
-(bind-key "<f3>" 'mo-git-blame-current)                      ; git-blame表示
-(bind-key "<f4>" 'magit-status)                              ; git statusを表示
-(bind-key "<f5>" 'wl)                                        ; wanderlustの起動
-(bind-key "<f6>" 'id-manager)                                ; id-managerの起動
+(bind-key "<f2>" 'org-agenda-default)                        ; org-agendaを起動
+(bind-key "<f3>" 'twit)                                      ; twiterlingを起動
+(bind-key "<f4>" 'wl)                                        ; wanderlustの起動
+(bind-key "<f5>" 'id-manager)                                ; id-managerの起動
 
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
