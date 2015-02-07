@@ -47,7 +47,7 @@
 ;; TODOリストを作成する
 (setq org-use-fast-todo-selection t)
 (setq org-todo-keywords
-      '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "SOMEDAY(d)" "EVENT(e)" "|" "DONE(x)" "CANCEL(c)")))
+      '((sequence "TODO(t)" "SCHEDULE(s)" "WAITING(w)" "SOMEDAY(d)" "EVENT(e)" "|" "DONE(x)" "CANCEL(c)")))
 
 (setq org-log-done 'tilme)                    ; DONEの時刻を記録する
 (setq org-agenda-files (list org-directory))  ; 予定表に使うorgファイルのリスト
