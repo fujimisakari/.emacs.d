@@ -32,6 +32,7 @@
 (push '("*quickrun*") popwin:special-display-config)
 (push '("*help*") popwin:special-display-config)
 (push '("*hatena-keyword*") popwin:special-display-config)
+(push '("*eww*") popwin:special-display-config)
 
 ;; eclim
 (push '("*compilation*") popwin:special-display-config)
