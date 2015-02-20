@@ -1,6 +1,6 @@
 ;;; helm-xcdoc.el --- GNU GLOBAL helm interface  -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015 by Syohei YOSHIDA
+;; Copyright (C) 2015 by Ryo Fujimoto
 
 ;; Author: Ryo Fujimoto <fujimisakri@gmail.com>
 ;; URL: https://github.com/fujimisakari/emacs-helm-xcdoc
@@ -49,91 +49,158 @@
 
 ;;; Code:
 
-(require 'cl-lib)
 (require 'helm)
 (require 'helm-utils)
-(require 'thingatpt)
 
 (defgroup helm-xcdoc nil
   "GNU GLOBAL for helm"
   :group 'helm)
+
+(defcustom helm-xcdoc-command-path nil
+  ""
+  :group 'helm-xcdoc)
+
+(defcustom helm-xcdoc-command-option nil
+  "Command line option of `ag'. This is appended after `helm-ag-base-command'"
+  :type 'string
+  :group 'helm-xcdoc)
 
 (defcustom helm-xcdoc-document-path nil
   "please set docset full path like:
 \"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset\""
   :group 'helm-xcdoc)
 
-(defcustom helm-xcdoc-document-path nil
-  ""
+(defcustom helm-xcdoc-maximum-candidates 100
+  "Maximum number of helm candidates"
+  :type 'integer
   :group 'helm-xcdoc)
 
-(defun helm-xcdoc--docsetutil-command ()
-  helm-xcdoc-command-path)
+(defcustom helm-xcdoc-log-level -1
+  "Logging level, only messages with level lower or equal will be logged.
+-1 = NONE, 0 = ERROR, 1 = WARNING, 2 = INFO, 3 = DEBUG"
+  :type 'integer
+  :group 'helm-xcdoc)
 
-(defun* helm-xcdoc--search-command (query docset)
-  (format "%s search -query %s %s"
-          (helm-xcdoc--docsetutil-command)
-          (shell-quote-argument query)
-          docset))
+(defvar helm-xcdoc--query nil)
+(defvar helm-xcdoc--use-otherwin nil)
 
-(defun* helm-xcdoc--excecute-search (&key query docset (call-shell-command-fn 'shell-command-to-string))
-  "call shell command like:
-\"/Developer/usr/bin/docsetutil search -query  'View'  /Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset\""
-  (funcall call-shell-command-fn
-           (helm-xcdoc--search-command query docset)))
+(defconst helm-xcdoc--buffer "*helm xcdoc*")
+
+(defun helm-xcdoc-log (level text &rest args)
+  "Log a message at level LEVEL.
+If LEVEL is higher than `helm-xcdoc-log', the message is
+ignored.  Otherwise, it is printed using `message'.
+TEXT is a format control string, and the remaining arguments ARGS
+are the string substitutions (see `format')."
+  (if (<= level helm-xcdoc-log-level)
+      (let* ((msg (apply 'format text args)))
+        (message "%s" msg))))
+
+(defun helm-xcdoc--set-start-at (&rest _)
+  (goto-char (point-min))
+  (re-search-forward helm-xcdoc--query nil t))
+(advice-add 'eww-render :after 'helm-xcdoc--set-start-at)
+
+(defun helm-xcdoc--construct-command (query docset)
+  (unless (executable-find helm-xcdoc-command-path)
+    (error "'docsetutil' is not installed."))
+  (unless (file-directory-p helm-xcdoc-document-path)
+    (error "Document Directory not found"))
+  (let ((cmds (list helm-xcdoc-command-path)))
+    (setq cmds (append cmds (list "search -query" query)))
+    (when helm-xcdoc-command-option
+      (setq cmds (append cmds (list helm-xcdoc-command-option))))
+    (setq cmds (append cmds (list helm-xcdoc-document-path)))
+    (mapconcat 'identity cmds " ")))
+
+(defun helm-xcdoc--excecute-search (query docset)
+  (let ((cmd (helm-xcdoc--construct-command query docset))
+        (call-shell-command-fn 'shell-command-to-string))
+    (helm-xcdoc-log 3 "shell command: %s" cmd)
+    (funcall call-shell-command-fn cmd)))
+
+(defun helm-xcdoc--remove-hash (s)
+  (replace-regexp-in-string (rx "#//" (* not-newline)) "" s))
+
+(defun helm-xcdoc--construct-candidates-from-command-res (res)
+  (let ((path-list (split-string res "\n")))
+    (setq path-list (remove-if-not (lambda (s) (string-match ".*\\.html.*" s)) path-list))
+    (setq path-list (mapcar (lambda (s) (car (last (split-string s " "))))
+                      (mapcar 'helm-xcdoc--remove-hash path-list)))
+    (sort (delete-dups path-list) 'string<)))
 
 (defun helm-xcdoc--catdir (s1 s2)
   (let ((s1 (replace-regexp-in-string (rx "/" eol) "" s1))
         (s2 (replace-regexp-in-string (rx bol "/") "" s2)))
     (concat s1 "/" s2)))
 
-(defun helm-xcdoc--build-candidates-from-command-res (res)
-  (let* ((los (split-string res "\n"))
-         (los (remove-if-not (lambda (s) (string-match ".*\\.html.*" s)) los)))
-    (mapcar (lambda (s) (car (last (split-string s " ")))) los)))
-
-(defun helm-xcdoc--remove-hash (s)
-  (replace-regexp-in-string (rx "#//" (* not-newline)) "" s))
-
-;; (helm-xcdoc-extract-html "1.000 documentation/UIKit/Reference/UIView_Class/index.html")
-;; (helm-xcdoc-extract-html "Objective-C/cl/-/UIView   documentation/UIKit/Reference/UIView_Class/UIView/UIView.html#//apple_ref/occ/cl/UIView")
-(defun helm-xcdoc--extract-html (line)
+(defun helm-xcdoc--extract-html (file-path)
   (let ((get-html-path (lambda (docpath html-return-search)
                          (helm-xcdoc--catdir (helm-xcdoc--catdir docpath "Contents/Resources/Documents/") html-return-search))))
-    (cond
-     ((string-match (rx (group (+ (any alnum "/" "_")) ".html" (* (any alnum "/" "#" "_"))))
-                    line)
-      (helm-xcdoc--remove-hash
-       (funcall get-html-path (expand-file-name helm-xcdoc-document-path) (match-string 1 line))))
-     (t
-      (error "cant find text like URL!!")))))
+    (funcall get-html-path (expand-file-name helm-xcdoc-document-path) file-path)))
 
-;;(w3m-browse-url (helm-xcdoc-extract-html" Objective-C/cl/-/UIView   documentation/UIKit/Reference/UIView_Class/UIView/UIView.html#//apple_ref/occ/cl/UIView"))
-(defun helm-xcdoc--open-eww (url &optional new-session)
-   (eww-open-file (helm-xcdoc--extract-html url)))
+(defun helm-xcdoc--open-eww (file-path)
+  (if helm-xcdoc--use-otherwin
+      (let (buf current-buffer)
+        (eww-open-file (helm-xcdoc--extract-html file-path))
+        (switch-to-buffer buf)
+        (pop-to-buffer "*eww*"))
+    (eww-open-file (helm-xcdoc--extract-html file-path))))
+
+(defun helm-xcdoc--open-eww-other-window (file-path)
+  (let ((helm-xcdoc--use-otherwin t))
+    (helm-xcdoc--open-eww file-path)))
 
 (defun helm-xcdoc--search-init ()
-  (with-current-buffer (helm-candidate-buffer 'global)
-    (dolist (row (helm-xcdoc--build-candidates-from-command-res
-                  (helm-xcdoc--excecute-search
-                   :query "UITableView"
-                   :docset helm-xcdoc-document-path)))
-      (insert row)
-      (insert "\n"))))
+  (let ((buf-coding buffer-file-coding-system))
+    (with-current-buffer (helm-candidate-buffer 'global)
+      (let ((coding-system-for-read buf-coding)
+            (coding-system-for-write buf-coding))
+        (mapcar (lambda (row)
+                  (insert (concat row "\n")))
+                (helm-xcdoc--construct-candidates-from-command-res
+                 (helm-xcdoc--excecute-search helm-xcdoc--query helm-xcdoc-document-path)))
+        (if (zerop (length (buffer-string)))
+            (error "No output: '%s'" helm-xcdoc--query))))))
+
+(defvar helm-xcdoc--open-eww-action
+  '(("Open eww" . helm-xcdoc--open-eww)
+    ("Open eww other window" . helm-xcdoc--open-eww-other-window)))
 
 (defvar helm-source-xcdoc-search
-  (helm-build-in-buffer-source "Jump to definitions"
+  (helm-build-in-buffer-source "Xcode Document List"
     :init 'helm-xcdoc--search-init
-    :candidate-number-limit 50
-    ;; :real-to-display 'helm-gtags--candidate-transformer
-    ;; :persistent-action 'helm-gtags--persistent-action
-    ;; :fuzzy-match helm-gtags-fuzzy-match
-    :action 'helm-xcdoc--open-eww))
+    :candidate-number-limit helm-xcdoc-maximum-candidates
+    :action helm-xcdoc--open-eww-action))
 
-(defun helm-xcdoc-search ()
-  "Jump to definition"
-  (interactive)
-  (helm :sources '(helm-source-xcdoc-search) :buffer "*helm-xcdoc*"))
+(defun helm-xcdoc--search-prepare (srcs query &optional otherwin)
+  (let ((symbol-name-at-cursor (thing-at-point 'symbol)))
+    (if (and (string= query "") (not symbol-name-at-cursor))
+        (error "Input is empty!!"))
+    (if (string= query "")
+        (setq helm-xcdoc--query symbol-name-at-cursor)
+      (setq helm-xcdoc--query query))
+    (setq helm-xcdoc--use-otherwin otherwin)
+    (helm-xcdoc-log 3 "helm-xcdoc--query %s" helm-xcdoc--query)
+    (helm :sources srcs :buffer helm-xcdoc--buffer)))
+
+(defun helm-xcdoc--prompt ()
+  (let ((symbol-name-at-cursor (thing-at-point 'symbol)))
+    (if symbol-name-at-cursor
+        (read-string (format "Search word(default \"%s\"): " symbol-name-at-cursor))
+      (read-string "Search word: "))))
+
+;;;###autoload
+(defun helm-xcdoc-search (query)
+  "search document"
+  (interactive (list (helm-xcdoc--prompt)))
+  (helm-xcdoc--search-prepare '(helm-source-xcdoc-search) query))
+
+;;;###autoload
+(defun helm-xcdoc-search-other-window (query)
+  "search document other-window"
+  (interactive (list (helm-xcdoc--prompt)))
+  (helm-xcdoc--search-prepare '(helm-source-xcdoc-search) query t))
 
 (provide 'helm-xcdoc)
 

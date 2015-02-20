@@ -155,6 +155,7 @@
 ;; objc-mode
 (bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
 (bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
+(bind-key (kbd "C-c d") 'helm-xcdoc-search-other-window objc-mode-map)
 
 ;; cc-mode
 (bind-key (kbd "C-c '") 'ff-find-other-file c-mode-base-map)

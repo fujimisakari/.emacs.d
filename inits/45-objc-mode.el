@@ -160,5 +160,5 @@
             (push 'ac-source-etags ac-sources)))
 
 (require 'helm-xcdoc)
-(setq xcdoc:command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-(setq xcdoc:document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
+(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
