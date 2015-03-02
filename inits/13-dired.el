@@ -99,6 +99,16 @@
     (other-window-or-split)
     (dired default-directory))
 
+;; ファイルなら別バッファで、ディレクトリなら同じバッファで開く
+(defun dired-open-in-accordance-with-situation ()
+  (interactive)
+  (let ((file (dired-get-filename)))
+    (if (file-directory-p file)
+        (dired-find-alternate-file)
+      (dired-find-file))))
+;; dired-find-alternate-file の有効化
+(put 'dired-find-alternate-file 'disabled nil)
+
 ;; subtreeの背景は無色にする
 (require 'dired-subtree)
 (set-face-background 'dired-subtree-depth-1-face nil)

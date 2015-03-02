@@ -134,22 +134,22 @@
 ;; dired-mode
 (add-hook 'dired-mode-hook
   (lambda ()
-    (local-set-key (kbd "C-f") 'dired-find-file)                     ; ディレクトリ, ファイルを展開
-    (local-set-key (kbd "C-M-m") 'dired-up-directory)                ; 上位ディレクトリへ
-    (local-set-key (kbd "C-t") 'other-window-or-split)               ; ウィンドウを切り替える
-    (local-set-key (kbd "C-c '") 'dired-sp-fp-directory-toggle)      ; spとfpのディレクトリを切り替える
-    (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)  ; gree staticディレクトリへ切り替える
-    (local-set-key (kbd "C-c m") 'dired-move-mbge-static-directory)  ; mbge staticディレクトリへ切り替える
-    (local-set-key (kbd "C-c d") 'dired-move-dgame-static-directory) ; dgame staticディレクトリへ切り替える
-    (local-set-key (kbd "C-c a") 'dired-move-application-directory)  ; アプリケーションディレクトリへ切り替える
-    (local-set-key (kbd "C-c t") 'dired-move-template-directory)     ; テンプレートディレクトリへ切り替える
+    (local-set-key (kbd "C-f") 'dired-open-in-accordance-with-situation) ; ディレクトリ, ファイルを展開
+    (local-set-key (kbd "C-M-m") 'dired-up-directory)                    ; 上位ディレクトリへ
+    (local-set-key (kbd "C-t") 'other-window-or-split)                   ; ウィンドウを切り替える
+    (local-set-key (kbd "C-c '") 'dired-sp-fp-directory-toggle)          ; spとfpのディレクトリを切り替える
+    (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)      ; gree staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c m") 'dired-move-mbge-static-directory)      ; mbge staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c d") 'dired-move-dgame-static-directory)     ; dgame staticディレクトリへ切り替える
+    (local-set-key (kbd "C-c a") 'dired-move-application-directory)      ; アプリケーションディレクトリへ切り替える
+    (local-set-key (kbd "C-c t") 'dired-move-template-directory)         ; テンプレートディレクトリへ切り替える
 
-    (local-set-key (kbd "i") 'dired-subtree-insert)                  ; ディレクトリをサブツリーで開く
-    (local-set-key (kbd "C-l i") 'dired-subtree-remove)              ; サブツリーを閉じる
-    (local-set-key (kbd "C-l u") 'dired-subtree-up)                  ; サブツリーの上層に移動
-    (local-set-key (kbd "C-l d") 'dired-subtree-down)                ; サブツリーの下層に移動
+    (local-set-key (kbd "i") 'dired-subtree-insert)                      ; ディレクトリをサブツリーで開く
+    (local-set-key (kbd "C-l i") 'dired-subtree-remove)                  ; サブツリーを閉じる
+    (local-set-key (kbd "C-l u") 'dired-subtree-up)                      ; サブツリーの上層に移動
+    (local-set-key (kbd "C-l d") 'dired-subtree-down)                    ; サブツリーの下層に移動
 
-    (local-set-key (kbd "/") 'dired-ex-isearch)                      ; Diredのパス移動
+    (local-set-key (kbd "/") 'dired-ex-isearch)                          ; Diredのパス移動
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
 
 ;; objc-mode
