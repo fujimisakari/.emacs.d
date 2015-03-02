@@ -1,12 +1,11 @@
-;;; helm-xcdoc.el --- GNU GLOBAL helm interface  -*- lexical-binding: t; -*-
+;;; helm-xcdoc.el --- Search Xcode Document by docsetutil and eww with helm interface  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2015 by Ryo Fujimoto
 
 ;; Author: Ryo Fujimoto <fujimisakri@gmail.com>
 ;; URL: https://github.com/fujimisakari/emacs-helm-xcdoc
-;; Version: 20150127.802
-;; X-Original-Version: 1.4.6
-;; Package-Requires: ((helm "1.5.6") (cl-lib "0.5"))
+;; Version: 0.0.1
+;; Package-Requires: ((helm "1.5") (emacs "24.4"))
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -22,29 +21,23 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-
-;; `helm-xcdoc.el' is a `helm' interface of GNU Global.
-;; `helm-gtags.el' is not compatible `anything-gtags.el', but `helm-gtags.el'
-;; is designed for fast search.
-
 ;;
+;; `helm-xcdoc.el' will be able to view on a eww by searching in the Xcode Document at helm interface
+;;
+
 ;; To use this package, add these lines to your init.el or .emacs file:
 ;;
-;;     (require 'helm-xcdoc)
-;;     (setq xcdoc:document-path "/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset")
-;;     (setq xcdoc:open-w3m-other-buffer t) ;if you like
+;;  (require 'helm-xcdoc)
+;;  (setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+;;  (setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
 ;;
-;;     to change docset-path
-;;     M-x xcdoc:set-document-path
+;; ----------------------------------------------------------------
 ;;
-;;     to search document
-;;     M-x xcdoc:search
+;; to search document
+;; M-x helm-xcdoc-search
 ;;
-;;     to search document symbol at point
-;;     M-x xcdoc:search-at-point
-;;
-;;     to select query then search
-;;     M-x xcdoc:ask-search
+;; to search document with other-window
+;; M-x helm-xcdoc-search-other-window
 ;;
 
 ;;; Code:
@@ -53,21 +46,21 @@
 (require 'helm-utils)
 
 (defgroup helm-xcdoc nil
-  "GNU GLOBAL for helm"
+  "Search Xcode Document with helm interface"
   :group 'helm)
 
 (defcustom helm-xcdoc-command-path nil
-  ""
+  "command path of `docsletutil'"
   :group 'helm-xcdoc)
 
 (defcustom helm-xcdoc-command-option nil
-  "Command line option of `ag'. This is appended after `helm-ag-base-command'"
+  "Command line option of `docsetutil'. This is appended after `helm-xcdoc-command-path'"
   :type 'string
   :group 'helm-xcdoc)
 
 (defcustom helm-xcdoc-document-path nil
-  "please set docset full path like:
-\"/Developer/Platforms/iPhoneOS.platform/Developer/Documentation/DocSets/com.apple.adc.documentation.AppleiPhone3_1.iPhoneLibrary.docset\""
+  "please set docset path like:
+\"~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset\""
   :group 'helm-xcdoc)
 
 (defcustom helm-xcdoc-maximum-candidates 100
@@ -81,8 +74,10 @@
   :type 'integer
   :group 'helm-xcdoc)
 
-(defvar helm-xcdoc--query nil)
-(defvar helm-xcdoc--use-otherwin nil)
+(defvar helm-xcdoc--query nil
+  "query word")
+(defvar helm-xcdoc--use-otherwin nil
+  "split window flag")
 
 (defconst helm-xcdoc--buffer "*helm xcdoc*")
 
@@ -101,7 +96,7 @@ are the string substitutions (see `format')."
   (re-search-forward helm-xcdoc--query nil t))
 (advice-add 'eww-render :after 'helm-xcdoc--set-start-at)
 
-(defun helm-xcdoc--construct-command (query docset)
+(defun helm-xcdoc--construct-command (query _docset)
   (unless (executable-find helm-xcdoc-command-path)
     (error "'docsetutil' is not installed."))
   (unless (file-directory-p helm-xcdoc-document-path)
@@ -124,7 +119,7 @@ are the string substitutions (see `format')."
 
 (defun helm-xcdoc--construct-candidates-from-command-res (res)
   (let ((path-list (split-string res "\n")))
-    (setq path-list (remove-if-not (lambda (s) (string-match ".*\\.html.*" s)) path-list))
+    (setq path-list (cl-remove-if-not (lambda (s) (string-match ".*\\.html.*" s)) path-list))
     (setq path-list (mapcar (lambda (s) (car (last (split-string s " "))))
                       (mapcar 'helm-xcdoc--remove-hash path-list)))
     (sort (delete-dups path-list) 'string<)))
@@ -141,7 +136,7 @@ are the string substitutions (see `format')."
 
 (defun helm-xcdoc--open-eww (file-path)
   (if helm-xcdoc--use-otherwin
-      (let (buf current-buffer)
+      (let ((buf (current-buffer)))
         (eww-open-file (helm-xcdoc--extract-html file-path))
         (switch-to-buffer buf)
         (pop-to-buffer "*eww*"))
@@ -156,10 +151,10 @@ are the string substitutions (see `format')."
     (with-current-buffer (helm-candidate-buffer 'global)
       (let ((coding-system-for-read buf-coding)
             (coding-system-for-write buf-coding))
-        (mapcar (lambda (row)
-                  (insert (concat row "\n")))
-                (helm-xcdoc--construct-candidates-from-command-res
-                 (helm-xcdoc--excecute-search helm-xcdoc--query helm-xcdoc-document-path)))
+        (mapc (lambda (row)
+                (insert (concat row "\n")))
+              (helm-xcdoc--construct-candidates-from-command-res
+               (helm-xcdoc--excecute-search helm-xcdoc--query helm-xcdoc-document-path)))
         (if (zerop (length (buffer-string)))
             (error "No output: '%s'" helm-xcdoc--query))))))
 
@@ -192,21 +187,16 @@ are the string substitutions (see `format')."
 
 ;;;###autoload
 (defun helm-xcdoc-search (query)
-  "search document"
+  "search xcode document"
   (interactive (list (helm-xcdoc--prompt)))
   (helm-xcdoc--search-prepare '(helm-source-xcdoc-search) query))
 
 ;;;###autoload
 (defun helm-xcdoc-search-other-window (query)
-  "search document other-window"
+  "search xcode document with other-window"
   (interactive (list (helm-xcdoc--prompt)))
   (helm-xcdoc--search-prepare '(helm-source-xcdoc-search) query t))
 
 (provide 'helm-xcdoc)
-
-;; Local Variables:
-;; coding: utf-8
-;; indent-tabs-mode: nil
-;; End:
 
 ;;; helm-xcdoc.el ends here
