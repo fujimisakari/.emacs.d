@@ -4,11 +4,7 @@
 ;;                               objc-mode設定                                ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;;; TODO
-;; - リアルタイムsytleチェック
-;; - gtags
-
-;; 基本設定
+;;; 基本設定
 (add-hook 'objc-mode-hook
           '(lambda()
              (skk-mode t)
@@ -24,9 +20,12 @@
                                           magic-mode-regexp-match-limit t)))
                . objc-mode))
 
+;; 共通パス
+(defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")
+
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
-(setq cc-search-directories '("." "../include" "/usr/include" "/usr/local/include/*"
-                              "/System/Library/Frameworks" "/Library/Frameworks"))
+(setq xcode:frameworks (concat xcode:sdk "/System/Library/Frameworks"))
+(setq cc-search-directories (list xcode:frameworks))
 (defadvice ff-get-file-name (around ff-get-file-name-framework
                                     (search-dirs
                                      fname-stub
@@ -46,16 +45,22 @@
 (require 'find-file) ;; for the "cc-other-file-alist" variable
 (nconc (cadr (assoc "\\.h\\'" cc-other-file-alist)) '(".m" ".mm"))
 
-;; コード整形できるようにする
-(require 'clang-format)
-
 ;; .hと.mを左右に並べて開く
 (defun open-header-and-method-file ()
   (interactive)
   (other-window-or-split)
   (ff-find-other-file))
 
-;; quickrunにclangでの実行環境を追加
+;;; コード補完
+(require 'emaXcode)
+(setq xcode:foundation (concat xcode:sdk "/System/Library/Frameworks/Foundation.framework/Headers/"))
+(setq xcode:uikit (concat xcode:sdk "/System/Library/Frameworks/UIKit.framework/Headers/"))
+(setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
+
+;;; コード整形できるようにする
+(require 'clang-format)
+
+;;; quickrunにclangでの実行環境を追加
 (add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
 (quickrun-add-command "objc/clang"
                       '((:command . "clang")
@@ -63,9 +68,12 @@
                         (:remove  . ("%e")))
                       :default "objc")
 
-;; flymakeで文法チェック
-(defvar xcode:sdkpath "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer")
-(defvar xcode:sdk (concat xcode:sdkpath "/SDKs/iPhoneSimulator.sdk"))
+;;; Xcodeのドキュメント検索
+(require 'helm-xcdoc)
+(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
+
+;;; flymakeで文法チェック
 (defvar flymake-objc-compiler (executable-find "clang"))
 (defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-isysroot" xcode:sdk))
 (defvar flymake-last-position nil)
@@ -115,50 +123,3 @@
             ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                 (flymake-mode t))))
-
-;; objc で etags からの補完を可能にする
-(require 'etags-table)
-(add-to-list 'etags-table-alist
-             '("\\.[mh]$" "~/.emacs.d/share/tags/objc.TAGS"))
-
-;; auto-complete に etags の内容を認識させるための変数
-;; 以下の例だと3文字以上打たないと補完候補にならないように設定してあります。requires の次の数字で指定します
-(defvar ac-source-etags
-  '((candidates . (lambda ()
-                    (all-completions ac-target (tags-completion-table))))
-    (candidate-face . ac-candidate-face)
-    (selection-face . ac-selection-face)
-    (requires . 3))
-  "etags をソースにする")
-
-;; etags-tableでTAGSのpathが取れなかったので再定義
-(defun etags-table-build-table-list (filename)
-  "Build tags table list based on a filename"
-  (let (tables)
-    ;; Go through mapping alist
-    (mapc (lambda (mapping)
-            (let ((key (car mapping))
-                  (tag-files (cdr mapping)))
-              (when (string-match key filename)
-                (mapc (lambda (tag-file)
-                        (add-to-list 'tables tag-file t))
-                      tag-files))))
-          etags-table-alist)
-
-    ;; Return result or the original list
-    (setq etags-table-last-table-list
-          (or tables tags-table-list etags-table-last-table-list))))
-
-;; ac-company で company-xcode を有効にしてXCodeを利用した補完をする
-(require 'ac-company)
-(ac-company-define-source ac-source-company-xcode company-xcode)
-(setq ac-modes (append ac-modes '(objc-mode)))
-
-(add-hook 'objc-mode-hook
-          (lambda ()
-            (push 'ac-source-company-xcode ac-sources)
-            (push 'ac-source-etags ac-sources)))
-
-(require 'helm-xcdoc)
-(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
