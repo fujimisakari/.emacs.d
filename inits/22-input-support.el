@@ -80,37 +80,6 @@
 (require 'smooth-scroll)
 (smooth-scroll-mode t)
 
-;; auto-complete-mode: 高機能補完+ポップアップメニュー
-(require 'auto-complete-config)
-(ac-config-default)
-(setq ac-auto-start nil)
-(setq ac-delay 0.8)
-(add-to-list 'ac-dictionary-directories "~/.emacs.d/share/ac-dict")
-;; ソートファイルの保存場所を変更
-(setq ac-comphist-file
-      (expand-file-name (concat user-emacs-directory "/cache/ac-comphist.dat")))
-;; クイックヘルプを利用しない
-(setq ac-use-quick-help nil)
-;; 補完メニューのときだけキーバインドを有効にする
-(setq ac-use-menu-map t)
-;; 色の設定
-(set-face-foreground 'ac-candidate-face "#fff")
-(set-face-background 'ac-candidate-face "#444")
-(set-face-foreground 'ac-selection-face "#fff")
-(set-face-background 'ac-selection-face "SlateBlue2")
-(set-face-foreground 'ac-gtags-candidate-face "#fff")
-(set-face-background 'ac-gtags-candidate-face "#444")
-(set-face-foreground 'ac-gtags-selection-face "#fff")
-(set-face-background 'ac-gtags-selection-face "SlateBlue2")
-
-(set-face-foreground 'popup-menu-face "#fff")
-(set-face-background 'popup-menu-face "#444")
-(set-face-foreground 'popup-menu-selection-face "#fff")
-(set-face-background 'popup-menu-selection-face "SlateBlue2")
-
-(set-face-background 'popup-scroll-bar-foreground-face "#ccc")
-(set-face-background 'popup-scroll-bar-background-face "#444")
-
 ;; 略語展開・補完を行うコマンドをまとめる
 ;; (setq hippie-expand-try-functions-list
 ;;   '(try-complete-file-name-partially                       ; ファイル名の一部
