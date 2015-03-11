@@ -25,7 +25,7 @@
 
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
 (setq xcode:frameworks (concat xcode:sdk "/System/Library/Frameworks"))
-(setq cc-search-directories (list xcode:frameworks))
+(setq cc-search-directories (list "." xcode:frameworks))
 (defadvice ff-get-file-name (around ff-get-file-name-framework
                                     (search-dirs
                                      fname-stub
