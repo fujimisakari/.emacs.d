@@ -13,8 +13,8 @@
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
-(bind-key "<f2>" 'org-agenda-default)                        ; org-agendaを起動
-(bind-key "<f3>" 'twit)                                      ; twiterlingを起動
+(bind-key "<f2>" 'twit)                                      ; twiterlingを起動
+(bind-key "<f3>" 'org-agenda-default)                        ; org-agendaを起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
 (bind-key "<f5>" 'id-manager)                                ; id-managerの起動
 
