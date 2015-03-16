@@ -22,6 +22,7 @@
 
 ;; 共通パス
 (defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")
+(defvar xcode:framework (concat xcode:sdk "/System/Library/Frameworks"))
 
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
 (setq xcode:frameworks (concat xcode:sdk "/System/Library/Frameworks"))
@@ -53,8 +54,8 @@
 
 ;;; コード補完
 (require 'emaXcode)
-(setq xcode:foundation (concat xcode:sdk "/System/Library/Frameworks/Foundation.framework/Headers/"))
-(setq xcode:uikit (concat xcode:sdk "/System/Library/Frameworks/UIKit.framework/Headers/"))
+(setq xcode:foundation (concat xcode:framework "/Foundation.framework/Headers/"))
+(setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
 (setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
 
 ;;; コード整形できるようにする
@@ -75,7 +76,7 @@
 
 ;;; flymakeで文法チェック
 (defvar flymake-objc-compiler (executable-find "clang"))
-(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-isysroot" xcode:sdk))
+(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-include" "./*.pch" "-F" xcode:framework "-isysroot" xcode:sdk))
 (defvar flymake-last-position nil)
 (defcustom flymake-objc-compile-options '("-I.")
   "Compile option for objc check."
