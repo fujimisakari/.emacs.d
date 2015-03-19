@@ -76,20 +76,26 @@
 
 ;;; flymakeで文法チェック
 (defvar flymake-objc-compiler (executable-find "clang"))
-(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-include" "./*.pch" "-F" xcode:framework "-isysroot" xcode:sdk))
+(defvar flymake-objc-compile-default-options (list "-D__IPHONE_OS_VERSION_MIN_REQUIRED=30200" "-fsyntax-only" "-fobjc-arc" "-fblocks" "-fno-color-diagnostics" "-Wreturn-type" "-Wparentheses" "-Wswitch" "-Wno-unused-parameter" "-Wunused-variable" "-Wunused-value" "-F" xcode:framework "-isysroot" xcode:sdk))
 (defvar flymake-last-position nil)
 (defcustom flymake-objc-compile-options '("-I.")
   "Compile option for objc check."
   :group 'flymake
   :type '(repeat (string)))
 
+(require 'em-glob)
 (defun flymake-objc-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace))
          (local-file (file-relative-name
                       temp-file
-                      (file-name-directory buffer-file-name))))
-    (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file)))))
+                      (file-name-directory buffer-file-name)))
+         (search-target-file (concat (file-name-directory buffer-file-name) "*.pch"))
+         (pch-file (eshell-extended-glob search-target-file)))
+    (if (listp pch-file)
+        (let ((pch-include-option (list "-include" (car pch-file))))
+          (list flymake-objc-compiler (append flymake-objc-compile-default-options pch-include-option flymake-objc-compile-options (list local-file))))
+      (list flymake-objc-compiler (append flymake-objc-compile-default-options flymake-objc-compile-options (list local-file))))))
 
 (defun flymake-display-err-minibuffer ()
   (interactive)
