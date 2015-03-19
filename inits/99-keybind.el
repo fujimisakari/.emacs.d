@@ -59,7 +59,8 @@
 (bind-key "M-]" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
 ;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
-(bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
+;; (bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
+(bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 

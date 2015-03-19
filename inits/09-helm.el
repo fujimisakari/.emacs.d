@@ -45,6 +45,12 @@
 ;; gtags設定
 (require 'helm-gtags)
 
+;; helm-swoop
+(setq helm-swoop-split-with-multiple-windows t)
+(setq helm-swoop-split-direction 'split-window-horizontally)
+(setq helm-swoop-speed-or-color t)
+(setq helm-swoop-use-line-number-face nil)
+
 ;; customize
 (custom-set-variables
  '(helm-gtags-path-style 'relative)
