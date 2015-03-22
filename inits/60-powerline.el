@@ -84,7 +84,6 @@ static char * arrow_right[] = {
     (when path
       (setq output (concat ".../" output)))
     output))
-(buffer-name)
 
 (defun buffer-name-for-mode-line ()
   (if (eq major-mode 'dired-mode)
