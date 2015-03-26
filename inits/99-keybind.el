@@ -114,7 +114,7 @@
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map) ; markdown-headerの一覧表示
 
-;; ELSscreen固有のキーバインド
+;; ELScreen固有のキーバインド
 (bind-key "c" 'create-newscreen elscreen-map)
 (bind-key "C-a" 'create-maxscreen elscreen-map)
 (bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map)
