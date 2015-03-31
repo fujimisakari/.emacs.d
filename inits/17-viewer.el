@@ -4,7 +4,7 @@
 ;;                                 Viewer設定                                 ;;
 ;;;--------------------------------------------------------------------------;;;
 
-;; (require 'viewer)
+(require 'viewer)
 ;; C-x C-r は view-modeでファイルを開く
 (setq view-read-only t)
 
@@ -24,24 +24,24 @@
 ;; (viewer-change-modeline-color-setup)
 
 ;;; view-modeのキーバインド
-(defvar pager-keybind
-      `(;; vi/w3w感覚の操作
-        ("h" . backward-word)
-        ("j" . next-line)
-        ("k" . previous-line)
-        ("l" . forward-word)
-        ("J" . View-scroll-line-forward)
-        ("K" . View-scroll-line-backward)
-        ;; less感覚の操作
-        ("/" . anything-c-moccur-occur-by-moccur)
-        ("G" . View-goto-line-last)
-        ("b" . View-scroll-page-backward)
-        ("f" . View-scroll-page-forward)
-        ;; bm.el の設定
-        ("m" . bm-toggle)
-        ("[" . bm-previous)
-        ("]" . bm-next)
-        ))
+;; (defvar pager-keybind
+;;       `(;; vi/w3w感覚の操作
+;;         ("h" . backward-word)
+;;         ("j" . next-line)
+;;         ("k" . previous-line)
+;;         ("l" . forward-word)
+;;         ("J" . View-scroll-line-forward)
+;;         ("K" . View-scroll-line-backward)
+;;         ;; less感覚の操作
+;;         ("/" . anything-c-moccur-occur-by-moccur)
+;;         ("G" . View-goto-line-last)
+;;         ("b" . View-scroll-page-backward)
+;;         ("f" . View-scroll-page-forward)
+;;         ;; bm.el の設定
+;;         ("m" . bm-toggle)
+;;         ("[" . bm-previous)
+;;         ("]" . bm-next)
+;;         ))
 (defun define-many-keys (keymap key-table &optional includes)
   (let (key cmd)
     (dolist (key-cmd key-table)
@@ -51,10 +51,10 @@
         (define-key keymap key cmd))))
   keymap)
 
-(defun view-mode-hook0 ()
-  (define-many-keys view-mode-map pager-keybind)
-  (skk-mode 0))
-(add-hook 'view-mode-hook 'view-mode-hook0)
+;; (defun view-mode-hook0 ()
+;;   (define-many-keys view-mode-map pager-keybind)
+;;   (skk-mode 0))
+;; (add-hook 'view-mode-hook 'view-mode-hook0)
 
 (defun View-goto-line-last (&optional line)
   "goto last line"

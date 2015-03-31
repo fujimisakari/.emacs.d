@@ -177,3 +177,14 @@
 ;; eclim-mode
 (bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)
 (bind-key "C-<tab>" 'help-at-pt-display eclim-mode-map)
+
+;; view-mode
+(bind-keys :map view-mode-map
+           ("h" . backward-char)
+           ("l" . forward-char)
+           ("j" . next-line)
+           ("k" . previous-line)
+           ("p" . scroll-down)
+           ("n" . scroll-up)
+           ("w" . forward-word)
+           ("e" . backward-word))
