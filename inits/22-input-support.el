@@ -49,7 +49,7 @@
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
 (define-sequential-command seq-home
-  back-to-indentation beginning-of-line beginning-of-buffer seq-return)
+  beginning-of-line back-to-indentation beginning-of-buffer seq-return)
 
 ;; 現在行を最上部にする
 (defun line-to-top-of-window ()
