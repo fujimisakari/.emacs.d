@@ -50,6 +50,9 @@
 (setq helm-swoop-split-direction 'split-window-horizontally)
 (setq helm-swoop-speed-or-color t)
 (setq helm-swoop-use-line-number-face nil)
+(custom-set-faces
+ '(helm-swoop-target-line-face ((t (:background "SlateBlue3" :foreground "white"))))
+ '(helm-swoop-target-line-block-face ((t (:background "SlateBlue3" :foreground "white")))))
 
 ;; customize
 (custom-set-variables
@@ -60,7 +63,7 @@
 ;; カラー設定
 (custom-set-faces
  '(helm-source-header
-   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo"))))
+   ((t (:foreground "white" :background "SlateBlue" :weight bold :height 1.5 :family "Menlo"))))
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
  '(helm-ff-symlink ((t (:foreground "orange" :background nil))))
  '(helm-buffer-file ((t (:foreground "OliveDrab2" :background nil))))
