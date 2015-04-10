@@ -22,20 +22,9 @@
   (setq mac-pass-option-to-system nil))
 
 ;; コマンドパスの追加
-(dolist (dir (list "/usr/local/bin"))
-  (when (and (file-exists-p dir) (not (member dir exec-path)))
-    (setenv "PATH" (concat dir ":" (getenv "PATH")))
-    (setq exec-path (append (list dir) exec-path))))
-(cond ((eq my-os-type 'linux)
-       (add-to-list 'exec-path "~/.emacs.d/bin")
-       (setenv "PATH"
-               (concat '"~/.emacs.d/bin:" (getenv "PATH")))
-       )
-      ((eq my-os-type 'mac)
-       (add-to-list 'exec-path "/usr/local/bin")
-       (setenv "PATH"
-               (concat '"/usr/local/bin:" (getenv "PATH")))
-       ))
+(load-file (expand-file-name "~/.emacs.d/shellenv.el"))
+(dolist (path (reverse (split-string (getenv "PATH") ":")))
+  (add-to-list 'exec-path path))
 
 ;; 日本語環境設定
 (set-language-environment "Japanese")
