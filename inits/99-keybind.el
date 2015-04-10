@@ -99,6 +99,9 @@
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
+;; python-mode
+(bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
+
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
 

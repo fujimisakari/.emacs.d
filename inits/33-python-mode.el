@@ -18,6 +18,9 @@
 (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pyflakes-init))
 
+;; code formatter
+(require 'py-autopep8)
+
 (semantic-mode 1)
 (add-hook 'python-mode-hook
           '(lambda ()
