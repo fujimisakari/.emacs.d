@@ -4,7 +4,7 @@
 ;;                               powerline設定                                ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(require 'powerline)
+;; (require 'powerline)
 
 (defun arrow-right-xpm (color1 color2)
   "Return an XPM right arrow string representing."
