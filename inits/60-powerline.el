@@ -90,7 +90,8 @@ static char * arrow_right[] = {
     ""
     (buffer-name)))
 
-(defconst color1 "OliveDrab2")
+(defconst color0 "MediumSlateBlue")
+(defconst color1 "SlateBlue")
 (defconst color2 "#1d1d1d")
 (defconst color3 "gray40")
 (defconst color4 "gray15")
@@ -126,8 +127,8 @@ static char * arrow_right[] = {
 
 (make-face 'mode-line-color-1)
 (set-face-attribute 'mode-line-color-1 nil
-                    :foreground "gray10"
-                    :background color1)
+                    :foreground "white"
+                    :background color0)
 
 (make-face 'mode-line-color-2)
 (set-face-attribute 'mode-line-color-2 nil
