@@ -76,6 +76,7 @@
 
 ;;; flymakeで文法チェック
 (defvar flymake-objc-root-path (gethash "project-root-path" private-env-hash))
+(defvar flymake-objc-pch-path (gethash "project-pch-path" private-env-hash))
 (defvar flymake-objc-compiler "~/.emacs.d/bin/objc-flymake.py")
 (defvar flymake-objc-compile-options (list "--root-path" flymake-objc-root-path "--framework" xcode:framework "--sdk" xcode:sdk))
 
@@ -86,7 +87,7 @@
          (local-file (file-relative-name
                       temp-file
                       (file-name-directory buffer-file-name)))
-         (search-target-file (concat flymake-objc-root-path "/*.pch"))
+         (search-target-file (concat flymake-objc-pch-path "*.pch"))
          (pch-file (eshell-extended-glob search-target-file)))
     (if (listp pch-file)
         (let ((pch-include-option (list "--pch" (expand-file-name (car pch-file)))))
