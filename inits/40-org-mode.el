@@ -6,12 +6,16 @@
 
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))  ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
-(add-hook 'org-mode-hook 'turn-on-font-lock)            ; org-modeでの強調表示を有効にする
 (setq browse-url-browser-function 'browse-url-firefox)  ; リンクはemacs-w3mで開く
 (setq org-return-follows-link t)                        ; リンクはRETで開く
 (setq org-startup-truncated nil)                        ; org-mode開始時は折り返しするよう設定
 (setq org-startup-with-inline-images t)                 ; 画像をインライン表示
 (setq org-edit-src-content-indentation 0)               ; BEGIN_SRCブロック内をインデントをしない
+
+(add-hook 'org-mode-hook
+          '(lambda ()
+            (turn-on-font-lock)  ; org-modeでの強調表示を有効にする
+            (mode-init-with-skk)))
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")      ; 言語は日本語

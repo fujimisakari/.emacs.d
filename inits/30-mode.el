@@ -5,9 +5,13 @@
 ;;;--------------------------------------------------------------------------;;;
 
 (defun mode-init-func()
-  (skk-mode t)
+  (mode-init-with-skk)
   (setq indent-level 4)
   (c-toggle-hungry-state 1))
+
+(defun mode-init-with-skk ()
+  (skk-mode t)
+  (skk-latin-mode t))
 
 (require 'flymake)
 (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる

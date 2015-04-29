@@ -14,7 +14,7 @@
 ;; 画面上部に表示する場合は下の2行が必要
 ;; (delete (assoc 'which-func-mode mode-line-format) mode-line-format)
 ;; (setq-default header-line-format '(which-func-mode ("" which-func-format)))
-(set-face-foreground 'which-func "OliveDrab2")
+(set-face-foreground 'which-func "cyan")
 
 ;; 更新履歴を可視化する
 (require 'smeargle)

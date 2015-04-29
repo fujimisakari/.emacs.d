@@ -102,6 +102,19 @@
 ;; python-mode
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
 
+;; objc-mode
+(bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
+(bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
+(bind-key (kbd "C-c d") 'helm-xcdoc-search-other-window objc-mode-map)
+
+;; cc-mode
+(bind-key (kbd "C-c '") 'ff-find-other-file c-mode-base-map)
+
+;; go-mode
+(bind-key (kbd "C-c f") 'gofmt go-mode-map)
+(bind-key (kbd "C-c d") 'godoc go-mode-map)
+(bind-key (kbd "C-M-,") 'godef-jump go-mode-map)
+
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
 
@@ -155,14 +168,6 @@
 
     (local-set-key (kbd "/") 'dired-ex-isearch)                          ; Diredのパス移動
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
-
-;; objc-mode
-(bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
-(bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
-(bind-key (kbd "C-c d") 'helm-xcdoc-search-other-window objc-mode-map)
-
-;; cc-mode
-(bind-key (kbd "C-c '") 'ff-find-other-file c-mode-base-map)
 
 ;; auto-complete-mode
 (bind-key "<tab>" 'auto-complete ac-mode-map)

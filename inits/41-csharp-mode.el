@@ -24,6 +24,7 @@
              (c-set-offset 'arglist-close 0)
              ;; (hl-line-mode)
              (skk-mode)
+             (mode-init-with-skk)
              ;; (omnisharp-mode)
              (auto-complete-mode)
              (flymake-mode)
