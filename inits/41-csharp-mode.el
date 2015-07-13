@@ -4,10 +4,7 @@
 ;;                              csharp-mode設定                               ;;
 ;;;--------------------------------------------------------------------------;;;
 
-(require 'csharp-mode)
-;; (require 'omnisharp)
-(setq auto-mode-alist
-   (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
+(require 'omnisharp)
 
 ;; C#モードフック
 (add-hook 'csharp-mode-hook
@@ -25,27 +22,10 @@
              ;; (hl-line-mode)
              (skk-mode)
              (mode-init-with-skk)
-             ;; (omnisharp-mode)
-             (auto-complete-mode)
-             (flymake-mode)
-             )
-          )
+             (flycheck-mode 1)
+             (omnisharp-mode)))
 
-;; (eval-after-load 'company
-;;   '(add-to-list 'company-backends 'company-omnisharp))
-;; (define-key omnisharp-mode-map (kbd "TAB") 'omnisharp-auto-complete)
+(setq omnisharp-server-executable-path (expand-file-name "~/projects/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe"))
 
-;; Flymake
-(defun flymake-csharp-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name))))
-    (list "~/.emacs.d/bin/csharp-checker" (list local-file))))
-(add-to-list 'flymake-allowed-file-name-masks
-             '("\\.cs$" flymake-csharp-init))
-(add-to-list 'flymake-err-line-patterns
-             '("cs\(\\([0-9]+\\),\\([0-9]+\\)\)\: \\(error\\|warning\\) \\(.+\\)$" nil 1 2 4))
-(add-to-list 'flymake-err-line-patterns
-             '("LineNumber=\\([0-9]+\\) .* RuleId=\\(.+\\)</Violation" nil 1 1 2))
+(setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))
+(setq flycheck-idle-change-delay 2)

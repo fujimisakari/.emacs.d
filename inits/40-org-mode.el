@@ -13,8 +13,8 @@
 (setq org-edit-src-content-indentation 0)               ; BEGIN_SRCブロック内をインデントをしない
 
 (add-hook 'org-mode-hook
-          '(lambda ()
-            (turn-on-font-lock)  ; org-modeでの強調表示を有効にする
+          (lambda ()
+            (turn-on-font-lock)     ; org-modeでの強調表示を有効にする
             (mode-init-with-skk)))
 
 ;; エクスポート処理
@@ -68,19 +68,21 @@
 (setq org-src-fontify-natively t)
 
 (defface org-block-begin-line
-  '((t (:foreground "SlateBlue1" :background "gray0")))
+  '((t (:foreground "DimGray" :background "DarkSlateGray")))
   "Face used for the line delimiting the begin of source blocks.")
-(set-face-foreground 'org-block-begin-line "gray0")
+(set-face-foreground 'org-block-begin-line "DimGray")
+(set-face-background 'org-block-begin-line "gray18")
 
 (defface org-block-background
-  '((t (:background "gray0")))
+  '((t (:background "gray18")))
   "Face used for the source block background.")
-(set-face-background 'org-block-background "gray0")
+(set-face-background 'org-block-background "gray18")
 
 (defface org-block-end-line
-  '((t (:foreground "SlateBlue1" :background "gray0")))
+  '((t (:foreground "DimGray" :background "gray18")))
   "Face used for the line delimiting the end of source blocks.")
-(set-face-foreground 'org-block-end-line "gray0")
+(set-face-foreground 'org-block-end-line "DimGray")
+(set-face-background 'org-block-end-line "gray18")
 
 (set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
 (set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
@@ -140,3 +142,25 @@
                     (buffer-string)            ; *Org Agenda*バッファの内容を
                   (kill-this-buffer)))))       ; 挿入してからバッファを削除
     (insert "#+END_QUOTE\n\n")))
+
+
+;; 新しいorg-modeでCLOCKキーワードが特殊プロパティから
+;; 外されてしまったことでCLOCKと比較できなくなってしまった修正対応
+(unless (member "CLOCK" org-special-properties)
+  (defun org-get-CLOCK-property (&optional pom)
+  (org-with-wide-buffer
+   (org-with-point-at pom
+     (when (and (derived-mode-p 'org-mode)
+                (ignore-errors (org-back-to-heading t))
+                (search-forward org-clock-string
+                                (save-excursion (outline-next-heading) (point))
+                                t))
+       (skip-chars-forward " ")
+       (cons "CLOCK"  (buffer-substring-no-properties (point) (point-at-eol)))))))
+  (defadvice org-entry-properties (after with-CLOCK activate)
+    "special-propertyにCLOCKを復活させorg習慣仕事術を最新版orgで動かす"
+    (let ((it (org-get-CLOCK-property (ad-get-arg 0))))
+      (setq ad-return-value
+            (if it
+                (cons it ad-return-value)
+              ad-return-value)))))

@@ -78,9 +78,11 @@
 (bind-key "C-l f" 'helm-ag)                                  ; helm-ag検索
 (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
-(bind-key "C-l R" 'anzu-query-replace)                       ; 一括置換
+(bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
-(bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する
+(bind-key "C-l S" 'swap-window-positions)                    ; ウィンドウを入れ替える
+(bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
+(bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'highlight-symbol-at-point)             ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
@@ -99,8 +101,11 @@
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
-;; python-mode
+;; python-mode(jedi-mode)
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
+(bind-key "<tab>" 'jedi:complete jedi-mode-map)
+(bind-key "C-c ," 'jedi:key-goto-definition jedi-mode-map)
+(bind-key "C-c d" 'jedi:key-show-doc jedi-mode-map)
 
 ;; objc-mode
 (bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
@@ -113,7 +118,6 @@
 ;; go-mode
 (bind-key (kbd "C-c f") 'gofmt go-mode-map)
 (bind-key (kbd "C-c d") 'godoc go-mode-map)
-(bind-key (kbd "C-M-,") 'godef-jump go-mode-map)
 
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
@@ -121,6 +125,11 @@
 ;; perl-mode
 ;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完
 ;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
+
+;; omnisharp-mode
+(bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
+(bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
+(bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
 
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)

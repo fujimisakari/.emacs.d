@@ -29,6 +29,7 @@
 (delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) flymake-allowed-file-name-masks)
+(delete '("\\.cs\\'" flymake-simple-make-init) flymake-allowed-file-name-masks)
 
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)

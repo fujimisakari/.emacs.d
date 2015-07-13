@@ -33,8 +33,8 @@
 ;; 起動時に自動で9個スクリーンを立ち上げる
 (defun create-maxscreen ()
   "9-elscreen-create"
-  (let (( counter 0))
-    (while (< counter 9)
+  (let ((counter 0))
+    (while (< counter 8)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
@@ -155,17 +155,35 @@
         (5 . "*scratch*")
         (6 . "*scratch*")
         (7 . "*scratch*")
-        (8 . "*scratch*")
-        (9 . "*scratch*")))
+        (8 . "*scratch*")))
+
+(setq elscreen-default-screen-alist
+      '((0 . "*scratch*")
+        (1 . "*scratch*")
+        (2 . "*scratch*")
+        (3 . "*scratch*")
+        (4 . "*scratch*")
+        (5 . "*scratch*")
+        (6 . "*scratch*")
+        (7 . "*scratch*")
+        (8 . "*scratch*")))
 
 (defun elscreen-set-custom-screen ()
   (interactive)
+  (elscreen-set-screen elscreen-custom-screen-alist))
+
+(defun elscreen-set-default-screen ()
+  (interactive)
+  (elscreen-set-screen elscreen-default-screen-alist))
+
+(defun elscreen-set-screen (set-screen-alist)
   (let ((screen-list (sort (elscreen-get-screen-list) '<))
         (current-screen (elscreen-get-current-screen)))
     (mapc (lambda (alist)
             (let ((screen-num (car alist))
                   (buffer-name (cdr alist)))
               (elscreen-goto (nth screen-num screen-list))
-              (switch-to-buffer buffer-name))) elscreen-custom-screen-alist)
+              (switch-to-buffer buffer-name))) set-screen-alist)
     (elscreen-goto current-screen))
   (message "set coustom screen done."))
+

@@ -22,7 +22,7 @@
   (setq mac-pass-option-to-system nil))
 
 ;; コマンドパスの追加
-(load-file (expand-file-name "~/.emacs.d/shellenv.el"))
+(load-file (expand-file-name (format ".emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
 (dolist (path (reverse (split-string (getenv "PATH") ":")))
   (add-to-list 'exec-path path))
 
