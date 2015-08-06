@@ -104,8 +104,7 @@
 ;; python-mode(jedi-mode)
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
 (bind-key "<tab>" 'jedi:complete jedi-mode-map)
-(bind-key "C-c ," 'jedi:key-goto-definition jedi-mode-map)
-(bind-key "C-c d" 'jedi:key-show-doc jedi-mode-map)
+(bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
 
 ;; objc-mode
 (bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
@@ -130,6 +129,9 @@
 (bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
 (bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
 (bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
+(bind-key "C-c '" 'work-menu-scene-file-toggle omnisharp-mode-map)
+(bind-key "C-c m" 'work-open-menu-file omnisharp-mode-map)
+(bind-key "C-c s" 'work-open-scene-file omnisharp-mode-map)
 
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
