@@ -21,7 +21,7 @@
     (and ip
          (eq 0 (string-match "^10\\.0\\.8\\." ip)))))
 
-; ghとshのファイルを切り替える
+;; ghとshのファイルを切り替える
 (defun gh-sh-file-toggle ()
   (interactive)
   (let ((current-file (buffer-file-name))
@@ -33,7 +33,7 @@
     (unless (eq current-file tmp-file)
       (find-file tmp-file))))
 
-; ghとshのディレクトリを切り替える
+;; ghとshのディレクトリを切り替える
 (defun dired-gh-sh-directory-toggle ()
   (interactive)
   (let ((current-directory default-directory)
@@ -46,7 +46,7 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-; spとfpのファイルを切り替える
+;; spとfpのファイルを切り替える
 (defun sp-fp-file-toggle ()
   (interactive)
   (let ((current-file (buffer-file-name))
@@ -58,7 +58,7 @@
     (unless (eq current-file tmp-file)
       (find-file tmp-file))))
 
-; spとfpのディレクトリを切り替える
+;; spとfpのディレクトリを切り替える
 (defun dired-sp-fp-directory-toggle ()
   (interactive)
   (let ((current-directory default-directory)
@@ -73,7 +73,7 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-; gree staticディレクトリへ切り替える
+;; gree staticディレクトリへ切り替える
 (defun dired-move-gree-static-directory ()
   (interactive)
   (let ((current-directory default-directory)
@@ -85,7 +85,7 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-; mbge staticディレクトリへ切り替える
+;; mbge staticディレクトリへ切り替える
 (defun dired-move-mbge-static-directory ()
   (interactive)
   (let ((current-directory default-directory)
@@ -97,7 +97,7 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-; dgame staticディレクトリへ切り替える
+;; dgame staticディレクトリへ切り替える
 (defun dired-move-dgame-static-directory ()
   (interactive)
   (let ((current-directory default-directory)
@@ -109,12 +109,47 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-; アプリケーションディレクトリを開く
+;; アプリケーションディレクトリを開く
 (defun dired-move-application-directory ()
   (interactive)
   (dired "~/projects/genju-hime/application"))
 
-; テンプレートディレクトリを開く
+;; テンプレートディレクトリを開く
 (defun dired-move-template-directory ()
   (interactive)
   (dired "~/projects/genju-hime/application/website/templates/smartphone"))
+
+
+;; MenuとSceneのファイルを切り替える
+(defun work-menu-scene-file-toggle ()
+  (interactive)
+  (let ((current-file (buffer-file-name))
+        (tmp-file (buffer-file-name)))
+    (cond ((string-match "Menu.cs" current-file)
+           (setq tmp-file (replace-regexp-in-string "Menu.cs" "Scene.cs" tmp-file)))
+          ((string-match "Scene.cs" current-file)
+           (setq tmp-file (replace-regexp-in-string "Scene.cs" "Menu.cs" tmp-file))))
+    (unless (eq current-file tmp-file)
+      (find-file tmp-file))))
+
+;; Sceneファイルを開く
+(defun work-open-scene-file ()
+  (interactive)
+  (let ((current-file (buffer-file-name))
+        (tmp-file (buffer-file-name)))
+    (cond ((string-match "Menu.cs" current-file)
+           (setq tmp-file (replace-regexp-in-string "Menu.cs" "Scene.cs" tmp-file))))
+    (unless (eq current-file tmp-file)
+      (other-window-or-split)
+      (find-file tmp-file))))
+
+;; Menuファイルを開く
+(defun work-open-menu-file ()
+  (interactive)
+  (let ((current-file (buffer-file-name))
+        (tmp-file (buffer-file-name)))
+    (cond ((string-match "Scene.cs" current-file)
+           (setq tmp-file (replace-regexp-in-string "Scene.cs" "Menu.cs" tmp-file))))
+    (unless (eq current-file tmp-file)
+      (other-window-or-split)
+      (find-file tmp-file))))
