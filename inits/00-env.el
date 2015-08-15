@@ -96,3 +96,6 @@
 
 ;; フルスクリーン設定(24.3以降)
 (setq ns-use-native-fullscreen nil)
+
+;; Shell Command実行時にzsh_historyに履歴を残さないようにする
+(setq revert-buffer-insert-file-contents-function nil)
