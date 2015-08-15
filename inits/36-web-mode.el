@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 36-web-mode.el --- web-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                web-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'web-mode)
 
@@ -14,6 +14,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.html?$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.ejs?$"      . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css?$"      . web-mode))
 
 ;; 拡張子がhtmlの場合はdjangoテンプレートとみなす
 (add-to-list 'web-mode-engine-file-regexps '("django" . "\\.html\\'"))
@@ -59,3 +60,5 @@
 ;;              '("line \\([0-9]+\\) column \\([0-9]+\\) - \\(Warning\\|Error\\): \\(.*\\)"
 ;;                nil 1 2 4))
 ;; (add-hook 'html-mode-hook '(lambda () (flymake-mode t)))
+
+;;; 36-web-mode.el ends here

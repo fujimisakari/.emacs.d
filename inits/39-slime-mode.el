@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 39-slime-mode.el --- slime-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               slime-mode設定                               ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (when (require 'slime nil t)
 
@@ -20,3 +20,5 @@
   (require 'ac-slime)
   (add-hook 'slime-mode-hook 'set-up-slime-ac)
   (add-hook 'slime-repl-mode-hook 'set-up-slime-ac))
+
+;;; 39-slime-mode.el ends here

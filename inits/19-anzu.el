@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 19-anzu.el --- anzu-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               anzu-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'anzu)
 (global-anzu-mode +1)
@@ -15,3 +15,5 @@
  '(anzu-deactivate-region t)
  '(anzu-search-threshold 1000)
  '(anzu-replace-to-string-separator " => "))
+
+;;; 19-anzu.el ends her

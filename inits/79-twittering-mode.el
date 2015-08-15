@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 06-elscree.el --- twittering-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                            twittering-mode設定                             ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'twittering-mode)
 (setq twittering-username (gethash "twitter-user" private-env-hash))
@@ -24,3 +24,5 @@
 (add-to-list 'twittering-tinyurl-services-map
              (list (cons 'bitly (gethash "bitly-url" private-env-hash))))
 (setq twittering-tinyurl-service 'bitly)
+
+;;; 06-elscree.el ends here

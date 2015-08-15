@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 33-python-mode.el --- python-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              python-mode設定                               ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'python)
 
@@ -37,3 +37,5 @@
             (mode-init-func)
             (jedi:setup)
             (setq imenu-create-index-function #'python-imenu-create-index)))
+
+;;; 33-python-mode.el ends here

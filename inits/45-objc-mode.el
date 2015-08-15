@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 45-objc-mode.el --- objc-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               objc-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;;; 基本設定
 (add-hook 'objc-mode-hook
@@ -128,3 +128,5 @@
             ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                 (flymake-mode t))))
+
+;;; 45-objc-mode.el ends here

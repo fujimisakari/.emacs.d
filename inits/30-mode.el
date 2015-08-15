@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 30-mode.el --- モードの基本設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              モードの基本設定                              ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (defun mode-init-func()
   (mode-init-with-skk)
@@ -54,3 +54,5 @@
 (add-hook 'org-remember-mode-hook
           '(lambda()
              (skk-mode)))
+
+;;; 30-mode.el ends here

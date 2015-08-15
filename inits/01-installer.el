@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 01-installer.el --- installer設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               Installer設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; Emacs Lispインストーラーの設定
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/auto-install.el")
@@ -34,3 +34,5 @@
 ;; 自動バイトコンパイルを無効にするファイル名の正規表現
 (setq auto-async-byte-compile-exclude-files-regexp "\\(inits\\|main\\|junk\\|site-lisp\\)")
 (add-hook 'emacs-lisp-mode-hook 'enable-auto-async-byte-compile-mode)
+
+;;; 01-installer.el ends here

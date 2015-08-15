@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 27-git.el --- git設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  git設定                                   ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; git blame
 (require 'mo-git-blame)
@@ -68,3 +68,5 @@
 
 ;; リジョン選択をgithubで開く
 (require 'open-github-from-here)
+
+;;; 27-git.el ends here

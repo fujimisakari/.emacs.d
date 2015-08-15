@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 31-emacs-lisp-mode.el --- emacs-lisp-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                            emacs-lisp-mode設定                             ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 括弧の対応を取りながらS式を編集する
 ;; (require 'paredit)
@@ -22,5 +22,9 @@
 (setq eldoc-idle-delay 0.2)               ; すぐに表示したい
 (setq eldoc-minor-mode-string "")         ; モードラインにElDocと表示しない
 
+;; (add-hook 'emacs-lisp-mode-hook 'flycheck-mode)
+
 ;; リスト変数の内容を編集する(M-x edit-list)
 (require 'edit-list)
+
+;;; 31-emacs-lisp-mode.el ends here

@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 15-yasnippet.el --- yasnippet設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               yasnippet設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; (require 'yasnippet)
 ;; ;; ~/.emacs.d/にsnippetsというフォルダを作っておきましょう
@@ -15,3 +15,5 @@
 ;; ;; (setqだとtermなどで干渉問題ありでした)
 ;; ;; もちろんTAB以外でもOK 例えば "C-;"とか
 (custom-set-variables '(yas-trigger-key "TAB"))
+
+;;; 15-yasnippet.el ends here

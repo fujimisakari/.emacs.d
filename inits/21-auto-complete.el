@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 21-auto-complete.el --- auto-complete設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                             auto-complete設定                              ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (ac-config-default)
@@ -34,3 +34,5 @@
 
 (set-face-background 'popup-scroll-bar-foreground-face "#ccc")
 (set-face-background 'popup-scroll-bar-background-face "#444")
+
+;;; 21-auto-complete.el ends here

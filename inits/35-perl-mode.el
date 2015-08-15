@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 35-perl-mode.el --- perl-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               perl-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; perl-modeではなくcperl-modeを読み込むようにする
 (defalias 'perl-mode 'cperl-mode)
@@ -20,3 +20,5 @@
              (hs-minor-mode)
              (cperl-set-style "PerlStyle") ;
              (perlplus-setup)))
+
+;;; 35-perl-mode.el ends here

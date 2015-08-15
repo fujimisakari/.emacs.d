@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 77-navi2ch.el --- navi2ch設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                navi2ch設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'navi2ch)
 ;; レスを全て表示する
@@ -24,3 +24,5 @@
 (set-face-foreground 'navi2ch-article-header-contents-face "lime green")
 (set-face-foreground 'navi2ch-article-header-fusianasan-face "lime green")
 (set-face-foreground 'navi2ch-article-message-separator-face "magenta")
+
+;;; 77-navi2ch.el ends here

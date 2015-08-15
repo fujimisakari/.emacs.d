@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 11-diff.el --- Diff設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  Diff設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (setq diff-switches "-u")
 
@@ -40,3 +40,5 @@
   ;; diffの表示設定が上書きされてしまうのでハイライトを無効にする
   (set-face-attribute 'magit-item-highlight nil :inherit nil))
 (add-hook 'magit-mode-hook 'magit-setup-diff)
+
+;;; 11-diff.el ends here

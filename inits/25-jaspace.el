@@ -1,8 +1,9 @@
-;; -*- Emacs-lisp -*-
+;;; 25-jaspace.el --- jaspace設定 -*- lexical-binding: t; -*-
 
-;;;-----------------------------------------------------------------------------;;;
-;;             タブ, 全角スペース、改行直前の半角スペースを表示する              ;;
-;;;-----------------------------------------------------------------------------;;;
+;;; Commentary:
+;; タブ, 全角スペース、改行直前の半角スペースを表示する
+
+;;; Code:
 
 (when (require 'jaspace nil t)
   (when (boundp 'jaspace-modes)
@@ -56,3 +57,4 @@
 
 (set-face-foreground 'jaspace-highlight-eol-face "gray30")
 
+;;; 25-jaspace.el ends here

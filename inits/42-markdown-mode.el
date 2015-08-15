@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 42-markdown-mode.el --- markdown-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                             markdown-mode設定                              ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'markdown-mode)
 
@@ -11,3 +11,5 @@
   (interactive)
   (occur "^\\(#+\\|.*\n===+\\|.*\n\---+\\)")
   (other-window 1))
+
+;;; 42-markdown-mode.el ends here

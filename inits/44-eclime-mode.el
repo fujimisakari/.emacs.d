@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 44-eclime-mode.el --- eclim-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               eclim-mode設定                               ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'eclim)
 (require 'eclimd)
@@ -37,3 +37,5 @@
 (defun help-at-pt-display ()
   (interactive)
   (help-at-pt-maybe-display))
+
+;;; 44-eclime-mode.el ends here

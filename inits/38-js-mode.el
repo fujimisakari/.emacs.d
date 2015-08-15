@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 38-js-mode.el --- js2-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                js2-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; js2-mode
 (autoload 'js2-mode "js2-mode" nil t)
@@ -34,3 +34,4 @@
 (add-hook 'js-mode-hook'(lambda()
                           (mode-init-func)))
 
+;;; 38-js-mode.el ends here

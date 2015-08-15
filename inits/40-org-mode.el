@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 40-org-mode.el --- org-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              org-mode設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))  ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
@@ -164,3 +164,5 @@
             (if it
                 (cons it ad-return-value)
               ad-return-value)))))
+
+;;; 40-org-mode.el ends here

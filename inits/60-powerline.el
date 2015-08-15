@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 60-powerline.el --- powerline設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               powerline設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; (require 'powerline)
 
@@ -142,3 +142,5 @@ static char * arrow_right[] = {
 (set-face-attribute 'mode-line-inactive nil
                     :foreground "gray75"
                     :background color4)
+
+;;; 60-powerline.el ends here

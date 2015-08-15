@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 70-wanderlust.el --- Wanderlust設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               Wanderlust設定                               ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (autoload 'wl "wl" "Wanderlust" t)
 (autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
@@ -22,3 +22,5 @@
       'wl-draft-send
       'wl-draft-kill
       'mail-send-hook))
+
+;;; 70-wanderlust.el ends here

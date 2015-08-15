@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 08-anything.el --- anything設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              anything設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 基本設定
 (require 'anything-startup)
@@ -68,3 +68,5 @@
 (custom-set-faces
  '(anything-header
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))
+
+;;; 06-elscreen.el ends here

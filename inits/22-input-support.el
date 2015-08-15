@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 22-input-support.el --- 入力支援設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               入力支援設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (setq kill-whole-line t)            ; C-kは行末改行を削除しないが、改行までまとめて行カットする
 (setq next-screen-context-lines 1)  ; C-v/M-vで前のページの１行を残す
@@ -93,3 +93,5 @@
 ;;     try-complete-lisp-symbol-partially                     ; Lispシンボル名の一部
 ;;     try-complete-lisp-symbol                               ; Lispシンボル名の全体
 ;;    ))
+
+;;; 22-input-support.el ends here

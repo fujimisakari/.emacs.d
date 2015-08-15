@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 41-csharp-mode.el --- csharp-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              csharp-mode設定                               ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'omnisharp)
 
@@ -29,3 +29,5 @@
 
 (setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))
 (setq flycheck-idle-change-delay 2)
+
+;;; 41-csharp-mode.el ends here

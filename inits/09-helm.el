@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 09-helm.el --- helm設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  helm設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'helm-config)
 (require 'helm-ag)
@@ -73,3 +73,5 @@
 
 (set-face-foreground 'helm-match "white")
 (set-face-background 'helm-match "SlateBlue3")
+
+;;; 09-helm.el ends here

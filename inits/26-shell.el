@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 26-shell.el --- Shell設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 Shell設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; shell設定
 ;; zshを使う
@@ -135,3 +135,5 @@
 ;        ("M-r"     . term-send-reverse-search-history)
 ;        ("M-,"     . term-send-input)
 ;        ("M-."     . comint-dynamic-complete))))
+
+;;; 26-shell.el ends here

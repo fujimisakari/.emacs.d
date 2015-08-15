@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 13-dired.el --- Dired設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 Dired設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; face設定
 (set-face-foreground 'dired-directory "dodgerblue")   ; ディレクトリ
@@ -117,3 +117,5 @@
 (set-face-background 'dired-subtree-depth-4-face nil)
 (set-face-background 'dired-subtree-depth-5-face nil)
 (set-face-background 'dired-subtree-depth-6-face nil)
+
+;;; 13-dired.el ends here

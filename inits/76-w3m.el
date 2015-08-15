@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 76-w3m.el --- w3m設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  w3m設定                                   ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'w3m-load)
 (setq w3m-home-page "http://www.google.co.jp/")                             ; 起動時に開くページ
@@ -144,3 +144,5 @@
 ;;      ;; (cc:semaphore-release-all mime-display-image-semaphore)
 
 ;;      ))
+
+;;; 76-w3m.el ends here

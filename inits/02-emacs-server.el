@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 02-emacs-server.el --- Emacs Server設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              Emacs Server設定                              ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (server-start)
 
@@ -16,3 +16,5 @@
           (lambda()
             (delete-other-windows)
             (skk-mode)))
+
+;;; 02-emacs-server.el ends here

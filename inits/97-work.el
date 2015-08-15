@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 97-work.el --- Work設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  Work設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 会社と自宅の読み込みを切り分け 
 ;; 元ネタ(http://e-arrows.sakura.ne.jp/2010/12/emacs-anywhere.html)
@@ -153,3 +153,5 @@
     (unless (eq current-file tmp-file)
       (other-window-or-split)
       (find-file tmp-file))))
+
+;;; 97-work.el ends here

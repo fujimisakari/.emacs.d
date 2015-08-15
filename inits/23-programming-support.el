@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 23-programming-support.el --- プログラミング支援設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                           プログラミング支援設定                           ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; プログラムをインタラクティブに実行する
 (require 'quickrun)
@@ -41,3 +41,5 @@
 
 (require 'highlight-symbol)
 (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))
+
+;;; 23-programming-support.el ends here

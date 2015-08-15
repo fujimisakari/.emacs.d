@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 34-php-mode.el --- php-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                php-mode設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'php-mode)
 (require 'php-completion)
@@ -39,3 +39,5 @@
                             (make-variable-buffer-local 'ac-sources)
                             (add-to-list 'ac-sources 'ac-source-php-completion)
                             (auto-complete-mode t)))
+
+;;; 34-php-mode.el ends here

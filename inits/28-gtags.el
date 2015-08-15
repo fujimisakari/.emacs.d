@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 28-gtags.el --- gtags設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 gtags設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'gtags)
 
@@ -20,3 +20,5 @@
 ;;   "It opens gtags by other buffer"
 ;;   (interactive p)
 ;;   (helm-gtags-find-tag))
+
+;;; 28-gtags.el ends here

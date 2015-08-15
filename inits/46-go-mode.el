@@ -1,10 +1,10 @@
-;; -*- Emacs-lisp -*-
+;;; 46-go-mode.el --- go-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                go-mode設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
 
-;;; 基本設定
+;;; Code:
+
+;; 基本設定
 (require 'go-mode)
 (add-hook 'go-mode-hook
           '(lambda()
@@ -127,3 +127,5 @@
 ;;             ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
 ;;             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
 ;;                 (flymake-mode t))))
+
+;;; 46-go-mode.el ends here

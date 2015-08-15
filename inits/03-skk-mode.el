@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 03-skk-mode.el --- skk設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               SKK設定                                      ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 基本設定
 (require 'skk-autoloads)
@@ -224,3 +224,5 @@
      (list (concat "x" (number-to-string n))
            nil
            (cons (substring s n (1+ n)) (substring s n (1+ n)))))))
+
+;;; 03-skk-mode.el ends here

@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 62-insert-sequences.el --- 連番挿入 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  連番挿入                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 直前の行をコピーする
 (defun duplicate-this-line-forward (n)
@@ -34,3 +34,5 @@ FORMAT-STRING is like `format', but it can have multiple %-sequences."
                          (make-list (count-string-matches "%[^%]" format-string) i))
                   "\n")))
   (end-of-line))
+
+;;; 62-insert-sequences.el ends here

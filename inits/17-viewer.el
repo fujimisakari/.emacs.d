@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 17-viewer.el --- Viewer設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 Viewer設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'viewer)
 ;; C-x C-r は view-modeでファイルを開く
@@ -81,3 +81,5 @@
 
 ;; (do-not-exit-view-mode-unless-writable-advice view-mode-exit)
 ;; (do-not-exit-view-mode-unless-writable-advice view-mode-disable)
+
+;;; 17-viewer.el ends here

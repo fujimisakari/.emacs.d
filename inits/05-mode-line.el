@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 05-mode-line.el --- mode-line設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                               mode-line設定                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; モードライン設定
 (set-face-foreground 'mode-line "MediumPurple1")                     ; アクティブなモードラインの文字の色設定
@@ -35,3 +35,5 @@
 (nyan-mode 1)
 (nyan-start-animation)
 (setq nyan-bar-length 24)
+
+;;; 05-mode-line.el ends here

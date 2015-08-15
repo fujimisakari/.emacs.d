@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 24-search-replace.el --- 検索・置換設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                             検索・置換設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; moccur検索
 (when (require 'color-moccur nil t)
@@ -52,3 +52,5 @@
 ;; igrepに-Ou8オプションを付けると出力がUTF-8になる
 (igrep-define lgrep (igrep-use-zgrep nil)(igrep-regex-option "-n -Ou8"))
 (igrep-find-define lgrep (igrep-use-zgrep nil)(igrep-regex-option "-n -Ou8"))
+
+;;; 24-search-replace.el ends here

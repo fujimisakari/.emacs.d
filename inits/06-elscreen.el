@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 06-elscree.el --- ElScreen設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                              ElScreen設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; ELScreen関連PKG
 (require 'elscreen)
@@ -187,3 +187,4 @@
     (elscreen-goto current-screen))
   (message "set coustom screen done."))
 
+;;; 06-elscreen.el ends here

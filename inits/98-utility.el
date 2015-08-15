@@ -1,4 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 98-utility.el --- utility設定 -*- lexical-binding: t; -*-
+
+;;; Commentary:
+
+;;; Code:
 
 (defun open-browse-by-url ()
   "w3m上のリンクやURL文字列をブラウザで開く"
@@ -28,3 +32,5 @@
       (set-window-point (selected-window) other-window-point)
       (set-window-start (selected-window) other-window-start))
     (select-window other-window)))
+
+;;; 98-utility.el ends here

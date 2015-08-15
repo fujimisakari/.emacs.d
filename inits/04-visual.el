@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 04-visual.el --- Visual設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 Visual設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; フォント設定
 (cond ((eq my-os-type 'linux)
@@ -125,3 +125,5 @@
   "Return face used at point."
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
+
+;;; 04-visual.el ends here

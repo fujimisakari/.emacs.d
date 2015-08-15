@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 00-env.el --- 環境設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                環境設定                                    ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; OSの種別を判定
 (defvar my-os-type nil)
@@ -99,3 +99,5 @@
 
 ;; Shell Command実行時にzsh_historyに履歴を残さないようにする
 (setq revert-buffer-insert-file-contents-function nil)
+
+;;; 00-env.el ends here

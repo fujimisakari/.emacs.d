@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 16-popwin.el --- popwin設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 popwin設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'popwin)
 (setq display-buffer-function 'popwin:display-buffer)
@@ -73,3 +73,5 @@
 (defadvice sdic-close-window (around sdic-close-normalize activate)
   "sdic のバッファクローズを普通にする。"
   (bury-buffer sdic-buffer-name))
+
+;;; 16-popwin.el ends here

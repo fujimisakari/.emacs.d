@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 99-keybind.el --- KeyBind設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                KeyBind設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'bind-key)
 
@@ -211,3 +211,5 @@
            ("n" . scroll-up)
            ("w" . forward-word)
            ("e" . backward-word))
+
+;;; 99-keybind.el ends here

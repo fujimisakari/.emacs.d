@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 32-c-mode.el --- c-mode設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 c-mode設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; c, c++の基本設定
 (defun my-c-mode-common-hook()
@@ -67,3 +67,5 @@
 ;;       (shell-command (format (cdr pair) filename)))
 ;;     ))
 ;; (add-hook 'after-save-hook 'after-save-hook-command)
+
+;;; 32-c-mode.el ends here

@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 10-buffer.el --- Buffer設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                 Buffer設定                                 ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; *Completions*バッファを，使用後に消す
 (require 'lcomp)
@@ -55,3 +55,5 @@
             (if (string= "*scratch*" (buffer-name))
                 (progn (my-make-scratch 0) nil)
               t)))
+
+;;; 10-buffer.el ends here

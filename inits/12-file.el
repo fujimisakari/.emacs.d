@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 12-file.el --- File設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  File設定                                  ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; 使い捨てファイルを設定
 (when (require 'open-junk-file)
@@ -60,3 +60,4 @@
       '(("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp[34]\\|flv\\|wav\\|ogg\\|swf\\|xls\\|xlsx\\)\\'" "open" (file))))
 (setq large-file-warning-threshold nil)
 
+;;; 12-file.el ends here

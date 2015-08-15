@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 80-eww.el --- eww設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                  eww設定                                   ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 ;; (defun eww-mode-hook--rename-buffer ()
 ;;   "Rename eww browser's buffer so sites open in new page."
@@ -29,3 +29,5 @@
   (interactive)
   (setq-local eww-disable-colorize nil)
   (eww-reload))
+
+;;; 80-eww.el ends here

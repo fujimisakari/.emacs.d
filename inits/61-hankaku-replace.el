@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 61-hankaku-replace.el --- 半角カナ変換 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                                半角カナ変換                                ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (defun keitai-hankaku-katakana-region (start end)
   (interactive "r")
@@ -44,3 +44,5 @@
   (interactive)
   (dired-map-over-marks-check
    (function dired-convert-hankaku-katakana) arg 'hankaku-katakana-convert t))
+
+;;; 61-hankaku-replace.el ends here

@@ -1,8 +1,8 @@
-;; -*- Emacs-lisp -*-
+;;; 63-google-translator.el --- google-translator設定 -*- lexical-binding: t; -*-
 
-;;;--------------------------------------------------------------------------;;;
-;;                           google-translator設定                            ;;
-;;;--------------------------------------------------------------------------;;;
+;;; Commentary:
+
+;;; Code:
 
 (require 'google-translate)
 
@@ -34,3 +34,5 @@
      (if asciip "en" "ja")
      (if asciip "ja" "en")
      string)))
+
+;;; 63-google-translator.el ends here
