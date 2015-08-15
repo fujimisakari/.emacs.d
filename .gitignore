@@ -11,5 +11,5 @@ tramp
 site-lisp
 el-get
 elpa
-*shellenv.el
-places 
+shellenv
+places
