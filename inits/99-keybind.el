@@ -111,16 +111,17 @@
 (bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
 
 ;; objc-mode
-(bind-key (kbd "C-c f") 'clang-format-region objc-mode-map)
-(bind-key (kbd "C-c ;") 'open-header-and-method-file objc-mode-map)
-(bind-key (kbd "C-c d") 'helm-xcdoc-search-other-window objc-mode-map)
+(bind-key "C-c f" 'clang-format-region objc-mode-map)
+(bind-key "C-c ;" 'open-header-and-method-file objc-mode-map)
+(bind-key "C-c d" 'helm-xcdoc-search-other-window objc-mode-map)
+(bind-key "<tab>" 'ac-complete-clang objc-mode-map)
 
 ;; cc-mode
-(bind-key (kbd "C-c '") 'ff-find-other-file c-mode-base-map)
+(bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
 
 ;; go-mode
-(bind-key (kbd "C-c f") 'gofmt go-mode-map)
-(bind-key (kbd "C-c d") 'godoc go-mode-map)
+(bind-key "C-c f" 'gofmt go-mode-map)
+(bind-key "C-c d" 'godoc go-mode-map)
 
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
