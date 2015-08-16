@@ -4,10 +4,11 @@
 
 ;;; Code:
 
-;;; 基本設定
+;; 基本設定
 (add-hook 'objc-mode-hook
           '(lambda()
              (mode-init-func)
+             (auto-complete-mode)
              (skk-mode t)
              (setq c-basic-offset 4)
              (setq tab-width 4)
@@ -21,9 +22,13 @@
                                           magic-mode-regexp-match-limit t)))
                . objc-mode))
 
-;; 共通パス
+;; 共通設定
 (defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")
 (defvar xcode:framework (concat xcode:sdk "/System/Library/Frameworks"))
+(defvar project-root-path (gethash "project-root-path" private-env-hash))
+(defvar project-pch-path (gethash "project-pch-path" private-env-hash))
+(defvar clang-base-options (list "--root-path" project-root-path "--framework" xcode:framework "--sdk" xcode:sdk))
+(require 'em-glob) ; Pathを参照する時ワイルドカードを利用するため
 
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
 (setq xcode:frameworks (concat xcode:sdk "/System/Library/Frameworks"))
@@ -53,47 +58,40 @@
   (other-window-or-split)
   (ff-find-other-file))
 
-;;; コード補完
-(require 'emaXcode)
-(setq xcode:foundation (concat xcode:framework "/Foundation.framework/Headers/"))
-(setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
-(setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
+;; コード補完
+;; (require 'emaXcode)
+;; (setq xcode:foundation (concat xcode:framework "/Foundation.framework/Headers/"))
+;; (setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
+;; (setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
 
-;;; コード整形できるようにする
-(require 'clang-format)
-
-;;; quickrunにclangでの実行環境を追加
-(add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
-(quickrun-add-command "objc/clang"
-                      '((:command . "clang")
-                        (:exec    . ("%c -fobjc-arc -framework Foundation %s -o %e" "%e"))
-                        (:remove  . ("%e")))
-                      :default "objc")
-
-;;; Xcodeのドキュメント検索
-(require 'helm-xcdoc)
-(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
+;; auto-complete-clangでコード補完
+(require 'auto-complete-clang)
+(defvar auto-complete-option-command "~/.emacs.d/bin/objc-auto-complete.py")
+(defun auto-complete-option ()
+  (let* ((search-target-file (concat project-pch-path "*.pch"))
+         (pch-file (eshell-extended-glob search-target-file)))
+    (if (listp pch-file)
+        (let* ((pch-include-option (list "--pch" (expand-file-name (car pch-file))))
+               (clang-options (append clang-base-options pch-include-option)))
+          (shell-command-to-string (message "%s" (push auto-complete-option-command clang-options))))
+      (list auto-complete-objc-compiler auto-complete-objc-compile-options))))
+(setq ac-clang-flags (split-string (replace-regexp-in-string "\n+$" "" (auto-complete-option)) ","))
+(setq ac-clang-auto-save t)
 
 ;;; flymakeで文法チェック
-(defvar flymake-objc-root-path (gethash "project-root-path" private-env-hash))
-(defvar flymake-objc-pch-path (gethash "project-pch-path" private-env-hash))
-(defvar flymake-objc-compiler "~/.emacs.d/bin/objc-flymake.py")
-(defvar flymake-objc-compile-options (list "--root-path" flymake-objc-root-path "--framework" xcode:framework "--sdk" xcode:sdk))
-
-(require 'em-glob)
+(defvar flymake-command "~/.emacs.d/bin/objc-flymake.py")
 (defun flymake-objc-init ()
   (let* ((temp-file (flymake-init-create-temp-buffer-copy
                      'flymake-create-temp-inplace))
          (local-file (file-relative-name
                       temp-file
                       (file-name-directory buffer-file-name)))
-         (search-target-file (concat flymake-objc-pch-path "*.pch"))
+         (search-target-file (concat project-pch-path "*.pch"))
          (pch-file (eshell-extended-glob search-target-file)))
     (if (listp pch-file)
         (let ((pch-include-option (list "--pch" (expand-file-name (car pch-file)))))
-          (list flymake-objc-compiler (append flymake-objc-compile-options pch-include-option (list "--targetfile" local-file))))
-      (list flymake-objc-compiler (append flymake-objc-compile-options (list "--targetfile" local-file))))))
+          (list flymake-command (append clang-base-options pch-include-option (list "--targetfile" local-file))))
+      (list flymake-command (append clang-base-options (list "--targetfile" local-file))))))
 
 (defun flymake-display-err-minibuffer ()
   (interactive)
@@ -128,5 +126,21 @@
             ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                 (flymake-mode t))))
+
+;;; コード整形できるようにする
+(require 'clang-format)
+
+;;; quickrunにclangでの実行環境を追加
+(add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
+(quickrun-add-command "objc/clang"
+                      '((:command . "clang")
+                        (:exec    . ("%c -fobjc-arc -framework Foundation %s -o %e" "%e"))
+                        (:remove  . ("%e")))
+                      :default "objc")
+
+;;; Xcodeのドキュメント検索
+(require 'helm-xcdoc)
+(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
+(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
 
 ;;; 45-objc-mode.el ends here
