@@ -78,6 +78,11 @@
 (setq ac-clang-flags (split-string (replace-regexp-in-string "\n+$" "" (auto-complete-option)) ","))
 (setq ac-clang-auto-save t)
 
+(set-face-foreground 'ac-clang-candidate-face "#fff")
+(set-face-background 'ac-clang-candidate-face "#444")
+(set-face-foreground 'ac-clang-selection-face "#fff")
+(set-face-background 'ac-clang-selection-face "SlateBlue2")
+
 ;;; flymakeで文法チェック
 (defvar flymake-command "~/.emacs.d/bin/objc-flymake.py")
 (defun flymake-objc-init ()

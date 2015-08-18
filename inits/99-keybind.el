@@ -114,7 +114,7 @@
 (bind-key "C-c f" 'clang-format-region objc-mode-map)
 (bind-key "C-c ;" 'open-header-and-method-file objc-mode-map)
 (bind-key "C-c d" 'helm-xcdoc-search-other-window objc-mode-map)
-(bind-key "<tab>" 'ac-complete-clang objc-mode-map)
+(bind-key "C-c <tab>" 'ac-complete-clang objc-mode-map)
 
 ;; cc-mode
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
