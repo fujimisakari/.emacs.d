@@ -98,6 +98,7 @@
 (setq ns-use-native-fullscreen nil)
 
 ;; Shell Command実行時にzsh_historyに履歴を残さないようにする
-(setq revert-buffer-insert-file-contents-function nil)
+;; (setq revert-buffer-insert-file-contents-function nil)
+(setq revert-buffer-function nil)
 
 ;;; 00-env.el ends here

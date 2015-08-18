@@ -27,7 +27,7 @@
 (require 'jedi)
 (setq jedi:complete-on-dot t)
 (setq jedi:install-imenu t)
-(setq python-environment-directory "~/.python-environments")
+;; (setq python-environment-directory "~/.python-environments")
 (jedi:install-server)
 
 ;; hook

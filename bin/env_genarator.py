@@ -23,13 +23,11 @@ path_list = [
     '{}.pyenv/versions/genju/lib/python2.7/site-packages'.format(os.environ.get('HOME')),
     # punk
     '{}/.pyenv/versions/punk/lib/python2.7/site-packages'.format(os.environ.get('HOME')),
-    '{}/projects/punk_server'.format(os.environ.get('HOME')),
     '{}/projects/punk_server/application'.format(os.environ.get('HOME')),
     '{}/projects/punk_server/application/module'.format(os.environ.get('HOME')),
     '{}/projects/punk_server/application/submodule'.format(os.environ.get('HOME')),
     # preregistration
     '{}/.pyenv/versions/preregistration/lib/python2.7/site-packages'.format(os.environ.get('HOME')),
-    '{}/projects/preregistration'.format(os.environ.get('HOME')),
     '{}/projects/preregistration/application'.format(os.environ.get('HOME')),
     '{}/projects/preregistration/application/apps'.format(os.environ.get('HOME')),
     '{}/projects/preregistration/application/module'.format(os.environ.get('HOME')),
