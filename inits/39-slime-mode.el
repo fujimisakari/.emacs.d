@@ -21,4 +21,8 @@
   (add-hook 'slime-mode-hook 'set-up-slime-ac)
   (add-hook 'slime-repl-mode-hook 'set-up-slime-ac))
 
+(load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
+;; Replace "sbcl" with the path to your implementation
+(setq inferior-lisp-program "sbcl")
+
 ;;; 39-slime-mode.el ends here

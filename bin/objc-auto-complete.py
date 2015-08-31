@@ -18,8 +18,8 @@ clang_option_list = []
 
 clang_option_list.append('-cc1')
 
-# ターゲットがiOS 4.3 以上であることを示す
-clang_option_list.append('-D__IPHONE_OS_VERSION_MIN_REQUIRED=40300')
+# ターゲットがiOS 7 以上であることを示す
+clang_option_list.append('-D__IPHONE_OS_VERSION_MIN_REQUIRED=70000')
 
 # ARCを使用している場合に指定するオプション
 clang_option_list.append('-fobjc-arc')
