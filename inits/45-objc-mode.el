@@ -27,7 +27,8 @@
 (defvar xcode:framework (concat xcode:sdk "/System/Library/Frameworks"))
 (defvar project-root-path (gethash "project-root-path" private-env-hash))
 (defvar project-pch-path (gethash "project-pch-path" private-env-hash))
-(defvar clang-base-options (list "--root-path" project-root-path "--framework" xcode:framework "--sdk" xcode:sdk))
+(defvar option-framework (concat xcode:framework (concat " -F " project-root-path)))
+(defvar clang-base-options (list "--root-path" project-root-path "--framework" option-framework "--sdk" xcode:sdk))
 (require 'em-glob) ; Pathを参照する時ワイルドカードを利用するため
 
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする

@@ -19,8 +19,8 @@ clang_option_list = []
 # clangの実行コマンドPATH
 clang_option_list.append('/usr/bin/clang')
 
-# ターゲットがiOS 4.3 以上であることを示す
-clang_option_list.append('-D__IPHONE_OS_VERSION_MIN_REQUIRED=40300')
+# ターゲットがiOS 7.0 以上であることを示す
+clang_option_list.append('-D__IPHONE_OS_VERSION_MIN_REQUIRED=70000')
 
 # シンタックスエラーのみ
 clang_option_list.append('-fsyntax-only')
