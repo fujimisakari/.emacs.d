@@ -17,7 +17,7 @@
      (fset 'sdicf-array-init 'sdicf-common-init)
      (fset 'sdicf-array-quit 'sdicf-common-quit)
      (fset 'sdicf-array-search
-           (lambda (sdic pattern &optional case regexp)
+           '(lambda (sdic pattern &optional case regexp)
              (sdicf-array-init sdic)
              (if regexp
                  (signal 'sdicf-invalid-method '(regexp))
