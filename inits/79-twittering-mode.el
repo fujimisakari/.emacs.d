@@ -6,7 +6,7 @@
 
 (require 'twittering-mode)
 (setq twittering-username (gethash "twitter-user" private-env-hash))
-(setq twittering-status-format "%i @%s / %S %p\n %C{%Y/%m/%d %H:%M:%S}\n %T\n from %f%L%r %R\n")
+(setq twittering-status-format "%i %S / @%s, %@: %FACE[font-lock-warning-face]{%FIELD-IF-NONZERO[↺%d]{retweet_count}} %FACE[font-lock-warning-face]{%FIELD-IF-NONZERO[✶%d]{favorite_count}}\n%FOLD[ ]{%T // from %f%L%r %R}\n")
 (setq twittering-retweet-format " RT @%s: %t")
 (setq twittering-icon-mode t)
 (setq twittering-convert-fix-size 48)
