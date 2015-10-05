@@ -8,7 +8,7 @@
 (defun my-c-mode-common-hook()
   (c-set-style "stroustrup")      ; インデントスタイル
   ;; (c-basic-offset 4)              ; 基本インデント量
-  (tab-width 4)                   ; タブ幅
+  (setq tab-width 4)              ; タブ幅
   (c-toggle-hungry-state 1)       ; スペースを一気に消す欲張り削除機能とelecetic-modeをを有功にする
   (c-set-offset 'innamespace 0)   ; namespace {}の中はインデントしない
   (c-set-offset 'arglist-close 0) ; 関数の引数リストの閉じ括弧はインデントしない

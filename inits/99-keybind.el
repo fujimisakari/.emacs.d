@@ -36,12 +36,12 @@
 (bind-key* "C-M-i" 'helm-imenu)                              ; helm-imenuの起動
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
-(bind-key "C-M-<right>" 'elscreen-swap-next)                 ; タブの配置位置ずらし(右)
-(bind-key "C-M-<left>" 'elscreen-swap-previous)              ; タブの配置位置ずらし(左)
+(bind-key* "C-M-<right>" 'elscreen-swap-next)                ; タブの配置位置ずらし(右)
+(bind-key* "C-M-<left>" 'elscreen-swap-previous)             ; タブの配置位置ずらし(左)
 (bind-key "C-M-<tab>" 'untabif)                              ; TAB削除
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
-(bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
-(bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
+;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
+;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (bind-key "C-M-;" 'recenter-top-bottom)                      ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
@@ -115,6 +115,15 @@
 (bind-key "C-c ;" 'open-header-and-method-file objc-mode-map)
 (bind-key "C-c d" 'helm-xcdoc-search-other-window objc-mode-map)
 (bind-key "C-c <tab>" 'ac-complete-clang objc-mode-map)
+
+;; slime-mode
+;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
+;; (bind-key "M-h" 'paredit-forward-barf-sexp slime-mode-map)
+;; (bind-key "M-9" 'paredit-wrap-round slime-mode-map)
+(bind-key "C-M-," 'helm-gtags-find-tag-other-window slime-mode-map)
+(bind-key "C-M-m" 'helm-gtags-pop-stack slime-mode-map)
+(bind-key "C-M-." 'helm-gtags-find-rtag slime-mode-map)
+(bind-key "C-M-/" 'helm-gtags-find-symbol slime-mode-map)
 
 ;; cc-mode
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)

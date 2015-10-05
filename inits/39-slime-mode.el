@@ -13,16 +13,19 @@
                                 (show-paren-mode))))
   (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 
-  ;; sbclをデフォルトのCommon Lisp処理系に設定(Clozure CLにする場合はccl)
-  (setq inferior-lisp-program "sbcl")
-  (slime-setup '(slime-repl slime-fancy slime-banner))
+  (slime-setup '(slime-repl slime-fancy slime-banner slime-fuzzy slime-indentation))
+  (setq slime-autodoc-use-multiline-p t)
   (setq slime-net-coding-system 'utf-8-unix) ;; 日本語利用のための設定（Lisp 環境側の対応も必要）
+
   (require 'ac-slime)
   (add-hook 'slime-mode-hook 'set-up-slime-ac)
-  (add-hook 'slime-repl-mode-hook 'set-up-slime-ac))
+  (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
 
-(load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
-;; Replace "sbcl" with the path to your implementation
-(setq inferior-lisp-program "sbcl")
+  ;; 括弧の対応を取りながらS式を編集する
+  ;; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
+
+  ;; roswell設定
+  (load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
+  (setq inferior-lisp-program "ros -L sbcl -Q run"))
 
 ;;; 39-slime-mode.el ends here

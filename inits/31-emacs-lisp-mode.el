@@ -6,10 +6,8 @@
 
 ;; 括弧の対応を取りながらS式を編集する
 ;; (require 'paredit)
-;; (add-hook 'emacs-lis-mode-hook 'enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook 'enable-paredit-mode)
-;; (add-hook 'lisp-mode-hook 'enable-paredit-mode)
-;; (add-hook 'ielm-mode-hook 'enable-paredit-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
+;; (add-hook 'lisp-interaction-mode-hook 'disable-paredit-mode)
 
 ;; 式の評価結果を注釈する
 (require 'lispxmp)
