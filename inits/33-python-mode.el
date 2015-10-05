@@ -31,11 +31,9 @@
 (jedi:install-server)
 
 ;; hook
-(semantic-mode 1)
 (add-hook 'python-mode-hook
           '(lambda ()
             (mode-init-func)
-            (jedi:setup)
-            (setq imenu-create-index-function #'python-imenu-create-index)))
+            (jedi:setup)))
 
 ;;; 33-python-mode.el ends here
