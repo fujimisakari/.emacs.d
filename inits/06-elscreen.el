@@ -148,10 +148,10 @@
 ;; screenを定位置に設定する
 (setq elscreen-custom-screen-alist
       '((0 . ":home")
-        (1 . "Folder")
-        (2 . "*Org Agenda*")
-        (3 . "inbox.org")
-        (4 . "daily-projects.org")
+        (1 . "inbox.org")
+        (2 . "*scratch*")
+        (3 . "*scratch*")
+        (4 . "*scratch*")
         (5 . "*scratch*")
         (6 . "*scratch*")
         (7 . "*scratch*")
