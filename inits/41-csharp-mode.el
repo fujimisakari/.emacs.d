@@ -23,7 +23,8 @@
              (skk-mode)
              (mode-init-with-skk)
              (flycheck-mode 1)
-             (omnisharp-mode)))
+             (omnisharp-mode)
+             (setq csharp-want-imenu nil)))
 
 (setq omnisharp-server-executable-path (expand-file-name "~/projects/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe"))
 
