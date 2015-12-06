@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+;; 同じコマンドを連続実行したときの振舞いを変更する
+;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
+(require 'sequential-command-config)
+(sequential-command-setup-keys)
+
 (require 'bind-key)
 
 ;; key-chord
@@ -14,9 +19,8 @@
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
 (bind-key "<f2>" 'twit)                                      ; twiterlingを起動
-(bind-key "<f3>" 'org-agenda-default)                        ; org-agendaを起動
+(bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
-(bind-key "<f5>" 'id-manager)                                ; id-managerの起動
 
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
@@ -87,9 +91,9 @@
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
-(bind-key* "C-l C-l" 'highlight-symbol-at-point)             ; symbolをhighlight表示
+(bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
-(bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
+(bind-key "C-l C-;" 'microsoft-translator-auto-translate)    ; microsoft翻訳
 (bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
@@ -124,6 +128,9 @@
 (bind-key "C-M-m" 'helm-gtags-pop-stack slime-mode-map)
 (bind-key "C-M-." 'helm-gtags-find-rtag slime-mode-map)
 (bind-key "C-M-/" 'helm-gtags-find-symbol slime-mode-map)
+(bind-key "C-c 1" 'common-lisp-hyperspec slime-mode-map)
+(bind-key "C-c 2" 'common-lisp-hyperspec-lookup-reader-macro slime-mode-map)
+(bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map)
 
 ;; cc-mode
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
