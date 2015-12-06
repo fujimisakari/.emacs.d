@@ -94,7 +94,7 @@ are the string substitutions (see `format')."
 (defun helm-xcdoc--set-start-at (&rest _)
   (goto-char (point-min))
   (re-search-forward helm-xcdoc--query nil t))
-(advice-add 'eww-render :after 'helm-xcdoc--set-start-at)
+;; (advice-add 'eww-render :after 'helm-xcdoc--set-start-at)
 
 (defun helm-xcdoc--construct-command (query _docset)
   (unless (executable-find helm-xcdoc-command-path)
