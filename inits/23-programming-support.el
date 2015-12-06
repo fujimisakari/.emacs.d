@@ -42,4 +42,10 @@
 (require 'highlight-symbol)
 (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))
 
+;; highlight-symbol-at-point時にfont-lockが狂うので対策
+(defun my-highlight-symbol-at-point ()
+  (interactive)
+  (defalias 'highlight-symbol-at-point 'highlight-symbol)
+  (highlight-symbol-at-point))
+
 ;;; 23-programming-support.el ends here
