@@ -93,13 +93,14 @@
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
-(bind-key "C-l C-;" 'microsoft-translator-auto-translate)    ; microsoft翻訳
+(bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
+(bind-key "C-l C-'" 'sdic-describe-region)                   ; 英辞郎で翻訳
 (bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
 (bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
-(bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
-(bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; 英辞郎で翻訳
+(bind-key "C-l C-M-;" 'microsoft-translator-auto-translate)  ; microsoft翻訳
+(bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; hatena-keywordで検索
 ;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
 ;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
