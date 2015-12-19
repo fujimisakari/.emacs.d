@@ -48,6 +48,10 @@
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
 (require 'sequential-command-config)
 (sequential-command-setup-keys)
+(define-sequential-command seq-home
+  beginning-of-line beginning-of-buffer seq-return)
+(define-sequential-command seq-end
+  end-of-line end-of-buffer seq-return)
 
 ;; 現在行を最上部にする
 (defun line-to-top-of-window ()
