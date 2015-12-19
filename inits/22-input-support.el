@@ -44,6 +44,11 @@
 ;; text-modeかそれを継承したメジャーモードで自動的に有効にする
 (add-hook 'text-mode-hook 'turn-on-screen-lines-mode)
 
+;; 同じコマンドを連続実行したときの振舞いを変更する
+;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
+(require 'sequential-command-config)
+(sequential-command-setup-keys)
+
 ;; 現在行を最上部にする
 (defun line-to-top-of-window ()
   (interactive)

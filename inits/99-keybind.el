@@ -4,11 +4,6 @@
 
 ;;; Code:
 
-;; 同じコマンドを連続実行したときの振舞いを変更する
-;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
-
 (require 'bind-key)
 
 ;; key-chord
