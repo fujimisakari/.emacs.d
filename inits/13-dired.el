@@ -118,4 +118,10 @@
 (set-face-background 'dired-subtree-depth-5-face nil)
 (set-face-background 'dired-subtree-depth-6-face nil)
 
+;; diredからファイル or ディレクトリ削除をやろうとすると遅いのでshell経由で削除させる
+(defun dired-remove-by-shell ()
+  (interactive)
+  (let ((files (dired-get-marked-files t current-prefix-arg)))
+    (dired-do-shell-command "rm -rf" nil files)))
+
 ;;; 13-dired.el ends here

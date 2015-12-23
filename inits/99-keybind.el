@@ -181,6 +181,7 @@
   (lambda ()
     (local-set-key (kbd "C-f") 'dired-open-in-accordance-with-situation) ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-M-m") 'dired-up-directory)                    ; 上位ディレクトリへ
+    (local-set-key (kbd "C-M-d") 'dired-remove-by-shell)                 ; Shell経由で削除処理を行う
     (local-set-key (kbd "C-t") 'other-window-or-split)                   ; ウィンドウを切り替える
     (local-set-key (kbd "C-c '") 'dired-sp-fp-directory-toggle)          ; spとfpのディレクトリを切り替える
     (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)      ; gree staticディレクトリへ切り替える
