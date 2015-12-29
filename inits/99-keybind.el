@@ -26,6 +26,7 @@
 (bind-key "C-t" 'other-window-or-split)                      ; ウィンドウを切り替える
 (bind-key "C-h" 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
+(bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
 (bind-key "C-<tab>" 'tabify)                                 ; TAB生成
 (bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
 (bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
@@ -52,7 +53,7 @@
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
 (bind-key "M-x" 'helm-M-x)                                   ; helmでM-x
 (bind-key "M-y" 'helm-show-kill-ring)                        ; 過去のkill-ringの内容を取り出す
-(bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-x hippie-expand)
+(bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-X Hippie-Expand)
 (bind-key "M-g" 'goto-line)                                  ; M-g で指定行へジャンプ
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
 (bind-key "M-<right>" 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
@@ -181,7 +182,7 @@
   (lambda ()
     (local-set-key (kbd "C-f") 'dired-open-in-accordance-with-situation) ; ディレクトリ, ファイルを展開
     (local-set-key (kbd "C-M-m") 'dired-up-directory)                    ; 上位ディレクトリへ
-    (local-set-key (kbd "C-M-d") 'dired-remove-by-shell)                 ; Shell経由で削除処理を行う
+    (local-set-key (kbd "C-M-r") 'dired-remove-by-shell)                 ; Shell経由で削除処理を行う
     (local-set-key (kbd "C-t") 'other-window-or-split)                   ; ウィンドウを切り替える
     (local-set-key (kbd "C-c '") 'dired-sp-fp-directory-toggle)          ; spとfpのディレクトリを切り替える
     (local-set-key (kbd "C-c g") 'dired-move-gree-static-directory)      ; gree staticディレクトリへ切り替える
