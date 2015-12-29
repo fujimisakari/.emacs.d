@@ -52,6 +52,10 @@
   beginning-of-line beginning-of-buffer seq-return)
 (define-sequential-command seq-end
   end-of-line end-of-buffer seq-return)
+(define-sequential-command org-seq-home
+  org-beginning-of-line beginning-of-buffer seq-return)
+(define-sequential-command org-seq-end
+  org-end-of-line end-of-buffer seq-return)
 
 ;; 現在行を最上部にする
 (defun line-to-top-of-window ()
@@ -95,5 +99,31 @@
 ;;     try-complete-lisp-symbol-partially                     ; Lispシンボル名の一部
 ;;     try-complete-lisp-symbol                               ; Lispシンボル名の全体
 ;;    ))
+
+;; 対応する括弧に飛ぶ
+(defun close-paren-at-point-p ()
+  "Check closed paren at point."
+  (let ((s (char-to-string (char-after (point)))))
+    (s-contains? s ")]}")))
+
+(defun not-paren-matching-at-point-p ()
+  "Check not matching paren at point."
+  (let ((s (char-to-string (char-after (point)))))
+    (not (s-contains? s "{}[]()"))))
+
+(defun goto-matching-paren ()
+  "Jump to matching paren."
+  (interactive)
+  (cond ((close-paren-at-point-p)
+         (forward-char)
+         (-if-let (p (show-paren--default))
+             (goto-char (nth 2 p))
+           (backward-char)))
+        ((not-paren-matching-at-point-p)
+         (when (search-forward-regexp "[(\\[\[{)}]" (point-at-eol) t 1)
+           (backward-char)))
+        (t
+         (-if-let (p (show-paren--default))
+             (goto-char (nth 2 p))))))
 
 ;;; 22-input-support.el ends here
