@@ -117,6 +117,11 @@
 (bind-key "C-c d" 'helm-xcdoc-search-other-window objc-mode-map)
 (bind-key "C-c <tab>" 'ac-complete-clang objc-mode-map)
 
+;; swift-mode
+(bind-key "C-c <tab>" 'ac-complete-swift swift-mode-map)
+(bind-key "C-c C-M-," 'helm-etags-select-other-window swift-mode-map)
+(bind-key "C-c d" 'helm-xcdoc-search-other-window swift-mode-map)
+
 ;; slime-mode
 ;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
 ;; (bind-key "M-h" 'paredit-forward-barf-sexp slime-mode-map)
