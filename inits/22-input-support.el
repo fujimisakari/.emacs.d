@@ -126,4 +126,22 @@
          (-if-let (p (show-paren--default))
              (goto-char (nth 2 p))))))
 
+;; 選択リージョンをクォートする
+(defun region-to-single-quote ()
+  (interactive)
+  (quote-formater "'%s'" "^\\(\"\\).*" ".*\\(\"\\)$"))
+
+(defun region-to-double-quote ()
+  (interactive)
+  (quote-formater "\"%s\"" "^\\('\\).*" ".*\\('\\)$"))
+
+(defun quote-formater (quote-format re-prefix re-suffix)
+  (if mark-active
+      (let* ((region-text (buffer-substring-no-properties (region-beginning) (region-end)))
+             (replace-func (lambda (re target-text)(replace-regexp-in-string re "" target-text nil nil 1)))
+             (text (funcall replace-func re-suffix (funcall replace-func re-prefix region-text))))
+        (delete-region (region-beginning) (region-end))
+        (insert (format quote-format text)))
+    (error "Not Region selection")))
+
 ;;; 22-input-support.el ends here
