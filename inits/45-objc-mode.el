@@ -25,8 +25,8 @@
 ;; 共通設定
 (defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")
 (defvar xcode:framework (concat xcode:sdk "/System/Library/Frameworks"))
-(defvar project-root-path (gethash "project-root-path" private-env-hash))
-(defvar project-pch-path (gethash "project-pch-path" private-env-hash))
+(defvar project-root-path (gethash "objc-project-root-path" private-env-hash))
+(defvar project-pch-path (gethash "objc-project-pch-path" private-env-hash))
 (defvar option-framework (concat xcode:framework (concat " -F " project-root-path)))
 (defvar clang-base-options (list "--root-path" project-root-path "--framework" option-framework "--sdk" xcode:sdk))
 (require 'em-glob) ; Pathを参照する時ワイルドカードを利用するため
