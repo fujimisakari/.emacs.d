@@ -10,12 +10,14 @@
 (key-chord-define-global "qp" 'helm-descbinds)               ; キーバインド設定の参照
 (key-chord-define-global "ui" 'skk-mode)                     ; skk-modeを有効
 (key-chord-define-global "kl" 'view-mode)                    ; view-modeを有効
+(key-chord-define-global "ti" 'display-now-time)             ; 現在時間の表示
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
 (bind-key "<f2>" 'twit)                                      ; twiterlingを起動
 (bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
+(bind-key "<f5>" 'mo-git-blame-current)                      ; mo-git-blameの起動
 
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
@@ -27,7 +29,7 @@
 (bind-key "C-h" 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
 (bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
-(bind-key "C-<tab>" 'tabify)                                 ; TAB生成
+(bind-key "C-<tab>" 'untabify)                               ; TAB削除
 (bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
 (bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
 
@@ -38,7 +40,7 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-<right>" 'elscreen-swap-next)                ; タブの配置位置ずらし(右)
 (bind-key* "C-M-<left>" 'elscreen-swap-previous)             ; タブの配置位置ずらし(左)
-(bind-key "C-M-<tab>" 'untabif)                              ; TAB削除
+(bind-key "C-M-<tab>" 'tabify)                               ; TAB生成
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
@@ -66,6 +68,8 @@
 (bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
+(bind-key "M-'" 'region-to-single-quote)                     ; 選択リージョンを'で囲む
+(bind-key "M-\"" 'region-to-double-quote)                    ; 選択リージョンを"で囲む
 
 ;; C-l
 (unbind-key "C-l")
@@ -162,7 +166,9 @@
 (bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
 
 ;; markdown-mode
-(bind-key "C-c C-s" 'markdown-header-list markdown-mode-map) ; markdown-headerの一覧表示
+(bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)     ; markdown-headerの一覧表示
+(bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map)  ; プレビュー表示
+(unbind-key "RET" markdown-mode-map)
 
 ;; ELScreen固有のキーバインド
 (bind-key "c" 'create-newscreen elscreen-map)
