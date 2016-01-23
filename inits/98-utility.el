@@ -33,4 +33,9 @@
       (set-window-start (selected-window) other-window-start))
     (select-window other-window)))
 
+;; 現在時間
+(defun display-now-time ()
+  (interactive)
+  (message "%s" (format-time-string "%Y-%m-%d %H:%M (%A)")))
+
 ;;; 98-utility.el ends here
