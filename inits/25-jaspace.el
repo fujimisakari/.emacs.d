@@ -15,6 +15,9 @@
                                       'text-mode
                                       'python-mode
                                       'csharp-mode
+                                      'web-mode
+                                      'angular-mode
+                                      'swift-mode
                                       'fundamental-mode))))
   (when (boundp 'jaspace-alternate-jaspace-string)
     (setq jaspace-alternate-jaspace-string "□"))
