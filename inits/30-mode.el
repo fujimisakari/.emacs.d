@@ -30,12 +30,14 @@
 (delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
 (delete '("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) flymake-allowed-file-name-masks)
 (delete '("\\.cs\\'" flymake-simple-make-init) flymake-allowed-file-name-masks)
+;; zshはshell-script-modeで起動
+(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook 'mode-init-func)
 
 ;; text-mode
-(add-hook 'text-mode-hook 'mode-init-func)
+;; (add-hook 'text-mode-hook 'mode-init-func)
 
 ;; ruby-mode
 (add-hook 'ruby-mode-hook 'mode-init-func)

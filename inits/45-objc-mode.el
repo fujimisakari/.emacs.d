@@ -14,13 +14,14 @@
              (setq tab-width 4)
              (setq indent-tabs-mode nil)))
 
+;; revelとコンフリクトするので一旦コメント
 ;; .hファイルをobjc-modeで開く
-(add-to-list 'magic-mode-alist
-             `(,(lambda ()
-                  (and (string= (file-name-extension buffer-file-name) "h")
-                       (re-search-forward "@\\<interface\\>"
-                                          magic-mode-regexp-match-limit t)))
-               . objc-mode))
+;; (add-to-list 'magic-mode-alist
+;;              `(,(lambda ()
+;;                   (and (string= (file-name-extension buffer-file-name) "h")
+;;                        (re-search-forward "@\\<interface\\>"
+;;                                           magic-mode-regexp-match-limit t)))
+;;                . objc-mode))
 
 ;; 共通設定
 (defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")

@@ -21,12 +21,6 @@
   (other-window-or-split)
   (helm-etags-select reinit))
 
-;; flycheckで文法チェック
-;; (add-to-list 'flycheck-checkers 'swift)
-;; (setq flycheck-swift-sdk-path
-;;       (replace-regexp-in-string "\n+$" ""
-;;                                 (shell-command-to-string "xcrun --show-sdk-path --sdk macosx")))
-
 ;; flymakeでシンタックス、文法チェック
 (defvar swift-project-path (gethash "swift-project-root-path" private-env-hash))
 (defvar swift-objc-header-path (gethash "swift-objc-header-path" private-env-hash))
@@ -47,6 +41,6 @@
 
 ;; flymake用のswiftパターンはないので追加
 (add-to-list 'flymake-err-line-patterns
-             '("^.+swift\:\\([0-9]+\\)\:\\([0-9]+\\)?\: \\(error\\|warning\\)\: \\(.+\\)$" nil 1 2 4))
+             '("^.+swift\:\\([0-9]+\\)\:\\([0-9]+\\)?\: \\(.+\\)$" nil 1 2 3))
 
 ;;; 48-swift-mode.el ends here

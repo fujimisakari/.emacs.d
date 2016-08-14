@@ -135,6 +135,14 @@
   (interactive)
   (quote-formater "\"%s\"" "^\\('\\).*" ".*\\('\\)$"))
 
+(defun region-to-bracket ()
+  (interactive)
+  (quote-formater "\(%s\)" "^\\(\\[\\).*" ".*\\(\\]\\)$"))
+
+(defun region-to-square-bracket ()
+  (interactive)
+  (quote-formater "\[%s\]" "^\\(\(\\).*" ".*\\(\)\\)$"))
+
 (defun quote-formater (quote-format re-prefix re-suffix)
   (if mark-active
       (let* ((region-text (buffer-substring-no-properties (region-beginning) (region-end)))

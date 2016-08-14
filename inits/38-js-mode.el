@@ -9,10 +9,12 @@
 ;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
 
+(quickrun-set-default "js" "javascript/node")
+
 ;; angular-mode
-(add-to-list 'auto-mode-alist '("\\.js$" . angular-mode))
-(add-to-list 'ac-modes 'angular-mode)
-(add-to-list 'ac-modes 'angular-html-mode)
+;; (add-to-list 'auto-mode-alist '("\\.js$" . angular-mode))
+;; (add-to-list 'ac-modes 'angular-mode)
+;; (add-to-list 'ac-modes 'angular-html-mode)
 
 ;; (defun js-indent-hook ()
 ;;   ;; インデント幅を2にする

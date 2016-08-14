@@ -7,11 +7,9 @@
 ;; shell設定
 ;; zshを使う
 (cond ((eq my-os-type 'linux)
-       (setq shell-file-name "/usr/bin/zsh")
-       )
+       (setq shell-file-name "/usr/bin/zsh"))
       ((eq my-os-type 'mac)
-       (setq shell-file-name "/bin/zsh")
-       ))
+       (setq shell-file-name "/bin/zsh")))
 ;; エスケープシーケンスによる色が付くようにする
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; M-!, M-l, M-&, M-x grepなどでsudoコマンドが使えるようにする

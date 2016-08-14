@@ -60,16 +60,18 @@
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
 (bind-key "M-<right>" 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
 (bind-key "M-<left>" 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
-(bind-key "M-[" 'bm-previous)                                ; bm-goto 前へ移動
-(bind-key "M-]" 'bm-next)                                    ; bm-goto 次へ移動
+(bind-key "M-p" 'bm-previous)                                ; bm-goto 前へ移動
+(bind-key "M-n" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
 ;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
 ;; (bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
 (bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
-(bind-key "M-'" 'region-to-single-quote)                     ; 選択リージョンを'で囲む
-(bind-key "M-\"" 'region-to-double-quote)                    ; 選択リージョンを"で囲む
+(bind-key "M-'" 'region-to-single-quote)                     ; 選択リージョンを''で囲む
+(bind-key "M-\"" 'region-to-double-quote)                    ; 選択リージョンを""で囲む
+(bind-key "M-9" 'region-to-bracket)                          ; 選択リージョンを()で囲む
+(bind-key "M-[" 'region-to-square-bracket)                   ; 選択リージョンを[]で囲む
 
 ;; C-l
 (unbind-key "C-l")
@@ -111,6 +113,7 @@
 
 ;; python-mode(jedi-mode)
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
+(bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
 (bind-key "<tab>" 'jedi:complete jedi-mode-map)
 (bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
 (bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
@@ -144,6 +147,10 @@
 ;; go-mode
 (bind-key "C-c f" 'gofmt go-mode-map)
 (bind-key "C-c d" 'godoc go-mode-map)
+(bind-key "C-c j" 'godef-jump-other-window go-mode-map)
+(bind-key "C-c p" 'helm-go-packages go-mode-map)
+(bind-key "C-c r" 'go-remove-unused-imports go-mode-map)
+(bind-key "C-c e" 'go-errcheck go-mode-map)
 
 ;; php-mode
 (bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
