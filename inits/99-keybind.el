@@ -11,6 +11,7 @@
 (key-chord-define-global "ui" 'skk-mode)                     ; skk-modeを有効
 (key-chord-define-global "kl" 'view-mode)                    ; view-modeを有効
 (key-chord-define-global "ti" 'display-now-time)             ; 現在時間の表示
+(key-chord-define-global "dk" 'helm-ghq)                     ; ghpを起動
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
@@ -184,7 +185,7 @@
 (bind-key "k" 'elscreen-kill-screen-and-buffers elscreen-map)
 
 ;; helm-read-file
-(bind-key "C-h" 'delete-backward-char helm-read-file-map)             ; C-h でバックスペースと同じように文字を削除できるようにする
+;; (bind-key "C-h" 'delete-backward-char helm-read-file-map)             ; C-h でバックスペースと同じように文字を削除できるようにする
 (bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map) ; TAB で補完する
 
 ;; org-mode

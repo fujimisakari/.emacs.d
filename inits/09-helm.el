@@ -6,7 +6,7 @@
 
 (require 'helm-config)
 (require 'helm-ag)
-(require 'helm-migemo)
+;; (require 'helm-migemo)
 (helm-mode 1)
 
 ;; 基本設定
