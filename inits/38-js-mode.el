@@ -6,39 +6,26 @@
 
 ;; js2-mode
 (autoload 'js2-mode "js2-mode" nil t)
-;; (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))
 
 (quickrun-set-default "js" "javascript/node")
 
-;; angular-mode
-;; (add-to-list 'auto-mode-alist '("\\.js$" . angular-mode))
-;; (add-to-list 'ac-modes 'angular-mode)
-;; (add-to-list 'ac-modes 'angular-html-mode)
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (setq js2-basic-offset 2)
+            (mode-init-with-skk)
+            ;; (tern-mode t)
+            (flycheck-mode)))
 
-;; (defun js-indent-hook ()
-;;   ;; インデント幅を2にする
-;;   (setq js-indent-level 2
-;;         js-expr-indent-offset 2
-;;         indent-tabs-mode nil)
-;;   ;; switch文のcaseラベルをインデントする関数を定義する
-;;   (defun my-js-indent-line ()
-;;     (interactive)
-;;     (let* ((parse-status (save-excursion (syntax-ppss (point-at-bol))))
-;;            (offset (- (current-column) (current-indentation)))
-;;            (indentation (js--proper-indentation parse-status)))
-;;       (back-to-indentation)
-;;       (if (looking-at "case\\s-")
-;;           (indent-line-to (+ indentation 2))
-;;         (js-indent-line))
-;;       (when (> offset 0) (forward-char offset))))
-;;   ;; caseラベルのインデント処理をセットする
-;;   (set (make-local-variable 'indent-line-function) 'my-js-indent-line)
-;;   ;; ここまでcaseラベルを調整する設定
-;;   )
+;; (eval-after-load 'tern
+;;   '(progn
+;;      (require 'tern-auto-complete)
+;;      (tern-ac-setup)))
 
-;; js-modeの起動時にhookを追加
-(add-hook 'js-mode-hook'(lambda()
-                          (mode-init-func)))
+(setq js2-strict-trailing-comma-warning nil)
+;; (setq js2-strict-missing-semi-warning nil)
+;; (setq js2-missing-semi-one-line-override t)
+;; (setq js2-strict-inconsistent-return-warning nil)
 
 ;;; 38-js-mode.el ends here

@@ -23,7 +23,7 @@
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
 (bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
-(bind-key "C-," 'er/expand-region)                           ; 拡張リジョン選択
+(bind-key* "C-," 'er/expand-region)                          ; 拡張リジョン選択
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
 (bind-key "C-t" 'other-window-or-split)                      ; ウィンドウを切り替える
@@ -47,8 +47,9 @@
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (bind-key "C-M-;" 'recenter-top-bottom)                      ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
-(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
+(bind-key "C-M-n" 'helm-gtags-find-tag)                      ; (同じバッファで)関数の定義元(関数の実体)へジャンプ
 (bind-key "C-M-m" 'helm-gtags-pop-stack)                     ; 関数のジャンプから一つ手前に戻る
+(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
 (bind-key "C-M-." 'helm-gtags-find-rtag)                     ; 関数の参照先を参照
 (bind-key "C-M-/" 'helm-gtags-find-symbol)                   ; シンボルの定義先を参照
 

@@ -34,7 +34,7 @@
 (defun create-maxscreen ()
   "9-elscreen-create"
   (let ((counter 0))
-    (while (< counter 8)
+    (while (< counter 9)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
