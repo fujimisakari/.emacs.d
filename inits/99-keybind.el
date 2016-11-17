@@ -115,6 +115,7 @@
 
 ;; python-mode(jedi-mode)
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
+(bind-key "C-c i" 'py-isort-buffer python-mode-map)          ; import整形
 (bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
 (bind-key "<tab>" 'jedi:complete jedi-mode-map)
 (bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
@@ -162,12 +163,12 @@
 ;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
 
 ;; omnisharp-mode
-(bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
-(bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
-(bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
-(bind-key "C-c '" 'work-menu-scene-file-toggle omnisharp-mode-map)
-(bind-key "C-c m" 'work-open-menu-file omnisharp-mode-map)
-(bind-key "C-c s" 'work-open-scene-file omnisharp-mode-map)
+;; (bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
+;; (bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
+;; (bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
+;; (bind-key "C-c '" 'work-menu-scene-file-toggle omnisharp-mode-map)
+;; (bind-key "C-c m" 'work-open-menu-file omnisharp-mode-map)
+;; (bind-key "C-c s" 'work-open-scene-file omnisharp-mode-map)
 
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
