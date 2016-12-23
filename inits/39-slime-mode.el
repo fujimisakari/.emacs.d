@@ -25,8 +25,8 @@
   ;; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
 
   ;; roswell設定
-  (load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
-  (setq inferior-lisp-program "ros -L sbcl -Q run")
+  ;; (load (expand-file-name "~/.roswell/impls/ALL/ALL/quicklisp/slime-helper.el"))
+  ;; (setq inferior-lisp-program "ros -L sbcl -Q run")
 
   ;; HyperSpecをeww見る設定
   (setq common-lisp-hyperspec-root "~/.emacs.d/share/HyperSpec/")

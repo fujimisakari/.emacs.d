@@ -13,6 +13,14 @@
 (key-chord-define-global "ti" 'display-now-time)             ; 現在時間の表示
 (key-chord-define-global "dk" 'helm-ghq)                     ; ghpを起動
 
+;; region-bindings-mode
+(require 'region-bindings-mode)
+(region-bindings-mode-enable)
+(bind-key "M-'" 'region-to-single-quote region-bindings-mode-map)    ; 選択リージョンを''で囲む
+(bind-key "M-\"" 'region-to-double-quote region-bindings-mode-map)   ; 選択リージョンを""で囲む
+(bind-key "M-9" 'region-to-bracket region-bindings-mode-map)         ; 選択リージョンを()で囲む
+(bind-key "M-[" 'region-to-square-bracket region-bindings-mode-map)  ; 選択リージョンを[]で囲む
+
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
 (bind-key "<f2>" 'twit)                                      ; twiterlingを起動
@@ -70,10 +78,6 @@
 (bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
-(bind-key "M-'" 'region-to-single-quote)                     ; 選択リージョンを''で囲む
-(bind-key "M-\"" 'region-to-double-quote)                    ; 選択リージョンを""で囲む
-(bind-key "M-9" 'region-to-bracket)                          ; 選択リージョンを()で囲む
-(bind-key "M-[" 'region-to-square-bracket)                   ; 選択リージョンを[]で囲む
 
 ;; C-l
 (unbind-key "C-l")

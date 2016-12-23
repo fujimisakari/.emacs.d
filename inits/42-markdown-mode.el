@@ -25,4 +25,13 @@
     (switch-to-buffer buf)
     (pop-to-buffer "*eww*")))
 
+(set-face-foreground 'markdown-header-face-1 "lime green")
+(set-face-foreground 'markdown-header-face-2 "magenta")
+(set-face-foreground 'markdown-header-face-3 "dodgerblue")
+(set-face-foreground 'markdown-header-face-4 "orange")
+(set-face-foreground 'markdown-header-face-5 "cyan")
+(set-face-attribute 'markdown-header-face-1 nil :bold nil :height 1.8)
+(set-face-attribute 'markdown-header-face-2 nil :bold nil :height 1.2)
+(set-face-attribute 'markdown-header-face-3 nil :bold nil :height 1.1)
+
 ;;; 42-markdown-mode.el ends here
