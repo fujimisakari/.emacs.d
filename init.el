@@ -44,11 +44,6 @@
             (define-key global-map [menu-bar edit] 'undefined)
             (define-key global-map [menu-bar YASnippet] 'undefined)
             (define-key global-map [menu-bar w3m] 'undefined)
-            ;; ブラウザはmacを使用する
-            (setq browse-url-browser-function 'browse-url-generic)
-            (setq browse-url-generic-program
-                  (if (file-exists-p "/usr/bin/open")
-                      "/usr/bin/open"))
             ;; show init time
             (message "init time: %.3f sec"
                      (float-time (time-subtract after-init-time before-init-time)))))

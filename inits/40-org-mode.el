@@ -6,7 +6,6 @@
 (require 'ox-reveal)
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))  ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
-(setq browse-url-browser-function 'browse-url-firefox)  ; リンクはemacs-w3mで開く
 (setq org-return-follows-link t)                        ; リンクはRETで開く
 (setq org-startup-truncated nil)                        ; org-mode開始時は折り返しするよう設定
 (setq org-startup-with-inline-images t)                 ; 画像をインライン表示

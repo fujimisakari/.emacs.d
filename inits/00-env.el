@@ -104,4 +104,10 @@
 ;; (setq revert-buffer-insert-file-contents-function nil)
 (setq revert-buffer-function nil)
 
+;; ブラウザはmacを使用する
+(setq browse-url-browser-function 'browse-url-generic)
+(setq browse-url-generic-program
+      (if (file-exists-p "/usr/bin/open")
+          "/usr/bin/open"))
+
 ;;; 00-env.el ends here
