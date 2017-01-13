@@ -182,7 +182,8 @@
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
 (bind-key "C-;" nil web-mode-map)
-(bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
+;; (bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
+(bind-key "C-c '" 'web-php-mode-toggle web-mode-map)
 
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)     ; markdown-headerの一覧表示
@@ -220,6 +221,7 @@
     (local-set-key (kbd "C-c d") 'dired-move-dgame-static-directory)     ; dgame staticディレクトリへ切り替える
     (local-set-key (kbd "C-c a") 'dired-move-application-directory)      ; アプリケーションディレクトリへ切り替える
     (local-set-key (kbd "C-c t") 'dired-move-template-directory)         ; テンプレートディレクトリへ切り替える
+    (local-set-key (kbd "C-c p") 'dired-open-project-directory)          ; Projectディレクトリへ切り替える
 
     (local-set-key (kbd "i") 'dired-subtree-insert)                      ; ディレクトリをサブツリーで開く
     (local-set-key (kbd "C-l i") 'dired-subtree-remove)                  ; サブツリーを閉じる

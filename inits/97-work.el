@@ -109,16 +109,20 @@
       (kill-buffer (current-buffer))
       (dired tmp-directory))))
 
-;; アプリケーションディレクトリを開く
+;; genju-himeアプリケーションディレクトリを開く
 (defun dired-move-application-directory ()
   (interactive)
   (dired "~/projects/genju-hime/application"))
 
-;; テンプレートディレクトリを開く
+;; genju-himeテンプレートディレクトリを開く
 (defun dired-move-template-directory ()
   (interactive)
   (dired "~/projects/genju-hime/application/website/templates/smartphone"))
 
+;; Projectディレクトリを開く
+(defun dired-open-project-directory ()
+  (interactive)
+  (dired "~/dev/php/fuel-php-docker/fuel_project/fuel"))
 
 ;; MenuとSceneのファイルを切り替える
 (defun work-menu-scene-file-toggle ()
@@ -153,5 +157,11 @@
     (unless (eq current-file tmp-file)
       (other-window-or-split)
       (find-file tmp-file))))
+
+(defun web-php-mode-toggle ()
+  (interactive)
+  (if (eq major-mode 'php-mode)
+      (web-mode)
+    (php-mode)))
 
 ;;; 97-work.el ends here
