@@ -96,6 +96,7 @@
 (bind-key "C-l S" 'swap-window-positions)                    ; ウィンドウを入れ替える
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
+(bind-key "C-l C-SPC" 'helm-code-skeleton-search)            ; code-skeletonの一覧表示
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
