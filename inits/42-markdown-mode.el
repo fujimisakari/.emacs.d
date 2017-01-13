@@ -21,9 +21,7 @@
                 "--export"
                 "/tmp/grip.html")
   (let ((buf (current-buffer)))
-    (eww-open-file "/tmp/grip.html")
-    (switch-to-buffer buf)
-    (pop-to-buffer "*eww*")))
+    (eww-open-file "/tmp/grip.html")))
 
 (set-face-foreground 'markdown-header-face-1 "lime green")
 (set-face-foreground 'markdown-header-face-2 "magenta")
