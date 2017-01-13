@@ -38,7 +38,6 @@
 (bind-key "C-h" 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
 (bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
-(bind-key "C-<tab>" 'untabify)                               ; TAB削除
 (bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
 (bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
 
@@ -49,7 +48,6 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-<right>" 'elscreen-swap-next)                ; タブの配置位置ずらし(右)
 (bind-key* "C-M-<left>" 'elscreen-swap-previous)             ; タブの配置位置ずらし(左)
-(bind-key "C-M-<tab>" 'tabify)                               ; TAB生成
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
@@ -113,7 +111,8 @@
 ;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
 (bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
-
+(bind-key "C-l <tab>" 'tabify)                               ; TAB生成
+(bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
@@ -160,7 +159,13 @@
 (bind-key "C-c e" 'go-errcheck go-mode-map)
 
 ;; php-mode
-(bind-key "C-o" 'phpcmp-complete php-mode-map)               ; 補完
+(bind-key "\177" 'indent-dedent-line-backspace php-mode-map)
+(bind-key "C-." 'redo php-mode-map)
+(bind-key "C-o" 'phpcmp-complete php-mode-map)
+(bind-key "C-c d" 'php-search-documentation php-mode-map)
+(bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
+(bind-key "C-l ." 'insert-arrow-for-instance php-mode-map)
+(bind-key "C-l C-." 'insert-arrow-for-array php-mode-map)
 
 ;; perl-mode
 ;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完

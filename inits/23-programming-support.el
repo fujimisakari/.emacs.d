@@ -25,6 +25,7 @@
       '(("^\\$" eshell-mode shell-mode sxmp-mode)
         ("^\\*" org-mode)
         ("^(" emacs-lisp-mode)
+        ("^ *\\(function\\|class\\)" php-mode)
         ("^ *\\(def\\|class\\|module\\)" python-mode)
         ("^ *\\(def\\|class\\|module\\)" ruby-mode)))
 
