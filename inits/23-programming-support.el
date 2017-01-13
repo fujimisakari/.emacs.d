@@ -16,6 +16,9 @@
 ;; (setq-default header-line-format '(which-func-mode ("" which-func-format)))
 (set-face-foreground 'which-func "cyan")
 
+;; リジョン選択をgithubで開く
+(require 'open-github-from-here)
+
 ;; 更新履歴を可視化する
 (require 'smeargle)
 
@@ -38,7 +41,6 @@
 (defadvice bm-goto (after bm-goto-top activate)
   (when (bm-goto-top-p)
     (recenter 0)))
-
 
 (require 'highlight-symbol)
 (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))
