@@ -20,6 +20,7 @@
 (bind-key "M-\"" 'region-to-double-quote region-bindings-mode-map)   ; 選択リージョンを""で囲む
 (bind-key "M-9" 'region-to-bracket region-bindings-mode-map)         ; 選択リージョンを()で囲む
 (bind-key "M-[" 'region-to-square-bracket region-bindings-mode-map)  ; 選択リージョンを[]で囲む
+(bind-key "M-l" 'region-to-clear region-bindings-mode-map)           ; 選択リージョンを囲みをクリア
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
