@@ -27,7 +27,6 @@
 (bind-key "<f2>" 'twit)                                      ; twiterlingを起動
 (bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
-(bind-key "<f5>" 'mo-git-blame-current)                      ; mo-git-blameの起動
 
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
@@ -239,9 +238,6 @@
 
 ;; anything-c-moccur-anything
 (bind-key "C-h" 'delete-backward-char anything-c-moccur-anything-map)  ; 削除
-
-;; mo-git-blame
-(bind-key "q" 'mo-git-blame-quit mo-git-blame-mode-map)
 
 ;; eclim-mode
 (bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)
