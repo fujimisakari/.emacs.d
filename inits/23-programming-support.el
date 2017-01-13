@@ -46,10 +46,13 @@
 (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))
 
 ;; highlight-symbol-at-point時にfont-lockが狂うので対策
+;; あとphp-modeの変数が(thing-at-point 'symbol)だとハイライトできないので 'sexpに変更
 (defun my-highlight-symbol-at-point ()
   (interactive)
   (defalias 'highlight-symbol-at-point 'highlight-symbol)
-  (highlight-symbol-at-point))
+  (if (eq major-mode 'php-mode)
+      (highlight-symbol-at-point (thing-at-point 'sexp))
+    (highlight-symbol-at-point)))
 
 ;; codeのskeletonをhelm経由で参照
 (when (require 'helm-code-skeleton nil t)
