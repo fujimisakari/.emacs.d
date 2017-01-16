@@ -58,7 +58,7 @@
 (set-face-foreground 'font-lock-builtin-face "orange")               ; 組込み関数の色
 (set-face-foreground 'font-lock-constant-face "cyan")                ; 定数名の色
 (set-face-foreground 'font-lock-warning-face "lightcyan")            ; 独特な構文の色
-(set-face-foreground 'font-lock-doc-face "dodgerblue")               ; ドキュメントの色
+(set-face-foreground 'font-lock-doc-face "red")                      ; ドキュメントの色
 (set-face-foreground 'font-lock-regexp-grouping-backslash "green4")  ; 正規表現
 (set-face-foreground 'font-lock-regexp-grouping-construct "green")   ; 正規表現
 (set-face-bold-p 'font-lock-function-name-face t)                    ; 太字設定
