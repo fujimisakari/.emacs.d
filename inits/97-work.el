@@ -164,4 +164,11 @@
       (web-mode)
     (php-mode)))
 
+(defun open-view-file-with-php-mode ()
+  (interactive)
+  (let* ((file-path (buffer-substring-no-properties (region-beginning) (region-end)))
+         (file-path (format "~/dev/gamewith/gamewith/fuel/app/views/%s.php" file-path)))
+    (other-window-or-split)
+    (find-file file-path)))
+
 ;;; 97-work.el ends here
