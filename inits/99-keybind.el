@@ -7,11 +7,12 @@
 (require 'bind-key)
 
 ;; key-chord
-(key-chord-define-global "qp" 'helm-descbinds)               ; キーバインド設定の参照
-(key-chord-define-global "ui" 'skk-mode)                     ; skk-modeを有効
-(key-chord-define-global "kl" 'view-mode)                    ; view-modeを有効
-(key-chord-define-global "ti" 'display-now-time)             ; 現在時間の表示
-(key-chord-define-global "dk" 'helm-ghq)                     ; ghpを起動
+(key-chord-define-global "qp" 'helm-descbinds)                 ; キーバインド設定の参照
+(key-chord-define-global "ui" 'skk-mode)                       ; skk-modeを有効
+(key-chord-define-global "kl" 'view-mode)                      ; view-modeを有効
+(key-chord-define-global "ti" 'display-now-time)               ; 現在時間の表示
+(key-chord-define-global "dk" 'helm-ghq)                       ; ghpを起動
+(key-chord-define-global "jk" 'custom-cua-set-rectangle-mark)  ; cuaを起動
 
 ;; region-bindings-mode
 (require 'region-bindings-mode)

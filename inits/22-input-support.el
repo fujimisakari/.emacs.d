@@ -38,6 +38,10 @@
 (cua-mode t)
 (setq cua-enable-cua-keys nil) ;; 変なキーバインドを禁止
 
+(defun custom-cua-set-rectangle-mark()
+  (interactive)
+  (cua-set-rectangle-mark))
+
 ;; 物理行でカーソル移動する
 ;; (install-elisp http://homepage1.nifty.com/bmonkey/emacs/elisp/screen-lines.el)
 (require 'screen-lines)
