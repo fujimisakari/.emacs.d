@@ -166,6 +166,8 @@
 (bind-key "C-o" 'phpcmp-complete php-mode-map)
 (bind-key "C-c d" 'php-search-documentation php-mode-map)
 (bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
+(bind-key "C-c p s" 'insert-php-script-tag php-mode-map)
+(bind-key "C-c p v" 'insert-php-short-tag php-mode-map)
 (bind-key "C-c t" 'open-view-file-with-php-mode php-mode-map)
 (bind-key "C-l ." 'insert-arrow-for-instance php-mode-map)
 (bind-key "C-l C-." 'insert-arrow-for-array php-mode-map)

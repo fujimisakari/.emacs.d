@@ -12,7 +12,8 @@
           (lambda()
             (mode-init-with-skk)
             (php-completion-mode t)
-            (setq indent-tabs-mode t)
+            (setq indent-tabs-mode nil)
+            (setq tab-width 4)
             (setq c-hungry-delete-key nil)
             (make-local-variable 'ac-sources)
             (flymake-mode-off)
@@ -30,6 +31,14 @@
 (defun insert-arrow-for-array ()
   (interactive)
   (insert "=>"))
+
+(defun insert-php-script-tag ()
+  (interactive)
+  (insert "<?php  ?>"))
+
+(defun insert-php-short-tag ()
+  (interactive)
+  (insert "<?=  ?>"))
 
 ;; タブインデント単位で削除できるようにする
 (defun indent-dedent-line-p ()
