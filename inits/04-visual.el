@@ -48,7 +48,7 @@
 ;; font-lock設定
 (global-font-lock-mode t)                                            ; 特定のモードで色を付ける(Font-Lookモード有効にする)
 (setq font-lock-maximum-decoration t)                                ; 色づけは最大限に
-(set-face-foreground 'font-lock-comment-face "dodgerblue")           ; コメントの色
+(set-face-foreground 'font-lock-comment-face "DodgerBlue")           ; コメントの色
 (set-face-foreground 'font-lock-string-face  "red")                  ; 文字(string)部分の色文
 (set-face-foreground 'font-lock-keyword-face "yellow")               ; キーワード(if,for等の予約語)の色
 (set-face-foreground 'font-lock-function-name-face "lime green")     ; 関数名の色
@@ -57,7 +57,7 @@
 (set-face-foreground 'font-lock-type-face "DeepSkyBlue")             ; ユーザ定義のデータ型の色
 (set-face-foreground 'font-lock-builtin-face "orange")               ; 組込み関数の色
 (set-face-foreground 'font-lock-constant-face "cyan")                ; 定数名の色
-(set-face-foreground 'font-lock-warning-face "lightcyan")            ; 独特な構文の色
+(set-face-foreground 'font-lock-warning-face "LightCyan")            ; 独特な構文の色
 (set-face-foreground 'font-lock-doc-face "red")                      ; ドキュメントの色
 (set-face-foreground 'font-lock-regexp-grouping-backslash "green4")  ; 正規表現
 (set-face-foreground 'font-lock-regexp-grouping-construct "green")   ; 正規表現
@@ -113,10 +113,10 @@
   (add-hook 'python-mode-hook 'rainbow-delimiters-mode))
 (set-face-foreground 'rainbow-delimiters-depth-1-face "SlateBlue2")
 (set-face-foreground 'rainbow-delimiters-depth-2-face "DarkOliveGreen2")
-(set-face-foreground 'rainbow-delimiters-depth-3-face "CornflowerBlue")
+(set-face-foreground 'rainbow-delimiters-depth-3-face "RoyalBlue")
 (set-face-foreground 'rainbow-delimiters-depth-4-face "lime green")
-(set-face-foreground 'rainbow-delimiters-depth-5-face "OrangeRed")
-(set-face-foreground 'rainbow-delimiters-depth-6-face "DarkSlateGray2")
+(set-face-foreground 'rainbow-delimiters-depth-5-face "DeepSkyBlue1")
+(set-face-foreground 'rainbow-delimiters-depth-6-face "SeaGreen")
 (set-face-foreground 'rainbow-delimiters-depth-7-face "khaki2")
 (set-face-foreground 'rainbow-delimiters-depth-8-face "DeepPink3")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "LightSalmon2")
