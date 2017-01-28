@@ -115,6 +115,7 @@
 (bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
+
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
@@ -163,12 +164,14 @@
 ;; php-mode
 (bind-key "\177" 'indent-dedent-line-backspace php-mode-map)
 (bind-key "C-." 'redo php-mode-map)
-(bind-key "C-o" 'phpcmp-complete php-mode-map)
 (bind-key "C-c d" 'php-search-documentation php-mode-map)
 (bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
 (bind-key "C-c p s" 'insert-php-script-tag php-mode-map)
 (bind-key "C-c p v" 'insert-php-short-tag php-mode-map)
-(bind-key "C-c t" 'open-view-file-with-php-mode php-mode-map)
+(bind-key "C-c i n" 'gamewith-insert-namespace php-mode-map)
+(bind-key "C-c SPC" 'helm-gamewith-class-search php-mode-map)
+(bind-key "C-c C-SPC" 'helm-gamewith-cache-clear php-mode-map)
+(bind-key "C-c t" 'gamewith-open-view-file php-mode-map)
 (bind-key "C-l ." 'insert-arrow-for-instance php-mode-map)
 (bind-key "C-l C-." 'insert-arrow-for-array php-mode-map)
 

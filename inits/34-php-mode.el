@@ -5,24 +5,25 @@
 ;;; Code:
 
 (require 'php-mode)
-(require 'php-completion)
 (require 'ac-php)
 
 (add-hook 'php-mode-hook
           (lambda()
             (mode-init-with-skk)
-            (php-completion-mode t)
-            (setq indent-tabs-mode nil)
-            (setq tab-width 4)
-            (setq c-hungry-delete-key nil)
-            (make-local-variable 'ac-sources)
+            ;; (setq tab-width 4)
             (flymake-mode-off)
-            ;; (setq ac-sources '(ac-source-php))))
-            (setq ac-sources '(ac-source-words-in-same-mode-buffers
-                               ac-source-php-completion
-                               ac-source-filename))))
+            ;; (flycheck-mode)
+            (setq indent-tabs-mode nil)
+            (setq c-hungry-delete-key nil)
+            (setq ac-sources '(ac-source-php))))
 
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+
+(defun web-php-mode-toggle ()
+  (interactive)
+  (if (eq major-mode 'php-mode)
+      (web-mode)
+    (php-mode)))
 
 (defun insert-arrow-for-instance ()
   (interactive)
