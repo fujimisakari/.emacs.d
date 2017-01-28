@@ -66,6 +66,17 @@
   (interactive)
   (recenter 0))
 
+;; 現在のfile-pathを表示&コピー
+(defun copy-current-path ()
+  (interactive)
+  (let ((path nil))
+    (if (equal major-mode 'dired-mode)
+        (setq path default-directory)
+      (setq path (buffer-file-name)))
+    (when path
+      (message "Path: %s" path)
+      (kill-new (file-truename path)))))
+
 ;; ファイルの末尾に[EOF]を表示
 (defun my-mark-eob ()
   (let ((existing-overlays (overlays-in (point-max) (point-max)))

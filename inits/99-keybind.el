@@ -80,6 +80,7 @@
 
 ;; C-l
 (unbind-key "C-l")
+(bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
 (bind-key "C-l j" 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
