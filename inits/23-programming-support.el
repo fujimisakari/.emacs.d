@@ -54,6 +54,23 @@
       (highlight-symbol-at-point (thing-at-point 'sexp))
     (highlight-symbol-at-point)))
 
+(defun highlight-symbol-region-or-read-string ()
+  (cond
+   (mark-active
+    (buffer-substring-no-properties (region-beginning) (region-end)))
+   (t
+    (read-string "highlight word: "))))
+
+(defun interactive-highlight-symbol ()
+  (interactive)
+  (let ((symbol (highlight-symbol-region-or-read-string)))
+    (if (highlight-symbol-symbol-highlighted-p symbol)
+        (highlight-symbol-remove-symbol symbol)
+      (highlight-symbol-add-symbol symbol)
+      (when (member 'explicit highlight-symbol-occurrence-message)
+        (highlight-symbol-count symbol t)))))
+
+
 ;; codeのskeletonをhelm経由で参照
 (when (require 'helm-code-skeleton nil t)
   (require 'skeleton)

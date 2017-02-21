@@ -112,6 +112,7 @@
 (bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; hatena-keywordで検索
 ;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
 ;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
+(bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
 (bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
 (bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
