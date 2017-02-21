@@ -75,7 +75,8 @@
 (when (require 'helm-code-skeleton nil t)
   (require 'skeleton)
   (setq helm-code-skeleton-dir-path-alist '((python-mode . "$HOME/.emacs.d/code-skeletons/python")
-                                            (php-mode . "$HOME/.emacs.d/code-skeletons/php")))
+                                            (php-mode . "$HOME/.emacs.d/code-skeletons/php")
+                                            (c-mode . "$HOME/.emacs.d/code-skeletons/c")))
   (helm-code-skeleton-load))
 
 ;;; 23-programming-support.el ends here

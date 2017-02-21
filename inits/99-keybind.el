@@ -10,7 +10,7 @@
 (key-chord-define-global "qp" 'helm-descbinds)                 ; キーバインド設定の参照
 (key-chord-define-global "ui" 'skk-mode)                       ; skk-modeを有効
 (key-chord-define-global "kl" 'view-mode)                      ; view-modeを有効
-(key-chord-define-global "ti" 'display-now-time)               ; 現在時間の表示
+;; (key-chord-define-global "ti" 'display-now-time)               ; 現在時間の表示
 (key-chord-define-global "dk" 'helm-ghq)                       ; ghpを起動
 (key-chord-define-global "jk" 'custom-cua-set-rectangle-mark)  ; cuaを起動
 
@@ -98,7 +98,7 @@
 (bind-key "C-l S" 'swap-window-positions)                    ; ウィンドウを入れ替える
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
-(bind-key "C-l C-SPC" 'helm-code-skeleton-search)            ; code-skeletonの一覧表示
+(bind-key "C-l SPC" 'helm-code-skeleton-search)              ; code-skeletonの一覧表示
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
