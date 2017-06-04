@@ -6,7 +6,6 @@
 
 (defun common-mode-init ()
   (rainbow-delimiters-mode)
-  (enable-skk-mode)
   (skk-mode t)
   (skk-latin-mode t))
 
