@@ -45,6 +45,9 @@
 ;; gtags設定
 (require 'helm-gtags)
 
+;; find-cmd設定
+(require 'helm-find-cmd)
+
 ;; helm-swoop
 (setq helm-swoop-split-with-multiple-windows t)
 (setq helm-swoop-split-direction 'split-window-horizontally)
