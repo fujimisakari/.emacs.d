@@ -4,16 +4,14 @@
 
 ;;; Code:
 
-;; face設定
-(set-face-foreground 'dired-directory "dodgerblue")   ; ディレクトリ
-(set-face-foreground 'dired-symlink "cyan")           ; シンボリックリンク
-(set-face-foreground 'dired-perm-write "gray75")      ; 書き込み権限
-
-;; ディレクトリ内のファイル名を自由自在に編集する
-(require 'wdired)
-
 ;; フォルダを開く時, 新しいバッファを作成しない
 (require 'dired)   ; requireしてあげないとDiredで使われている関数やモードを認識しない
+
+;; dired-mode
+(add-hook 'dired-mode-hook
+          '(lambda()
+             (hl-line-mode t)))
+
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
 (defadvice dired-advertised-find-file
@@ -52,6 +50,14 @@
 (defadvice dired-copy-filename-as-kill (before dired-copy-prefix activate)
   (if (eq (first (ad-get-args 0)) nil)
       (ad-set-arg 0 0)))
+
+;; face設定
+(set-face-foreground 'dired-directory "dodgerblue")   ; ディレクトリ
+(set-face-foreground 'dired-symlink "cyan")           ; シンボリックリンク
+(set-face-foreground 'dired-perm-write "gray75")      ; 書き込み権限
+
+;; ディレクトリ内のファイル名を自由自在に編集する
+(require 'wdired)
 
 ;; Diredのパス移動
 (require 'dired-ex-isearch)
