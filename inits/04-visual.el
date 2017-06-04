@@ -103,14 +103,7 @@
 (set-face-underline-p 'show-paren-match-face "yellow")        ; カッコ内のフェイス
 
 ;; ネストしてるカッコわかりやすくする
-(when (require 'rainbow-delimiters nil 'noerror)
-  (add-hook 'lisp-interaction-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'lisp-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'emacs-lisp-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'js2-mode 'rainbow-delimiters-mode)
-  (add-hook 'php-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'go-mode-hook 'rainbow-delimiters-mode)
-  (add-hook 'python-mode-hook 'rainbow-delimiters-mode))
+(require 'rainbow-delimiters)
 (set-face-foreground 'rainbow-delimiters-depth-1-face "SlateBlue2")
 (set-face-foreground 'rainbow-delimiters-depth-2-face "DarkOliveGreen2")
 (set-face-foreground 'rainbow-delimiters-depth-3-face "RoyalBlue")
