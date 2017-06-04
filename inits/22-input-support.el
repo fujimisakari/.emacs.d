@@ -12,6 +12,11 @@
 (setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
 (key-chord-mode 1)
 
+;; 範囲の可視化する
+(require 'smartparens-config)
+(ad-disable-advice 'delete-backward-char 'before 'sp-delete-pair-advice)
+(ad-activate 'delete-backward-char)
+
 ;; リジョン選択拡張
 (require 'expand-region)
 
@@ -24,6 +29,9 @@
 (setq undo-limit 600000)
 (setq undo-strong-limit 900000)
 
+;; 閉じ括弧、クォートの自動挿入
+(electric-pair-mode 1)
+
 ;; スペルチェッカは aspell を使う
 (when (executable-find "aspell")
   (setq-default ispell-program-name "aspell"))
@@ -32,7 +40,15 @@
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; M-iで字下げは4の倍数にする
 (custom-set-variables
- '(tab-stop-list (quote (4 8 12 16 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80 84 88 92 96 100 104 108 112 116 120))))
+ '(tab-stop-list (tab-stop-list-creator 4)))
+
+(defun tab-stop-list-creator (tab-width)
+  (let ((tab-width-list ())
+        (num 0))
+    (while (<= num 256)
+      (setq tab-width-list `(,@tab-width-list ,num))
+      (setq num (+ num tab-width)))
+  tab-width-list))
 
 ;; 矩形をより簡単にする
 (cua-mode t)
