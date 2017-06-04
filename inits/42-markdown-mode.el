@@ -6,6 +6,10 @@
 
 (require 'markdown-mode)
 
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (common-mode-init)))
+
 (defun markdown-header-list ()
   "Show Markdown Formed Header list through temporary buffer."
   (interactive)

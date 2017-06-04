@@ -7,9 +7,8 @@
 ;; 基本設定
 (add-hook 'objc-mode-hook
           '(lambda()
-             (mode-init-func)
+             (common-mode-init)
              (auto-complete-mode)
-             (skk-mode t)
              (setq c-basic-offset 4)
              (setq tab-width 4)
              (setq indent-tabs-mode nil)))

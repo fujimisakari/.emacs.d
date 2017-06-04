@@ -16,7 +16,7 @@
             interpreter-mode-alist))
 (add-hook 'cperl-mode-hook
           '(lambda()
-             (mode-init-func)
+             (common-mode-init)
              (hs-minor-mode)
              (cperl-set-style "PerlStyle") ;
              (perlplus-setup)))

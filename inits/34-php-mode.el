@@ -9,7 +9,7 @@
 
 (add-hook 'php-mode-hook
           (lambda()
-            (mode-init-with-skk)
+            (common-mode-init)
             ;; (setq tab-width 4)
             (flymake-mode-off)
             ;; (flycheck-mode)
@@ -25,11 +25,11 @@
       (web-mode)
     (php-mode)))
 
-(defun insert-arrow-for-instance ()
+(defun insert-php-arrow-for-instance ()
   (interactive)
   (insert "->"))
 
-(defun insert-arrow-for-array ()
+(defun insert-php-arrow-for-array ()
   (interactive)
   (insert "=>"))
 
@@ -40,23 +40,5 @@
 (defun insert-php-short-tag ()
   (interactive)
   (insert "<?=  ?>"))
-
-;; タブインデント単位で削除できるようにする
-(defun indent-dedent-line-p ()
-  "Check if De-indent current line."
-  (interactive "*")
-  (when (and (<= (point-marker) (save-excursion
-                                  (back-to-indentation)
-                                  (point-marker)))
-             (> (current-column) 0))
-    t))
-
-(defun indent-dedent-line-backspace (arg)
-  "De-indent current line."
-  (interactive "*p")
-  (if (indent-dedent-line-p)
-      (backward-delete-char-untabify tab-width)
-    (delete-backward-char arg)))
-(put 'indent-dedent-line-backspace 'delete-selection 'supersede)
 
 ;;; 34-php-mode.el ends here

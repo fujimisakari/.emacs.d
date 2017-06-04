@@ -11,7 +11,7 @@
 (add-hook 'go-mode-hook
           '(lambda()
              ;; (add-hook 'before-save-hook 'gofmt-before-save)
-             (mode-init-func)
+             (common-mode-init)
              (setq indent-tabs-mode t)
              (go-eldoc-setup)))
 
@@ -19,6 +19,7 @@
   '((name . "Helm Go Packages")
     (candidates . (lambda ()
                     (cons "builtin" (go-packages))))
+    (candidate-number-limit . 300)
     (action . (("Show document" . godoc)
                ("Import package" . helm-go-package-import-add)))))
 

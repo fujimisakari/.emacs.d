@@ -15,6 +15,6 @@
 ;;   (setq-default indent-tabs-mode nil))
 ;; (add-hook 'css-mode-hook '(lambda()
 ;;                             (css-mode-hooks)
-;;                             (mode-init-func)))
+;;                             (common-mode-init)))
 
 ;;; 37-css-mode.el ends here

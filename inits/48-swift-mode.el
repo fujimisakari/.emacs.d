@@ -8,7 +8,7 @@
 
 (add-hook 'swift-mode-hook
           (lambda ()
-            (mode-init-func)
+            (common-mode-init)
             (auto-complete-mode)))
 
 ;; 補完

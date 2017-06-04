@@ -4,57 +4,31 @@
 
 ;;; Code:
 
-(defun mode-init-func()
-  (mode-init-with-skk)
-  (setq indent-level 4)
-  (c-toggle-hungry-state 1))
-
-(defun mode-init-with-skk ()
+(defun common-mode-init ()
+  (rainbow-delimiters-mode)
+  (enable-skk-mode)
   (skk-mode t)
   (skk-latin-mode t))
 
-(require 'flymake)
-(require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
-;; 文法チェックの頻度の設定
-(setq flymake-no-changes-timeout 1)
-;; 改行時に文法チェックを行うかどうかの設定
-(setq flymake-start-syntax-check-on-newline nil)
-;; 自動でリアルタイムの文法チェックを有効
-;; (add-hook 'c-mode-common-hook (lambda() (flymake-mode t)))
-;; syntax checkが異常終了しても無視する
-(defadvice flymake-post-syntax-check (before flymake-force-check-was-interrupted)
-  (setq flymake-check-was-interrupted t))
-(ad-activate 'flymake-post-syntax-check)
-;; javaとhtml, xmlはflymakeは起動しないようにする
-(delete '("\\.html?\\'" flymake-xml-init) flymake-allowed-file-name-masks)
-(delete '("\\.xml\\'" flymake-xml-init) flymake-allowed-file-name-masks)
-(delete '("\\.java\\'" flymake-simple-make-java-init flymake-simple-java-cleanup) flymake-allowed-file-name-masks)
-(delete '("\\.cs\\'" flymake-simple-make-init) flymake-allowed-file-name-masks)
 ;; zshはshell-script-modeで起動
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 
-;; emacs-lisp-mode
-(add-hook 'emacs-lisp-mode-hook 'mode-init-func)
+;; タブインデント単位で削除できるようにする
+(defun indent-dedent-line-p ()
+  "Check if De-indent current line."
+  (interactive "*")
+  (when (and (<= (point-marker) (save-excursion
+                                  (back-to-indentation)
+                                  (point-marker)))
+             (> (current-column) 0))
+    t))
 
-;; text-mode
-;; (add-hook 'text-mode-hook 'mode-init-func)
-
-;; ruby-mode
-(add-hook 'ruby-mode-hook 'mode-init-func)
-
-;; dired-mode
-(add-hook 'dired-mode-hook
-          '(lambda()
-             (hl-line-mode t)))
-
-;; org-mode
-(add-hook 'org-mode-hook
-          '(lambda()
-             (skk-mode)))
-
-;; org-remember-mode
-(add-hook 'org-remember-mode-hook
-          '(lambda()
-             (skk-mode)))
+(defun indent-dedent-line-backspace (arg)
+  "De-indent current line."
+  (interactive "*p")
+  (if (indent-dedent-line-p)
+      (backward-delete-char-untabify tab-width)
+    (delete-backward-char arg)))
+(put 'indent-dedent-line-backspace 'delete-selection 'supersede)
 
 ;;; 30-mode.el ends here

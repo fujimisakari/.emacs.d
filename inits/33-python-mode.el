@@ -6,6 +6,12 @@
 
 (require 'python)
 
+;; hook
+(add-hook 'python-mode-hook
+          '(lambda ()
+            (common-mode-init)
+            (jedi:setup)))
+
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (defun flymake-pyflakes-init ()
@@ -46,11 +52,5 @@
             (insert (format "%s:param TYPE %s:\n" space (replace-regexp-in-string "^\\s-+\\|\\s-+$\\|=.+$" "" arg))))))
     (insert (format "%s:rtype: TYPE\n" space))
     (insert (format "%s\"\"\"" space))))
-
-;; hook
-(add-hook 'python-mode-hook
-          '(lambda ()
-            (mode-init-func)
-            (jedi:setup)))
 
 ;;; 33-python-mode.el ends here

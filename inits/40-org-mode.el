@@ -14,7 +14,7 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (turn-on-font-lock)     ; org-modeでの強調表示を有効にする
-            (mode-init-with-skk)))
+            (common-mode-init)))
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")      ; 言語は日本語

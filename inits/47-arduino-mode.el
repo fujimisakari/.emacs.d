@@ -7,7 +7,6 @@
 ;; 基本設定
 (add-hook 'arduino-mode-hook
           '(lambda()
-             (mode-init-func)
-             (skk-mode t)))
+             (common-mode-init)))
 
 ;;; 47-arduino-mode.el ends here

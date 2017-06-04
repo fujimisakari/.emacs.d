@@ -7,6 +7,7 @@
 (when (require 'slime nil t)
 
   (add-hook 'lisp-mode-hook (lambda ()
+                              (common-mode-init)
                               (slime-mode t)
                               (setq indent-tabs-mode nil)
                               (unless show-paren-mode

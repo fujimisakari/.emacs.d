@@ -11,7 +11,7 @@
 ;; java-mode で有効
 (add-hook 'java-mode-hook
           (lambda ()
-            (mode-init-func)
+            (common-mode-init)
             (eclim-mode)))
 
 (custom-set-variables

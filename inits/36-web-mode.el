@@ -29,7 +29,7 @@
   (setq web-mode-enable-auto-indentation nil)
   (setq web-mode-enable-block-face t)
   (setq web-mode-enable-part-face t)
-  (mode-init-with-skk)
+  (common-mode-init)
   (add-hook 'local-write-file-hooks
             (lambda ()
               (delete-trailing-whitespace)
