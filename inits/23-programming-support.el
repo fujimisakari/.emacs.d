@@ -70,11 +70,11 @@
       (when (member 'explicit highlight-symbol-occurrence-message)
         (highlight-symbol-count symbol t)))))
 
-
 ;; codeのskeletonをhelm経由で参照
 (when (require 'helm-code-skeleton nil t)
   (require 'skeleton)
   (setq helm-code-skeleton-dir-path-alist '((python-mode . "$HOME/.emacs.d/code-skeletons/python")
+                                            (erlang-mode . "$HOME/.emacs.d/code-skeletons/erlang")
                                             (php-mode . "$HOME/.emacs.d/code-skeletons/php")
                                             (c-mode . "$HOME/.emacs.d/code-skeletons/c")))
   (helm-code-skeleton-load))
