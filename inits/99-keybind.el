@@ -90,8 +90,10 @@
 (bind-key "C-l g" 'open-github-from-here)                    ; リジョン選択をgithubで開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
-(bind-key "C-l f" 'helm-ag)                                  ; helm-ag検索
-(bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
+(bind-key "C-l a" 'helm-ag)                                  ; helm-ag検索
+(bind-key "C-l f" 'helm-find-cmd-type-file)                  ; helm-find-cmd ファイル検索
+(bind-key "C-l d" 'helm-find-cmd-type-directory)             ; helm-find-cmd ディレクトリ検索
+;; (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
@@ -153,6 +155,7 @@
 (bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map)
 
 ;; cc-mode
+(bind-key "\177" 'indent-dedent-line-backspace c-mode-base-map)
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
 
 ;; go-mode
@@ -174,8 +177,19 @@
 (bind-key "C-c SPC" 'helm-gamewith-class-search php-mode-map)
 (bind-key "C-c C-SPC" 'helm-gamewith-cache-clear php-mode-map)
 (bind-key "C-c t" 'gamewith-open-view-file php-mode-map)
-(bind-key "C-l ." 'insert-arrow-for-instance php-mode-map)
-(bind-key "C-l C-." 'insert-arrow-for-array php-mode-map)
+(bind-key "C-l ." 'insert-php-arrow-for-instance php-mode-map)
+(bind-key "C-l C-." 'insert-php-arrow-for-array php-mode-map)
+
+;; erlang-mode
+(bind-key "\177" 'indent-dedent-line-backspace erlang-mode-map)
+(bind-key "C-i" 'erlang-indent-command erlang-mode-map)
+(bind-key "C-l ." 'insert-erlang-arrow erlang-mode-map)
+
+;; elixir-mode
+(bind-key "\177" 'indent-dedent-line-backspace elixir-mode-map)
+(bind-key "C-l ." 'insert-elixir-patern-match-arrow elixir-mode-map)
+(bind-key "C-l C-." 'insert-elixir-map-arrow elixir-mode-map)
+(bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map)
 
 ;; perl-mode
 ;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完
@@ -194,6 +208,7 @@
 (bind-key "C-;" nil web-mode-map)
 ;; (bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
 (bind-key "C-c '" 'web-php-mode-toggle web-mode-map)
+(bind-key "\177" 'indent-dedent-line-backspace web-mode-map)
 
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)     ; markdown-headerの一覧表示
@@ -233,10 +248,10 @@
     (local-set-key (kbd "C-c t") 'dired-move-template-directory)         ; テンプレートディレクトリへ切り替える
     (local-set-key (kbd "C-c p") 'dired-open-project-directory)          ; Projectディレクトリへ切り替える
 
-    (local-set-key (kbd "i") 'dired-subtree-insert)                      ; ディレクトリをサブツリーで開く
-    (local-set-key (kbd "C-l i") 'dired-subtree-remove)                  ; サブツリーを閉じる
-    (local-set-key (kbd "C-l u") 'dired-subtree-up)                      ; サブツリーの上層に移動
-    (local-set-key (kbd "C-l d") 'dired-subtree-down)                    ; サブツリーの下層に移動
+    ;; (local-set-key (kbd "i") 'dired-subtree-insert)                      ; ディレクトリをサブツリーで開く
+    ;; (local-set-key (kbd "C-l i") 'dired-subtree-remove)                  ; サブツリーを閉じる
+    ;; (local-set-key (kbd "C-l u") 'dired-subtree-up)                      ; サブツリーの上層に移動
+    ;; (local-set-key (kbd "C-l d") 'dired-subtree-down)                    ; サブツリーの下層に移動
 
     (local-set-key (kbd "/") 'dired-ex-isearch)                          ; Diredのパス移動
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
