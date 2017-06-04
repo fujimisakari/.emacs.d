@@ -11,11 +11,15 @@
 (setq skk-preload t)
 
 ;; 辞書サーバを使うための設定
-;; (setq skk-user-directory "~/skkdic")
-;; (setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
-(setq skk-large-jisyo "~/Library/Application Support/AquaSKK/SKK-JISYO.L")
-(setq skk-server-host "localhost") ; AquaSKK のサーバー機能を利用
-(setq skk-server-portnum 1178)     ; ポートは標準
+(setq skk-jisyo "~/Dropbox/skk/skk-jisyo.utf8")
+(setq skk-backup-jisyo "~/Dropbox/skk/skk-jisyo.utf8.bak")
+(setq skk-large-jisyo "~/Dropbox/skk/SKK-JISYO.L.utf8")
+(setq skk-user-directory "~/Dropbox/skk")
+(setq skk-study-file "~/Dropbox/skk/skk-study.utf8")
+(setq skk-study-backup-file "~/Dropbox/skk/skk-study.utf8.bak")
+(setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
+;; (setq skk-server-host "localhost") ; AquaSKK のサーバー機能を利用
+;; (setq skk-server-portnum 1178)     ; ポートは標準
 (setq skk-share-private-jisyo t)   ; 複数 skk 辞書を共有
 
 ;; 10 分放置すると個人辞書が自動的に保存される設定
@@ -33,7 +37,7 @@
 
 ;; 基本設定
 (setq skk-japanese-message-and-error t)   ; メッセージを日本語で通知する
-(setq skk-show-annotation t)              ; 変換時に注釈 (annotation) を表示する
+(setq skk-show-annotation nil)            ; 変換時に注釈 (annotation) を非表示(表示にすると重くなる)
 ;; (setq skk-verbose t)                      ; 変換前/変換中にエコーエリアに助言的メッセージを表示
 (setq skk-show-icon t)                    ; モードラインに SKK アイコンを表示する。
 (setq skk-use-jisx0201-input-method t)    ; 半角カナを入力
@@ -93,10 +97,7 @@
 
 ;; 個人辞書
 (add-to-list 'skk-completion-prog-list
-             '(skk-comp-from-jisyo "~/.skk-jisyo"))
-;; はてな辞書
-(add-to-list 'skk-completion-prog-list
-             '(skk-comp-from-jisyo "~/Dropbox/skk/jisho/SKK-JISYO.hatena"))
+             '(skk-comp-from-jisyo "~/Dropbox/skk/skk-jisyo.utf8"))
 ;; server completion
 (add-to-list 'skk-search-prog-list
              '(skk-server-completion-search) t)
