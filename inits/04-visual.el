@@ -5,60 +5,58 @@
 ;;; Code:
 
 ;; フォント設定
+;; (dolist (x (font-family-list)) (print x))
+;; (dolist (x (x-list-fonts "*")) (print x))
 (cond ((eq my-os-type 'linux)
-       (when window-system
-         ;; 標準のフォントを設定
-         (set-default-font "M+2VM+IPAG circle-10.5")
-         ;; 日本語全部
-         (set-fontset-font (frame-parameter nil 'font)
-                           'japanese-jisx0208
-                           (font-spec :family "M+1M+IPAG")))
-       )
+       (let* ((ascii-font "Menlo for Powerline")
+              (jp-font "Ricty")
+              (ascii-fontspec (font-spec :family ascii-font))
+              (jp-fontspec (font-spec :family jp-font)))
+         (set-face-attribute 'default nil :family ascii-font :height 130)
+         (set-fontset-font nil 'japanese-jisx0208 jp-fontspec)
+         (set-fontset-font nil 'japanese-jisx0212 jp-fontspec)
+         (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+         (set-fontset-font nil 'mule-unicode-0100-24ff jp-fontspec)) ; Unicode フォント
+       (setq face-font-rescale-alist
+             '((".*Ricty.*" . 1.2)
+               (".*Menlo for Powerline.*" . 1.0))))
       ((eq my-os-type 'mac)
-       (when (>= emacs-major-version 23)
-         (setq fixed-width-use-QuickDraw-for-ascii t)
-         (setq mac-allow-anti-aliasing t)
-         (set-face-attribute 'default nil
-                             :family "Menlo"
-                             :height 150)
-         (set-fontset-font (frame-parameter nil 'font)
-          'japanese-jisx0208
-          '("Ricty" . "iso10646-1"))
-         (set-fontset-font (frame-parameter nil 'font)
-          'japanese-jisx0212
-          '("Ricty" . "iso10646-1"))
-         (set-fontset-font (frame-parameter nil 'font)
-          'katakana-jisx0201
-          '("Ricty" . "iso10646-1"))
-         ;; Unicode フォント
-         (set-fontset-font (frame-parameter nil 'font)
-          'mule-unicode-0100-24ff
-          '("Ricty" . "iso10646-1"))
-         (setq face-font-rescale-alist
-               '(("^-apple-hiragino.*" . 1.2)
-                 (".*ricty.*" . 1.2)
-                 (".*osaka-bold.*" . 1.2)
-                 (".*osaka-medium.*" . 1.2)
-                 (".*courier-bold-.*-mac-roman" . 1.0)
-                 (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
-                 (".*monaco-bold-.*-mac-roman" . 0.9)
-                 ("-cdac$" . 1.3))))
-         (define-key global-map [?¥] [?\\]))) ;; ¥の代わりにバックスラッシュを入力する
+       (let* ((ascii-font "Menlo")
+              (jp-font "Ricty")
+              (ascii-fontspec (font-spec :family ascii-font))
+              (jp-fontspec (font-spec :family jp-font)))
+         (set-face-attribute 'default nil :family ascii-font :height 150)
+         (set-fontset-font nil 'japanese-jisx0208 jp-fontspec)
+         (set-fontset-font nil 'japanese-jisx0212 jp-fontspec)
+         (set-fontset-font nil 'katakana-jisx0201 jp-fontspec)
+         (set-fontset-font nil 'mule-unicode-0100-24ff jp-fontspec)) ; Unicode フォント
+       (setq face-font-rescale-alist
+             '(("^-apple-hiragino.*" . 1.2)
+               (".*ricty.*" . 1.2)
+               (".*osaka-bold.*" . 1.2)
+               (".*osaka-medium.*" . 1.2)
+               (".*courier-bold-.*-mac-roman" . 1.0)
+               (".*monaco cy-bold-.*-mac-cyrillic" . 0.9)
+               (".*monaco-bold-.*-mac-roman" . 0.9)
+               ("-cdac$" . 1.3)))
+       (setq fixed-width-use-QuickDraw-for-ascii t)
+       (setq mac-allow-anti-aliasing t))
+      (define-key global-map [?¥] [?\\])) ; ¥の代わりにバックスラッシュを入力する
 
 ;; font-lock設定
 (global-font-lock-mode t)                                            ; 特定のモードで色を付ける(Font-Lookモード有効にする)
 (setq font-lock-maximum-decoration t)                                ; 色づけは最大限に
 (set-face-foreground 'font-lock-comment-face "DodgerBlue")           ; コメントの色
-(set-face-foreground 'font-lock-string-face  "red")                  ; 文字(string)部分の色文
+(set-face-foreground 'font-lock-string-face  "firebrick1")           ; 文字(string)部分の色文
 (set-face-foreground 'font-lock-keyword-face "yellow")               ; キーワード(if,for等の予約語)の色
 (set-face-foreground 'font-lock-function-name-face "lime green")     ; 関数名の色
-(set-face-foreground 'font-lock-variable-name-face "magenta")        ; 変数名の色
+(set-face-foreground 'font-lock-variable-name-face "orchid1")        ; 変数名の色
 (set-face-foreground 'font-lock-negation-char-face "coral")          ; 文字(char)部分の色
 (set-face-foreground 'font-lock-type-face "DeepSkyBlue")             ; ユーザ定義のデータ型の色
 (set-face-foreground 'font-lock-builtin-face "orange")               ; 組込み関数の色
-(set-face-foreground 'font-lock-constant-face "cyan")                ; 定数名の色
+(set-face-foreground 'font-lock-constant-face "turquoise")           ; 定数名の色
 (set-face-foreground 'font-lock-warning-face "LightCyan")            ; 独特な構文の色
-(set-face-foreground 'font-lock-doc-face "red")                      ; ドキュメントの色
+(set-face-foreground 'font-lock-doc-face "firebrick1")               ; ドキュメントの色
 (set-face-foreground 'font-lock-regexp-grouping-backslash "green4")  ; 正規表現
 (set-face-foreground 'font-lock-regexp-grouping-construct "green")   ; 正規表現
 (set-face-bold-p 'font-lock-function-name-face t)                    ; 太字設定
@@ -66,14 +64,14 @@
 
 ;; フレーム設定
 (setq default-frame-alist
-  (append '((foreground-color . "gray75")         ; 文字の色設定
-            (background-color . "gray10")         ; 背景色の設定
-            (cursor-color . "SlateBlue2")         ; カーソルの色設定
-            (mouse-color  . "SlateBlue2")         ; マウスポインタの色を設定
-            ;; (width  . 160)                        ; 画面の幅(何文字分)
-            ;; (height . 50)                         ; 画面の高さ(何文字分)
-            (alpha  . 97)                         ; 画面透明度の設定
-           ) default-frame-alist))
+      (append '((foreground-color . "gray75") ; 文字の色設定
+                (background-color . "gray10") ; 背景色の設定
+                (cursor-color . "SlateBlue2") ; カーソルの色設定
+                (mouse-color  . "SlateBlue2") ; マウスポインタの色を設定
+                ;; (width  . 160)                ; 画面の幅(何文字分)
+                ;; (height . 50)                 ; 画面の高さ(何文字分)
+                (alpha  . 87))                ; 画面透明度の設定
+              default-frame-alist))
 (toggle-scroll-bar nil)                           ; スクロールバーを消す
 (menu-bar-mode nil)                               ; メニューバーを消す
 (tool-bar-mode 0)                                 ; ツールバーを消す
