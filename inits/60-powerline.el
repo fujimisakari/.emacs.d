@@ -90,7 +90,6 @@ static char * arrow_right[] = {
     ""
     (buffer-name)))
 
-(defconst color0 "MediumSlateBlue")
 (defconst color1 "SlateBlue")
 (defconst color2 "#1d1d1d")
 (defconst color3 "gray40")
@@ -116,7 +115,7 @@ static char * arrow_right[] = {
 
                     ;; Justify right by filling with spaces to right fringe - 16
                     ;; (16 should be computed rahter than hardcoded)
-                    '(:eval (propertize " " 'display '((space :align-to (- right-fringe 34)))))
+                    '(:eval (propertize " " 'display '((space :align-to (- right-fringe 32)))))
 
                     '(:eval (concat (propertize " " 'display arrow-left-2)
                                     (propertize "[" 'face 'mode-line-color-2)
@@ -128,7 +127,7 @@ static char * arrow_right[] = {
 (make-face 'mode-line-color-1)
 (set-face-attribute 'mode-line-color-1 nil
                     :foreground "white"
-                    :background color0)
+                    :background color1)
 
 (make-face 'mode-line-color-2)
 (set-face-attribute 'mode-line-color-2 nil
