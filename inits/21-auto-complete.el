@@ -13,8 +13,8 @@
 ;; ソートファイルの保存場所を変更
 (setq ac-comphist-file
       (expand-file-name (concat user-emacs-directory "/cache/ac-comphist.dat")))
-;; クイックヘルプを利用しない
-(setq ac-use-quick-help nil)
+;; クイックヘルプを利用する
+(setq ac-use-quick-help t)
 ;; 補完メニューのときだけキーバインドを有効にする
 (setq ac-use-menu-map t)
 ;; 色の設定
