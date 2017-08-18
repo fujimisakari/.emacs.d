@@ -75,7 +75,7 @@
         (let* ((pch-include-option (list "--pch" (expand-file-name (car pch-file))))
                (clang-options (append clang-base-options pch-include-option)))
           (shell-command-to-string (message "%s" (push auto-complete-option-command clang-options))))
-      (list auto-complete-objc-compiler auto-complete-objc-compile-options))))
+      "")))
 (setq ac-clang-flags (split-string (replace-regexp-in-string "\n+$" "" (auto-complete-option)) ","))
 (setq ac-clang-auto-save t)
 
