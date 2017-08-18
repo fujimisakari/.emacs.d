@@ -5,7 +5,11 @@
 ;;; Code:
 
 (require 'w3m-load)
-(setq w3m-command "/usr/local/bin/w3m")
+(cond ((eq my-os-type 'linux)
+       (setq w3m-command "/usr/bin/w3m"))
+      ((eq my-os-type 'mac)
+       (setq w3m-command "/usr/local/bin/w3m")))
+
 (setq w3m-home-page "http://www.google.co.jp/")                             ; 起動時に開くページ
 (setq w3m-search-default-engine "google-ja")                                ; 検索をGoogle(日本語サイト)でおこなう
 (setq w3m-use-cookies t)                                                    ; クッキーを使う
