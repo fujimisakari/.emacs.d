@@ -63,4 +63,4 @@ file_name = opts.target_file.split('_')[0]
 for row_text in command_result.split('\n'):
     if result_filter.match(row_text) and file_name in row_text:
         result_list.append(row_text)
-print '\n'.join(result_list)
+print('\n'.join(result_list))

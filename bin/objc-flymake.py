@@ -61,4 +61,4 @@ clang_option_list.append(opts.target_file)
 
 # コマンド実行
 flymake_result = getoutput(' '.join(clang_option_list))
-print flymake_result
+print(flymake_result)

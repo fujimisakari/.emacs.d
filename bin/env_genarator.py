@@ -9,7 +9,7 @@ def genarate_path_for_emacs():
     text_format = '(setenv "{}" "{}")'
 
     # PATH
-    print text_format.format('PATH', os.environ.get('PATH'))
+    print(text_format.format('PATH', os.environ.get('PATH')))
 
     # PYTHONPATH
     # set_list = []

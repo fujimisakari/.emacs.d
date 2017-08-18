@@ -56,4 +56,4 @@ for header in header_list:
     clang_option_list.append("-I")
     clang_option_list.append(header)
 
-print ','.join(clang_option_list)
+print(','.join(clang_option_list))
