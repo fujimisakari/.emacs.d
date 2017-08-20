@@ -70,7 +70,7 @@
 ;; ヘッダーを強調表示させる
 (custom-set-faces
  '(dired-header
-   ((t (:foreground "yellow" :weight bold :height 1.3 :family "Menlo")))))
+   ((t (:foreground "yellow" :weight bold :height 1.3 :family global-ascii-font)))))
 
 ;;; 更新日が当日のファイルは色を変える
 (defface dired-todays-face '((t (:foreground "green"))) nil)
