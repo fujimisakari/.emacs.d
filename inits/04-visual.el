@@ -8,6 +8,7 @@
 ;; (dolist (x (font-family-list)) (print x))
 ;; (dolist (x (x-list-fonts "*")) (print x))
 (cond ((eq my-os-type 'linux)
+       (setq default-frame-alist (append '((alpha . 94)) default-frame-alist)) ; 画面透明度の設定
        (setq global-ascii-font "Menlo for Powerline")
        (let* ((ascii-font global-ascii-font)
               (jp-font "Ricty")
@@ -22,6 +23,7 @@
              '((".*Ricty.*" . 1.2)
                (".*Menlo for Powerline.*" . 1.0))))
       ((eq my-os-type 'mac)
+       (setq default-frame-alist (append '((alpha . 94)) default-frame-alist)) ; 画面透明度の設定
        (setq global-ascii-font "Menlo")
        (let* ((ascii-font global-ascii-font)
               (jp-font "Ricty")
@@ -69,13 +71,12 @@
       (append '((foreground-color . "gray75") ; 文字の色設定
                 (background-color . "gray10") ; 背景色の設定
                 (cursor-color . "SlateBlue2") ; カーソルの色設定
-                (mouse-color  . "SlateBlue2") ; マウスポインタの色を設定
-                ;; (width  . 160)                ; 画面の幅(何文字分)
-                ;; (height . 50)                 ; 画面の高さ(何文字分)
-                (alpha  . 87))                ; 画面透明度の設定
+                (mouse-color  . "SlateBlue2")) ; マウスポインタの色を設定
+              ;; (width  . 160)                ; 画面の幅(何文字分)
+              ;; (height . 50)                 ; 画面の高さ(何文字分)
               default-frame-alist))
 (toggle-scroll-bar nil)                           ; スクロールバーを消す
-(menu-bar-mode nil)                               ; メニューバーを消す
+(menu-bar-mode 0)                                 ; メニューバーを消す
 (tool-bar-mode 0)                                 ; ツールバーを消す
 (setq ring-bell-function 'ignore)                 ; ビープ音、画面フラッシュどちらも起こさない
 (auto-image-file-mode)                            ; 画像表示を有効
