@@ -9,8 +9,9 @@
 ;; hook
 (add-hook 'python-mode-hook
           '(lambda ()
-            (common-mode-init)
-            (jedi:setup)))
+             (common-mode-init)
+             (jedi:setup)
+             (setq imenu-create-index-function 'python-imenu-create-index)))
 
 ;; code checker
 (add-hook 'find-file-hook 'flymake-find-file-hook)
