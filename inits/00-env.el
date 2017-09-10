@@ -106,8 +106,13 @@
 
 ;; ブラウザはmacを使用する
 (setq browse-url-browser-function 'browse-url-generic)
-(setq browse-url-generic-program
-      (if (file-exists-p "/usr/bin/open")
-          "/usr/bin/open"))
+(cond ((eq my-os-type 'mac)
+       (setq browse-url-generic-program
+             (if (file-exists-p "/usr/bin/open")
+                 "/usr/bin/open")))
+      ((eq my-os-type 'linux)
+       (setq browse-url-generic-program
+             (if (file-exists-p "/usr/bin/firefox")
+                 "/usr/bin/firefox"))))
 
 ;;; 00-env.el ends here
