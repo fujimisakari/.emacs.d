@@ -11,12 +11,12 @@
 (setq skk-preload t)
 
 ;; 辞書サーバを使うための設定
-(setq skk-jisyo "~/Dropbox/skk/skk-jisyo.utf8")
-(setq skk-backup-jisyo "~/Dropbox/skk/skk-jisyo.utf8.bak")
-(setq skk-large-jisyo "~/Dropbox/skk/SKK-JISYO.L.utf8")
-(setq skk-user-directory "~/Dropbox/skk")
-(setq skk-study-file "~/Dropbox/skk/skk-study.utf8")
-(setq skk-study-backup-file "~/Dropbox/skk/skk-study.utf8.bak")
+(setq skk-user-directory "~/skk")
+(setq skk-jisyo "~/skk/skk-jisyo.utf8")
+(setq skk-backup-jisyo "~/skk/skk-jisyo.utf8.bak")
+(setq skk-large-jisyo "~/skk/SKK-JISYO.L.utf8")
+(setq skk-study-file "~/skk/skk-study.utf8")
+(setq skk-study-backup-file "~/skk/skk-study.utf8.bak")
 (setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
 ;; (setq skk-server-host "localhost") ; AquaSKK のサーバー機能を利用
 ;; (setq skk-server-portnum 1178)     ; ポートは標準
@@ -97,7 +97,7 @@
 
 ;; 個人辞書
 (add-to-list 'skk-completion-prog-list
-             '(skk-comp-from-jisyo "~/Dropbox/skk/skk-jisyo.utf8"))
+             '(skk-comp-from-jisyo "~/skk/skk-jisyo.utf8"))
 ;; server completion
 (add-to-list 'skk-search-prog-list
              '(skk-server-completion-search) t)
