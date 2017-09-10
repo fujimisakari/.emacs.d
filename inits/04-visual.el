@@ -63,8 +63,7 @@
 (set-face-foreground 'font-lock-doc-face "firebrick1")               ; ドキュメントの色
 (set-face-foreground 'font-lock-regexp-grouping-backslash "green4")  ; 正規表現
 (set-face-foreground 'font-lock-regexp-grouping-construct "green")   ; 正規表現
-(set-face-bold-p 'font-lock-function-name-face t)                    ; 太字設定
-(set-face-bold-p 'font-lock-warning-face nil)                        ; 太字設定
+(set-face-bold-p 'font-lock-warning-face nil)
 
 ;; フレーム設定
 (setq default-frame-alist
@@ -90,7 +89,7 @@
 
 ;; カーソル行をハイライト表示
 (hl-line-mode -1)
-(set-face-background 'hl-line "gray20")
+(set-face-background 'hl-line "SlateBlue4")
 
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
@@ -114,6 +113,17 @@
 (set-face-foreground 'rainbow-delimiters-depth-7-face "khaki2")
 (set-face-foreground 'rainbow-delimiters-depth-8-face "DeepPink3")
 (set-face-foreground 'rainbow-delimiters-depth-9-face "LightSalmon2")
+
+;; imenu-listのface設定
+(require 'imenu-list)
+(set-face-foreground 'imenu-list-entry-face-0 "lime green")
+(set-face-foreground 'imenu-list-entry-face-1 "lime green")
+(set-face-foreground 'imenu-list-entry-face-2 "khaki2")
+(set-face-foreground 'imenu-list-entry-face-3 "SteelBlue1")
+(set-face-foreground 'imenu-list-entry-subalist-face-0 "DeepSkyBlue")
+(set-face-foreground 'imenu-list-entry-subalist-face-1 "lime green")
+(set-face-foreground 'imenu-list-entry-subalist-face-2 "khaki2")
+(set-face-foreground 'imenu-list-entry-subalist-face-3 "SteelBlue1")
 
 ;; カーソル位置のフェースを調べる関数
 (defun describe-face-at-point ()

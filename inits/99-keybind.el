@@ -109,6 +109,7 @@
 (bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
+(bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
 (bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
 (bind-key "C-l C-M-;" 'microsoft-translator-auto-translate)  ; microsoft翻訳
 (bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; hatena-keywordで検索
