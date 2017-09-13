@@ -121,6 +121,12 @@
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
 
+;; magit
+(bind-key "C-l m s" 'magit-status)                           ; git status
+(bind-key "C-l m l" 'magit-log-current)                      ; git log
+(bind-key "C-l m d" 'magit-diff-unstaged)                    ; git diff unstaged
+(bind-key "C-l m D" 'magit-diff-staged)                      ; git diff staged
+
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
