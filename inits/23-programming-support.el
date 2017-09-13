@@ -73,10 +73,7 @@
 ;; codeのskeletonをhelm経由で参照
 (when (require 'helm-code-skeleton nil t)
   (require 'skeleton)
-  (setq helm-code-skeleton-dir-path-alist '((python-mode . "$HOME/.emacs.d/code-skeletons/python")
-                                            (erlang-mode . "$HOME/.emacs.d/code-skeletons/erlang")
-                                            (php-mode . "$HOME/.emacs.d/code-skeletons/php")
-                                            (c-mode . "$HOME/.emacs.d/code-skeletons/c")))
+  (setq helm-code-skeleton-dir-root-path "~/.emacs.d/code-skeletons")
   (helm-code-skeleton-load))
 
 ;;; 23-programming-support.el ends here
