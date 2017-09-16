@@ -29,7 +29,7 @@
 
 (set-face-foreground 'markdown-header-face-1 "lime green")
 (set-face-foreground 'markdown-header-face-2 "magenta")
-(set-face-foreground 'markdown-header-face-3 "dodgerblue")
+(set-face-foreground 'markdown-header-face-3 "CornflowerBlue")
 (set-face-foreground 'markdown-header-face-4 "orange")
 (set-face-foreground 'markdown-header-face-5 "cyan")
 (set-face-attribute 'markdown-header-face-1 nil :bold nil :height 1.8)

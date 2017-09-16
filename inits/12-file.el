@@ -35,7 +35,7 @@
   (define-key map (kbd "C-c") 'zlc-reset)
   )
 ;; 補完候補一覧での候補の色
-(set-face-foreground 'zlc-selected-completion-face "gray10")
+(set-face-foreground 'zlc-selected-completion-face "gray7")
 (set-face-background 'zlc-selected-completion-face "MediumPurple1")
 
 ;; bookmack設定

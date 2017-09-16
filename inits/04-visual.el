@@ -50,7 +50,7 @@
 ;; font-lock設定
 (global-font-lock-mode t)                                            ; 特定のモードで色を付ける(Font-Lookモード有効にする)
 (setq font-lock-maximum-decoration t)                                ; 色づけは最大限に
-(set-face-foreground 'font-lock-comment-face "DodgerBlue")           ; コメントの色
+(set-face-foreground 'font-lock-comment-face "CornflowerBlue")       ; コメントの色
 (set-face-foreground 'font-lock-string-face  "firebrick1")           ; 文字(string)部分の色文
 (set-face-foreground 'font-lock-keyword-face "yellow")               ; キーワード(if,for等の予約語)の色
 (set-face-foreground 'font-lock-function-name-face "lime green")     ; 関数名の色
@@ -68,7 +68,7 @@
 ;; フレーム設定
 (setq default-frame-alist
       (append '((foreground-color . "gray75") ; 文字の色設定
-                (background-color . "gray10") ; 背景色の設定
+                (background-color . "gray7")  ; 背景色の設定
                 (cursor-color . "SlateBlue2") ; カーソルの色設定
                 (mouse-color  . "SlateBlue2")) ; マウスポインタの色を設定
               ;; (width  . 160)                ; 画面の幅(何文字分)

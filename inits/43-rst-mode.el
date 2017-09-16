@@ -9,7 +9,7 @@
 (set-face-background 'rst-level-1 nil)
 (set-face-foreground 'rst-level-2 "magenta")
 (set-face-background 'rst-level-2 nil)
-(set-face-foreground 'rst-level-3 "dodgerblue")
+(set-face-foreground 'rst-level-3 "CornflowerBlue")
 (set-face-background 'rst-level-3 nil)
 (set-face-foreground 'rst-level-4 "orange")
 (set-face-background 'rst-level-4 nil)

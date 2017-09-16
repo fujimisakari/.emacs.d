@@ -48,9 +48,9 @@
       (ad-set-arg 0 0)))
 
 ;; face設定
-(set-face-foreground 'dired-directory "dodgerblue")   ; ディレクトリ
-(set-face-foreground 'dired-symlink "cyan")           ; シンボリックリンク
-(set-face-foreground 'dired-perm-write "gray75")      ; 書き込み権限
+(set-face-foreground 'dired-directory "CornflowerBlue") ; ディレクトリ
+(set-face-foreground 'dired-symlink "cyan")             ; シンボリックリンク
+(set-face-foreground 'dired-perm-write "gray75")        ; 書き込み権限
 
 ;; ディレクトリ内のファイル名を自由自在に編集する
 (require 'wdired)

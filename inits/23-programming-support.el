@@ -43,7 +43,7 @@
     (recenter 0)))
 
 (require 'highlight-symbol)
-(setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue1"))
+(setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue"))
 
 ;; highlight-symbol-at-point時にfont-lockが狂うので対策
 ;; あとphp-modeの変数が(thing-at-point 'symbol)だとハイライトできないので 'sexpに変更
