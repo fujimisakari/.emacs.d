@@ -61,7 +61,7 @@
 (set-face-foreground 'anything-ff-file "gray75")
 (set-face-foreground 'anything-ff-directory "CornflowerBlue")
 (set-face-background 'anything-ff-directory nil)
-(set-face-foreground 'anything-ff-symlink "cyan")
+(set-face-foreground 'anything-ff-symlink "turquoise")
 (set-face-foreground 'anything-candidate-number nil)
 (set-face-background 'anything-candidate-number nil)
 

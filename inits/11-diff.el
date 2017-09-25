@@ -14,7 +14,7 @@
   (set-face-background 'diff-file-header nil)
   (set-face-foreground 'diff-index "MediumSeaGreen")
   (set-face-background 'diff-index nil)
-  (set-face-foreground 'diff-hunk-header "Cyan")
+  (set-face-foreground 'diff-hunk-header "turquoise")
   (set-face-background 'diff-hunk-header nil)
   (set-face-foreground 'diff-removed "red")
   (set-face-background 'diff-removed nil)

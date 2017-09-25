@@ -23,6 +23,6 @@
 ;; 外観設定
 (set-face-foreground 'navi2ch-article-header-contents-face "lime green")
 (set-face-foreground 'navi2ch-article-header-fusianasan-face "lime green")
-(set-face-foreground 'navi2ch-article-message-separator-face "magenta")
+(set-face-foreground 'navi2ch-article-message-separator-face "orchid1")
 
 ;;; 77-navi2ch.el ends here

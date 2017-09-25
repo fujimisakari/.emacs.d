@@ -14,7 +14,7 @@
 ;; 画面上部に表示する場合は下の2行が必要
 ;; (delete (assoc 'which-func-mode mode-line-format) mode-line-format)
 ;; (setq-default header-line-format '(which-func-mode ("" which-func-format)))
-(set-face-foreground 'which-func "cyan")
+(set-face-foreground 'which-func "turquoise")
 
 ;; リジョン選択をgithubで開く
 (require 'open-github-from-here)

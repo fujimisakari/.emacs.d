@@ -28,12 +28,13 @@
     (eww-open-file "/tmp/grip.html")))
 
 (set-face-foreground 'markdown-header-face-1 "lime green")
-(set-face-foreground 'markdown-header-face-2 "magenta")
+(set-face-foreground 'markdown-header-face-2 "orchid1")
 (set-face-foreground 'markdown-header-face-3 "CornflowerBlue")
 (set-face-foreground 'markdown-header-face-4 "orange")
-(set-face-foreground 'markdown-header-face-5 "cyan")
+(set-face-foreground 'markdown-header-face-5 "turquoise")
 (set-face-attribute 'markdown-header-face-1 nil :bold nil :height 1.8)
 (set-face-attribute 'markdown-header-face-2 nil :bold nil :height 1.2)
 (set-face-attribute 'markdown-header-face-3 nil :bold nil :height 1.1)
+(set-face-attribute 'markdown-code-face nil :family "Menlo for Powerline" :foreground "HotPink" :background "gray15" :bold nil)
 
 ;;; 42-markdown-mode.el ends here

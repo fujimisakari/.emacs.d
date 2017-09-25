@@ -48,7 +48,7 @@
       skk-cursor-katakana-color "LimeGreen"
       skk-cursor-abbrev-color "red"
       skk-cursor-jisx0208-latin-color "red"
-      skk-cursor-jisx0201-color "magenta"
+      skk-cursor-jisx0201-color "orchid1"
       skk-cursor-latin-color "Yellow2")
 
 ;; インジケータをマイナーモード内へ。

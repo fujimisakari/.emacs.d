@@ -38,7 +38,7 @@
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-bracket-face "lime green")
 (set-face-foreground 'web-mode-html-tag-face "lime green")
-(set-face-foreground 'web-mode-html-attr-name-face "magenta")
+(set-face-foreground 'web-mode-html-attr-name-face "orchid1")
 (set-face-foreground 'web-mode-variable-name-face "orange")
 (set-face-foreground 'web-mode-preprocessor-face "MediumPurple1")
 (set-face-background 'web-mode-block-face "gray7")
