@@ -30,15 +30,15 @@
 (defadvice elscreen-toggle (around elscreen-create-automatically activate)
   (elscreen-create-automatically ad-do-it))
 
-;; 起動時に自動で9個スクリーンを立ち上げる
-(defun create-maxscreen ()
-  "9-elscreen-create"
+;; 起動時に自動で10個スクリーンを立ち上げる
+(defun elscreen-create-default-screen ()
+  "create default-screen"
   (let ((counter 0))
     (while (< counter 9)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
-(create-maxscreen)
+(elscreen-create-default-screen)
 
 ;; elscreen用バッファ削除
 (defvar elscreen-ignore-buffer-list

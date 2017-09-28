@@ -47,8 +47,8 @@
 (bind-key* "C-M-i" 'helm-imenu)                              ; helm-imenuの起動
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
-(bind-key* "C-M-<right>" 'elscreen-swap-next)                ; タブの配置位置ずらし(右)
-(bind-key* "C-M-<left>" 'elscreen-swap-previous)             ; タブの配置位置ずらし(左)
+(bind-key* "C-M-f" 'elscreen-swap-next)                      ; タブの配置位置ずらし(右)
+(bind-key* "C-M-b" 'elscreen-swap-previous)                  ; タブの配置位置ずらし(左)
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
@@ -223,9 +223,7 @@
 (unbind-key "RET" markdown-mode-map)
 
 ;; ELScreen固有のキーバインド
-(bind-key "c" 'create-newscreen elscreen-map)
-(bind-key "C-a" 'create-maxscreen elscreen-map)
-(bind-key "C-k" 'elscreen-kill-screen-and-buffers elscreen-map)
+(bind-key "c" 'elscreen-create elscreen-map)
 (bind-key "k" 'elscreen-kill-screen-and-buffers elscreen-map)
 
 ;; helm-read-file
