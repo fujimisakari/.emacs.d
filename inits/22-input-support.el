@@ -39,9 +39,6 @@
 ;; Tabの代わりにスペースでインデント
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; M-iで字下げは4の倍数にする
-(custom-set-variables
- '(tab-stop-list (tab-stop-list-creator 4)))
-
 (defun tab-stop-list-creator (tab-width)
   (let ((tab-width-list ())
         (num 0))
@@ -49,6 +46,8 @@
       (setq tab-width-list `(,@tab-width-list ,num))
       (setq num (+ num tab-width)))
   tab-width-list))
+(custom-set-variables
+ '(tab-stop-list (tab-stop-list-creator 4)))
 
 ;; 矩形をより簡単にする
 (cua-mode t)
