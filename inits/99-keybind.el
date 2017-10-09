@@ -198,6 +198,9 @@
 (bind-key "C-l C-." 'insert-elixir-map-arrow elixir-mode-map)
 (bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map)
 
+;; js2-mode
+(bind-key "\177" 'indent-dedent-line-backspace js2-mode-map)
+
 ;; perl-mode
 ;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完
 ;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
