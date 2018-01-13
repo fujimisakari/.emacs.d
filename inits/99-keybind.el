@@ -137,6 +137,7 @@
 (bind-key "<tab>" 'jedi:complete jedi-mode-map)
 (bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
 (bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
+(bind-key "C-l ." 'insert-python-arrow jedi-mode-map)
 
 ;; objc-mode
 (bind-key "C-c f" 'clang-format-region objc-mode-map)

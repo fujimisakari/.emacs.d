@@ -25,6 +25,10 @@
 (add-to-list 'flymake-allowed-file-name-masks
              '("\\.py\\'" flymake-pyflakes-init))
 
+;; isort
+(require 'py-isort)
+(setq py-isort-options '("--multi-line=3"))
+
 ;; code formatter
 (require 'py-autopep8)
 ;; (setq py-autopep8-options '("--ignore=E221,E501,E701,E202"))
@@ -53,5 +57,10 @@
             (insert (format "%s:param TYPE %s:\n" space (replace-regexp-in-string "^\\s-+\\|\\s-+$\\|=.+$" "" arg))))))
     (insert (format "%s:rtype: TYPE\n" space))
     (insert (format "%s\"\"\"" space))))
+
+
+(defun insert-python-arrow ()
+  (interactive)
+  (insert "->"))
 
 ;;; 33-python-mode.el ends here
