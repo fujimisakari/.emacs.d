@@ -70,6 +70,7 @@
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
  '(helm-ff-symlink ((t (:foreground "orange" :background nil))))
  '(helm-buffer-file ((t (:foreground "OliveDrab2" :background nil))))
+ '(helm-buffer-modified ((t (:foreground "lime" :background nil))))
  '(helm-buffer-directory ((t (:foreground "CornflowerBlue" :background nil))))
  '(helm-ff-directory ((t (:foreground "CornflowerBlue" :background nil))))
  '(helm-candidate-number ((t (:foreground nil :background nil)))))
