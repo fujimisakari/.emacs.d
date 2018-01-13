@@ -16,6 +16,7 @@
 (add-to-list 'auto-mode-alist '("\\.ejs?$"      . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css$"       . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$"      . web-mode))
+(add-to-list 'auto-mode-alist '("\\.vue$"       . web-mode))
 
 ;; 拡張子がhtmlの場合はdjangoテンプレートとみなす
 (add-to-list 'web-mode-engine-file-regexps '("django" . "\\.html\\'"))
