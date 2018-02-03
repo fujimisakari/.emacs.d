@@ -87,7 +87,7 @@
 (bind-key "C-l w" 'whitespace-cleanup)                       ; TABを空白に置換
 (bind-key "C-l k" 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
-(bind-key "C-l g" 'open-github-from-here)                    ; リジョン選択をgithubで開く
+(bind-key "C-l g" 'helm-ghq-list)                            ; ghq経由でGoパッケージディレクトリを開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
 (bind-key "C-l a" 'helm-ag)                                  ; helm-ag検索
@@ -100,6 +100,7 @@
 (bind-key "C-l S" 'swap-window-positions)                    ; ウィンドウを入れ替える
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
+(bind-key "C-l ." 'insert-arrow)
 (bind-key "C-l SPC" 'helm-code-skeleton-search)              ; code-skeletonの一覧表示
 (bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
@@ -167,12 +168,16 @@
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
 
 ;; go-mode
-(bind-key "C-c f" 'gofmt go-mode-map)
-(bind-key "C-c d" 'godoc go-mode-map)
-(bind-key "C-c j" 'godef-jump-other-window go-mode-map)
-(bind-key "C-c p" 'helm-go-packages go-mode-map)
-(bind-key "C-c r" 'go-remove-unused-imports go-mode-map)
+(bind-key "C-l ." 'insert-go-channel-arrow go-mode-map)
+(bind-key "C-l :" 'insert-go-expression go-mode-map)
 (bind-key "C-c e" 'go-errcheck go-mode-map)
+(bind-key "C-c t" 'go-toggle-to-test-file go-mode-map)
+(bind-key "C-c d" 'open-godoc go-mode-map)
+(bind-key "C-c C-t" 'go-open-with-test-file go-mode-map)
+(bind-key "C-c C-f" 'gofmt go-mode-map)
+(bind-key "C-c C-p" 'helm-go-packages go-mode-map)
+(bind-key "C-c C-d" 'godoc-popup go-mode-map)
+(bind-key "C-c C-r" 'go-remove-unused-imports go-mode-map)
 
 ;; php-mode
 (bind-key "\177" 'indent-dedent-line-backspace php-mode-map)

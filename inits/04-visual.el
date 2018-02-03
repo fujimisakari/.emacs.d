@@ -125,6 +125,11 @@
 (set-face-foreground 'imenu-list-entry-subalist-face-2 "khaki2")
 (set-face-foreground 'imenu-list-entry-subalist-face-3 "SteelBlue1")
 
+;; popup-tipのface設定
+(require 'popup)
+(set-face-foreground 'popup-tip-face "gray20")
+(set-face-background 'popup-tip-face "ivory3")
+
 ;; カーソル位置のフェースを調べる関数
 (defun describe-face-at-point ()
   "Return face used at point."
