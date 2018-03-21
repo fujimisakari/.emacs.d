@@ -10,6 +10,7 @@ def genarate_path_for_emacs():
 
     # PATH
     print(text_format.format('PATH', os.environ.get('PATH')))
+    print(text_format.format('GOPATH', os.environ.get('GOPATH')))
 
     # PYTHONPATH
     # set_list = []
