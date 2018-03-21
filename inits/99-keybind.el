@@ -54,11 +54,11 @@
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
 (bind-key "C-M-;" 'recenter-top-bottom)                      ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
-(bind-key "C-M-n" 'helm-gtags-find-tag)                      ; (同じバッファで)関数の定義元(関数の実体)へジャンプ
-(bind-key "C-M-m" 'helm-gtags-pop-stack)                     ; 関数のジャンプから一つ手前に戻る
-(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; (別バッファで)関数の定義元(関数の実体)へジャンプ
-(bind-key "C-M-." 'helm-gtags-find-rtag)                     ; 関数の参照先を参照
-(bind-key "C-M-/" 'helm-gtags-find-symbol)                   ; シンボルの定義先を参照
+(bind-key "C-M-n" 'helm-gtags-pop-stack)                     ; 関数のジャンプから一つ手前に戻る
+(bind-key "C-M-m" 'helm-gtags-find-tag)                      ; (同じバッファで)関数の定義元(関数の実体)へジャンプ
+(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; 関数の定義元(関数の実体)へジャンプ
+(bind-key "C-M-." 'helm-gtags-find-rtag-other-window)        ; 関数の参照先を参照
+(bind-key "C-M-/" 'helm-gtags-find-symbol-other-window)      ; シンボルの定義先を参照
 
 ;; M-
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
