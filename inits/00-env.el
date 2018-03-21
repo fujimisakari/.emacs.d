@@ -22,12 +22,13 @@
   (setq mac-pass-option-to-system nil))
 
 ;; shellのコマンドパスの追加
-;; (load-file (expand-file-name (format ".emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
-;; (dolist (path (reverse (split-string (getenv "PATH") ":")))
-;;   (add-to-list 'exec-path path))
-(require 'exec-path-from-shell)
-(let ((envs '("PATH" "GOPATH")))
-  (exec-path-from-shell-copy-envs envs))
+(load-file (expand-file-name (format "~/.emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
+(dolist (path (reverse (split-string (getenv "PATH") ":")))
+  (add-to-list 'exec-path path))
+
+;; (require 'exec-path-from-shell)
+;; (let ((envs '("PATH" "GOPATH")))
+;;   (exec-path-from-shell-copy-envs envs))
 
 ;; 日本語環境設定
 (set-language-environment "Japanese")
@@ -112,7 +113,7 @@
                  "/usr/bin/open")))
       ((eq my-os-type 'linux)
        (setq browse-url-generic-program
-             (if (file-exists-p "/usr/bin/firefox")
-                 "/usr/bin/firefox"))))
+             (if (file-exists-p "/usr/bin/google-chrome")
+                 "/usr/bin/google-chrome"))))
 
 ;;; 00-env.el ends here
