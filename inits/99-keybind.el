@@ -119,6 +119,7 @@
 (bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
 (bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
 (bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
+(bind-key "C-l v a" 'vc-annotate)                            ; git blameを見る
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
 
@@ -127,6 +128,9 @@
 (bind-key "C-l m l" 'magit-log-current)                      ; git log
 (bind-key "C-l m d" 'magit-diff-unstaged)                    ; git diff unstaged
 (bind-key "C-l m D" 'magit-diff-staged)                      ; git diff staged
+
+;; vc-annotate-mode
+(bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
 
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる

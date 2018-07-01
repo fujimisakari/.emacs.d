@@ -19,6 +19,23 @@
 ;; リジョン選択をgithubで開く
 (require 'open-github-from-here)
 
+;; git blameからPRを開く
+(require 'vc-annotate)
+(setq vc-annotate-background-mode nil)
+(defun open-pr-at-line ()
+  (interactive)
+  (let* ((rev-at-line (vc-annotate-extract-revision-at-line))
+         (rev (car rev-at-line)))
+    (shell-command (concat "open-pr-from-commit " rev))))
+;; (defadvice vc-git-annotate-command (around vc-git-annotate-command activate)
+;;   "suppress relative path of file from git blame output"
+;;   (let ((name (file-relative-name file)))
+;;     (vc-git-command buf 'async nil "blame" "--date=iso" rev "--" name)))
+
+;;     (apply #'vc-git-command buf 'async nil "blame" "--date=short"
+;; 	   (append (vc-switches 'git 'annotate)
+;; 		   (list rev "--" name)))))
+
 ;; 更新履歴を可視化する
 (require 'smeargle)
 
