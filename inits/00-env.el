@@ -74,10 +74,12 @@
 
 ;; 最近使ったファイルを履歴で残すようにする
 ;; (install-elisp "http://www.emacswiki.org/emacs/download/recentf-ext.el")
-;; 最近のファイルを1000個を保存する
+;; 最近のファイルを2000個を保存する
 (require 'recentf-ext)
-(setq recentf-max-saved-items 1000)
-(setq recentf-save-file "~/.recentf")
+(setq recentf-max-saved-items 2000)
+;; (setq recentf-save-file "~/.recentf")
+(setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
+(setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
