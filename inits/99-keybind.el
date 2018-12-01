@@ -288,6 +288,9 @@
 (bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)
 (bind-key "C-<tab>" 'help-at-pt-display eclim-mode-map)
 
+;; puml-mode
+(bind-key "C-c C-t" 'plantuml-open-with-png-file plantuml-mode-map)
+
 ;; view-mode
 (bind-keys :map view-mode-map
            ("h" . backward-char)
