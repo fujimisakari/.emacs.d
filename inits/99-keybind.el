@@ -78,6 +78,12 @@
 (bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
 (bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 
+;; S-M- window resize
+(bind-key* "S-M-<left>" 'shrink-window-horizontally)
+(bind-key* "S-M-<right>" 'enlarge-window-horizontally)
+(bind-key* "S-M-<down>" 'enlarge-window)
+(bind-key* "S-M-<up>" 'shrink-window)
+
 ;; C-l
 (unbind-key "C-l")
 (bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
