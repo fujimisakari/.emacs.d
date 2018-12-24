@@ -85,8 +85,9 @@
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 
 ;; バッファは左右分割で開くようにする
-;; (setq split-height-threshold nil)
-(setq split-width-threshold 100)
+;; https://ayatakesi.github.io/emacs/24.5/Window-Choice.html
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 ;; 関数の呼び出し規定回数を拡張(デフォルト:600)
 (setq max-lisp-eval-depth 1500)
