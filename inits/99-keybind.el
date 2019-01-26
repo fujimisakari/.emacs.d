@@ -178,8 +178,6 @@
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
 
 ;; go-mode
-(bind-key "C-l ." 'insert-go-channel-arrow go-mode-map)
-(bind-key "C-l :" 'insert-go-expression go-mode-map)
 (bind-key "C-c e" 'go-errcheck go-mode-map)
 (bind-key "C-c t" 'go-toggle-to-test-file go-mode-map)
 (bind-key "C-c d" 'open-godoc go-mode-map)

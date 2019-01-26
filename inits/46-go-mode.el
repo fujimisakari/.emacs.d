@@ -99,13 +99,4 @@
     (unless (eq current-file tmp-file)
       (find-file tmp-file))))
 
-;; Shortcut
-(defun go-insert-channel-arrow ()
-  (interactive)
-  (insert "<-"))
-
-(defun go-insert-expression ()
-  (interactive)
-  (insert ":="))
-
 ;;; 46-go-mode.el ends here
