@@ -77,7 +77,7 @@
 ;; 最近のファイルを2000個を保存する
 (require 'recentf-ext)
 (setq recentf-max-saved-items 2000)
-;; (setq recentf-save-file "~/.recentf")
+(setq recentf-save-file "~/.recentf")
 (setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
 (setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
 
