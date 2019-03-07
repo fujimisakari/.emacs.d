@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'auto-complete-config)
+
 ;;; auto-complete-mode: 高機能補完+ポップアップメニュー
 (ac-config-default)
 ;;ac-auto-startが整数値の場合、文字列の長さがac-auto-start以上になると自動補完開始
