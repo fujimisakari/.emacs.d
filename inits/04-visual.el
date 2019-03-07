@@ -99,9 +99,9 @@
 (setq show-paren-delay 0)
 (show-paren-mode t)
 
-(setq show-paren-style 'expression)                           ; カッコ内の色も変更
-(set-face-background 'show-paren-match-face nil)              ; カッコ内のフェイス
-(set-face-underline-p 'show-paren-match-face "yellow")        ; カッコ内のフェイス
+(setq show-paren-style 'expression)               ; カッコ内の色も変更
+(set-face-background 'show-paren-match nil)       ; カッコ内のフェイス
+(set-face-underline-p 'show-paren-match "yellow") ; カッコ内のフェイス
 
 ;; ネストしてるカッコわかりやすくする
 (require 'rainbow-delimiters)
