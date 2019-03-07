@@ -8,7 +8,7 @@
 ;; (dolist (x (font-family-list)) (print x))
 ;; (dolist (x (x-list-fonts "*")) (print x))
 (cond ((eq my-os-type 'linux)
-       (setq default-frame-alist (append '((alpha . 94)) default-frame-alist)) ; 画面透明度の設定
+       (setq default-frame-alist (append '((alpha . 87)) default-frame-alist)) ; 画面透明度の設定
        (setq global-ascii-font "Menlo for Powerline")
        (let* ((ascii-font global-ascii-font)
               (jp-font "Ricty")
@@ -23,7 +23,7 @@
              '((".*Ricty.*" . 1.2)
                (".*Menlo for Powerline.*" . 1.0))))
       ((eq my-os-type 'mac)
-       (setq default-frame-alist (append '((alpha . 94)) default-frame-alist)) ; 画面透明度の設定
+       (setq default-frame-alist (append '((alpha . 87)) default-frame-alist)) ; 画面透明度の設定
        (setq global-ascii-font "Menlo")
        (let* ((ascii-font global-ascii-font)
               (jp-font "Ricty")
@@ -98,6 +98,7 @@
 ;; paren: 対応する括弧を光らせる
 (setq show-paren-delay 0)
 (show-paren-mode t)
+
 (setq show-paren-style 'expression)                           ; カッコ内の色も変更
 (set-face-background 'show-paren-match-face nil)              ; カッコ内のフェイス
 (set-face-underline-p 'show-paren-match-face "yellow")        ; カッコ内のフェイス
