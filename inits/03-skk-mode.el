@@ -10,6 +10,10 @@
 ;; ddskk の読み込みを Emacs の起動時に行う
 (setq skk-preload t)
 
+;; DDSKKサーバ
+(setq skk-server-host "localhost")
+(setq skk-server-portnum 1178)
+
 ;; 辞書サーバを使うための設定
 (setq skk-user-directory "~/skk")
 (setq skk-jisyo "~/skk/skk-jisyo.utf8")
@@ -18,8 +22,6 @@
 (setq skk-study-file "~/skk/skk-study.utf8")
 (setq skk-study-backup-file "~/skk/skk-study.utf8.bak")
 (setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
-;; (setq skk-server-host "localhost") ; AquaSKK のサーバー機能を利用
-;; (setq skk-server-portnum 1178)     ; ポートは標準
 (setq skk-share-private-jisyo t)   ; 複数 skk 辞書を共有
 
 ;; 10 分放置すると個人辞書が自動的に保存される設定
