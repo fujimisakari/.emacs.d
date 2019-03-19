@@ -7,7 +7,8 @@
 (defun common-mode-init ()
   (rainbow-delimiters-mode)
   (skk-mode t)
-  (skk-latin-mode t))
+  (skk-latin-mode t)
+  (eldoc-mode t))
 
 ;; zshはshell-script-modeで起動
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
@@ -29,5 +30,12 @@
       (backward-delete-char-untabify tab-width)
     (delete-backward-char arg)))
 (put 'indent-dedent-line-backspace 'delete-selection 'supersede)
+
+
+;; 関数・変数のヘルプをエコーエリアに表示する
+(require 'eldoc-extension)        ; 拡張版
+(setq eldoc-idle-delay 0.2)       ; すぐに表示したい
+(setq eldoc-minor-mode-string "") ; モードラインにElDocと表示しない
+(setq eldoc-echo-area-use-multiline-p t)
 
 ;;; 30-mode.el ends here
