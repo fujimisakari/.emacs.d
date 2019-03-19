@@ -1,17 +1,31 @@
-;;; 32-c-mode.el --- c-mode設定 -*- lexical-binding: t; -*-
+;;; 32-c-mode.el --- c-mode -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
 ;;; Code:
 
-;; c, c++の基本設定
-(add-hook 'c-mode-hook
-          '(lambda ()
-             (common-mode-init)
-             (c-set-style "stroustrup")
-             (flymake-mode t)))
+(require 'c-eldoc)
+(require 'auto-complete-c-headers)
+(require 'auto-complete-clang-async)
 
-;; fly-make設定
+(add-hook 'c-mode-hook
+          (lambda ()
+            ;; basic
+            (c-set-style "stroustrup")
+            (common-mode-init)
+            (flymake-mode t)
+            (setq c-continued-statement-offset 0)
+            ;; auto-complete-clang-async
+            (setq ac-clang-complete-executable "~/.emacs.d/bin/clang-complete")
+            (add-to-list 'ac-sources 'ac-source-clang-async)
+            (ac-clang-launch-completion-process)
+            ;; auto-complete-c-headers
+            (add-to-list 'ac-sources 'ac-source-c-headers)
+            ;; eldoc
+            (c-turn-on-eldoc-mode)
+            (setq c-eldoc-buffer-regenerate-time 60)))
+
+;; flymake
 (setq gcc-warning-options
       '("-Wall" "-Wextra" "-Wformat=2" "-Wstrict-aliasing=2" "-Wcast-qual"
       "-Wcast-align" "-Wwrite-strings" "-Wfloat-equal"
