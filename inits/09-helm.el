@@ -16,7 +16,7 @@
   ;; タイプして再描画するまでの時間。デフォルトは0.3
   helm-input-idle-delay 0.2
   ;; 候補の最大表示数。デフォルトは100
-  helm-candidate-number-limit 30
+  helm-candidate-number-limit 70
   ;; 候補が多いときに体感速度を早くする
   helm-quick-update t)
 
