@@ -19,6 +19,8 @@
 (setq ac-use-quick-help t)
 ;; 補完メニューのときだけキーバインドを有効にする
 (setq ac-use-menu-map t)
+;; 曖昧検索
+(setq ac-use-fuzzy t)
 ;; 色の設定
 (set-face-foreground 'ac-candidate-face "#fff")
 (set-face-background 'ac-candidate-face "#444")
