@@ -6,22 +6,22 @@
 
 (require 'eclim)
 (require 'eclimd)
+(require 'ac-emacs-eclim-source)
 (require 'help-at-pt)
 
 ;; java-mode で有効
 (add-hook 'java-mode-hook
           (lambda ()
             (common-mode-init)
-            (eclim-mode)))
+            (eclim-mode)
+            (ac-emacs-eclim-config)))
 
 (custom-set-variables
   '(eclim-eclipse-dirs '("/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse"))
   '(eclim-executable "/opt/homebrew-cask/Caskroom/eclipse-java/4.4.0/eclipse/eclim")
   '(eclimd-default-workspace "~/Dropbox/dev/java_workspace"))
 
-;; コード補完(auto-complete)
-(require 'ac-emacs-eclim-source)
-(ac-emacs-eclim-config)
+;; auto-completeカラー
 (set-face-foreground 'ac-emacs-eclim-candidate-face "#fff")
 (set-face-background 'ac-emacs-eclim-candidate-face "#444")
 (set-face-foreground 'ac-emacs-eclim-selection-face "#fff")
