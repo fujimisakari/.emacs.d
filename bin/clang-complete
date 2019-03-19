@@ -1,0 +1,10 @@
+#! /bin/bash
+
+if [ "$(uname)" == 'Darwin' ]; then
+  ./clang-complete-mac
+elif [ "$(uname)" == 'Linux' ]; then
+  ./clang-complete-linux
+else
+  echo "Your platform ($(uname -a)) is not supported."
+  exit 1
+fi
