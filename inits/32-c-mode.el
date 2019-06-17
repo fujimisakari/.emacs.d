@@ -5,6 +5,7 @@
 ;;; Code:
 
 (require 'c-eldoc)
+(require 'flycheck)
 (require 'auto-complete-c-headers)
 (require 'auto-complete-clang-async)
 
@@ -13,8 +14,8 @@
             ;; basic
             (c-set-style "stroustrup")
             (common-mode-init)
-            (flymake-mode t)
-            (setq c-continued-statement-offset 0)
+            (flycheck-mode t)
+            (flymake-mode-off)
             ;; auto-complete-clang-async
             (setq ac-clang-complete-executable "~/.emacs.d/bin/clang-complete")
             (add-to-list 'ac-sources 'ac-source-clang-async)
@@ -25,55 +26,18 @@
             (c-turn-on-eldoc-mode)
             (setq c-eldoc-buffer-regenerate-time 60)))
 
-;; flymake
-(setq gcc-warning-options
-      '("-Wall" "-Wextra" "-Wformat=2" "-Wstrict-aliasing=2" "-Wcast-qual"
-      "-Wcast-align" "-Wwrite-strings" "-Wfloat-equal"
-      "-Wpointer-arith" "-Wswitch-enum"
-      ))
+(custom-set-variables
+ '(ac-clang-cflags '("-I/usr/include")))
 
-(setq gxx-warning-options
-      `(,@gcc-warning-options "-Woverloaded-virtual" "-Weffc++")
-      )
-
-(setq gcc-cpu-options '("-msse" "-msse2" "-mmmx"))
-
-(defun flymake-c-init ()
-  (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-                       'flymake-create-temp-inplace))
-         (local-file  (file-relative-name
-                       temp-file
-                       (file-name-directory buffer-file-name)))
-       )
-    (list "gcc" `(,@gcc-warning-options ,@gcc-cpu-options "-fsyntax-only" "-std=c99" ,local-file))
-    ))
-(push '(".+\\.c$" flymake-c-init) flymake-allowed-file-name-masks)
-
-;; (defun flymake-c++-init ()
-;;   (let* ((temp-file   (flymake-init-create-temp-buffer-copy
-;;                        'flymake-create-temp-inplace))
-;;          (local-file  (file-relative-name
-;;                        temp-file
-;;                        (file-name-directory buffer-file-name))))
-;;     (list "g++" `(,@gxx-warning-options ,@gcc-cpu-options "-fsyntax-only" "-std=c++0x" ,local-file))
-;;     ))
-;; (push '(".+\\.h$" flymake-c++-init) flymake-allowed-file-name-masks)
-;; (push '(".+\\.cpp$" flymake-c++-init) flymake-allowed-file-name-masks)
-
-;; (add-hook 'c++-mode-hook '(lambda () (flymake-mode t) (my-c-mode-common-hook)))
-
-;; ファイルを保存したときに自動でコンパイルする
-;; (defvar after-save-hook-command-alist
-;;   '(("c" . "make")
-;;     ))
-;; (defun after-save-hook-command ()
-;;   (let* ((filename (buffer-file-name))
-;;        (extension (file-name-extension filename))
-;;        (pair (assoc extension after-save-hook-command-alist))
-;;        )
-;;     (when pair
-;;       (shell-command (format (cdr pair) filename)))
-;;     ))
-;; (add-hook 'after-save-hook 'after-save-hook-command)
+(flycheck-define-checker c/c++
+  "A C/C++ checker using g++."
+  :command ("g++" "-Wall" "-Wextra" source)
+  :error-patterns  ((error line-start
+                           (file-name) ":" line ":" column ":" " エラー: " (message)
+                           line-end)
+                    (warning line-start
+                           (file-name) ":" line ":" column ":" " 警告: " (message)
+                           line-end))
+  :modes (c-mode c++-mode))
 
 ;;; 32-c-mode.el ends here
