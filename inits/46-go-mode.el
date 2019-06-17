@@ -40,21 +40,6 @@
   (interactive)
   (helm :sources '(helm-ghq-list-source) :buffer "*helm ghq list*"))
 
-;; helm-go-packages
-(defvar helm-go-packages-source
-  (helm-build-sync-source "Helm Go Packages"
-    :candidates (go-packages)
-    :candidate-number-limit 300
-    :action 'godoc))
-
-(defun helm-go-package-import-add (candidate)
-  (dolist (package (helm-marked-candidates))
-    (go-import-add current-prefix-arg package)))
-
-(defun helm-go-packages ()
-  (interactive)
-  (helm :sources '(helm-go-packages-source) :buffer "*helm go packages*"))
-
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)
   "Get an empty buffer for a godoc QUERY."
