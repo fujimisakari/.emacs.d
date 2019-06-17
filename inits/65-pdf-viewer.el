@@ -5,6 +5,9 @@
 ;;; Code:
 
 (require 'pdf-tools)
+
+(if (eq my-os-type 'mac)
+    (setenv "PKG_CONFIG_PATH" "/usr/local/opt/libffi/lib/pkgconfig"))
 (pdf-tools-install)
 
 ;;; 65-pdf-viewer.el ends here
