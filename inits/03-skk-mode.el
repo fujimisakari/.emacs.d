@@ -12,7 +12,9 @@
 
 ;; DDSKKサーバ
 (setq skk-server-host "localhost")
-(setq skk-server-portnum 1178)
+(setq skk-server-portnum 55100)              ; ポートは google-ime-skk
+(setq skk-server-prog "google-ime-skk")      ; google-ime-skkのpath
+(setq skk-server-inhibit-startup-server nil) ; 辞書サーバが起動していなかったときに Emacs からプロセスを立ち上げる
 
 ;; 辞書サーバを使うための設定
 (setq skk-user-directory "~/skk")
