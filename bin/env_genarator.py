@@ -11,6 +11,7 @@ def genarate_path_for_emacs():
     # PATH
     print(text_format.format('PATH', os.environ.get('PATH')))
     print(text_format.format('GOPATH', os.environ.get('GOPATH')))
+    print(text_format.format('GOENV_DISABLE_GOPATH', os.environ.get('GOENV_DISABLE_GOPATH')))
 
     # PYTHONPATH
     # set_list = []
