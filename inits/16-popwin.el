@@ -5,9 +5,11 @@
 ;;; Code:
 
 (require 'popwin)
-(setq display-buffer-function 'popwin:display-buffer)
+(popwin-mode 1)
+
+;; (setq display-buffer-function 'popwin:display-buffer)
 (setq popwin:popup-window-position 'right)
-(setq popwin:popup-window-width 75)
+(setq popwin:popup-window-width 100)
 
 (setq anything-samewindow nil)
 (push '("*Messages*") popwin:special-display-config)
