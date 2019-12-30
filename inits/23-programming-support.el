@@ -93,4 +93,14 @@
   (setq helm-code-skeleton-dir-root-path "~/.emacs.d/code-skeletons")
   (helm-code-skeleton-load))
 
+;; 縦のインデント表記
+(require 'highlight-indent-guides)
+(setq highlight-indent-guides-method 'character)
+(setq highlight-indent-guides-auto-enabled nil)
+(setq highlight-indent-guides-responsive t)
+(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+(add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
+(set-face-foreground 'highlight-indent-guides-character-face "SlateBlue2")
+(set-face-foreground 'highlight-indent-guides-top-character-face "DeepSkyBlue")
+
 ;;; 23-programming-support.el ends here
