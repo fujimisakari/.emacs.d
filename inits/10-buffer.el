@@ -15,17 +15,12 @@
 (defun my-push-killed-file-name-list ()
   (when (buffer-file-name)
     (push (expand-file-name (buffer-file-name)) my-killed-file-name-list)))
+
 (defun my-pop-killed-file-name-list ()
   (interactive)
   (unless (null my-killed-file-name-list)
     (find-file (pop my-killed-file-name-list))))
 (add-hook 'kill-buffer-hook 'my-push-killed-file-name-list)
-
-;; ウィンドウを分割していないときは、左右分割して新しいウィンドウを作る
-(defun other-window-or-split ()
-  (interactive)
-  (when (one-window-p) (split-window-horizontally))
-  (other-window 1))
 
 ;; *scratch* バッファに移動できるようにした
 (defun my-switch-to-scratch/current-buffer ()
