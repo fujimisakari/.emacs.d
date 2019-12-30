@@ -52,7 +52,7 @@
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
-(bind-key "C-M-;" 'recenter-top-bottom)                      ; 現在の行の位置調整
+(bind-key "C-M-;" 'ace-window)                               ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-n" 'helm-gtags-pop-stack)                     ; 関数のジャンプから一つ手前に戻る
 (bind-key "C-M-m" 'helm-gtags-find-tag)                      ; (同じバッファで)関数の定義元(関数の実体)へジャンプ

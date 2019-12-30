@@ -18,4 +18,8 @@
 (setq golden-ratio-exclude-buffer-names '(" *Org tags*" " *Org todo*" "Foldor" "Summmary"))
 (setq golden-ratio-exclude-buffer-regexp '("\\*anything" "\\*helm"))
 
+(require 'ace-window)
+(setq aw-keys '(?j ?k ?l ?i ?o ?h ?y ?u ?p))
+(set-face-attribute 'aw-leading-char-face t :height 4.0 :foreground "#f1fa8c")
+
 ;;; 09-window.el ends here
