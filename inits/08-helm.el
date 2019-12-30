@@ -1,4 +1,4 @@
-;;; 09-helm.el --- helm設定 -*- lexical-binding: t; -*-
+;;; 08-helm.el --- helm設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -78,4 +78,4 @@
 (set-face-foreground 'helm-match "white")
 (set-face-background 'helm-match "SlateBlue3")
 
-;;; 09-helm.el ends here
+;;; 08-helm.el ends here

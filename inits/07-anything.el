@@ -1,4 +1,4 @@
-;;; 08-anything.el --- anything設定 -*- lexical-binding: t; -*-
+;;; 07-anything.el --- anything設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -69,4 +69,4 @@
  '(anything-header
    ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))
 
-;;; 06-elscreen.el ends here
+;;; 07-anything.el ends here
