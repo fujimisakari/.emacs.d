@@ -64,9 +64,9 @@
                              "%z" mode-line-mule-info :test 'equal))
 
 ;; nyan-catのラインバーにする
-(require 'nyan-mode)
-(nyan-mode 1)
-(nyan-start-animation)
-(setq nyan-bar-length 24)
+;; (require 'nyan-mode)
+;; (nyan-mode 1)
+;; (nyan-start-animation)
+;; (setq nyan-bar-length 24)
 
 ;;; 05-mode-line.el ends here
