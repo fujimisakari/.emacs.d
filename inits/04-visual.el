@@ -137,4 +137,8 @@
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
 
+;; バッテリー表示
+(require 'fancy-battery)
+(add-hook 'after-init-hook #'fancy-battery-mode)
+
 ;;; 04-visual.el ends here
