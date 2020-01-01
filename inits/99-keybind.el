@@ -263,6 +263,19 @@
     (local-set-key (kbd "/") 'dired-ex-isearch)                          ; Diredのパス移動
     (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
 
+;; lsp-mode-hook
+(add-hook 'lsp-mode-hook
+          (lambda ()
+            ;; (local-set-key (kbd "C-c C-r") 'lsp-ui-peek-find-references)
+            ;; (local-set-key (kbd "C-c C-j") 'lsp-ui-peek-find-definitions)
+            (local-set-key (kbd "C-c C-r") 'lsp-find-references)
+            (local-set-key (kbd "C-c C-j") 'lsp-find-definition-other-window)
+            (local-set-key (kbd "C-c C-M-j") 'pop-tag-mark)
+            (local-set-key (kbd "C-c i") 'lsp-ui-peek-find-implementation)
+            (local-set-key (kbd "C-c m") 'lsp-ui-imenu)
+            (local-set-key (kbd "C-c s") 'lsp-ui-sideline-mode)
+            (local-set-key (kbd "C-c d") 'ladicle/toggle-lsp-ui-doc)))
+
 ;; auto-complete-mode
 (bind-key "<tab>" 'auto-complete ac-mode-map)
 (bind-key "C-n" 'ac-next ac-menu-map)
