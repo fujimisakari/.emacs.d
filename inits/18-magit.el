@@ -5,18 +5,25 @@
 ;;; Code:
 
 (require 'magit)
-(set-face-foreground 'magit-diffstat-added "lime green")
-(set-face-foreground 'magit-diffstat-removed "red")
 
-(set-face-foreground 'magit-diff-added "lime green")
-(set-face-background 'magit-diff-added nil)
-(set-face-foreground 'magit-diff-added-highlight "lime green")
-(set-face-background 'magit-diff-added-highlight "grey20")
+(setq magit-diff-refine-hunk 'all)
 
-(set-face-foreground 'magit-diff-removed "red")
-(set-face-background 'magit-diff-removed nil)
-(set-face-foreground 'magit-diff-removed-highlight "red")
-(set-face-background 'magit-diff-removed-highlight "grey20")
+;; 文字単位での変更箇所は色を反転して強調
+(set-face-attribute 'diff-refine-added nil
+                :foreground nil :background "SpringGreen4" :weight 'bold :inverse-video t)
+
+(set-face-attribute 'diff-refine-removed nil
+                :foreground nil :background "red4" :weight 'bold :inverse-video t)
+
+;; diffを表示したらすぐに文字単位での強調表示も行う
+(defun diff-mode-refine-automatically ()
+  (diff-auto-refine-mode t))
+(add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
+
+(set-face-foreground 'magit-diff-file-heading "gray90")
+(set-face-background 'magit-diff-file-heading "SlateBlue4")
+(set-face-foreground 'magit-diff-file-heading-highlight "gray90")
+(set-face-background 'magit-diff-file-heading-highlight "SlateBlue4")
 
 (set-face-foreground 'magit-branch-current "IndianRed1")
 (set-face-foreground 'magit-branch-local "IndianRed1")
