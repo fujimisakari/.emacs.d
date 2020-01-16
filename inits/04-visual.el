@@ -87,9 +87,14 @@
 ;; カーソルを点滅させる
 (blink-cursor-mode t)
 
-;; カーソル行をハイライト表示
-(hl-line-mode -1)
-(set-face-background 'hl-line "SlateBlue4")
+;; カーソル行をハイライト表示(beacon)
+;; (hl-line-mode -1)
+;; (set-face-background 'hl-line "SlateBlue4")
+(beacon-mode)
+(setq beacon-size 70)
+(setq beacon-blink-duration 0.6)
+(setq beacon-blink-when-focused t)
+(setq beacon-color "lime")
 
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
