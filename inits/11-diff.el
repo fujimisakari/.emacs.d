@@ -22,14 +22,8 @@
   (set-face-background 'diff-added nil)
   (set-face-foreground 'diff-changed "yellow")
   (set-face-background 'diff-function nil)
-  (set-face-background 'diff-nonexistent nil)
-  (set-face-background 'diff-refine-change nil))
+  (set-face-background 'diff-nonexistent nil))
 (add-hook 'diff-mode-hook 'set-diff-color)
 (add-hook 'magit-mode-hook 'set-diff-color)
-
-;; diffを表示したらすぐに文字単位での強調表示も行う
-(defun diff-mode-refine-automatically ()
-  (diff-auto-refine-mode t))
-(add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
 
 ;;; 11-diff.el ends here
