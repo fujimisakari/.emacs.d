@@ -8,6 +8,6 @@
 
 (if (eq my-os-type 'mac)
     (setenv "PKG_CONFIG_PATH" "/usr/local/opt/libffi/lib/pkgconfig"))
-(pdf-tools-install)
+(pdf-tools-install t)
 
 ;;; 65-pdf-viewer.el ends here
