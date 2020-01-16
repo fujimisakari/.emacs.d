@@ -5,7 +5,7 @@
 ;;; Code:
 
 (require 'go-mode)
-(require 'go-autocomplete)
+;; (require 'go-autocomplete)
 (require 'go-flymake)
 (require 'open-godoc)
 
@@ -15,7 +15,18 @@
              (add-hook 'before-save-hook 'gofmt-before-save)
              (common-mode-init)
              (setq indent-tabs-mode t)
+             (company-mode)
              (go-eldoc-setup)))
+
+(setq-default flycheck-disabled-checkers '(go-gofmt
+                                           go-golint
+                                           go-vet
+                                           go-build
+                                           go-test
+                                           go-errcheck
+                                           go-unconvert
+                                           go-staticcheck
+                                           lsp))
 
 ;; helm-ghq-list
 (defun helm-ghq--get-candidates ()
