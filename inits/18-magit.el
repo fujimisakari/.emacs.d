@@ -33,4 +33,7 @@
 (set-face-foreground 'magit-log-author "LightSeaGreen")
 (set-face-foreground 'magit-log-date "MediumPurple1")
 
+(require 'git-gutter)
+(global-git-gutter-mode +1)
+
 ;;; 18-magit.el ends her
