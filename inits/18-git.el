@@ -1,4 +1,4 @@
-;;; 18-magit.el --- magit-mode設定 -*- lexical-binding: t; -*-
+;;; 18-git.el --- git設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
@@ -36,4 +36,4 @@
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 
-;;; 18-magit.el ends her
+;;; 18-git.el ends her
