@@ -6,6 +6,8 @@
 
 (require 'bind-key)
 
+(define-key global-map [?¥] [?\\]) ; ¥の代わりにバックスラッシュを入力する
+
 ;; key-chord
 (key-chord-define-global "qp" 'helm-descbinds)                 ; キーバインド設定の参照
 (key-chord-define-global "ui" 'skk-mode)                       ; skk-modeを有効
