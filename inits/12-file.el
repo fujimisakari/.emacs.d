@@ -7,7 +7,7 @@
 ;; 使い捨てファイルを設定
 (when (require 'open-junk-file)
 ;; ファイル名入力時に ~/junk/年-月-日-時分秒. が出てくる
-(setq  open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S."))
+(setq open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S."))
 
 ;; ファイル名がかぶった時、バッファ名をわかりやすくする
 (require 'uniquify)

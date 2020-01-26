@@ -45,7 +45,7 @@
 
 ;; sdicのロード
 (autoload 'sdic-describe-word "sdic" "sdic 英和・和英辞書検索" t nil)
-;; ;;(autoload 'sdic-describe-word-at-point "sdic" "カーソルの位置の英和・和英辞書検索" t nil)
+;;(autoload 'sdic-describe-word-at-point "sdic" "カーソルの位置の英和・和英辞書検索" t nil)
 (autoload 'sdic-describe-region "sdic" "リージョン選択した英和・和英辞書検索" t nil)
 
 ;; キーバインド設定

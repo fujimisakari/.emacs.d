@@ -9,21 +9,21 @@
 (define-key global-map [?¥] [?\\]) ; ¥の代わりにバックスラッシュを入力する
 
 ;; key-chord
-(key-chord-define-global "qp" 'helm-descbinds)                 ; キーバインド設定の参照
-(key-chord-define-global "ui" 'skk-mode)                       ; skk-modeを有効
-(key-chord-define-global "kl" 'view-mode)                      ; view-modeを有効
-;; (key-chord-define-global "ti" 'display-now-time)               ; 現在時間の表示
-(key-chord-define-global "dk" 'helm-ghq)                       ; ghpを起動
-(key-chord-define-global "jk" 'custom-cua-set-rectangle-mark)  ; cuaを起動
+(key-chord-define-global "qp" 'helm-descbinds)                ; キーバインド設定の参照
+(key-chord-define-global "ui" 'skk-mode)                      ; skk-modeを有効
+(key-chord-define-global "kl" 'view-mode)                     ; view-modeを有効
+;; (key-chord-define-global "ti" 'display-now-time)              ; 現在時間の表示
+(key-chord-define-global "dk" 'helm-ghq)                      ; ghpを起動
+(key-chord-define-global "jk" 'custom-cua-set-rectangle-mark) ; cuaを起動
 
 ;; region-bindings-mode
 (require 'region-bindings-mode)
 (region-bindings-mode-enable)
-(bind-key "M-'" 'region-to-single-quote region-bindings-mode-map)    ; 選択リージョンを''で囲む
-(bind-key "M-\"" 'region-to-double-quote region-bindings-mode-map)   ; 選択リージョンを""で囲む
-(bind-key "M-9" 'region-to-bracket region-bindings-mode-map)         ; 選択リージョンを()で囲む
-(bind-key "M-[" 'region-to-square-bracket region-bindings-mode-map)  ; 選択リージョンを[]で囲む
-(bind-key "M-l" 'region-to-clear region-bindings-mode-map)           ; 選択リージョンを囲みをクリア
+(bind-key "M-'" 'region-to-single-quote region-bindings-mode-map)   ; 選択リージョンを''で囲む
+(bind-key "M-\"" 'region-to-double-quote region-bindings-mode-map)  ; 選択リージョンを""で囲む
+(bind-key "M-9" 'region-to-bracket region-bindings-mode-map)        ; 選択リージョンを()で囲む
+(bind-key "M-[" 'region-to-square-bracket region-bindings-mode-map) ; 選択リージョンを[]で囲む
+(bind-key "M-l" 'region-to-clear region-bindings-mode-map)          ; 選択リージョンを囲みをクリア
 
 ;; Fn
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
@@ -212,8 +212,8 @@
 (bind-key "\177" 'indent-dedent-line-backspace js2-mode-map)
 
 ;; perl-mode
-;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol)            ; 補完
-;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)                    ; デバッガの起動
+;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol) ; 補完
+;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)         ; デバッガの起動
 
 ;; omnisharp-mode
 ;; (bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
@@ -231,8 +231,8 @@
 (bind-key "\177" 'indent-dedent-line-backspace web-mode-map)
 
 ;; markdown-mode
-(bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)     ; markdown-headerの一覧表示
-(bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map)  ; プレビュー表示
+(bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)    ; markdown-headerの一覧表示
+(bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map) ; プレビュー表示
 (unbind-key "RET" markdown-mode-map)
 
 ;; ELScreen固有のキーバインド
@@ -294,7 +294,7 @@
 (bind-key "C-s" 'company-filter-candidates company-search-map)
 
 ;; anything-c-moccur-anything
-(bind-key "C-h" 'delete-backward-char anything-c-moccur-anything-map)  ; 削除
+(bind-key "C-h" 'delete-backward-char anything-c-moccur-anything-map) ; 削除
 
 ;; eclim-mode
 (bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)

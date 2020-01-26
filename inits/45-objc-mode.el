@@ -133,10 +133,10 @@
             (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
                 (flymake-mode t))))
 
-;;; コード整形できるようにする
+;;;コード整形できるようにする
 (require 'clang-format)
 
-;;; quickrunにclangでの実行環境を追加
+;; quickrunにclangでの実行環境を追加
 (add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
 (quickrun-add-command "objc/clang"
                       '((:command . "clang")
@@ -144,7 +144,7 @@
                         (:remove  . ("%e")))
                       :default "objc")
 
-;;; Xcodeのドキュメント検索
+;; Xcodeのドキュメント検索
 (require 'helm-xcdoc)
 (setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
 (setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")

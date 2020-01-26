@@ -5,7 +5,7 @@
 ;;; Code:
 
 ;; フォルダを開く時, 新しいバッファを作成しない
-(require 'dired)   ; requireしてあげないとDiredで使われている関数やモードを認識しない
+(require 'dired) ; requireしてあげないとDiredで使われている関数やモードを認識しない
 
 ;; dired-mode
 (add-hook 'dired-mode-hook

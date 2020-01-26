@@ -4,12 +4,12 @@
 
 ;;; Code:
 
-(setq kill-whole-line t)            ; C-kは行末改行を削除しないが、改行までまとめて行カットする
-(setq next-screen-context-lines 1)  ; C-v/M-vで前のページの１行を残す
+(setq kill-whole-line t)           ; C-kは行末改行を削除しないが、改行までまとめて行カットする
+(setq next-screen-context-lines 1) ; C-v/M-vで前のページの１行を残す
 
 ;; キーボードの同時押しでコマンドを実行する
 (require 'key-chord)
-(setq key-chord-two-keys-delay 0.06)     ; 許容誤差は0.06秒
+(setq key-chord-two-keys-delay 0.06) ; 許容誤差は0.06秒
 (key-chord-mode 1)
 
 ;; 範囲の可視化する
@@ -119,14 +119,14 @@
 
 ;; 略語展開・補完を行うコマンドをまとめる
 ;; (setq hippie-expand-try-functions-list
-;;   '(try-complete-file-name-partially                       ; ファイル名の一部
-;;     try-complete-file-name                                 ; ファイル名全体
-;;     try-expand-all-abbrevs                                 ; 動的略語展開
-;;     try-expand-abbrev                                      ; 動的略語展開(カレントバファ)
-;;     try-expand-abbrev-all-buffers                          ; 動的略語展開(全バッファ)
-;;     try-expand-abbrev-from-kill                            ; 動的略語展開(キルリング：M-w/C-wの履歴)
-;;     try-complete-lisp-symbol-partially                     ; Lispシンボル名の一部
-;;     try-complete-lisp-symbol                               ; Lispシンボル名の全体
+;;   '(try-complete-file-name-partially   ; ファイル名の一部
+;;     try-complete-file-name             ; ファイル名全体
+;;     try-expand-all-abbrevs             ; 動的略語展開
+;;     try-expand-abbrev                  ; 動的略語展開(カレントバファ)
+;;     try-expand-abbrev-all-buffers      ; 動的略語展開(全バッファ)
+;;     try-expand-abbrev-from-kill        ; 動的略語展開(キルリング：M-w/C-wの履歴)
+;;     try-complete-lisp-symbol-partially ; Lispシンボル名の一部
+;;     try-complete-lisp-symbol           ; Lispシンボル名の全体
 ;;    ))
 
 ;; 対応する括弧に飛ぶ

@@ -24,9 +24,9 @@
 ;; インデント数
 (defun web-mode-hook ()
   "Hooks for Web mode."
-  (setq web-mode-markup-indent-offset 4)   ;; html indent
-  (setq web-mode-css-indent-offset    4)   ;; css indent
-  (setq web-mode-code-indent-offset   4)   ;; script indent(js,php,etc..)
+  (setq web-mode-markup-indent-offset 4) ; html indent
+  (setq web-mode-css-indent-offset    4) ; css indent
+  (setq web-mode-code-indent-offset   4) ; script indent(js,php,etc..)
   (setq web-mode-enable-auto-indentation nil)
   (setq web-mode-enable-block-face t)
   (setq web-mode-enable-part-face t)

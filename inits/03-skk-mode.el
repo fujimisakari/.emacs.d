@@ -70,8 +70,8 @@
 
 ;; 変換の学習
 (require 'skk-study)
-(setq skk-henkan-strict-okuri-precedence t)   ; 送り仮名が厳密に正しい候補を優先して表示する
-(setq skk-check-okurigana-on-touroku 'auto)   ; 辞書登録のとき、余計な送り仮名を送らないようにする
+(setq skk-henkan-strict-okuri-precedence t) ; 送り仮名が厳密に正しい候補を優先して表示する
+(setq skk-check-okurigana-on-touroku 'auto) ; 辞書登録のとき、余計な送り仮名を送らないようにする
 
 ;; 変換候補一覧と注釈(annotation)をGUIぽく表示する
 (setq skk-show-tooltip t)
@@ -109,9 +109,9 @@
              '(skk-comp-by-server-completion) t)
 
 ;; 検索に関連した設定
-(setq skk-use-look t)                 ; look コマンドを使った検索を行う
-(setq skk-use-numeric-conversion t)   ; 数値変換機能を使う
-(setq skk-auto-okuri-process t)       ; 送りあり変換を送りなし変換と同じ操作でできるようにする
+(setq skk-use-look t)               ; look コマンドを使った検索を行う
+(setq skk-use-numeric-conversion t) ; 数値変換機能を使う
+(setq skk-auto-okuri-process t)     ; 送りあり変換を送りなし変換と同じ操作でできるようにする
 
 (when skk-use-look
   ;; look が見つけた語を見出し語として検索する

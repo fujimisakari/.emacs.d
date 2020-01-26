@@ -13,8 +13,8 @@
 (if window-system
     (define-key elscreen-map (kbd "C-z") 'iconify-or-deiconify-frame)
   (define-key elscreen-map (kbd "C-z") 'suspend-emacs))
-(setq elscreen-display-tab 12)                ; tabの幅(6以上でないとダメ)
-(setq elscreen-tab-display-kill-screen nil)   ; タブの左端の×を非表示
+(setq elscreen-display-tab 12)              ; tabの幅(6以上でないとダメ)
+(setq elscreen-tab-display-kill-screen nil) ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
 (defmacro elscreen-create-automatically (ad-do-it)

@@ -6,13 +6,13 @@
 
 ;; OSの種別を判定
 (defvar my-os-type nil)
-(cond ((string-match "apple-darwin" system-configuration) ;; Mac
+(cond ((string-match "apple-darwin" system-configuration) ; Mac
        (setq my-os-type 'mac))
-      ((string-match "linux" system-configuration)        ;; Linux
+      ((string-match "linux" system-configuration)        ; Linux
        (setq my-os-type 'linux))
-      ((string-match "freebsd" system-configuration)      ;; FreeBSD
+      ((string-match "freebsd" system-configuration)      ; FreeBSD
        (setq my-os-type 'bsd))
-      ((string-match "mingw" system-configuration)        ;; Windows
+      ((string-match "mingw" system-configuration)        ; Windows
        (setq my-os-type 'win)))
 
 ;; macのCtrl/Cmd/Optionがシステムに渡されるのを防ぐ
@@ -43,25 +43,25 @@
   (terminal-init-bobcat))
 
 ;; システム関連
-(setq echo-keystrokes 0.1)                                       ; キーストロークをエコーエリアに早く表示させる
-(setq gc-cons-threshold (* 50 gc-cons-threshold))                ; GCを減らして軽くする（デフォルトの50倍）
-(setq x-select-enable-clipboard t)                               ; X11とクリップボードを共有する
-(setq use-dialog-box nil)                                        ; ダイアログボックスを使わないようにする
-(setq scroll-conservatively 35 scroll-margin 0 scroll-step 1)    ; スクロールは一行にする
+(setq echo-keystrokes 0.1)                                    ; キーストロークをエコーエリアに早く表示させる
+(setq gc-cons-threshold (* 50 gc-cons-threshold))             ; GCを減らして軽くする（デフォルトの50倍）
+(setq x-select-enable-clipboard t)                            ; X11とクリップボードを共有する
+(setq use-dialog-box nil)                                     ; ダイアログボックスを使わないようにする
+(setq scroll-conservatively 35 scroll-margin 0 scroll-step 1) ; スクロールは一行にする
 
 ;; 履歴関連
-(setq backup-inhibited t)                                        ; バックアップファイルを作らない
-(setq delete-auto-save-files t)                                  ; 終了時にオートセーブファイルを消す
-(setq history-length 1000)                                       ; 履歴をたくさん保存する
-(setq message-log-max 1000)                                      ; ログ記録行数を増やす
-(setq enable-recursive-minibuffers t)                            ; ミニバッファを再帰的に呼び出せるようにする
-(setq vc-follow-symlinks t)                                      ; シンボリックファイルを開く時にいちいち聞かない
+(setq backup-inhibited t)                                     ; バックアップファイルを作らない
+(setq delete-auto-save-files t)                               ; 終了時にオートセーブファイルを消す
+(setq history-length 1000)                                    ; 履歴をたくさん保存する
+(setq message-log-max 1000)                                   ; ログ記録行数を増やす
+(setq enable-recursive-minibuffers t)                         ; ミニバッファを再帰的に呼び出せるようにする
+(setq vc-follow-symlinks t)                                   ; シンボリックファイルを開く時にいちいち聞かない
 
 ;; シンボルのショートカット名
-(defalias 'yes-or-no-p 'y-or-n-p)                                ; "yes or no" の表示を "y or n"に変える
-(defalias 'exit 'save-buffers-kill-emacs)                        ; M-x exit で Emacsが終了できるようにする
-(defalias 'qr 'replace-regexp)                                   ; 一括置換(正規表現置換)
-(defalias 'qrr 'query-replace-regexp)                            ; 対話型置換(正規表現置換)
+(defalias 'yes-or-no-p 'y-or-n-p)                             ; "yes or no" の表示を "y or n"に変える
+(defalias 'exit 'save-buffers-kill-emacs)                     ; M-x exit で Emacsが終了できるようにする
+(defalias 'qr 'replace-regexp)                                ; 一括置換(正規表現置換)
+(defalias 'qrr 'query-replace-regexp)                         ; 対話型置換(正規表現置換)
 
 ;; 自動インデントは無効
 (electric-indent-mode 0)
@@ -69,7 +69,7 @@
 ;; 新しいフレームで開かない
 (setq ns-pop-up-frames nil)
 
-;;自動バックアップの保存先を変更
+;; 自動バックアップの保存先を変更
 (setq auto-save-list-file-prefix "~/.emacs.d/cache/auto-save-list/.saves-")
 
 ;; 最近使ったファイルを履歴で残すようにする

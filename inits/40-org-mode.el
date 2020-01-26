@@ -5,11 +5,11 @@
 ;;; Code:
 (require 'ox-reveal)
 (require 'org)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))  ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
-(setq org-return-follows-link t)                        ; リンクはRETで開く
-(setq org-startup-truncated nil)                        ; org-mode開始時は折り返しするよう設定
-(setq org-startup-with-inline-images t)                 ; 画像をインライン表示
-(setq org-edit-src-content-indentation 0)               ; BEGIN_SRCブロック内をインデントをしない
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode)) ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
+(setq org-return-follows-link t)                       ; リンクはRETで開く
+(setq org-startup-truncated nil)                       ; org-mode開始時は折り返しするよう設定
+(setq org-startup-with-inline-images t)                ; 画像をインライン表示
+(setq org-edit-src-content-indentation 0)              ; BEGIN_SRCブロック内をインデントをしない
 
 (add-hook 'org-mode-hook
           (lambda ()
@@ -17,12 +17,12 @@
             (common-mode-init)))
 
 ;; エクスポート処理
-(setq org-export-default-language "ja")      ; 言語は日本語
-(setq org-export-html-coding-system 'utf-8)  ; 文字コードはUTF-8
-(setq org-export-with-fixed-width nil)       ; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
-(setq org-export-with-sub-superscripts nil)  ; ^と_を解釈しない
-(setq org-export-with-special-strings nil)   ; --や---をそのまま出力する
-(setq org-export-with-TeX-macros nil)        ; TeX・LaTeXのコードを解釈しない
+(setq org-export-default-language "ja")     ; 言語は日本語
+(setq org-export-html-coding-system 'utf-8) ; 文字コードはUTF-8
+(setq org-export-with-fixed-width nil)      ; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
+(setq org-export-with-sub-superscripts nil) ; ^と_を解釈しない
+(setq org-export-with-special-strings nil)  ; --や---をそのまま出力する
+(setq org-export-with-TeX-macros nil)       ; TeX・LaTeXのコードを解釈しない
 (setq org-export-with-LaTeX-fragments nil)
 
 (defun org-insert-upheading (arg)
@@ -35,8 +35,8 @@
   "現在と同じレベルの見出しを入力するC-uをつけると1レベル上、C-u C-uをつけると1レベル下の見出しを入力する"
   (interactive "p")
   (case arg
-    (4  (org-insert-subheading nil))    ; C-u
-    (16 (org-insert-upheading  nil))    ; C-u C-u
+    (4  (org-insert-subheading nil)) ; C-u
+    (16 (org-insert-upheading  nil)) ; C-u C-u
     (t  (org-insert-heading    nil))))
 
 ;; org-remember設定
@@ -52,8 +52,8 @@
 (setq org-todo-keywords
       '((sequence "TODO(t)" "SCHEDULE(s)" "WAITING(w)" "SOMEDAY(d)" "EVENT(e)" "|" "DONE(x)" "CANCEL(c)")))
 
-(setq org-log-done 'tilme)                    ; DONEの時刻を記録する
-(setq org-agenda-files (list org-directory))  ; 予定表に使うorgファイルのリスト
+(setq org-log-done 'tilme)                   ; DONEの時刻を記録する
+(setq org-agenda-files (list org-directory)) ; 予定表に使うorgファイルのリスト
 
 ;; フォントサイズ設定
 (set-face-attribute 'org-level-1 nil :bold t :height 1.0)
@@ -83,8 +83,8 @@
 (set-face-foreground 'org-block-end-line "DimGray")
 ;; (set-face-background 'org-block-end-line "gray18")
 
-(set-face-foreground 'org-level-5 "orange")             ; レベル3の色とカブってたので変更
-(set-face-foreground 'org-level-7 "purple1")            ; レベル5の色とカブってたので変更
+(set-face-foreground 'org-level-5 "orange")  ; レベル3の色とカブってたので変更
+(set-face-foreground 'org-level-7 "purple1") ; レベル5の色とカブってたので変更
 
 ;;;; org習慣仕事術
 ;; ;; 時刻の記録をagendaに表示させる

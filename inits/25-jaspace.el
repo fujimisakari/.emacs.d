@@ -22,7 +22,7 @@
                                       'fundamental-mode))))
   (when (boundp 'jaspace-alternate-jaspace-string)
     (setq jaspace-alternate-jaspace-string "□"))
-  (setq jaspace-alternate-eol-string "↓\n")  ; 改行記号を表示させる
+  (setq jaspace-alternate-eol-string "↓\n") ; 改行記号を表示させる
   (when (boundp 'jaspace-highlight-tabs)
     (setq jaspace-highlight-tabs ?\xBB))
   (add-hook 'jaspace-mode-off-hook
