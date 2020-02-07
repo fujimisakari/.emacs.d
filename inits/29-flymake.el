@@ -7,12 +7,11 @@
 (require 'flymake)
 ;; (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
 
-
 ;; メッセージはposframeで表示させる
-(require 'flymake-posframe)
-(add-hook 'flymake-mode-hook 'flymake-posframe-mode)
-(set-face-foreground 'flymake-posframe-foreground-face "gray90")
-(set-face-background 'flymake-posframe-background-face "MediumPurple4")
+;; (require 'flymake-posframe)
+;; (add-hook 'flymake-mode-hook 'flymake-posframe-mode)
+;; (set-face-foreground 'flymake-posframe-foreground-face "gray90")
+;; (set-face-background 'flymake-posframe-background-face "MediumPurple4")
 
 ;; 文法チェックの頻度の設定
 (setq flymake-no-changes-timeout 1)
