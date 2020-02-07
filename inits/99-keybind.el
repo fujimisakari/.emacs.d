@@ -115,7 +115,6 @@
 (bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
 (bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
 (bind-key "C-l C-M-;" 'microsoft-translator-auto-translate)  ; microsoft翻訳
-(bind-key "C-l C-M-h" 'hatena-keyword-start)                 ; hatena-keywordで検索
 ;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
 ;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
