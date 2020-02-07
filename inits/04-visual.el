@@ -6,9 +6,9 @@
 
 ;; フォント設定
 (cond ((eq my-os-type 'linux)
-       (set-face-attribute 'default nil :family "SF Mono Square" :height 160))
+       (set-face-attribute 'default nil :family my-global-font :height 160))
       ((eq my-os-type 'mac)
-       (set-face-attribute 'default nil :family "SF Mono Square" :height 185)))
+       (set-face-attribute 'default nil :family my-global-font :height 185)))
 
 ;; font-lock設定
 (global-font-lock-mode t)                                           ; 特定のモードで色を付ける(Font-Lookモード有効にする)

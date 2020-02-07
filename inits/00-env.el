@@ -21,6 +21,9 @@
   (setq mac-pass-command-to-system nil)
   (setq mac-pass-option-to-system nil))
 
+;; フォント設定
+(defconst my-global-font "SF Mono Square")
+
 ;; shellのコマンドパスの追加
 (load-file (expand-file-name (format "~/.emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
 (dolist (path (reverse (split-string (getenv "PATH") ":")))

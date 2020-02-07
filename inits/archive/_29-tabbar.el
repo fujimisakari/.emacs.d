@@ -29,7 +29,7 @@
 ;; 外観変更
 (set-face-attribute
  'tabbar-default nil
- :family "Comic Sans MS"
+ :family my-global-font
  :background "gray23"
  :foreground "white"
  :height 1.1)

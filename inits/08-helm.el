@@ -66,7 +66,7 @@
 ;; カラー設定
 (custom-set-faces
  '(helm-source-header
-   ((t (:foreground "white" :background "SlateBlue" :weight bold :height 1.5 :family global-ascii-font))))
+   ((t (:foreground "white" :background "SlateBlue" :weight bold :height 1.5 :family my-global-font))))
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
  '(helm-ff-symlink ((t (:foreground "orange" :background nil))))
  '(helm-buffer-file ((t (:foreground "OliveDrab2" :background nil))))

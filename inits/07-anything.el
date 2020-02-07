@@ -67,6 +67,6 @@
 
 (custom-set-faces
  '(anything-header
-   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family "Menlo")))))
+   ((t (:foreground "white" :background "MediumPurple4" :weight bold :height 1.5 :family my-global-font)))))
 
 ;;; 07-anything.el ends here
