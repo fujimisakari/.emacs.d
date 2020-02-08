@@ -43,6 +43,12 @@
 
 (setq sdic-default-coding-system 'utf-8-unix)
 
+;; eval-buffer: Symbol’s value as variable is void: default-fill-column の対応
+;; emacs26以降ではdefault-* の変数が廃止される
+;; http://suzuki.tdiary.net/20161226.html
+(if (string-match "26" emacs-version)
+    (setq default-fill-column (default-value 'fill-column)))
+
 ;; sdicのロード
 (autoload 'sdic-describe-word "sdic" "sdic 英和・和英辞書検索" t nil)
 ;;(autoload 'sdic-describe-word-at-point "sdic" "カーソルの位置の英和・和英辞書検索" t nil)
@@ -67,9 +73,9 @@
 
 ;; 検索結果表示バッファで引いた単語をハイライト表示する
 (defadvice sdic-search-eiwa-dictionary (after highlight-phrase (arg))
-  (highlight-phrase arg "hi-yellow"))
+  (highlight-phrase arg "yellow"))
 (defadvice sdic-search-waei-dictionary (after highlight-phrase (arg))
-  (highlight-phrase arg "hi-yellow"))
+  (highlight-phrase arg "yellow"))
 
 (ad-activate 'sdic-search-eiwa-dictionary)
 (ad-activate 'sdic-search-waei-dictionary)

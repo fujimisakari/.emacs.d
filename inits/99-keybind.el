@@ -103,16 +103,16 @@
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l ." 'insert-arrow)
 (bind-key "C-l SPC" 'helm-code-skeleton-search)              ; code-skeletonの一覧表示
-(bind-key "C-l C-'" 'flyspell-region)                        ; スペルが正しいかチェック
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
-(bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
-(bind-key "C-l C-'" 'sdic-describe-region)                   ; 英辞郎で翻訳
 (bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
+(bind-key "C-l C-'" 'ispell-word)                            ; 現在のスペルから候補を表示
+(bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
+(bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
+(bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
 (bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
-(bind-key "C-l C-M-'" 'ispell-word)                          ; 現在のスペルから候補を表示
 ;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
 ;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
