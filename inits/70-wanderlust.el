@@ -23,4 +23,9 @@
       'wl-draft-kill
       'mail-send-hook))
 
+(defun find-coding-system (obj)
+  "Return OBJ if it is a coding-system."
+  (if (coding-system-p obj)
+      obj))
+
 ;;; 70-wanderlust.el ends here
