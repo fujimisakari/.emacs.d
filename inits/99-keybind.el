@@ -1,3 +1,4 @@
+
 ;;; 99-keybind.el --- KeyBind設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
@@ -28,6 +29,7 @@
 (bind-key "<f1>" 'linum-mode)                                ; 行番号表示
 (bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
+(bind-key "<f12>" 'toggle-input-method)                      ; IMの切り替え
 
 ;; C-
 (bind-key* "C-'" 'helm-mini)                                 ; helmの起動
@@ -83,7 +85,7 @@
 (bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
-(bind-key "C-l j" 'just-one-space)                           ; 1文字空白を残して不要な空白を削除
+(bind-key "C-l <f12>" 'delete-horizontal-space)              ; 行の不要な空白を削除
 (bind-key "C-l w" 'whitespace-cleanup)                       ; TABを空白に置換
 (bind-key "C-l k" 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
@@ -104,7 +106,6 @@
 (bind-key "C-l SPC" 'helm-code-skeleton-search)              ; code-skeletonの一覧表示
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
-(bind-key "C-l C-j" 'delete-horizontal-space)                ; 行の不要な空白を削除
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key "C-l C-'" 'ispell-word)                            ; 現在のスペルから候補を表示
 (bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
@@ -265,9 +266,9 @@
 (add-hook 'lsp-mode-hook
           (lambda ()
             ;; (local-set-key (kbd "C-c C-r") 'lsp-ui-peek-find-references)
-            ;; (local-set-key (kbd "C-c C-j") 'lsp-ui-peek-find-definitions)
+            ;; (local-set-key (kbd "C-c <f12>") 'lsp-ui-peek-find-definitions)
             (local-set-key (kbd "C-c C-r") 'lsp-find-references)
-            (local-set-key (kbd "C-c C-j") 'lsp-find-definition-other-window)
+            (local-set-key (kbd "C-c <f12>") 'lsp-find-definition-other-window)
             (local-set-key (kbd "C-c C-M-j") 'pop-tag-mark)
             (local-set-key (kbd "C-c i") 'lsp-ui-peek-find-implementation)
             (local-set-key (kbd "C-c m") 'lsp-ui-imenu)
@@ -278,7 +279,7 @@
 (bind-key "<tab>" 'auto-complete ac-mode-map)
 (bind-key "C-n" 'ac-next ac-menu-map)
 (bind-key "C-p" 'ac-previous ac-menu-map)
-(bind-key "C-j" 'ac-complete ac-menu-map)
+(bind-key "<f12>" 'ac-complete ac-menu-map)
 (bind-key "C-i" 'ac-expand ac-menu-map)
 
 ;; company-mode
@@ -288,6 +289,13 @@
 (bind-key "C-n" 'company-select-next company-search-map)
 (bind-key "C-p" 'company-select-previous company-search-map)
 (bind-key "C-s" 'company-filter-candidates company-search-map)
+
+;; mozc-mode
+(bind-key "," '(lambda () (interactive) (mozc-insert-str "、")) mozc-mode-map)
+(bind-key "." '(lambda () (interactive) (mozc-insert-str "。")) mozc-mode-map)
+(bind-key "?" '(lambda () (interactive) (mozc-insert-str "？")) mozc-mode-map)
+(bind-key "!" '(lambda () (interactive) (mozc-insert-str "！")) mozc-mode-map)
+(bind-key "C-h" 'delete-backward-char mozc-mode-map)
 
 ;; anything-c-moccur-anything
 (bind-key "C-h" 'delete-backward-char anything-c-moccur-anything-map) ; 削除

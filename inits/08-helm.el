@@ -28,6 +28,12 @@
 (setq helm-ff-smart-completion t)
 ;; ミニバッファ内の先頭でない特定の位置からC-kできるようにする
 (setq helm-delete-minibuffer-contents-from-point t)
+;; helm でミニバッファの入力時に IME の状態を継承しない
+(setq helm-inherit-input-method nil)
+;; helm で候補のアクションを表示する際に IME を OFF にする
+(advice-add 'helm-select-action
+            :before (lambda (&rest args)
+                      (deactivate-input-method)))
 
 ;; customize
 (progn
