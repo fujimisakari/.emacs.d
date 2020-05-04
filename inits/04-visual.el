@@ -30,10 +30,10 @@
 
 ;; フレーム設定
 (set-foreground-color "gray75")     ; 文字の色設定
-(set-background-color "gray7")      ; 背景色の設定
+(set-background-color "gray5")      ; 背景色の設定
 (set-cursor-color "SlateBlue2")     ; カーソルの色設定
 (set-mouse-color "SlateBlue2")      ; マウスポインタの色を設定
-(set-frame-parameter nil 'alpha 83) ; 画面透明度の設定
+(set-frame-parameter nil 'alpha 80) ; 画面透明度の設定
 (toggle-scroll-bar nil)             ; スクロールバーを消す
 (menu-bar-mode 0)                   ; メニューバーを消す
 (tool-bar-mode 0)                   ; ツールバーを消す
