@@ -10,7 +10,6 @@
 
 ;; key-chord
 (key-chord-define-global "qp" 'helm-descbinds)                ; キーバインド設定の参照
-(key-chord-define-global "ui" 'skk-mode)                      ; skk-modeを有効
 (key-chord-define-global "kl" 'view-mode)                     ; view-modeを有効
 ;; (key-chord-define-global "ti" 'display-now-time)              ; 現在時間の表示
 (key-chord-define-global "dk" 'helm-ghq)                      ; ghpを起動

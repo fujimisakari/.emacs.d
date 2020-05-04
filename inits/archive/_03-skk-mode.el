@@ -17,14 +17,14 @@
 (setq skk-server-inhibit-startup-server nil) ; 辞書サーバが起動していなかったときに Emacs からプロセスを立ち上げる
 
 ;; 辞書サーバを使うための設定
-(setq skk-user-directory "~/skk")
-(setq skk-jisyo "~/skk/skk-jisyo.utf8")
-(setq skk-backup-jisyo "~/skk/skk-jisyo.utf8.bak")
-(setq skk-large-jisyo "~/skk/SKK-JISYO.L.utf8")
-(setq skk-study-file "~/skk/skk-study.utf8")
-(setq skk-study-backup-file "~/skk/skk-study.utf8.bak")
-(setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
-(setq skk-share-private-jisyo t)   ; 複数 skk 辞書を共有
+;; (setq skk-user-directory "~/skk")
+;; (setq skk-jisyo "~/skk/skk-jisyo.utf8")
+;; (setq skk-backup-jisyo "~/skk/skk-jisyo.utf8.bak")
+;; (setq skk-large-jisyo "~/skk/SKK-JISYO.L.utf8")
+;; (setq skk-study-file "~/skk/skk-study.utf8")
+;; (setq skk-study-backup-file "~/skk/skk-study.utf8.bak")
+;; (setq skk-jisyo-code 'utf-8)       ; 個人辞書の文字コードを指定する
+;; (setq skk-share-private-jisyo t)   ; 複数 skk 辞書を共有
 
 ;; 10 分放置すると個人辞書が自動的に保存される設定
 (defvar skk-auto-save-jisyo-interval 600)
@@ -79,29 +79,26 @@
       '((background-color . "black")
         (border-color . "royal blue")))
 
-;; ;; 動的補完
-;; (setq skk-dcomp-activate t)          ; 動的補完
-;; (setq skk-dcomp-multiple-activate t) ; 動的補完の複数候補表示
-;; (setq skk-dcomp-multiple-rows 10)    ; 動的補完の候補表示件数
-;; ;; 動的補完の複数表示群のフェイス
-;; (set-face-foreground 'skk-dcomp-multiple-face "Black")
-;; (set-face-background 'skk-dcomp-multiple-face "LightGoldenrodYellow")
-;; (set-face-bold-p 'skk-dcomp-multiple-face nil)
-;; ;; 動的補完の複数表示郡の補完部分のフェイス
-;; (set-face-foreground 'skk-dcomp-multiple-trailing-face "dim gray")
-;; (set-face-bold-p 'skk-dcomp-multiple-trailing-face nil)
-;; ;; 動的補完の複数表示郡の選択対象のフェイス
-;; (set-face-foreground 'skk-dcomp-multiple-selected-face "White")
-;; (set-face-background 'skk-dcomp-multiple-selected-face "LightGoldenrod4")
-;; (set-face-bold-p 'skk-dcomp-multiple-selected-face nil)
+;; 動的補完
+(setq skk-dcomp-activate t)          ; 動的補完
+(setq skk-dcomp-multiple-activate t) ; 動的補完の複数候補表示
+(setq skk-dcomp-multiple-rows 10)    ; 動的補完の候補表示件数
+;; 動的補完の複数表示群のフェイス
+(set-face-foreground 'skk-dcomp-multiple-face "Black")
+(set-face-background 'skk-dcomp-multiple-face "LightGoldenrodYellow")
+(set-face-bold-p 'skk-dcomp-multiple-face nil)
+;; 動的補完の複数表示郡の補完部分のフェイス
+(set-face-foreground 'skk-dcomp-multiple-trailing-face "dim gray")
+(set-face-bold-p 'skk-dcomp-multiple-trailing-face nil)
+;; 動的補完の複数表示郡の選択対象のフェイス
+(set-face-foreground 'skk-dcomp-multiple-selected-face "White")
+(set-face-background 'skk-dcomp-multiple-selected-face "LightGoldenrod4")
+(set-face-bold-p 'skk-dcomp-multiple-selected-face nil)
 
 ;; 補完候補を賢くす
-;; (setq skk-comp-use-prefix t) ; ローマ字 prefix をみて補完する
-;; (setq skk-comp-circulate t)  ; 補完時にサイクルする
+(setq skk-comp-use-prefix t) ; ローマ字 prefix をみて補完する
+(setq skk-comp-circulate t)  ; 補完時にサイクルする
 
-;; 個人辞書
-(add-to-list 'skk-completion-prog-list
-             '(skk-comp-from-jisyo "~/skk/skk-jisyo.utf8"))
 ;; server completion
 (add-to-list 'skk-search-prog-list
              '(skk-server-completion-search) t)

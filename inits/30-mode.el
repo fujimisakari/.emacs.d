@@ -6,8 +6,8 @@
 
 (defun common-mode-init ()
   (rainbow-delimiters-mode)
-  (skk-mode t)
-  (skk-latin-mode t)
+  ;; (skk-mode t)
+  ;; (skk-latin-mode t)
   (eldoc-mode t))
 
 ;; zshはshell-script-modeで起動
