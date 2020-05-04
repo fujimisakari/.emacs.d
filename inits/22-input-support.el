@@ -12,6 +12,11 @@
 (setq key-chord-two-keys-delay 0.06) ; 許容誤差は0.06秒
 (key-chord-mode 1)
 
+;; コマンドのガイド表示
+(require 'which-key)
+(which-key-mode)
+(which-key-setup-side-window-right-bottom)
+
 ;; 範囲の可視化する
 (require 'smartparens-config)
 (ad-disable-advice 'delete-backward-char 'before 'sp-delete-pair-advice)
