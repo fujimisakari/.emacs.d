@@ -13,9 +13,11 @@
 ;; (require 'company-posframe)
 ;; (company-posframe-mode 1)
 
-(setq company-idle-delay 1)
+(setq company-idle-delay 0.5)
 (setq company-minimum-prefix-length 1)
 
+(set-face-attribute 'company-preview-common nil :foreground "gray75" :background "SlateBlue2")
+(set-face-attribute 'company-preview-search nil :foreground "white" :background "SlateBlue2")
 (set-face-attribute 'company-tooltip nil :foreground "gray75" :background "gray20")
 (set-face-attribute 'company-tooltip-annotation nil :foreground "MediumPurple1" :background "gray20")
 (set-face-attribute 'company-tooltip-annotation-selection nil :foreground "white" :background "SlateBlue2")

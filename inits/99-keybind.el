@@ -286,9 +286,9 @@
 (bind-key "<tab>" 'company-complete)
 (bind-key "C-n" 'company-select-next company-active-map)
 (bind-key "C-p" 'company-select-previous company-active-map)
+(bind-key "C-s" 'company-filter-candidates company-active-map)
 (bind-key "C-n" 'company-select-next company-search-map)
 (bind-key "C-p" 'company-select-previous company-search-map)
-(bind-key "C-s" 'company-filter-candidates company-search-map)
 
 ;; mozc-mode
 (bind-key "," '(lambda () (interactive) (mozc-insert-str "、")) mozc-mode-map)
