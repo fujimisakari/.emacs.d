@@ -103,7 +103,7 @@
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l ." 'insert-arrow)
-(bind-key "C-l SPC" 'helm-code-skeleton-search)              ; code-skeletonの一覧表示
+(bind-key "C-l SPC" 'ivy-yasnippet)                          ; yasnippetの一覧表示
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
