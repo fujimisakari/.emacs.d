@@ -9,7 +9,6 @@
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 (require 'company-lsp)
-(push 'company-lsp company-backends)
 
 ;; hook
 ;; Set up before-save hooks to format buffer and add/delete imports.
@@ -20,8 +19,12 @@
 ;; (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; go-mode設定
-(add-hook 'go-mode-hook #'lsp)
-(add-hook 'go-mode-hook #'lsp-deferred)
+(add-hook 'go-mode-hook
+          '(lambda()
+             (lsp)
+             (lsp-deferred)
+             (push '(company-lsp :with company-yasnippet) company-backends)))
+
 (setq global-flycheck-mode nil)
 
 ;; general
