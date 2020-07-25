@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: int to str
+# key: int-to-str
+# description: int to srt snippet
+# --
+$1 := strconv.(${2:v})$0

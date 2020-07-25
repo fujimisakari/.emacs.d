@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: time.Sleep()
+# key: sleep
+# description: sleep snippet
+# --
+time.Sleep(1 * time.Second)$0

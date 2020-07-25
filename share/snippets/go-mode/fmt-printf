@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fmt.Printf()
+# key: printf
+# description: printf snippet
+# --
+fmt.Printf($1)$0

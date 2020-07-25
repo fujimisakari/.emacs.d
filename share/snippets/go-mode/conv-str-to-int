@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: str to int
+# key: str-to-int
+# description: srt to int snippet
+# --
+$1, _ := strconv.Atoi(${2:v})$0

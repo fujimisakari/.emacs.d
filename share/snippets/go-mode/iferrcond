@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: if err := condition; err != nil
+# key: if-err-cond
+# description: if error condition snippet
+# --
+if err := ${1:condition}; err != nil {
+	$0
+}

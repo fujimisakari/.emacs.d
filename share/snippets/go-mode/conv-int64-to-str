@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: int64 to str
+# key: int64-to-str
+# description: int64 to srt snippet
+# --
+$1 := strconv.FormatInt(${2:v}, 10)$0

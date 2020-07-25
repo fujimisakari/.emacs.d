@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: spanner readwrite transaction
+# key: spanner-readwrite-transaction
+# description: spanner readwrite-transaction snippet
+# --
+_, err = client.ReadWriteTransaction(ctx, func(ctx context.Context, tx *spanner.ReadWriteTransaction) error {
+	$0
+	return nil
+})

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fmt.Sprintf()
+# key: sprintf
+# description: sprintf snippet
+# --
+fmt.Sprintf(${1:"%v"}, $2)$0

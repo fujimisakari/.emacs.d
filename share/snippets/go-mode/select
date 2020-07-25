@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: select
+# key: select
+# description: snippet for select
+# --
+select {
+case ${1:channel} <- ${2:message}:
+	${3:body}
+$0
+}

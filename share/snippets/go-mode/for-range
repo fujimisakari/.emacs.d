@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: for _, v := range items
+# key: for-range
+# description: for-range snippet
+# --
+for _, ${1:v} := range ${2:items} {
+    $0
+}

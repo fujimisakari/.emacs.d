@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# name: test-table-list
+# key: test-table-list
+# description: test-table-list snippet
+# --
+cases := []struct {
+	status int
+	want   int
+}{
+	{
+		1,
+		1,
+	},
+	{
+		2,
+		2,
+	},
+}
+
+for _, tc := range cases {
+	if got, want := tc.status, tc.want; got != want {
+		t.Fatalf("got %v, want %v", got, want)
+	}
+}

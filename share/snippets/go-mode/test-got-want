@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: if got, want := v1, v2; got != want
+# key: test-got-want
+# description: test-got-want snippet
+# --
+if got, want := ${1:v1}, ${2:v2}; got != want {
+	t.Fatalf("got %v, want %v", got, want)
+}

@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: if err != nil
+# key: if-err
+# description: if error snippet
+# --
+if err != nil {
+	$0
+}

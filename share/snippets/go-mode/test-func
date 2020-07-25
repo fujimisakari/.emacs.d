@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: func TestName(t *testing.T)
+# key: test-func
+# description: add a test method
+# --
+func Test${1:Feature}(t *testing.T) {
+	$0
+}

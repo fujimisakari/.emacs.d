@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: fmt.Print()
+# key: print
+# description: print snippet
+# --
+fmt.Print($1)$0

@@ -1,0 +1,26 @@
+# -*- mode: snippet -*-
+# name: test-table-map
+# key: test-table-map
+# description: test-table-map snippet
+# --
+cases := map[string]struct {
+	status int
+	want   int
+}{
+	"test1": {
+		1,
+		1,
+	},
+	"test2": {
+		2,
+		2,
+	},
+}
+
+for name, tc := range cases {
+	t.Run(name, func(t *testing.T) {
+		if got, want := tc.status, tc.want; got != want {
+			t.Fatalf("got %v, want %v", got, want)
+		}
+	})
+}

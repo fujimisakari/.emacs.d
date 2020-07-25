@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: if err == nil
+# key: test-err-is-nil
+# description: test-err-is-nil snippet
+# --
+if err == nil {
+	t.Fatal("returned nil error; want non-nil error")
+}

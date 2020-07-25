@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: main
+# key: main
+# decription: snippet for producing the main block
+# --
+package main
+
+import "fmt"
+
+func main() {
+  $0
+}

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: str to int32
+# key: str-to-int32
+# description: srt to int32 snippet
+# --
+$1, _ := strconv.ParseInt(${2:v}, 10, 32)$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: uint64 to str
+# key: uint64-to-str
+# description: uint64 to srt snippet
+# --
+$1 := strconv.FormatUint(${2:v}, 10)$0

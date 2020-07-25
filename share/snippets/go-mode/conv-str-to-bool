@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: str to bool
+# key: str-to-bool
+# description: str to bool snippet
+# --
+$1, _ := strconv.ParseBool(${2:"true"})

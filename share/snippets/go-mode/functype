@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: type name func(args) returnType
+# key: func-type
+# description: func type snippet
+# --
+type ${1:name} func(${2:arguments}) ${3:returntype}
