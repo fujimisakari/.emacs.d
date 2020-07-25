@@ -21,9 +21,9 @@
 (add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
 
 (set-face-foreground 'magit-diff-file-heading "gray90")
-(set-face-background 'magit-diff-file-heading "SlateBlue4")
+(set-face-background 'magit-diff-file-heading "#4f57f9")
 (set-face-foreground 'magit-diff-file-heading-highlight "gray90")
-(set-face-background 'magit-diff-file-heading-highlight "SlateBlue4")
+(set-face-background 'magit-diff-file-heading-highlight "#4f57f9")
 
 (set-face-foreground 'magit-branch-current "IndianRed1")
 (set-face-foreground 'magit-branch-local "IndianRed1")
@@ -31,7 +31,7 @@
 
 (set-face-foreground 'magit-hash "SkyBlue1")
 (set-face-foreground 'magit-log-author "LightSeaGreen")
-(set-face-foreground 'magit-log-date "MediumPurple1")
+(set-face-foreground 'magit-log-date "#4f57f9")
 
 (require 'git-gutter)
 (global-git-gutter-mode +1)

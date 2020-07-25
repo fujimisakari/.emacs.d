@@ -60,8 +60,8 @@
 (setq helm-swoop-speed-or-color t)
 (setq helm-swoop-use-line-number-face nil)
 (custom-set-faces
- '(helm-swoop-target-line-face ((t (:background "SlateBlue3" :foreground "white"))))
- '(helm-swoop-target-line-block-face ((t (:background "SlateBlue3" :foreground "white")))))
+ '(helm-swoop-target-line-face ((t (:background "#4f57f9" :foreground "white"))))
+ '(helm-swoop-target-line-block-face ((t (:background "#4f57f9" :foreground "white")))))
 
 ;; customize
 (custom-set-variables
@@ -72,7 +72,7 @@
 ;; カラー設定
 (custom-set-faces
  '(helm-source-header
-   ((t (:foreground "white" :background "SlateBlue" :weight bold :height 1.5 :family my-global-font))))
+   ((t (:foreground "white" :background "#4f57f9" :weight bold :height 1.5 :family my-global-font))))
  '(helm-ff-file ((t (:foreground "gray75" :background nil))))
  '(helm-ff-symlink ((t (:foreground "orange" :background nil))))
  '(helm-buffer-file ((t (:foreground "OliveDrab2" :background nil))))
@@ -82,6 +82,6 @@
  '(helm-candidate-number ((t (:foreground nil :background nil)))))
 
 (set-face-foreground 'helm-match "white")
-(set-face-background 'helm-match "SlateBlue3")
+(set-face-background 'helm-match "#4f57f9")
 
 ;;; 08-helm.el ends here

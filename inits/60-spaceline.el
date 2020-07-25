@@ -16,7 +16,7 @@
 	  spaceline-all-the-icons-separator-type 'slant)
 
 (set-face-foreground 'spaceline-highlight-face "white")
-(set-face-background 'spaceline-highlight-face "SlateBlue2")
+(set-face-background 'spaceline-highlight-face "#4f57f9")
 
 (spaceline-toggle-all-the-icons-modified-on)
 (spaceline-toggle-all-the-icons-buffer-size-off)

@@ -31,8 +31,8 @@
 ;; フレーム設定
 (set-foreground-color "gray75")     ; 文字の色設定
 (set-background-color "gray5")      ; 背景色の設定
-(set-cursor-color "SlateBlue2")     ; カーソルの色設定
-(set-mouse-color "SlateBlue2")      ; マウスポインタの色を設定
+(set-cursor-color "#4f57f9")        ; カーソルの色設定
+(set-mouse-color "#4f57f9")         ; マウスポインタの色を設定
 (set-frame-parameter nil 'alpha 80) ; 画面透明度の設定
 (toggle-scroll-bar nil)             ; スクロールバーを消す
 (menu-bar-mode 0)                   ; メニューバーを消す
@@ -56,7 +56,7 @@
 
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
-(set-face-background 'region "SlateBlue4")
+(set-face-background 'region "#2b43e1")
 
 ;; paren: 対応する括弧を光らせる
 (show-paren-mode t)

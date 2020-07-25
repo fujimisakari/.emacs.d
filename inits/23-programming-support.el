@@ -100,7 +100,7 @@
 (setq highlight-indent-guides-responsive t)
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
-(set-face-foreground 'highlight-indent-guides-character-face "SlateBlue2")
+(set-face-foreground 'highlight-indent-guides-character-face "#4f57f9")
 (set-face-foreground 'highlight-indent-guides-top-character-face "DeepSkyBlue")
 
 ;;; 23-programming-support.el ends here

@@ -41,7 +41,7 @@
 (set-face-foreground 'web-mode-html-tag-face "lime green")
 (set-face-foreground 'web-mode-html-attr-name-face "orchid1")
 (set-face-foreground 'web-mode-variable-name-face "orange")
-(set-face-foreground 'web-mode-preprocessor-face "MediumPurple1")
+(set-face-foreground 'web-mode-preprocessor-face "#4f57f9")
 (set-face-background 'web-mode-block-face "gray7")
 
 (add-hook 'web-mode-hook 'web-mode-hook)

@@ -25,7 +25,7 @@
 (set-face-foreground 'ac-emacs-eclim-candidate-face "#fff")
 (set-face-background 'ac-emacs-eclim-candidate-face "#444")
 (set-face-foreground 'ac-emacs-eclim-selection-face "#fff")
-(set-face-background 'ac-emacs-eclim-selection-face "SlateBlue2")
+(set-face-background 'ac-emacs-eclim-selection-face "#4f57f9")
 
 ;; エラー箇所にカーソルを当てるとエコーエリアに詳細を表示する
 (setq help-at-pt-display-when-idle t)

@@ -82,7 +82,7 @@
 (set-face-foreground 'ac-clang-candidate-face "#fff")
 (set-face-background 'ac-clang-candidate-face "#444")
 (set-face-foreground 'ac-clang-selection-face "#fff")
-(set-face-background 'ac-clang-selection-face "SlateBlue2")
+(set-face-background 'ac-clang-selection-face "#4f57f9")
 
 ;;; flymakeで文法チェック
 (defvar flymake-command "~/.emacs.d/bin/objc-flymake.py")

@@ -104,7 +104,7 @@
      (elscreen-next))
 
 ;; カラー設定
-(set-face-foreground 'elscreen-tab-current-screen-face "MediumPurple1")
+(set-face-foreground 'elscreen-tab-current-screen-face "#6c6aff")
 (set-face-background 'elscreen-tab-current-screen-face "gray25")
 (set-face-bold-p 'elscreen-tab-current-screen-face t)
 

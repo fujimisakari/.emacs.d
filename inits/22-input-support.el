@@ -117,7 +117,7 @@
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
 (set-face-foreground 'vhl/default-face "gray75")
-(set-face-background 'vhl/default-face "SlateBlue4")
+(set-face-background 'vhl/default-face "#4f57f9")
 
 ;; ページスクロール時に画面上におけるカーソルの位置をなるべく変えないようにする
 (setq scroll-preserve-screen-position t)

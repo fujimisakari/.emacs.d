@@ -20,7 +20,7 @@
 ;; 書き込み可能ファイルを開く場合はオレンジ色
 (setq viewer-modeline-color-view "orange")
 ;; view-modeの切り替え時のデフォルト色
-(setq viewer-modeline-color-default "SlateBlue3")
+(setq viewer-modeline-color-default "#4f57f9")
 ;; (viewer-change-modeline-color-setup)
 
 ;;; view-modeのキーバインド

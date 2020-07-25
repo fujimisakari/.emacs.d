@@ -36,7 +36,7 @@
   )
 ;; 補完候補一覧での候補の色
 (set-face-foreground 'zlc-selected-completion-face "gray7")
-(set-face-background 'zlc-selected-completion-face "MediumPurple1")
+(set-face-background 'zlc-selected-completion-face "#4f57f9")
 
 ;; bookmack設定
 ;; ブックマークの保存先を指定

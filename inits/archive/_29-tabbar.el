@@ -41,7 +41,7 @@
 (set-face-attribute
  'tabbar-selected nil
  :background "gray23"
- :foreground "MediumPurple1"
+ :foreground "#4f57f9"
  :box nil)
 (set-face-attribute
  'tabbar-button nil

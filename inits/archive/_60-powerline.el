@@ -90,7 +90,7 @@ static char * arrow_right[] = {
     ""
     (buffer-name)))
 
-(defconst color1 "SlateBlue")
+(defconst color1 "#4f57f9")
 (defconst color2 "#1d1d1d")
 (defconst color3 "gray40")
 (defconst color4 "gray15")

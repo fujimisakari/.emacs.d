@@ -49,7 +49,7 @@
 
 ;; ;; 外観設定
 ;; (set-face-foreground 'jabber-title-large "gray15")                 ; タイトル
-;; (set-face-background 'jabber-title-large "MediumPurple1")          ; タイトル(背景)
+;; (set-face-background 'jabber-title-large "#4f57f9")          ; タイトル(背景)
 ;; (set-face-foreground 'jabber-title-medium "light green")           ; ID(背景)
 ;; (set-face-foreground 'jabber-title-small "yellow")                 ; グループ名
 ;; (set-face-foreground 'jabber-activity-face "yellow")               ; モードラインの受信通知
