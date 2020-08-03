@@ -14,7 +14,6 @@
 ;; serverモードで起動時はSKKモードで1画面で開く
 (add-hook 'server-switch-hook
           (lambda()
-            (delete-other-windows)
-            (skk-mode)))
+            (delete-other-windows)))
 
 ;;; 02-emacs-server.el ends here
