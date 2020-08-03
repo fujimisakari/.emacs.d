@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: map[keyType]valueType
+# key: map
+# description: map snippet
+# --
+map[${1:keyType}]${2:valueType}$0
