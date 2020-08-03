@@ -38,6 +38,7 @@
 (push '("*eww*") popwin:special-display-config)
 (push '("*pydoc*") popwin:special-display-config)
 (push '("*godoc*") popwin:special-display-config)
+(push '("*Go Test*") popwin:special-display-config)
 
 ;; eclim
 (push '("*compilation*") popwin:special-display-config)
