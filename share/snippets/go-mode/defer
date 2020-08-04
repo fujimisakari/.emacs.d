@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: defer func()
+# key: defer
+# description: defer snippet
+# --
+defer func() {
+	$0
+}()
