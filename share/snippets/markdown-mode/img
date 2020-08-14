@@ -1,5 +1,5 @@
-# name: Image
-# contributor: Peng Deng <dengpeng@gmail.com>
+# name: image
+# key: image
 # key: img
 # --
-![${1:Alt Text}](${2:URL} $3) $0
+<img src="${1:url}" width="${2:size}">$0
