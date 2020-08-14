@@ -46,7 +46,7 @@
 ;; eval-buffer: Symbol’s value as variable is void: default-fill-column の対応
 ;; emacs26以降ではdefault-* の変数が廃止される
 ;; http://suzuki.tdiary.net/20161226.html
-(if (string-match "26" emacs-version)
+(if (not (boundp 'default-fill-column))
     (setq default-fill-column (default-value 'fill-column)))
 
 ;; sdicのロード
