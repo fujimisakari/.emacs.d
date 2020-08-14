@@ -8,6 +8,7 @@
 ;; (require 'go-autocomplete)
 (require 'go-flymake)
 (require 'open-godoc)
+(require 'go-expr-completion)
 
 (setq gofmt-command "goimports")
 (add-hook 'go-mode-hook
