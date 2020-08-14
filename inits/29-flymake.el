@@ -8,10 +8,10 @@
 ;; (require 'flymake-cursor) ; minibufferにエラーメッセージを表示させる
 
 ;; メッセージはposframeで表示させる
-;; (require 'flymake-posframe)
-;; (add-hook 'flymake-mode-hook 'flymake-posframe-mode)
-;; (set-face-foreground 'flymake-posframe-foreground-face "gray90")
-;; (set-face-background 'flymake-posframe-background-face "MediumPurple4")
+(require 'flymake-posframe)
+(add-hook 'flymake-mode-hook 'flymake-posframe-mode)
+(set-face-foreground 'flymake-posframe-foreground-face "white")
+(set-face-background 'flymake-posframe-background-face "#4f57f9")
 
 ;; 文法チェックの頻度の設定
 (setq flymake-no-changes-timeout 1)
@@ -31,4 +31,3 @@
 (delete '("\\.cs\\'" flymake-simple-make-init) flymake-allowed-file-name-masks)
 
 ;;; 29-flymake.el ends here
-
