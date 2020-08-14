@@ -62,4 +62,72 @@
       (other-window 1)))
   (lsp-find-definition))
 
+
+;; company-lspを稼働させるための対応
+(defcustom lsp-completion-show-detail t
+  "Whether or not to show detail of completion candidates."
+  :type 'boolean
+  :group 'lsp-mode)
+
+(defconst lsp--completion-item-kind
+  [nil
+   "Text"
+   "Method"
+   "Function"
+   "Constructor"
+   "Field"
+   "Variable"
+   "Class"
+   "Interface"
+   "Module"
+   "Property"
+   "Unit"
+   "Value"
+   "Enum"
+   "Keyword"
+   "Snippet"
+   "Color"
+   "File"
+   "Reference"
+   "Folder"
+   "EnumMember"
+   "Constant"
+   "Struct"
+   "Event"
+   "Operator"
+   "TypeParameter"])
+
+
+(defun lsp--sort-completions (completions)
+  "Sort COMPLETIONS."
+  (sort
+   completions
+   (-lambda ((&CompletionItem :sort-text? sort-text-left :label label-left)
+             (&CompletionItem :sort-text? sort-text-right :label label-right))
+     (if (equal sort-text-left sort-text-right)
+         (string-lessp label-left label-right)
+       (string-lessp sort-text-left sort-text-right)))))
+
+(defun lsp--annotate (item)
+  "Annotate ITEM detail."
+  (-let (((&CompletionItem :detail? :kind?) (plist-get (text-properties-at 0 item)
+                                                       'lsp-completion-item)))
+    (concat (when (and lsp-completion-show-detail detail?)
+              (concat " " (s-replace "\r" "" detail?)))
+            (when-let (kind-name (and kind? (aref lsp--completion-item-kind kind?)))
+              (format " (%s)" kind-name)))))
+
+
+(defun lsp--resolve-completion (item)
+  "Resolve completion ITEM."
+  (cl-assert item nil "Completion item must not be nil")
+  (or (-first 'identity
+              (condition-case _err
+                  (lsp-foreach-workspace
+                   (when (lsp:completion-options-resolve-provider?
+                          (lsp--capability :completionProvider))
+                     (lsp-request "completionItem/resolve" item)))
+                (error)))
+      item))
+
 ;;; 59-lsp-mode.el ends here
