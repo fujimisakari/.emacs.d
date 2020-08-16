@@ -51,6 +51,7 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-f" 'elscreen-swap-next)                      ; タブの配置位置ずらし(右)
 (bind-key* "C-M-b" 'elscreen-swap-previous)                  ; タブの配置位置ずらし(左)
+(bind-key* "C-M-i" 'company-complete)                        ; 補完
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
@@ -286,7 +287,6 @@
 (bind-key "C-i" 'ac-expand ac-menu-map)
 
 ;; company-mode
-(bind-key "<tab>" 'company-complete)
 (bind-key "C-n" 'company-select-next company-active-map)
 (bind-key "C-p" 'company-select-previous company-active-map)
 (bind-key "C-s" 'company-filter-candidates company-active-map)
