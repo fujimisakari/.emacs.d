@@ -71,14 +71,14 @@
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
 (bind-key "M-<right>" 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
 (bind-key "M-<left>" 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
-(bind-key "M-p" 'bm-previous)                                ; bm-goto 前へ移動
-(bind-key "M-n" 'bm-next)                                    ; bm-goto 次へ移動
+(bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
+(bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
+(bind-key "M-P" 'bm-previous)                                ; bm-goto 前へ移動
+(bind-key "M-N" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
 ;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
 ;; (bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
 (bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
-(bind-key "M-P" 'highlight-symbol-prev)                      ; highlight-symbolの移動(前)
-(bind-key "M-N" 'highlight-symbol-next)                      ; highlight-symbolの移動(次)
 
 ;; C-l
 (unbind-key "C-l")

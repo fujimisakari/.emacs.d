@@ -119,9 +119,6 @@
 (set-face-foreground 'vhl/default-face "gray75")
 (set-face-background 'vhl/default-face "#4f57f9")
 
-;; ページスクロール時に画面上におけるカーソルの位置をなるべく変えないようにする
-(setq scroll-preserve-screen-position t)
-
 ;; 略語展開・補完を行うコマンドをまとめる
 ;; (setq hippie-expand-try-functions-list
 ;;   '(try-complete-file-name-partially   ; ファイル名の一部

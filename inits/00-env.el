@@ -50,7 +50,6 @@
 (setq gc-cons-threshold (* 50 gc-cons-threshold))             ; GCを減らして軽くする（デフォルトの50倍）
 (setq x-select-enable-clipboard t)                            ; X11とクリップボードを共有する
 (setq use-dialog-box nil)                                     ; ダイアログボックスを使わないようにする
-(setq scroll-conservatively 35 scroll-margin 0 scroll-step 1) ; スクロールは一行にする
 
 ;; 履歴関連
 (setq backup-inhibited t)                                     ; バックアップファイルを作らない
