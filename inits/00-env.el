@@ -110,7 +110,7 @@
 ;; (setq revert-buffer-insert-file-contents-function nil)
 (setq revert-buffer-function nil)
 
-;; ブラウザはmacを使用する
+;; URLはOSブラウザで開く
 (setq browse-url-browser-function 'browse-url-generic)
 (cond ((eq my-os-type 'mac)
        (setq browse-url-generic-program
