@@ -212,7 +212,6 @@
 ;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)         ; デバッガの起動
 
 ;; omnisharp-mode
-;; (bind-key "<tab>" 'omnisharp-auto-complete omnisharp-mode-map)
 ;; (bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
 ;; (bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
 ;; (bind-key "C-c '" 'work-menu-scene-file-toggle omnisharp-mode-map)
@@ -273,13 +272,6 @@
             (local-set-key (kbd "C-c m") 'lsp-ui-imenu)
             (local-set-key (kbd "C-c s") 'lsp-ui-sideline-mode)
             (local-set-key (kbd "C-c d") 'ladicle/toggle-lsp-ui-doc)))
-
-;; auto-complete-mode
-(bind-key "<tab>" 'auto-complete ac-mode-map)
-(bind-key "C-n" 'ac-next ac-menu-map)
-(bind-key "C-p" 'ac-previous ac-menu-map)
-(bind-key "<f12>" 'ac-complete ac-menu-map)
-(bind-key "C-i" 'ac-expand ac-menu-map)
 
 ;; company-mode
 (bind-key "C-n" 'company-select-next company-active-map)

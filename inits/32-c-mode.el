@@ -6,8 +6,6 @@
 
 (require 'c-eldoc)
 (require 'flycheck)
-(require 'auto-complete-c-headers)
-(require 'auto-complete-clang-async)
 
 (add-hook 'c-mode-hook
           (lambda ()
@@ -16,12 +14,6 @@
             (common-mode-init)
             (flycheck-mode t)
             (flymake-mode-off)
-            ;; auto-complete-clang-async
-            (setq ac-clang-complete-executable "~/.emacs.d/bin/clang-complete")
-            (add-to-list 'ac-sources 'ac-source-clang-async)
-            (ac-clang-launch-completion-process)
-            ;; auto-complete-c-headers
-            (add-to-list 'ac-sources 'ac-source-c-headers)
             ;; eldoc
             (c-turn-on-eldoc-mode)
             (setq c-eldoc-buffer-regenerate-time 60)))

@@ -8,12 +8,7 @@
 
 (add-hook 'swift-mode-hook
           (lambda ()
-            (common-mode-init)
-            (auto-complete-mode)))
-
-;; 補完
-(require 'auto-complete-swift)
-(push 'ac-source-swift-complete ac-sources)
+            (common-mode-init)))
 
 ;; tagジャンプ
 (defun helm-etags-select-other-window (reinit)

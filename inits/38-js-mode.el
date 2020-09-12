@@ -22,11 +22,6 @@
             (setq js2-basic-offset 2)
             (setq js-switch-indent-offset 2)))
 
-(eval-after-load 'tern
-  '(progn
-     (require 'tern-auto-complete)
-     (tern-ac-setup)))
-
 ;; visual setting
 (set-face-foreground 'js2-function-param nil)
 (set-face-foreground 'js2-function-call "lime green")

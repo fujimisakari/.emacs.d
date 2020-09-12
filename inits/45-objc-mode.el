@@ -8,7 +8,6 @@
 (add-hook 'objc-mode-hook
           '(lambda()
              (common-mode-init)
-             (auto-complete-mode)
              (setq c-basic-offset 4)
              (setq tab-width 4)
              (setq indent-tabs-mode nil)))
@@ -64,25 +63,6 @@
 ;; (setq xcode:foundation (concat xcode:framework "/Foundation.framework/Headers/"))
 ;; (setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
 ;; (setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
-
-;; auto-complete-clangでコード補完
-(require 'auto-complete-clang)
-(defvar auto-complete-option-command "~/.emacs.d/bin/objc-auto-complete.py")
-(defun auto-complete-option ()
-  (let* ((search-target-file (concat project-pch-path "*.pch"))
-         (pch-file (eshell-extended-glob search-target-file)))
-    (if (listp pch-file)
-        (let* ((pch-include-option (list "--pch" (expand-file-name (car pch-file))))
-               (clang-options (append clang-base-options pch-include-option)))
-          (shell-command-to-string (message "%s" (push auto-complete-option-command clang-options))))
-      "")))
-(setq ac-clang-flags (split-string (replace-regexp-in-string "\n+$" "" (auto-complete-option)) ","))
-(setq ac-clang-auto-save t)
-
-(set-face-foreground 'ac-clang-candidate-face "#fff")
-(set-face-background 'ac-clang-candidate-face "#444")
-(set-face-foreground 'ac-clang-selection-face "#fff")
-(set-face-background 'ac-clang-selection-face "#4f57f9")
 
 ;;; flymakeで文法チェック
 (defvar flymake-command "~/.emacs.d/bin/objc-flymake.py")
