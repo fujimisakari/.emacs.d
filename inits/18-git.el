@@ -9,6 +9,9 @@
 
 (require 'magit)
 
+ (custom-set-variables
+      '(magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 12)))
+
 ;; common
 (set-face-attribute 'magit-header-line nil
                     :foreground "white" :background "#4f57f9" :weight 'bold :height 1.2 :family my-global-font)

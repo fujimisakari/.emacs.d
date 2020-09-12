@@ -93,6 +93,7 @@
 (bind-key "C-l g" 'helm-ghq-list)                            ; ghq経由でGoパッケージディレクトリを開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
+(bind-key "C-l m" 'magit-status)                             ; magit起動
 (bind-key "C-l a" 'helm-ag)                                  ; helm-ag検索
 (bind-key "C-l f" 'helm-find-cmd-type-file)                  ; helm-find-cmd ファイル検索
 (bind-key "C-l d" 'helm-find-cmd-type-directory)             ; helm-find-cmd ディレクトリ検索
@@ -122,12 +123,6 @@
 (bind-key "C-l v a" 'vc-annotate)                            ; git blameを見る
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
-
-;; magit
-(bind-key "C-l m s" 'magit-status)                           ; git status
-(bind-key "C-l m l" 'magit-log-current)                      ; git log
-(bind-key "C-l m d" 'magit-diff-unstaged)                    ; git diff unstaged
-(bind-key "C-l m D" 'magit-diff-staged)                      ; git diff staged
 
 ;; vc-annotate-mode
 (bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
