@@ -18,12 +18,13 @@
 ;;   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 ;; (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
-;; go-mode設定
-(add-hook 'go-mode-hook
-          '(lambda()
-             (lsp)
-             (lsp-deferred)
-             (push '(company-lsp :with company-yasnippet) company-backends)))
+;; mode設定
+(dolist (v '(go-mode-hook c-mode-common-hook))
+  (add-hook v
+            '(lambda()
+               (lsp)
+               (lsp-deferred)
+               (push '(company-lsp :with company-yasnippet) company-backends))))
 
 (setq global-flycheck-mode nil)
 
