@@ -25,6 +25,7 @@
 (defconst my-global-font "SF Mono Square")
 
 ;; shellのコマンドパスの追加
+(load-file (expand-file-name "~/.emacs.d/share/shellenv/work_shellenv.el"))
 (load-file (expand-file-name (format "~/.emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
 (dolist (path (reverse (split-string (getenv "PATH") ":")))
   (add-to-list 'exec-path path))
