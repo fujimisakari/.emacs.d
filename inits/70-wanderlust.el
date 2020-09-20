@@ -9,7 +9,7 @@
 (autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
 
 ;; アイコンを置くディレクトリ。初期設定は Emacs 固有のデフォルト値。
-(setq wl-icon-directory "~/.emacs.d/elisp/wl/icons")
+;; (setq wl-icon-directory "~/.emacs.d/elisp/wl/icons")
 
 ;; メールドラフトモードをWandarlustドラフトモードに
 (autoload 'wl-user-agent-compose "wl-draft" nil t)
