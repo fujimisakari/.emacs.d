@@ -87,12 +87,6 @@
       (when (member 'explicit highlight-symbol-occurrence-message)
         (highlight-symbol-count symbol t)))))
 
-;; codeのskeletonをhelm経由で参照
-(when (require 'helm-code-skeleton nil t)
-  (require 'skeleton)
-  (setq helm-code-skeleton-dir-root-path "~/.emacs.d/code-skeletons")
-  (helm-code-skeleton-load))
-
 ;; 縦のインデント表記
 (require 'highlight-indent-guides)
 (setq highlight-indent-guides-method 'character)
