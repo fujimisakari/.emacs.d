@@ -7,18 +7,21 @@
 ;; emacs-lisp-mode
 (add-hook 'emacs-lisp-mode-hook
           (lambda ()
+            (setq flymake-diagnostic-functions nil)
             (common-mode-init)
             (turn-on-eldoc-mode)))
 
 ;; lisp-interaction-mode-hook
 (add-hook 'lisp-interaction-mode-hook
           (lambda ()
+            (setq flymake-diagnostic-functions nil)
             (common-mode-init)
             (turn-on-eldoc-mode)))
 
 ;; lisp-mode-hook
 (add-hook 'lisp-mode-hook
           (lambda ()
+            (setq flymake-diagnostic-functions nil)
             (common-mode-init)
             (turn-on-eldoc-mode)))
 
