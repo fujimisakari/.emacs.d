@@ -102,6 +102,7 @@
 (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
 (bind-key "C-l S" 'swap-window-positions)                    ; ウィンドウを入れ替える
+(bind-key "C-l t" 'www-page-title)                           ; pageタイトル取得
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l ." 'insert-arrow)
