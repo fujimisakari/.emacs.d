@@ -30,6 +30,9 @@
   (setq web-mode-enable-auto-indentation nil)
   (setq web-mode-enable-block-face t)
   (setq web-mode-enable-part-face t)
+  ;; require-final-newlineとNo newline at end of file対策 - by shigemk2
+  ;; https://www.shigemk2.com/entry/emacs_no_newline_final
+  (setq require-final-newline nil)
   (common-mode-init)
   (add-hook 'local-write-file-hooks
             (lambda ()
