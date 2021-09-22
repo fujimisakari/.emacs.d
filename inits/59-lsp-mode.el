@@ -8,8 +8,6 @@
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
-(require 'company-lsp)
-
 ;; hook
 ;; Set up before-save hooks to format buffer and add/delete imports.
 ;; Make sure you don't have other gofmt/goimports hooks enabled.
@@ -19,14 +17,16 @@
 ;; (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; mode設定
-(dolist (v '(go-mode-hook c-mode-common-hook))
+;; (setq lsp-language-id-configuration (append lsp-language-id-configuration '(protobuf-mode . "c")))
+;; (dolist (v '(go-mode-hook c-mode-common-hook))
+(dolist (v '(go-mode-hook))
   (add-hook v
             '(lambda()
                (lsp)
                (lsp-deferred)
-               (push '(company-lsp :with company-yasnippet) company-backends))))
+               (lsp-completion-mode))))
 
-(setq global-flycheck-mode nil)
+(setq pglobal-flycheck-mode nil)
 
 ;; general
 (setq lsp-session-file (expand-file-name (locate-user-emacs-file "../.lsp-session-v1")))
@@ -39,6 +39,7 @@
 (setq lsp-enable-completion-at-point nil)
 (setq lsp-ui-flycheck-enable nil)
 (setq lsp-enable-file-watchers nil)
+(setq lsp-prefer-capf t)
 
 ;; lsp-ui-doc
 (setq lsp-ui-doc-enable nil)
@@ -62,73 +63,3 @@
       (split-window-horizontally)
       (other-window 1)))
   (lsp-find-definition))
-
-
-;; company-lspを稼働させるための対応
-(defcustom lsp-completion-show-detail t
-  "Whether or not to show detail of completion candidates."
-  :type 'boolean
-  :group 'lsp-mode)
-
-(defconst lsp--completion-item-kind
-  [nil
-   "Text"
-   "Method"
-   "Function"
-   "Constructor"
-   "Field"
-   "Variable"
-   "Class"
-   "Interface"
-   "Module"
-   "Property"
-   "Unit"
-   "Value"
-   "Enum"
-   "Keyword"
-   "Snippet"
-   "Color"
-   "File"
-   "Reference"
-   "Folder"
-   "EnumMember"
-   "Constant"
-   "Struct"
-   "Event"
-   "Operator"
-   "TypeParameter"])
-
-
-(defun lsp--sort-completions (completions)
-  "Sort COMPLETIONS."
-  (sort
-   completions
-   (-lambda ((&CompletionItem :sort-text? sort-text-left :label label-left)
-             (&CompletionItem :sort-text? sort-text-right :label label-right))
-     (if (equal sort-text-left sort-text-right)
-         (string-lessp label-left label-right)
-       (string-lessp sort-text-left sort-text-right)))))
-
-(defun lsp--annotate (item)
-  "Annotate ITEM detail."
-  (-let (((&CompletionItem :detail? :kind?) (plist-get (text-properties-at 0 item)
-                                                       'lsp-completion-item)))
-    (concat (when (and lsp-completion-show-detail detail?)
-              (concat " " (s-replace "\r" "" detail?)))
-            (when-let (kind-name (and kind? (aref lsp--completion-item-kind kind?)))
-              (format " (%s)" kind-name)))))
-
-
-(defun lsp--resolve-completion (item)
-  "Resolve completion ITEM."
-  (cl-assert item nil "Completion item must not be nil")
-  (or (-first 'identity
-              (condition-case _err
-                  (lsp-foreach-workspace
-                   (when (lsp:completion-options-resolve-provider?
-                          (lsp--capability :completionProvider))
-                     (lsp-request "completionItem/resolve" item)))
-                (error)))
-      item))
-
-;;; 59-lsp-mode.el ends here

@@ -43,6 +43,7 @@
 (bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
 (bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
 (bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
+(bind-key* "C-<tab>" 'company-complete)                      ; 補完
 
 ;; C-M-
 (bind-key* "C-M-d" 'duplicate-this-line-forward)             ; 直前行をコピーする
@@ -51,7 +52,6 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-f" 'elscreen-swap-next)                      ; タブの配置位置ずらし(右)
 (bind-key* "C-M-b" 'elscreen-swap-previous)                  ; タブの配置位置ずらし(左)
-(bind-key* "C-M-i" 'company-complete)                        ; 補完
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 ;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
 ;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
