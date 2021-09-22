@@ -28,6 +28,8 @@
                                            go-staticcheck
                                            lsp))
 
+(setq go-test-verbose t)
+
 ;; helm-ghq-list
 (defun helm-ghq--get-candidates ()
   (let* ((cmd-result (funcall 'shell-command-to-string "ghq list"))
