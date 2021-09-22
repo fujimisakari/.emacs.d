@@ -45,4 +45,8 @@ translation it is possible to get suggestion."
         (aref info 1)
       nil)))
 
+(defun google-translate--search-tkk ()
+  "Search TKK."
+  (list 430675 2721866130))
+
 ;;; 63-google-translator.el ends here
