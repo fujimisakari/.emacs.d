@@ -8,7 +8,8 @@
 (cond ((eq my-os-type 'linux)
        (set-face-attribute 'default nil :family my-global-font :height 160))
       ((eq my-os-type 'mac)
-       (set-face-attribute 'default nil :family my-global-font :height 185)))
+       (add-to-list 'default-frame-alist '(font . "SF Mono Square-20"))
+       (set-face-attribute 'default t :font "SF Mono Square")))
 
 ;; font-lock設定
 (global-font-lock-mode t)                                           ; 特定のモードで色を付ける(Font-Lookモード有効にする)
