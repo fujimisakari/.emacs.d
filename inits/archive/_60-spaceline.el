@@ -13,7 +13,7 @@
 (setq spaceline-all-the-icons-slim-render nil
       spaceline-all-the-icons-highlight-file-name nil
       spaceline-all-the-icons-icon-set-modified 'toggle
-	  spaceline-all-the-icons-separator-type 'slant)
+      spaceline-all-the-icons-separator-type 'slant)
 
 (set-face-foreground 'spaceline-highlight-face "white")
 (set-face-background 'spaceline-highlight-face "#4f57f9")
