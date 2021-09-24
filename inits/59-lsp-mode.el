@@ -8,17 +8,7 @@
 (require 'lsp-ui)
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
-;; hook
-;; Set up before-save hooks to format buffer and add/delete imports.
-;; Make sure you don't have other gofmt/goimports hooks enabled.
-;; (defun lsp-go-install-save-hooks ()
-;;   (add-hook 'before-save-hook #'lsp-format-buffer t t)
-;;   (add-hook 'before-save-hook #'lsp-organize-imports t t))
-;; (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
-;; mode設定
-;; (setq lsp-language-id-configuration (append lsp-language-id-configuration '(protobuf-mode . "c")))
-;; (dolist (v '(go-mode-hook c-mode-common-hook))
+;; mode
 (dolist (v '(go-mode-hook))
   (add-hook v
             '(lambda()
@@ -53,9 +43,22 @@
 (setq lsp-ui-sideline-show-diagnostics nil)
 (setq lsp-ui-sideline-show-code-actions nil)
 
-;; lsp-ui-imenu
-(setq lsp-ui-imenu-enable nil)
+;; face
+(set-face-foreground 'lsp-ui-peek-selection "white")
+(set-face-background 'lsp-ui-peek-selection "#4f57f9")
 
+(set-face-foreground 'lsp-ui-peek-header "white")
+(set-face-background 'lsp-ui-peek-header "SlateBlue2")
+
+(set-face-foreground 'lsp-ui-peek-footer "white")
+(set-face-background 'lsp-ui-peek-footer "SlateBlue2")
+
+(set-face-foreground 'lsp-ui-peek-filename "CornflowerBlue")
+(set-face-foreground 'lsp-ui-peek-line-number "gray45")
+(set-face-background 'lsp-ui-peek-peek "gray15")
+(set-face-background 'lsp-ui-peek-highlight "DarkOliveGreen2")
+
+;; customize
 (defun lsp-find-definition-other-window ()
   (interactive)
   (when (one-window-p)
@@ -63,3 +66,9 @@
       (split-window-horizontally)
       (other-window 1)))
   (lsp-find-definition))
+
+(defun lsp-ui-peek--goto-xref-custom-other-window ()
+  (interactive)
+  (if (one-window-p)
+      (lsp-ui-peek--goto-xref nil t))
+  (lsp-ui-peek--goto-xref))

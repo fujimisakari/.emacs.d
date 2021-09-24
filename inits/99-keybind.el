@@ -264,15 +264,16 @@
 ;; lsp-mode-hook
 (add-hook 'lsp-mode-hook
           (lambda ()
-            ;; (local-set-key (kbd "C-c C-r") 'lsp-ui-peek-find-references)
-            ;; (local-set-key (kbd "C-c <f12>") 'lsp-ui-peek-find-definitions)
-            (local-set-key (kbd "C-c C-r") 'lsp-find-references)
             (local-set-key (kbd "C-c <f12>") 'lsp-find-definition-other-window)
+            (local-set-key (kbd "C-c C-r") 'lsp-ui-peek-find-references)
+            (local-set-key (kbd "C-c C-i") 'lsp-ui-peek-find-implementation)
             (local-set-key (kbd "C-c C-M-j") 'pop-tag-mark)
-            (local-set-key (kbd "C-c i") 'lsp-ui-peek-find-implementation)
             (local-set-key (kbd "C-c m") 'lsp-ui-imenu)
             (local-set-key (kbd "C-c s") 'lsp-ui-sideline-mode)
             (local-set-key (kbd "C-c d") 'ladicle/toggle-lsp-ui-doc)))
+
+;; lsp-ui-peek-mode
+(bind-key "RET" 'lsp-ui-peek--goto-xref-custom-other-window lsp-ui-peek-mode-map)
 
 ;; company-mode
 (bind-key "C-n" 'company-select-next company-active-map)
