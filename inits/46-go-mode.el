@@ -5,30 +5,18 @@
 ;;; Code:
 
 (require 'go-mode)
-;; (require 'go-autocomplete)
-(require 'go-flymake)
 (require 'open-godoc)
 
 (setq gofmt-command "goimports")
+(add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook
           '(lambda()
-             (add-hook 'before-save-hook 'gofmt-before-save)
-             (common-mode-init)
              (setq indent-tabs-mode t)
+             (setq go-test-verbose t)
+             (common-mode-init)
              (company-mode)
-             (go-eldoc-setup)))
-
-(setq-default flycheck-disabled-checkers '(go-gofmt
-                                           go-golint
-                                           go-vet
-                                           go-build
-                                           go-test
-                                           go-errcheck
-                                           go-unconvert
-                                           go-staticcheck
-                                           lsp))
-
-(setq go-test-verbose t)
+             (go-eldoc-setup)
+             (flycheck-golangci-lint-setup)))
 
 ;; helm-ghq-list
 (defun helm-ghq--get-candidates ()

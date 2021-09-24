@@ -16,8 +16,6 @@
                (lsp-deferred)
                (lsp-completion-mode))))
 
-(setq pglobal-flycheck-mode nil)
-
 ;; general
 (setq lsp-session-file (expand-file-name (locate-user-emacs-file "../.lsp-session-v1")))
 (setq lsp-print-io nil)
@@ -25,11 +23,10 @@
 (setq lsp-auto-guess-root t)
 ;; (setq lsp-document-sync-method 'incremental) ;; always send incremental document
 (setq lsp-response-timeout 5)
-(setq lsp-prefer-flymake 'flymake)
 (setq lsp-enable-completion-at-point nil)
-(setq lsp-ui-flycheck-enable nil)
 (setq lsp-enable-file-watchers nil)
 (setq lsp-prefer-capf t)
+(setq lsp-ui-flycheck-enable t)
 
 ;; lsp-ui-doc
 (setq lsp-ui-doc-enable nil)
