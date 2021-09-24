@@ -4,32 +4,15 @@
 
 ;;; Code:
 
-(require 'c-eldoc)
-(require 'flycheck)
-
 (add-hook 'c-mode-hook
           (lambda ()
-            ;; basic
             (c-set-style "stroustrup")
-            (common-mode-init)
-            (flycheck-mode t)
-            (flymake-mode-off)
-            ;; eldoc
-            (c-turn-on-eldoc-mode)
-            (setq c-eldoc-buffer-regenerate-time 60)))
+            (common-mode-init)))
 
 (custom-set-variables
  '(ac-clang-cflags '("-I/usr/include")))
 
-(flycheck-define-checker c/c++
-  "A C/C++ checker using g++."
-  :command ("g++" "-Wall" "-Wextra" source)
-  :error-patterns  ((error line-start
-                           (file-name) ":" line ":" column ":" " エラー: " (message)
-                           line-end)
-                    (warning line-start
-                           (file-name) ":" line ":" column ":" " 警告: " (message)
-                           line-end))
-  :modes (c-mode c++-mode))
+(require 'ccls)
+(setq ccls-executable "/usr/local/bin/ccls")
 
 ;;; 32-c-mode.el ends here

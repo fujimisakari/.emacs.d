@@ -9,7 +9,7 @@
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; mode
-(dolist (v '(go-mode-hook))
+(dolist (v '(go-mode-hook c-mode-common-hook))
   (add-hook v
             '(lambda()
                (lsp)
