@@ -19,8 +19,8 @@ cases := map[string]struct {
 
 for name, tc := range cases {
 	t.Run(name, func(t *testing.T) {
-		if got, want := tc.status, tc.want; got != want {
-			t.Fatalf("got %v, want %v", got, want)
-		}
+	    if diff := cmp.Diff(tc.want, tc.status); diff != "" {
+	        t.Errorf("(-want +got):\n%s", diff)
+	    }
 	})
 }
