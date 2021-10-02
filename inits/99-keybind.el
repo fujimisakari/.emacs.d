@@ -32,53 +32,50 @@
 (bind-key "<f12>" 'toggle-input-method)                      ; IMの切り替え
 
 ;; C-
-(bind-key* "C-'" 'helm-mini)                                 ; helmの起動
-(bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
+(bind-key* "C-'" 'my-ivy-switch-buffer)                      ; ivyの起動
 (bind-key* "C-," 'er/expand-region)                          ; 拡張リジョン選択
+(bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
+(bind-key* "C-s" 'swiper-isearch)
+(bind-key* "C-<tab>" 'company-complete)                      ; 補完
+(bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
 (bind-key "C-t" 'other-window-or-split)                      ; ウィンドウを切り替える
 (bind-key "C-h" 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
-(bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
-(bind-key "C-x C-f" 'helm-find-files)                        ; helmでファイルリスト検索
-(bind-key "C-x C-c" 'server-edit)                            ; emacsclientの終了をC-x C-cに割り当てる（好みに応じて）
-(bind-key* "C-<tab>" 'company-complete)                      ; 補完
+
+;; C-x
+(bind-key "C-x C-f" 'counsel-find-file)                        ; helmでファイルリスト検索
+
+;; C-c
+(bind-key* "C-c v" 'ivy-push-view)
+(bind-key* "C-c V" 'ivy-pop-view)
 
 ;; C-M-
-(bind-key* "C-M-d" 'duplicate-this-line-forward)             ; 直前行をコピーする
-(bind-key* "C-M-i" 'helm-imenu)                              ; helm-imenuの起動
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
-(bind-key* "C-M-f" 'elscreen-swap-next)                      ; タブの配置位置ずらし(右)
-(bind-key* "C-M-b" 'elscreen-swap-previous)                  ; タブの配置位置ずらし(左)
-(bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
-;; (bind-key "C-M-p" 'highlight-symbol-prev-in-defun)           ; 関数内のhighlight-symbolの移動(前)
-;; (bind-key "C-M-n" 'highlight-symbol-next-in-defun)           ; 関数内のhighlight-symbolの移動(次)
+(bind-key* "C-M-/" 'duplicate-this-line-forward)             ; 直前行をコピーする
 (bind-key "C-M-;" 'ace-window)                               ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
-(bind-key "C-M-n" 'helm-gtags-pop-stack)                     ; 関数のジャンプから一つ手前に戻る
-(bind-key "C-M-m" 'helm-gtags-find-tag)                      ; (同じバッファで)関数の定義元(関数の実体)へジャンプ
-(bind-key "C-M-," 'helm-gtags-find-tag-other-window)         ; 関数の定義元(関数の実体)へジャンプ
-(bind-key "C-M-." 'helm-gtags-find-rtag-other-window)        ; 関数の参照先を参照
-(bind-key "C-M-/" 'helm-gtags-find-symbol-other-window)      ; シンボルの定義先を参照
+(bind-key "C-M-i" 'counsel-imenu)                            ; counsel-imenuの起動
+(bind-key "C-M-." 'my-counsel-recentf)                       ; ファイル/ディレクトリ履歴
+(bind-key "C-M-," 'my-counsel-bookmark)                      ; ファイル/ディレクトリ履歴
+(bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 
 ;; M-
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
-(bind-key "M-x" 'helm-M-x)                                   ; helmでM-x
-(bind-key "M-y" 'helm-show-kill-ring)                        ; 過去のkill-ringの内容を取り出す
+(bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
+(bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
+(bind-key* "M-o" 'swiper-thing-at-region)                    ; swiperの起動
+(bind-key* "M-O" 'swiper-all-thing-at-region)                ; swiper-allの起動
+(bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
+(bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
 (bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-X Hippie-Expand)
 (bind-key "M-g" 'goto-line)                                  ; M-g で指定行へジャンプ
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
-(bind-key "M-<right>" 'flymake-goto-prev-error)              ; flymakeの警告・エラーに移動(前)
-(bind-key "M-<left>" 'flymake-goto-next-error)               ; flymakeの警告・エラーに移動(次)
-(bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
-(bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
 (bind-key "M-P" 'bm-previous)                                ; bm-goto 前へ移動
 (bind-key "M-N" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
-;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
-(bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 
 ;; C-l
 (unbind-key "C-l")
@@ -89,11 +86,10 @@
 (bind-key "C-l w" 'whitespace-cleanup)                       ; TABを空白に置換
 (bind-key "C-l k" 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
-(bind-key "C-l g" 'helm-ghq-list)                            ; ghq経由でGoパッケージディレクトリを開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
 (bind-key "C-l m" 'magit-status)                             ; magit起動
-(bind-key "C-l a" 'helm-ag)                                  ; helm-ag検索
+(bind-key "C-l a" 'counsel-ag)                               ; helm-ag検索
 (bind-key "C-l f" 'helm-find-cmd-type-file)                  ; helm-find-cmd ファイル検索
 (bind-key "C-l d" 'helm-find-cmd-type-directory)             ; helm-find-cmd ディレクトリ検索
 ;; (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
@@ -110,13 +106,11 @@
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key "C-l C-'" 'ispell-word)                            ; 現在のスペルから候補を表示
-(bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
 (bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
-(bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
 (bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
-;; (bind-key "C-l r" 'query-replace-regexp)                     ; インタラクティブ置換
-;; (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
+(bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
+(bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
 (bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
 (bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
 (bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
@@ -150,10 +144,6 @@
 ;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
 ;; (bind-key "M-h" 'paredit-forward-barf-sexp slime-mode-map)
 ;; (bind-key "M-9" 'paredit-wrap-round slime-mode-map)
-(bind-key "C-M-," 'helm-gtags-find-tag-other-window slime-mode-map)
-(bind-key "C-M-m" 'helm-gtags-pop-stack slime-mode-map)
-(bind-key "C-M-." 'helm-gtags-find-rtag slime-mode-map)
-(bind-key "C-M-/" 'helm-gtags-find-symbol slime-mode-map)
 (bind-key "C-c 1" 'common-lisp-hyperspec slime-mode-map)
 (bind-key "C-c 2" 'common-lisp-hyperspec-lookup-reader-macro slime-mode-map)
 (bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map)
