@@ -5,7 +5,6 @@
 ;;; Code:
 
 (require 'elixir-mode)
-(require 'alchemist)
 (require 'flycheck-elixir)
 
 (add-hook 'elixir-mode-hook
@@ -14,7 +13,6 @@
              (smartparens-mode)
              (setq tab-width 2)
              (setq tab-stop-list (tab-stop-list-creator tab-width))
-             (ac-alchemist-setup)
              (flycheck-mode)))
 
 ;; TODO

@@ -134,10 +134,10 @@
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
 (bind-key "C-c i" 'py-isort-buffer python-mode-map)          ; import整形
 (bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
-(bind-key "<tab>" 'jedi:complete jedi-mode-map)
-(bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
-(bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
-(bind-key "C-l ." 'insert-python-arrow jedi-mode-map)
+;; (bind-key "<tab>" 'jedi:complete jedi-mode-map)
+;; (bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
+;; (bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
+;; (bind-key "C-l ." 'insert-python-arrow jedi-mode-map)
 
 ;; objc-mode
 (bind-key "C-c f" 'clang-format-region objc-mode-map)
@@ -287,10 +287,6 @@
 (bind-key "?" '(lambda () (interactive) (mozc-insert-str "？")) mozc-mode-map)
 (bind-key "!" '(lambda () (interactive) (mozc-insert-str "！")) mozc-mode-map)
 (bind-key "C-h" 'delete-backward-char mozc-mode-map)
-
-;; eclim-mode
-(bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)
-(bind-key "C-<tab>" 'help-at-pt-display eclim-mode-map)
 
 ;; puml-mode
 (bind-key "C-c C-t" 'plantuml-open-with-png-file plantuml-mode-map)

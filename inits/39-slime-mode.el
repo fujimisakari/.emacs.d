@@ -18,10 +18,6 @@
   (setq slime-autodoc-use-multiline-p t)
   (setq slime-net-coding-system 'utf-8-unix) ; 日本語利用のための設定（Lisp 環境側の対応も必要）
 
-  (require 'ac-slime)
-  (add-hook 'slime-mode-hook 'set-up-slime-ac)
-  (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-
   ;; 括弧の対応を取りながらS式を編集する
   ;; (add-hook 'slime-repl-mode-hook 'enable-paredit-mode)
 

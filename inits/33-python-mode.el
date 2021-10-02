@@ -10,7 +10,6 @@
 (add-hook 'python-mode-hook
           '(lambda ()
              (common-mode-init)
-             (jedi:setup)
              (setq imenu-create-index-function 'python-imenu-create-index)))
 
 ;; code checker
@@ -33,13 +32,6 @@
 (require 'py-autopep8)
 ;; (setq py-autopep8-options '("--ignore=E221,E501,E701,E202"))
 (setq py-autopep8-options '("--ignore=E501"))
-
-;; jedi setup
-(require 'jedi)
-(setq jedi:complete-on-dot t)
-(setq jedi:install-imenu t)
-(setq python-environment-directory "~/.python-environments")
-(jedi:install-server)
 
 ;; docstring comment
 (defun python-docstring-comment()

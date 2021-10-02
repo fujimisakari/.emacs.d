@@ -5,7 +5,6 @@
 ;;; Code:
 
 (require 'php-mode)
-(require 'ac-php)
 
 (add-hook 'php-mode-hook
           (lambda()
