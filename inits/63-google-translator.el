@@ -29,6 +29,8 @@
   (let* ((asciip (string-match
                   (format "\\`[%s]+\\'" google-translate-english-chars)
                   string)))
+    (when (use-region-p)
+      (deactivate-mark))
     (run-at-time 0.1 nil 'deactivate-mark)
     (google-translate-translate
      (if asciip "en" "ja")
