@@ -130,14 +130,10 @@
 ;; emacs-lisp-mode
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
 
-;; python-mode(jedi-mode)
+;; python-mode
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
 (bind-key "C-c i" 'py-isort-buffer python-mode-map)          ; import整形
 (bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
-;; (bind-key "<tab>" 'jedi:complete jedi-mode-map)
-;; (bind-key "C-c ," 'jedi:goto-definition jedi-mode-map)
-;; (bind-key "C-c m" 'jedi:goto-definition-pop-marker jedi-mode-map)
-;; (bind-key "C-l ." 'insert-python-arrow jedi-mode-map)
 
 ;; objc-mode
 (bind-key "C-c f" 'clang-format-region objc-mode-map)
@@ -203,20 +199,6 @@
 (bind-key "C-l ." 'insert-elixir-patern-match-arrow elixir-mode-map)
 (bind-key "C-l C-." 'insert-elixir-map-arrow elixir-mode-map)
 (bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map)
-
-;; js2-mode
-(bind-key "\177" 'indent-dedent-line-backspace js2-mode-map)
-
-;; perl-mode
-;; (define-key cperl-mode-map "\M-\t" 'perlplus-complete-symbol) ; 補完
-;; (define-key cperl-mode-map (kbd "C-c C-c") 'cperl-db)         ; デバッガの起動
-
-;; omnisharp-mode
-;; (bind-key "C-c ," 'omnisharp-go-to-definition-other-window omnisharp-mode-map)
-;; (bind-key "C-c f" 'omnisharp-helm-find-usages omnisharp-mode-map)
-;; (bind-key "C-c '" 'work-menu-scene-file-toggle omnisharp-mode-map)
-;; (bind-key "C-c m" 'work-open-menu-file omnisharp-mode-map)
-;; (bind-key "C-c s" 'work-open-scene-file omnisharp-mode-map)
 
 ;; web-mode
 (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
