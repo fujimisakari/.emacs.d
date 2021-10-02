@@ -78,7 +78,6 @@
 (bind-key "M-N" 'bm-next)                                    ; bm-goto 次へ移動
 (bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
 ;; (bind-key "M-o" 'helm-occur)                                 ; helm-occurの起動
-;; (bind-key "M-o" 'anything-c-moccur-occur-by-moccur)          ; anything-c-moccurの起動
 (bind-key "M-o" 'helm-swoop)                                 ; helm-swoopの起動
 
 ;; C-l
@@ -288,9 +287,6 @@
 (bind-key "?" '(lambda () (interactive) (mozc-insert-str "？")) mozc-mode-map)
 (bind-key "!" '(lambda () (interactive) (mozc-insert-str "！")) mozc-mode-map)
 (bind-key "C-h" 'delete-backward-char mozc-mode-map)
-
-;; anything-c-moccur-anything
-(bind-key "C-h" 'delete-backward-char anything-c-moccur-anything-map) ; 削除
 
 ;; eclim-mode
 (bind-key "C-c C-e ;" 'eclim-run-class eclim-mode-map)

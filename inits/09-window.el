@@ -16,7 +16,7 @@
       golden-ratio-wide-adjust-factor 3.)
 (setq golden-ratio-exclude-modes '("calendar-mode" "wl-folder-mode" "wl-summary-mode"))
 (setq golden-ratio-exclude-buffer-names '(" *Org tags*" " *Org todo*" "Foldor" "Summmary"))
-(setq golden-ratio-exclude-buffer-regexp '("\\*anything" "\\*helm"))
+(setq golden-ratio-exclude-buffer-regexp '("\\*helm"))
 
 (require 'ace-window)
 (setq aw-keys '(?j ?k ?l ?i ?o ?h ?y ?u ?p))

@@ -33,7 +33,7 @@
 ;;         ("J" . View-scroll-line-forward)
 ;;         ("K" . View-scroll-line-backward)
 ;;         ;; less感覚の操作
-;;         ("/" . anything-c-moccur-occur-by-moccur)
+;;         ("/" . helm-swoop)
 ;;         ("G" . View-goto-line-last)
 ;;         ("b" . View-scroll-page-backward)
 ;;         ("f" . View-scroll-page-forward)

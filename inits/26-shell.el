@@ -74,13 +74,6 @@
 ;;     (term-line-mode)
 ;;     (hl-line-mode 1))))
 
-;; (defadvice anything-c-kill-ring-action (around my-anything-kill-ring-term-advice activate)
-;;   "In term-mode, use `term-send-raw-string' instead of `insert-for-yank'"
-;;   (if (eq major-mode 'term-mode)
-;;       (letf (((symbol-function 'insert-for-yank) (symbol-function 'term-send-raw-string)))
-;;         ad-do-it)
-;;     ad-do-it))
-
 ;; (defvar ansi-term-after-hook nil)
 ;; (add-hook 'ansi-term-after-hook
 ;;           (lambda ()
@@ -92,7 +85,6 @@
 ;;             (define-key term-raw-map (kbd "C-k")
 ;;               (lambda (&optional arg) (interactive "P") (funcall 'kill-line arg) (term-send-raw)))
 ;;             (define-key term-raw-map (kbd "C-y") 'term-paste)
-;;             (define-key term-raw-map (kbd "M-y") 'anything-show-kill-ring)
 ;;             ;; C-t で line-mode と char-mode を切り替える
 ;;             (define-key term-raw-map  my-ansi-term-toggle-mode-key 'my-term-switch-line-char)
 ;;             (define-key term-mode-map my-ansi-term-toggle-mode-key 'my-term-switch-line-char)
