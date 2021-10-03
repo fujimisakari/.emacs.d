@@ -64,55 +64,6 @@
 ;; (setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
 ;; (setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
 
-;;; flymakeで文法チェック
-(defvar flymake-command "~/.emacs.d/bin/objc-flymake.py")
-(defun flymake-objc-init ()
-  (let* ((temp-file (flymake-init-create-temp-buffer-copy
-                     'flymake-create-temp-inplace))
-         (local-file (file-relative-name
-                      temp-file
-                      (file-name-directory buffer-file-name)))
-         (search-target-file (concat project-pch-path "*.pch"))
-         (pch-file (eshell-extended-glob search-target-file)))
-    (if (listp pch-file)
-        (let ((pch-include-option (list "--pch" (expand-file-name (car pch-file)))))
-          (list flymake-command (append clang-base-options pch-include-option (list "--targetfile" local-file))))
-      (list flymake-command (append clang-base-options (list "--targetfile" local-file))))))
-
-(defun flymake-display-err-minibuffer ()
-  (interactive)
-  (let* ((line-no (flymake-current-line-no))
-         (line-err-info-list
-          (nth 0 (flymake-find-err-info flymake-err-info line-no)))
-         (count (length line-err-info-list)))
-    (while (> count 0)
-      (when line-err-info-list
-        (let* ((file (flymake-ler-file (nth (1- count) line-err-info-list)))
-               (full-file (flymake-ler-full-file
-                           (nth (1- count) line-err-info-list)))
-               (text (flymake-ler-text (nth (1- count) line-err-info-list)))
-               (line (flymake-ler-line (nth (1- count) line-err-info-list))))
-          (message "[%s] %s" line text)))
-      (setq count (1- count)))))
-
-(defun flymake-display-err-minibuffer-safe ()
-  (ignore-errors flymake-display-err-minibuffer))
-
-;; もともとのパターンにマッチしなかったので追加
-(setq flymake-err-line-patterns
-      (cons
-       '("\\(.+\\):\\([0-9]+\\):\\([0-9]+\\): \\(.+\\)" 1 2 3 4)
-       flymake-err-line-patterns))
-
-;; 拡張子 m と h に対して flymake を有効にする設定
-(add-hook 'objc-mode-hook
-          (lambda ()
-            (push '("\\.m$" flymake-objc-init) flymake-allowed-file-name-masks)
-            (push '("\\.h$" flymake-objc-init) flymake-allowed-file-name-masks)
-            ;; 存在するファイルかつ書き込み可能ファイル時のみ flymake-mode を有効にします
-            (if (and (not (null buffer-file-name)) (file-writable-p buffer-file-name))
-                (flymake-mode t))))
-
 ;;;コード整形できるようにする
 (require 'clang-format)
 
