@@ -26,6 +26,7 @@
 ;; counsel config
 (setq counsel-find-file-ignore-regexp (regexp-opt '("./" "../")))
 (setq counsel-yank-pop-separator "\n--------------------\n")
+(setq counsel-ag-base-command (list "ag" "-U" "--vimgrep" "%s"))
 
 ;; ivy-posframe config
 (ivy-posframe-mode 1)

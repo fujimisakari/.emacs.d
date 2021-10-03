@@ -48,9 +48,9 @@
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-/" 'duplicate-this-line-forward)             ; 直前行をコピーする
+(bind-key* "C-M-i" 'counsel-imenu)                           ; counsel-imenuの起動
 (bind-key "C-M-;" 'ace-window)                               ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
-(bind-key "C-M-i" 'counsel-imenu)                            ; counsel-imenuの起動
 (bind-key "C-M-." 'my-counsel-recentf)                       ; ファイル/ディレクトリ履歴
 (bind-key "C-M-," 'my-counsel-bookmark)                      ; ファイル/ディレクトリ履歴
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
