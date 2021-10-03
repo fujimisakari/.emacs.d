@@ -16,9 +16,6 @@
 (push '("*Backtrace*") popwin:special-display-config)
 (push '("*Moccur*") popwin:special-display-config)
 (push '("*Buffer List*") popwin:special-display-config)
-;; (push '("*helm mini*") popwin:special-display-config)
-;; (push '("*helm M-x*") popwin:special-display-config)
-(push '("*GTAGS SELECT*") popwin:special-display-config)
 (push '("*Kill Ring*") popwin:special-display-config)
 (push '("*sdic*") popwin:special-display-config)
 ;; (push '("*translated*") popwin:special-display-config)
@@ -28,15 +25,10 @@
 (push '("*Completions*") popwin:special-display-config)
 (push '("*quickrun*") popwin:special-display-config)
 (push '("*help*") popwin:special-display-config)
-(push '("*hatena-keyword*") popwin:special-display-config)
 (push '("*eww*") popwin:special-display-config)
 (push '("*pydoc*") popwin:special-display-config)
 (push '("*godoc*") popwin:special-display-config)
 (push '("*Go Test*") popwin:special-display-config)
-
-;; eclim
-(push '("*compilation*") popwin:special-display-config)
-(push '("*eclim: problems*") popwin:special-display-config)
 
 ;; M-!
 (push "*Shell Command Output*" popwin:special-display-config)

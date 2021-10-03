@@ -124,9 +124,4 @@
                         (:remove  . ("%e")))
                       :default "objc")
 
-;; Xcodeのドキュメント検索
-(require 'helm-xcdoc)
-(setq helm-xcdoc-command-path "/Applications/Xcode.app/Contents/Developer/usr/bin/docsetutil")
-(setq helm-xcdoc-document-path "~/Library/Developer/Shared/Documentation/DocSets/com.apple.adc.documentation.AppleiOS8.1.iOSLibrary.docset")
-
 ;;; 45-objc-mode.el ends here

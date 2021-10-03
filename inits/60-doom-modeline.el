@@ -62,10 +62,6 @@
   '(bar window-number modals matches vcs checker buffer-info-simple buffer-position word-count parrot selection-info)
   '(objed-state debug minor-modes input-method indent-info major-mode buffer-encoding process))
 
-(doom-modeline-def-modeline 'helm
-  '(bar helm-buffer-id helm-number helm-follow helm-prefix-argument)
-  '(helm-help))
-
 (doom-modeline-def-modeline 'timemachine
   '(bar window-number matches git-timemachine buffer-position word-count parrot selection-info)
   '(minor-modes indent-info major-mode buffer-encoding))

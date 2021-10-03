@@ -1,4 +1,3 @@
-
 ;;; 99-keybind.el --- KeyBind設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
@@ -10,10 +9,8 @@
 (define-key global-map [?¥] [?\\]) ; ¥の代わりにバックスラッシュを入力する
 
 ;; key-chord
-(key-chord-define-global "qp" 'helm-descbinds)                ; キーバインド設定の参照
+(key-chord-define-global "qp" 'counsel-descbinds)             ; キーバインド設定の参照
 (key-chord-define-global "kl" 'view-mode)                     ; view-modeを有効
-;; (key-chord-define-global "ti" 'display-now-time)              ; 現在時間の表示
-(key-chord-define-global "dk" 'helm-ghq)                      ; ghpを起動
 (key-chord-define-global "jk" 'custom-cua-set-rectangle-mark) ; cuaを起動
 
 ;; region-bindings-mode
@@ -45,11 +42,7 @@
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
 
 ;; C-x
-(bind-key "C-x C-f" 'counsel-find-file)                        ; helmでファイルリスト検索
-
-;; C-c
-(bind-key* "C-c v" 'ivy-push-view)
-(bind-key* "C-c V" 'ivy-pop-view)
+(bind-key "C-x C-f" 'counsel-find-file)                      ; counselでファイルリスト検索
 
 ;; C-M-
 (bind-key* "C-M-l" 'elscreen-next)                           ; タブの右移動
@@ -82,17 +75,14 @@
 (bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
-(bind-key "C-l <f12>" 'delete-horizontal-space)              ; 行の不要な空白を削除
 (bind-key "C-l w" 'whitespace-cleanup)                       ; TABを空白に置換
 (bind-key "C-l k" 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
 (bind-key "C-l m" 'magit-status)                             ; magit起動
-(bind-key "C-l a" 'counsel-ag)                               ; helm-ag検索
-(bind-key "C-l f" 'helm-find-cmd-type-file)                  ; helm-find-cmd ファイル検索
-(bind-key "C-l d" 'helm-find-cmd-type-directory)             ; helm-find-cmd ディレクトリ検索
-;; (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
+(bind-key "C-l a" 'counsel-ag)                               ; counsel-ag検索
+(bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
@@ -101,6 +91,7 @@
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
 (bind-key "C-l ." 'insert-arrow)
+(bind-key "C-l <f12>" 'delete-horizontal-space)              ; 行の不要な空白を削除
 (bind-key "C-l SPC" 'ivy-yasnippet)                          ; yasnippetの一覧表示
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
@@ -132,13 +123,6 @@
 ;; objc-mode
 (bind-key "C-c f" 'clang-format-region objc-mode-map)
 (bind-key "C-c ;" 'open-header-and-method-file objc-mode-map)
-(bind-key "C-c d" 'helm-xcdoc-search-other-window objc-mode-map)
-(bind-key "C-c <tab>" 'ac-complete-clang objc-mode-map)
-
-;; swift-mode
-(bind-key "C-c <tab>" 'ac-complete-swift swift-mode-map)
-(bind-key "C-c C-M-," 'helm-etags-select-other-window swift-mode-map)
-(bind-key "C-c d" 'helm-xcdoc-search-other-window swift-mode-map)
 
 ;; slime-mode
 ;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
@@ -161,7 +145,6 @@
 (bind-key "C-c C-c" 'go-expr-completion go-mode-map)
 (bind-key "C-c C-t" 'go-open-with-test-file go-mode-map)
 (bind-key "C-c C-f" 'gofmt go-mode-map)
-(bind-key "C-c C-p" 'helm-go-packages go-mode-map)
 (bind-key "C-c C-d" 'godoc-popup go-mode-map)
 (bind-key "C-c C-r" 'go-remove-unused-imports go-mode-map)
 
@@ -172,10 +155,6 @@
 (bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
 (bind-key "C-c p s" 'insert-php-script-tag php-mode-map)
 (bind-key "C-c p v" 'insert-php-short-tag php-mode-map)
-(bind-key "C-c i n" 'gamewith-insert-namespace php-mode-map)
-(bind-key "C-c SPC" 'helm-gamewith-class-search php-mode-map)
-(bind-key "C-c C-SPC" 'helm-gamewith-cache-clear php-mode-map)
-(bind-key "C-c t" 'gamewith-open-view-file php-mode-map)
 (bind-key "C-l ." 'insert-php-arrow-for-instance php-mode-map)
 (bind-key "C-l C-." 'insert-php-arrow-for-array php-mode-map)
 
@@ -205,10 +184,6 @@
 ;; ELScreen固有のキーバインド
 (bind-key "c" 'elscreen-create elscreen-map)
 (bind-key "k" 'elscreen-kill-screen-and-buffers elscreen-map)
-
-;; helm-read-file
-;; (bind-key "C-h" 'delete-backward-char helm-read-file-map)             ; C-h でバックスペースと同じように文字を削除できるようにする
-(bind-key "<tab>" 'helm-execute-persistent-action helm-read-file-map) ; TAB で補完する
 
 ;; org-mode
 (bind-key "C-," nil org-mode-map)

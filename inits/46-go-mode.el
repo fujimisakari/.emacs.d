@@ -18,29 +18,6 @@
              (go-eldoc-setup)
              (flycheck-golangci-lint-setup)))
 
-;; helm-ghq-list
-(defun helm-ghq--get-candidates ()
-  (let* ((cmd-result (funcall 'shell-command-to-string "ghq list"))
-         (candidates (split-string cmd-result "\n"))
-         (candidates (sort candidates 'string<))
-         (candidates (cdr candidates)))
-    candidates))
-
-(defvar helm-ghq-list-source
-  (helm-build-sync-source "Helm ghq list"
-    :candidates (helm-ghq--get-candidates)
-    :candidate-number-limit 300
-    :action 'helm-ghq--dired))
-
-(defun helm-ghq--dired (name)
-  (when (one-window-p)(split-window-horizontally))
-  (other-window 1)
-  (dired (concat (getenv "GOPATH") "/src/" name)))
-
-(defun helm-ghq-list ()
-  (interactive)
-  (helm :sources '(helm-ghq-list-source) :buffer "*helm ghq list*"))
-
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)
   "Get an empty buffer for a godoc QUERY."

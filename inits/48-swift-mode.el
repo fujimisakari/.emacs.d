@@ -10,12 +10,6 @@
           (lambda ()
             (common-mode-init)))
 
-;; tagジャンプ
-(defun helm-etags-select-other-window (reinit)
-  (interactive "P")
-  (other-window-or-split)
-  (helm-etags-select reinit))
-
 ;; flymakeでシンタックス、文法チェック
 (defvar swift-project-path (gethash "swift-project-root-path" private-env-hash))
 (defvar swift-objc-header-path (gethash "swift-objc-header-path" private-env-hash))
