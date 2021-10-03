@@ -113,7 +113,10 @@
 (bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
 
 ;; emacs-lisp-mode
-(bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)            ; 実行結果を注釈してくれる
+(bind-key "C-c <f12>" 'my-dumb-jump-go emacs-lisp-mode-map)    ; jump to reference
+(bind-key "C-c C-M-j" 'dumb-jump-back emacs-lisp-mode-map)     ; back to caller
+(bind-key "C-c C-q" 'dumb-jump-quick-look emacs-lisp-mode-map) ;
+(bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)              ; 実行結果を注釈してくれる
 
 ;; python-mode
 (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
