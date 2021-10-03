@@ -82,7 +82,14 @@
 (setq recentf-max-saved-items 2000)
 (setq recentf-save-file "~/.recentf")
 (setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
-(setq recentf-auto-save-timer (run-with-idle-timer 30 t 'recentf-save-list))
+(run-with-idle-timer 30 t '(lambda () (with-suppressed-message (recentf-save-list))))
+
+;; Delete unnecessary messages
+(defmacro with-suppressed-message (&rest body)
+  "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
+  (declare (indent 0))
+  (let ((message-log-max nil))
+    `(with-temp-message (or (current-message) "") ,@body)))
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
