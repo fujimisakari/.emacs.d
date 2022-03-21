@@ -33,8 +33,8 @@
 (set-face-foreground 'markdown-header-face-4 "orange")
 (set-face-foreground 'markdown-header-face-5 "turquoise")
 (set-face-attribute 'markdown-header-face-1 nil :bold nil :height 1.8)
-(set-face-attribute 'markdown-header-face-2 nil :bold nil :height 1.2)
-(set-face-attribute 'markdown-header-face-3 nil :bold nil :height 1.1)
+(set-face-attribute 'markdown-header-face-2 nil :bold nil :height 1.4)
+(set-face-attribute 'markdown-header-face-3 nil :bold nil :height 1.2)
 (set-face-attribute 'markdown-code-face nil :family my-global-font :foreground "HotPink" :background "gray15" :bold nil)
 
 ;;; 42-markdown-mode.el ends here
