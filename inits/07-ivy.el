@@ -104,6 +104,8 @@
                        (string< (car a) (car b))))
                    candidates))))
 (dolist (i '(counsel-M-x
+             counsel-recentf
+             counsel-bookmark
              counsel-apropos
              counsel-describe-function
              counsel-describe-variable

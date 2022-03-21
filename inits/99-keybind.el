@@ -52,15 +52,16 @@
 (bind-key "C-M-;" 'ace-window)                               ; 現在の行の位置調整
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-." 'my-counsel-recentf)                       ; ファイル/ディレクトリ履歴
-(bind-key "C-M-," 'my-counsel-bookmark)                      ; ファイル/ディレクトリ履歴
+(bind-key "C-M-," 'my-counsel-bookmark)                      ; ブックマーク一覧
+(bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
 
 ;; M-
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
 (bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
 (bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
-(bind-key* "M-o" 'swiper-thing-at-region)                    ; swiperの起動
-(bind-key* "M-O" 'swiper-all-thing-at-region)                ; swiper-allの起動
+(bind-key* "M-o" 'swiper-thing-at-point)                     ; swiperの起動
+(bind-key* "M-O" 'swiper-all-thing-at-point)                 ; swiper-allの起動
 (bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
 (bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
 (bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-X Hippie-Expand)
