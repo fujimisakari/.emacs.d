@@ -27,6 +27,7 @@
 (setq lsp-enable-file-watchers nil)
 (setq lsp-prefer-capf t)
 (setq lsp-ui-flycheck-enable t)
+(add-to-list 'lsp-language-id-configuration '(protobuf-mode . "protocol-buffers"))
 
 ;; lsp-ui-doc
 (setq lsp-ui-doc-enable nil)
