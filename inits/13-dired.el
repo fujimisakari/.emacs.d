@@ -97,9 +97,14 @@
 
 ;; 現在開いているバッファをdierdで開く
 (defun dired-open-current-directory ()
-    (interactive)
-    (other-window-or-split)
-    (dired default-directory))
+  (interactive)
+  (let ((path nil))
+    (if (equal major-mode 'dired-mode)
+        (setq path default-directory)
+      (setq path (file-name-directory (buffer-file-name))))
+    (when path
+      (other-window-or-split)
+      (dired path))))
 
 ;; ファイルなら別バッファで、ディレクトリなら同じバッファで開く
 (defun dired-open-in-accordance-with-situation ()
