@@ -22,7 +22,8 @@
   (setq mac-pass-option-to-system nil))
 
 ;; フォント設定
-(defconst my-global-font "SF Mono Square")
+(defconst my-global-font "Comic Code")
+(defconst my-global-ja-font "SF Mono Square")
 
 ;; shellのコマンドパスの追加
 (load-file (expand-file-name "~/.emacs.d/share/shellenv/work_shellenv.el"))

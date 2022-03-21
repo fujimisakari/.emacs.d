@@ -6,10 +6,13 @@
 
 ;; フォント設定
 (cond ((eq my-os-type 'linux)
-       (set-face-attribute 'default nil :family my-global-font :height 160))
+       (setq-default line-spacing 0.25)
+       (set-face-attribute 'default nil :family my-global-font :height 138))
+       ;; (set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font :size 21)))
       ((eq my-os-type 'mac)
-       (add-to-list 'default-frame-alist '(font . "SF Mono Square-20"))
-       (set-face-attribute 'default t :font "SF Mono Square")))
+       (set-face-attribute 'default nil :family my-global-font :height 160)))
+(set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font))
+(add-to-list 'face-font-rescale-alist `(,(concat ".*" my-global-ja-font ".*") . 1.2))
 
 ;; font-lock設定
 (global-font-lock-mode t)                                           ; 特定のモードで色を付ける(Font-Lookモード有効にする)
