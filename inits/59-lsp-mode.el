@@ -9,7 +9,7 @@
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; mode
-(dolist (v '(go-mode-hook c-mode-common-hook))
+(dolist (v '(go-mode-hook))
   (add-hook v
             '(lambda()
                (lsp)
@@ -27,7 +27,6 @@
 (setq lsp-enable-file-watchers nil)
 (setq lsp-prefer-capf t)
 (setq lsp-ui-flycheck-enable t)
-(add-to-list 'lsp-language-id-configuration '(protobuf-mode . "protocol-buffers"))
 
 ;; lsp-ui-doc
 (setq lsp-ui-doc-enable nil)
