@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(require 'w3m-load)
+(require 'w3m)
 (cond ((eq my-os-type 'linux)
        (setq w3m-command "/usr/bin/w3m"))
       ((eq my-os-type 'mac)
