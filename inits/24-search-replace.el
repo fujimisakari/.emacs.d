@@ -44,9 +44,6 @@
 (require 'grep-a-lot)
 ;; (grep-a-lot-setup-keys)
 
-;; grep検索結果を編集できるようにする
-(require 'grep-edit)
-
 ;; igrep設定
 (require 'igrep)
 ;; igrepに-Ou8オプションを付けると出力がUTF-8になる
