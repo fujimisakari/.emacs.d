@@ -4,12 +4,8 @@
 
 ;;; Code:
 
-(autoload 'wl "wl" "Wanderlust" t)
-(autoload 'wl-other-frame "wl" "Wanderlust on new frame." t)
-(autoload 'wl-draft "wl-draft" "Write draft with Wanderlust." t)
-
-;; アイコンを置くディレクトリ。初期設定は Emacs 固有のデフォルト値。
-;; (setq wl-icon-directory "~/.emacs.d/elisp/wl/icons")
+(require 'wl)
+(set-face-foreground 'wl-highlight-summary-refiled-face "DodgerBlue")
 
 ;; メールドラフトモードをWandarlustドラフトモードに
 (autoload 'wl-user-agent-compose "wl-draft" nil t)
@@ -22,10 +18,5 @@
       'wl-draft-send
       'wl-draft-kill
       'mail-send-hook))
-
-(defun find-coding-system (obj)
-  "Return OBJ if it is a coding-system."
-  (if (coding-system-p obj)
-      obj))
 
 ;;; 70-wanderlust.el ends here
