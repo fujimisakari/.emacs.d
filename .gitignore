@@ -25,3 +25,5 @@ request
 session.*
 .lsp-session-v1
 amx-items
+history
+eln-cache
