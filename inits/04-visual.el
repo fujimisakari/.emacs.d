@@ -7,7 +7,7 @@
 ;; フォント設定
 (cond ((eq my-os-type 'linux)
        (setq-default line-spacing 0.25)
-       (set-face-attribute 'default nil :family my-global-font :height 138))
+       (set-face-attribute 'default nil :family my-global-font :height 130))
        ;; (set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font :size 21)))
       ((eq my-os-type 'mac)
        (set-face-attribute 'default nil :family my-global-font :height 160)))
@@ -34,16 +34,20 @@
 
 ;; フレーム設定
 (set-foreground-color "gray75")     ; 文字の色設定
-(set-background-color "gray5")      ; 背景色の設定
+(set-background-color "gray3")      ; 背景色の設定
 (set-cursor-color "#4f57f9")        ; カーソルの色設定
 (set-mouse-color "#4f57f9")         ; マウスポインタの色を設定
-(set-frame-parameter nil 'alpha 80) ; 画面透明度の設定
 (toggle-scroll-bar nil)             ; スクロールバーを消す
 (menu-bar-mode 0)                   ; メニューバーを消す
 (tool-bar-mode 0)                   ; ツールバーを消す
 (auto-image-file-mode)              ; 画像表示を有効
 (setq ring-bell-function 'ignore)   ; ビープ音、画面フラッシュどちらも起こさない
 (setq inhibit-startup-screen t)     ; 起動画面を表示させない
+; 画面透明度の設定
+(cond ((eq my-os-type 'mac)
+       (set-frame-parameter nil 'alpha 73))
+      ((eq my-os-type 'linux)
+       (set-frame-parameter nil 'alpha 81)))
 
 ;; タイトルバーのフォーマット設定
 (setq frame-title-format `("GNU/Emacs " emacs-version " -- %b " (buffer-file-name "( %f )")))
