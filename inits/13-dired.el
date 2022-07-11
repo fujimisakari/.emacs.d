@@ -6,11 +6,11 @@
 
 ;; フォルダを開く時, 新しいバッファを作成しない
 (require 'dired) ; requireしてあげないとDiredで使われている関数やモードを認識しない
+(require 'dired-imenu)
 
 ;; dired-mode
 (add-hook 'dired-mode-hook
-          '(lambda()
-             (hl-line-mode -1)))
+          '(lambda() (hl-line-mode -1)))
 
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
@@ -101,7 +101,9 @@
   (let ((path nil))
     (if (equal major-mode 'dired-mode)
         (setq path default-directory)
-      (setq path (file-name-directory (buffer-file-name))))
+      (if (eq (buffer-file-name) nil)
+          (setq path "~/")
+        (setq path (file-name-directory (buffer-file-name)))))
     (when path
       (other-window-or-split)
       (dired path))))
