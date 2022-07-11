@@ -4,8 +4,8 @@
 
 ;;; Code:
 
-(require 'wl)
-(set-face-foreground 'wl-highlight-summary-refiled-face "DodgerBlue")
+(with-eval-after-load 'wl
+  (set-face-foreground 'wl-highlight-summary-refiled-face "DodgerBlue"))
 
 ;; メールドラフトモードをWandarlustドラフトモードに
 (autoload 'wl-user-agent-compose "wl-draft" nil t)
