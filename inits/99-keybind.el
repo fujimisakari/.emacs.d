@@ -37,7 +37,7 @@
 (bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
-(bind-key "C-t" 'other-window-or-split)                      ; ウィンドウを切り替える
+(bind-key* "C-t" 'other-window-or-split)                     ; ウィンドウを切り替える
 (bind-key "C-h" 'delete-backward-char)                       ; C-hをバックスペースに割り当てる（ヘルプは、<F1>にも割り当てられている）
 (bind-key "C-m" 'newline-and-indent)                         ; "C-m" に newline-and-indent を割り当てる。初期値は newline
 
@@ -81,7 +81,6 @@
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
-(bind-key "C-l m" 'magit-status)                             ; magit起動
 (bind-key "C-l a" 'counsel-ag)                               ; counsel-ag検索
 (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
@@ -104,11 +103,17 @@
 (bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
 (bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
 (bind-key* "C-l M-l" 'interactive-highlight-symbol)          ; symbolをhighlight表示
-(bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
-(bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
-(bind-key "C-l v a" 'vc-annotate)                            ; git blameを見る
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除
+(bind-key "C-l v s" 'smeargle)                               ; 更新履歴を可視化する
+(bind-key "C-l v c" 'smeargle-clear)                         ; smeargleを消す
+(bind-key "C-l g s" 'magit-status)                           ; git status
+(bind-key "C-l g l" 'magit-log-current)                      ; git log
+(bind-key "C-l g b" 'magit-branch-checkout)                  ; git baranch
+(bind-key "C-l g B" 'vc-annotate)                            ; git blame
+(bind-key "C-l g F" 'magit-pull-from-pushremote)             ; git pull
+(bind-key "C-l g f" 'magit-fetch-all-prune)                  ; git fetch
+(bind-key "C-l g r" 'magit-rebase-branch)                    ; git rebase
 
 ;; vc-annotate-mode
 (bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
@@ -195,11 +200,10 @@
 
 ;; org-mode
 (bind-key "C-," nil org-mode-map)
-(bind-key "C-]" 'org-insert-heading-dwim org-mode-map)
-(bind-key "C-<up>" 'outline-previous-visible-heading org-mode-map)
-(bind-key "C-<down>" 'outline-next-visible-heading org-mode-map)
-(bind-key "C-M-<up>" 'outline-backward-same-level org-mode-map)
-(bind-key "C-M-<down>" 'outline-forward-same-level org-mode-map)
+(bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)   ; カレントのサブツリーを1階層上げる
+(bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)   ; カレントのサブツリーを1階層下げる
+(bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)     ; サブツリーを上に移動する
+(bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map) ; サブツリーを下に移動する
 
 ;; dired-mode
 (add-hook 'dired-mode-hook
