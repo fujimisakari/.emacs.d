@@ -13,11 +13,8 @@
       '(magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 12)))
 
 ;; common
-(set-face-attribute 'magit-header-line nil
-                    :foreground "white" :background "#4f57f9" :weight 'bold :height 1.2 :family my-global-font)
-
 (set-face-attribute 'magit-section-heading nil
-                    :foreground "lime green" :weight 'bold :height 1.1)
+                    :foreground "lime green" :weight 'bold)
 (set-face-background 'magit-section-highlight nil)
 (set-face-foreground 'magit-filename "MediumPurple1")
 
@@ -41,12 +38,25 @@
   (diff-auto-refine-mode t))
 (add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
 
-;; 文字単位での変更箇所は色を反転して強調
+;; 範囲単位の変更箇所
+(set-face-attribute 'magit-diff-added nil
+                :foreground "gray75" :background "#112914")
+
+(set-face-attribute 'magit-diff-added-highlight nil
+                :foreground "gray75" :background "#112914")
+
+(set-face-attribute 'magit-diff-removed nil
+                :foreground "gray75" :background "#321618")
+
+(set-face-attribute 'magit-diff-removed-highlight nil
+                :foreground "gray75" :background "#321618")
+
+;; 文字単位での変更箇所
 (set-face-attribute 'diff-refine-added nil
-                :foreground nil :background "SpringGreen4" :weight 'bold :inverse-video t)
+                :foreground "gray3" :background "#41953E")
 
 (set-face-attribute 'diff-refine-removed nil
-                :foreground nil :background "red4" :weight 'bold :inverse-video t)
+                :foreground "gray3" :background "#C9635C")
 
 (set-face-background 'magit-diff-context-highlight nil)
 (set-face-foreground 'magit-diff-file-heading "white")
