@@ -9,7 +9,7 @@
 (defun set-diff-color()
   (set-face-foreground 'diff-context nil)
   (set-face-background 'diff-header nil)
-  (set-face-underline-p 'diff-header t)
+  (set-face-underline  'diff-header t)
   (set-face-foreground 'diff-file-header "white")
   (set-face-background 'diff-file-header nil)
   (set-face-foreground 'diff-index "MediumSeaGreen")
