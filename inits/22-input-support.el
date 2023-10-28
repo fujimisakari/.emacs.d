@@ -7,11 +7,6 @@
 (setq kill-whole-line t)           ; C-kは行末改行を削除しないが、改行までまとめて行カットする
 (setq next-screen-context-lines 1) ; C-v/M-vで前のページの１行を残す
 
-;; キーボードの同時押しでコマンドを実行する
-(require 'key-chord)
-(setq key-chord-two-keys-delay 0.06) ; 許容誤差は0.06秒
-(key-chord-mode 1)
-
 ;; コマンドのガイド表示
 (require 'which-key)
 (which-key-mode)
@@ -33,6 +28,8 @@
 ;; 大量のundoに 耐えられるようにする
 (setq undo-limit 600000)
 (setq undo-strong-limit 900000)
+;; No further undo information エラー対策
+(setq undo-tree-enable-undo-in-region nil)
 
 ;; 閉じ括弧、クォートの自動挿入
 (electric-pair-mode 1)
@@ -186,5 +183,10 @@
         (delete-region (region-beginning) (region-end))
         (insert (format quote-format text)))
     (error "Not Region selection")))
+
+;; Shortcut
+(defun insert-arrow ()
+  (interactive)
+  (insert "→"))
 
 ;;; 22-input-support.el ends here
