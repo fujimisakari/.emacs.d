@@ -13,8 +13,8 @@
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; M-!, M-l, M-&, M-x grepなどでsudoコマンドが使えるようにする
 (require 'sudo-ext)
-;; Emacs内のシェルコマンドを実行履歴に保存する
-(require 'shell-history)
+;; ;; Emacs内のシェルコマンドを実行履歴に保存する
+;; (require 'shell-history)  ← これを読み込むとscratchでundoが使えなくなるので注意
 ;; パスワードのプロンプトを認識し，入力時はミニバッファで伏せ字にする
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
