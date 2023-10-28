@@ -31,11 +31,12 @@
   ;; require-final-newlineとNo newline at end of file対策 - by shigemk2
   ;; https://www.shigemk2.com/entry/emacs_no_newline_final
   (setq require-final-newline nil)
-  (common-mode-init)
-  (add-hook 'local-write-file-hooks
-            (lambda ()
-              (delete-trailing-whitespace)
-               nil)))
+  (common-mode-init))
+  ;; htmlファイルさわったとき差分が出るのでコメント
+  ;; (add-hook 'local-write-file-hooks
+  ;;           (lambda ()
+  ;;             (delete-trailing-whitespace)
+  ;;              nil)))
 
 ;; カラー設定
 (set-face-foreground 'web-mode-html-tag-bracket-face "lime green")
