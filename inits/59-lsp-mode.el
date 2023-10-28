@@ -9,7 +9,7 @@
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; mode
-(dolist (v '(go-mode-hook))
+(dolist (v '(go-mode-hook c-mode-hook))
   (add-hook v
             '(lambda()
                (lsp)
@@ -54,6 +54,10 @@
 (set-face-foreground 'lsp-ui-peek-line-number "gray45")
 (set-face-background 'lsp-ui-peek-peek "gray15")
 (set-face-background 'lsp-ui-peek-highlight "DarkOliveGreen2")
+
+;; for gopls
+(lsp-register-custom-settings
+ '(("gopls.experimentalWorkspaceModule" t t)))
 
 ;; customize
 (defun lsp-find-definition-other-window ()
