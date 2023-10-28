@@ -62,6 +62,10 @@
 (setq beacon-blink-when-focused t)
 (setq beacon-color "lime")
 
+;; 行番号
+(set-face-attribute 'line-number nil :foreground "DarkOliveGreen")
+(set-face-attribute 'line-number-current-line nil :foreground "gold")
+
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
 (set-face-background 'region "#2b43e1")
@@ -71,7 +75,7 @@
 (setq show-paren-delay 0)
 (setq show-paren-style 'expression)               ; カッコ内の色も変更
 (set-face-background 'show-paren-match nil)       ; カッコ内のフェイス
-(set-face-underline-p 'show-paren-match "yellow") ; カッコ内のフェイス
+(set-face-underline 'show-paren-match "yellow")   ; カッコ内のフェイス
 
 ;; ネストしてるカッコわかりやすくする
 (require 'rainbow-delimiters)
