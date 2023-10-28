@@ -16,7 +16,7 @@
         (full-ascii . "orchid")
         (half-katakana . "dark goldenrod")))
 
-(add-hook 'input-method-inactivate-hook
+(add-hook 'input-method-deactivate-hook
           (lambda() (key-chord-mode 1)))
 
 ;; use postframe with mozc
