@@ -7,8 +7,12 @@
 (require 'bind-key)
 
 (define-key global-map [?¥] [?\\]) ; ¥の代わりにバックスラッシュを入力する
+(global-unset-key "\M-t") ; transpose-words(2つの単語の順序を入れ換え)はタイポしがちなので外す
 
 ;; key-chord
+(require 'key-chord)
+(setq key-chord-two-keys-delay 0.3)
+(key-chord-mode 1)
 (key-chord-define-global "qp" 'counsel-descbinds)             ; キーバインド設定の参照
 (key-chord-define-global "kl" 'view-mode)                     ; view-modeを有効
 (key-chord-define-global "jk" 'custom-cua-set-rectangle-mark) ; cuaを起動
@@ -23,7 +27,7 @@
 (bind-key "M-l" 'region-to-clear region-bindings-mode-map)          ; 選択リージョンを囲みをクリア
 
 ;; Fn
-(bind-key "<f1>" 'linum-mode)                                ; 行番号表示
+(bind-key "<f1>" 'display-line-numbers-mode)                 ; 行番号表示
 (bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
 (bind-key "<f12>" 'toggle-input-method)                      ; IMの切り替え
@@ -55,6 +59,7 @@
 (bind-key "C-M-," 'my-counsel-bookmark)                      ; ブックマーク一覧
 (bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
 (bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
+(bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
 
 ;; M-
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
@@ -90,13 +95,13 @@
 (bind-key "C-l t" 'www-page-title)                           ; pageタイトル取得
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
-(bind-key "C-l ." 'insert-arrow)
 (bind-key "C-l <f12>" 'delete-horizontal-space)              ; 行の不要な空白を削除
 (bind-key "C-l SPC" 'ivy-yasnippet)                          ; yasnippetの一覧表示
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
 (bind-key "C-l C-'" 'ispell-word)                            ; 現在のスペルから候補を表示
+(bind-key "C-l C-." 'insert-arrow)                           ; → を追加
 (bind-key "C-l C-;" 'google-translate-enja-or-jaen)          ; google翻訳
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
 (bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
@@ -144,6 +149,7 @@
 ;; cc-mode
 (bind-key "\177" 'indent-dedent-line-backspace c-mode-base-map)
 (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
+(bind-key "C-c C-c" 'open-header-and-source-file c-mode-base-map)
 
 ;; go-mode
 (bind-key "C-c e" 'go-errcheck go-mode-map)
@@ -237,6 +243,7 @@
 (bind-key "C-n" 'company-select-next company-active-map)
 (bind-key "C-p" 'company-select-previous company-active-map)
 (bind-key "C-s" 'company-filter-candidates company-active-map)
+(bind-key "C-l" 'company-show-doc-buffer company-active-map)
 (bind-key "C-n" 'company-select-next company-search-map)
 (bind-key "C-p" 'company-select-previous company-search-map)
 
