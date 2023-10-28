@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: test-cmpopts-ignore-fields
+# key: test-cmpopts-ignore-fields
+# description: test-cmpopts-ignore-fields snippet
+# --
+cmpopts.IgnoreFields(${1:*got}, "CreatedAt", "UpdatedAt")$0

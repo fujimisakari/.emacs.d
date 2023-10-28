@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test-err-is-not-nil-by-error
+# key: test-err-is-not-nil-by-error
+# description: test-err-is-not-nil-error snippet
+# --
+if err != nil {
+	t.Error(err)
+}

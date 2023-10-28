@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test-err-is-not-nil-by-fatal
+# key: test-err-is-not-nil-by-fatal
+# description: test-err-is-not-nil-fatal snippet
+# --
+if err != nil {
+	t.Fatal(err)
+}

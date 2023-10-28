@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: test-protocmp-transform
+# key: test-protocmp-transform
+# description: test-protocmp-transform snippet
+# --
+protocmp.Transform()$0

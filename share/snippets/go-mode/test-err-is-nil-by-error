@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test-err-is-nil-by-error
+# key: test-err-is-nil-by-error
+# description: test-err-is-nil-by-error snippet
+# --
+if err == nil {
+	t.Error("returned nil error; want non-nil error")
+}

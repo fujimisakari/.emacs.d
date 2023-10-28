@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: test-got-want-by-cmp-diff
+# key: test-got-want-by-cmp-diff
+# description: test-got-want by cmp diff snippet
+# --
+if diff := cmp.Diff(${1:want}, ${2:got}); diff != "" {
+	t.Errorf("(-want +got):\n%s", diff)
+}

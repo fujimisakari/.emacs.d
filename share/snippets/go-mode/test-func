@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: func TestName(t *testing.T)
+# name: test-func
 # key: test-func
 # description: add a test method
 # --
