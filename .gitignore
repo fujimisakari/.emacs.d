@@ -27,3 +27,5 @@ session.*
 amx-items
 history
 eln-cache
+archive
+.ccls-cache
