@@ -7,7 +7,7 @@
 (require 'org)
 
 ;; 基本設定
-(setq org-startup-folded 'content)             ; 見出しの初期状態（見出しだけ表示）
+(setq org-startup-folded t)                    ; 見出しの初期状態（fold）
 (setq org-startup-indented t)                  ; インデントをつける
 (setq org-startup-truncated nil)               ; org-mode開始時は折り返しするよう設定
 (setq org-startup-with-inline-images t)        ; 画像をインライン表示
@@ -27,6 +27,8 @@
 ;; インデントマークを拡張
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;; https://unicode.org/emoji/charts/full-emoji-list.html
+(setq org-bullets-bullet-list '("🟢" "🟣" "🟡" "🔵" "🟠"))
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")     ; 言語は日本語
