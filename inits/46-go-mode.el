@@ -15,8 +15,8 @@
              (setq go-test-verbose t)
              (common-mode-init)
              (company-mode)
-             (go-eldoc-setup)
-             (flycheck-golangci-lint-setup)))
+             (flycheck-golangci-lint-setup)
+             (copilot-mode)))
 
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)
