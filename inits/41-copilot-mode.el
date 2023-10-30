@@ -6,6 +6,6 @@
 
 (require 'copilot)
 
-(add-hook 'prog-mode-hook 'copilot-mode)
+;; (add-hook 'prog-mode-hook 'copilot-mode)
 
 ;;; 41-copilot-mode ends here
