@@ -62,9 +62,10 @@
 (setq beacon-blink-when-focused t)
 (setq beacon-color "lime")
 
-;; 行番号
+;; 行番号表示
+(global-display-line-numbers-mode)
 (set-face-attribute 'line-number nil :foreground "DarkOliveGreen")
-(set-face-attribute 'line-number-current-line nil :foreground "gold")
+(set-face-attribute 'line-number-current-line nil :foreground "DarkOliveGreen2")
 
 ;; 選択中のリージョンの色設定
 (setq transient-mark-mode t)
