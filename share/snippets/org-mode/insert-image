@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: insert image
+# key: my/insert-image-like-logsec
+# --
+(bind-key "M-Y" 'my/insert-image-like-logsec)
