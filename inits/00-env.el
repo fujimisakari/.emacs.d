@@ -26,7 +26,8 @@
 (defconst my-global-ja-font "SF Mono Square")
 
 ;; shellのコマンドパスの追加
-(load-file (expand-file-name "~/.emacs.d/share/shellenv/work_shellenv.el"))
+(load-file (expand-file-name "~/.emacs.d/share/shellenv/work1_shellenv.el"))
+(load-file (expand-file-name "~/.emacs.d/share/shellenv/work2_shellenv.el"))
 (load-file (expand-file-name (format "~/.emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
 (dolist (path (reverse (split-string (getenv "PATH") ":")))
   (add-to-list 'exec-path path))
@@ -92,6 +93,9 @@
   (let ((message-log-max nil))
     `(with-temp-message (or (current-message) "") ,@body)))
 
+;; ネイティブコンパイルで失敗するので無効
+(setq native-comp-deferred-compilation-deny-list '("transient\\.el$"))
+
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
 
@@ -129,5 +133,8 @@
        (setq browse-url-generic-program
              (if (file-exists-p "/usr/bin/google-chrome")
                  "/usr/bin/google-chrome"))))
+
+;; native-compの警告は非表示
+(setq native-comp-async-report-warnings-errors 'silent)
 
 ;;; 00-env.el ends here
