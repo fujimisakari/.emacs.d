@@ -28,7 +28,6 @@
 
 ;; Fn
 (bind-key "<f1>" 'display-line-numbers-mode)                 ; 行番号表示
-(bind-key "<f3>" 'id-manager)                                ; id-managerの起動
 (bind-key "<f4>" 'wl)                                        ; wanderlustの起動
 (bind-key "<f12>" 'toggle-input-method)                      ; IMの切り替え
 
