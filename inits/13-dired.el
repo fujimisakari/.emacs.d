@@ -9,8 +9,8 @@
 (require 'dired-imenu)
 
 ;; dired-mode
-(add-hook 'dired-mode-hook
-          '(lambda() (hl-line-mode -1)))
+(add-hook 'dired-mode-hook '(lambda() (hl-line-mode -1)))
+(add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
@@ -31,12 +31,17 @@
 ;; Dired表示設定
 ;; ディレクトリから先頭表示されるようにする
 (load "ls-lisp")
-(setq ls-lisp-dirs-first t)
+(require 'ls-lisp)
+(setq ls-lisp-dirs-first nil)
+(setq ls-lisp-use-insert-directory-program nil) ; ls-lispを使用
+(setq ls-lisp-verbosity nil) ; パーミッションを含まない
+(setq dired-listing-switches "-a --time-style=long-iso")
 (when (executable-find "gls")
   (setq insert-directory-program "gls"))
-;; (setq ls-lisp-use-insert-directory-program nil) ; needed on unix
-;; lsのオプション 「l」(小文字のエル)は必須
-(setq dired-listing-switches "-lahFv")
+;; 日付フォーマットを %Y-%m-%d %H:%M に固定
+(setq ls-lisp-format-time-list '("%Y-%m-%d %H:%M" "%Y-%m-%d %H:%M"))
+(setq ls-lisp-use-localized-time-format t)
+
 ;; ディレクトリを再帰的にコピー可能にする
 (setq dired-recursive-copies 'always)
 ;; コピーしたファイルの更新時間は現在の時間にする
