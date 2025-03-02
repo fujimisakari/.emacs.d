@@ -55,10 +55,6 @@
 (set-face-background 'lsp-ui-peek-peek "gray15")
 (set-face-background 'lsp-ui-peek-highlight "DarkOliveGreen2")
 
-;; for gopls
-(lsp-register-custom-settings
- '(("gopls.experimentalWorkspaceModule" t t)))
-
 ;; customize
 (defun lsp-find-definition-other-window ()
   (interactive)
