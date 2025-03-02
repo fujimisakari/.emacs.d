@@ -125,6 +125,13 @@
          extra-ag-args ag-prompt caller))
 (advice-add 'counsel-ag :around #'ad:counsel-ag)
 
+(defun my-counsel-ag-with-ignore ()
+  (interactive)
+  (let ((initial-input (if mark-active (buffer-substring-no-properties (region-beginning) (region-end))))
+        (initial-directory default-directory)
+        (extra-ag-args "--ignore *_test.go --ignore *.txt --ignore *.html"))
+    (counsel-ag initial-input initial-directory extra-ag-args)))
+
 ; counsel-recentf
 (defun my-counsel-recentf ()
   (interactive)
