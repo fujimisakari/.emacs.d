@@ -447,7 +447,7 @@ With prefix ARG, turn JaSpace mode on if ARG is positive, othrewise off."
 					 (and arg (< 0 (prefix-numeric-value arg))))
 				 'jaspace-mode-on
 			   'jaspace-mode-off)))
-	(if (interactive-p)
+	(if (called-interactively-p 'interactive)
 		(call-interactively fun)
 	  (funcall fun))))
 
@@ -455,26 +455,26 @@ With prefix ARG, turn JaSpace mode on if ARG is positive, othrewise off."
   "Force JaSpace mode on."
   (interactive)
   (if jaspace-mode
-	  (if (interactive-p)
+	  (if (called-interactively-p 'interactive)
 		  (message "jaspace-mode is already active"))
 	(let ((jaspace-inhibit-update t))
 	  (set (make-local-variable 'jaspace-base-mode) t)
 	  (jaspace-mode-enter)
 	  (jaspace-set-idle-timer)
-	  (if (interactive-p) (message "jaspace-mode is on")
+	  (if (called-interactively-p 'interactive) (message "jaspace-mode is on")
 		t))))
 
 (defun jaspace-mode-off ()
   "Force JaSpace mode off."
   (interactive)
   (if (null jaspace-mode)
-	  (if (interactive-p)
+	  (if (called-interactively-p 'interactive)
 		  (message "jaspace-mode is not active"))
 	(let ((jaspace-inhibit-update t))
 	  (set (make-local-variable 'jaspace-base-mode) nil)
 	  (jaspace-mode-quit)
 	  (jaspace-set-idle-timer)
-	  (if (interactive-p) (message "jaspace-mode is off")
+	  (if (called-interactively-p 'interactive) (message "jaspace-mode is off")
 		t))))
 
 ;; define advices.
