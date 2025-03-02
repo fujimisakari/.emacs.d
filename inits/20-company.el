@@ -5,7 +5,6 @@
 ;;; Code:
 
 (require 'company)
-
 ;; (require 'company-box)
 ;; (add-hook 'company-mode-hook 'company-box-mode)
 
@@ -15,6 +14,14 @@
 (global-company-mode +1)
 (setq company-idle-delay 0.5)
 (setq company-minimum-prefix-length 1)
+
+;; (setq company-box-doc-enable nil)
+
+(defun company-box-doc--set-frame-face (orig-fun &rest args)
+  (let ((frame (apply orig-fun args)))
+    (set-face-foreground 'default "gray75" frame)
+    frame))
+(advice-add 'company-box-doc--make-frame :around 'company-box-doc--set-frame-face)
 
 (set-face-attribute 'company-preview-common nil :foreground "gray75" :background "#4f57f9")
 (set-face-attribute 'company-preview-search nil :foreground "white" :background "#4f57f9")
