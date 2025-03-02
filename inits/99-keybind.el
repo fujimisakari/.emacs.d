@@ -36,7 +36,7 @@
 (bind-key* "C-'" 'my-ivy-switch-buffer)                      ; ivyの起動
 (bind-key* "C-," 'er/expand-region)                          ; 拡張リジョン選択
 (bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
-(bind-key* "C-s" 'swiper-isearch)
+(bind-key* "C-s" 'swiper)
 (bind-key* "C-<tab>" 'company-complete)                      ; 補完
 (bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-." 'redo)                                       ; redo
@@ -65,10 +65,11 @@
 (bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
 (bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
 (bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
-(bind-key* "M-o" 'swiper-thing-at-point)                     ; swiperの起動
-(bind-key* "M-O" 'swiper-all-thing-at-point)                 ; swiper-allの起動
+(bind-key* "M-o" 'swiper-thing-at-point)                     ; swiperの起動(thing-at-point)
+(bind-key* "M-O" 'swiper)                                    ; swiperの起動
 (bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
 (bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
+(bind-key "M-Y" 'my/insert-image-like-logsec)                ; org-modeへインライン画像貼り付け
 (bind-key "M-/" 'hippie-expand)                              ; 略語展開・補完を行うコマンドをまとめる(M-X Hippie-Expand)
 (bind-key "M-g" 'goto-line)                                  ; M-g で指定行へジャンプ
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
@@ -86,7 +87,8 @@
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
 (bind-key "C-l o" 'line-to-top-of-window)                    ; 現在行を最上部にする
-(bind-key "C-l a" 'counsel-ag)                               ; counsel-ag検索
+(bind-key "C-l a" 'my-counsel-ag-with-ignore)                ; counsel-ag検索 ignoreオプション付き
+(bind-key "C-l A" 'counsel-ag)                               ; counsel-ag検索
 (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
