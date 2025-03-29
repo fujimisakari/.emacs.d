@@ -81,7 +81,8 @@
 (bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
-(bind-key "C-l w" 'whitespace-cleanup)                       ; TABを空白に置換
+(bind-key "C-l w" 'my/normalize-spaces-in-region)            ; 連続したスペースやTABを1スペースへ変換
+(bind-key "C-l W" 'whitespace-cleanup)                       ; TABを空白に置換
 (bind-key "C-l k" 'keitai-hankaku-katakana-region)           ; 全角カナを半角カナに置換
 (bind-key "C-l b" 'open-browse-by-url)                       ; URLをブラウザで開く
 (bind-key "C-l u" 'revert-buffer)                            ; バッファ更新
@@ -96,6 +97,7 @@
 (bind-key "C-l t" 'www-page-title)                           ; pageタイトル取得
 (bind-key "C-l z" 'elscreen-set-custom-screen)               ; screenを固定の位置に設定する(custom)
 (bind-key "C-l Z" 'elscreen-set-default-screen)              ; screenを固定の位置に設定する(default)
+(bind-key "C-l -" 'my/add-bullets-to-region)                 ; 行あたまにbullet追加
 (bind-key "C-l <f12>" 'delete-horizontal-space)              ; 行の不要な空白を削除
 (bind-key "C-l SPC" 'ivy-yasnippet)                          ; yasnippetの一覧表示
 (bind-key* "C-l C-l" 'my-highlight-symbol-at-point)          ; symbolをhighlight表示

@@ -88,4 +88,28 @@
 (set-face-foreground 'highlight-indent-guides-character-face "#4f57f9")
 (set-face-foreground 'highlight-indent-guides-top-character-face "DeepSkyBlue")
 
+(defun my/normalize-spaces-in-region (start end)
+  "Replaces a continuous space or tab in a region with a single space"
+  (interactive "r") ;; get a start or end from region
+  (save-excursion
+    (save-restriction
+      (narrow-to-region start end) ;; only region
+      (goto-char (point-min))
+      (while (re-search-forward "[ \t]+" nil t)
+        (replace-match " ")))))
+
+(defun my/add-bullets-to-region (start end)
+  "Add ' •' to the beginning of each row in the region. Do not add to
+rows that already have ' • '"
+  (interactive "r")
+  (let ((bullet " • "))
+    (save-excursion
+      (goto-char start)
+      (while (< (point) end)
+        (beginning-of-line)
+        (unless (looking-at (regexp-quote bullet))
+          (insert bullet)
+          (setq end (+ end (length bullet)))) ;  ; end位置を調整
+        (forward-line 1)))))
+
 ;;; 23-programming-support.el ends here

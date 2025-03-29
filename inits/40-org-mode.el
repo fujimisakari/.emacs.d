@@ -94,4 +94,33 @@ d insert the org-mode image link at point."
   (interactive)
   (my/copy-latest-file-and-insert-org-link "~/Desktop" "~/org/work/img"))
 
+(defun my/convert-text-to-org-table (start end)
+  "Converts text in a region to an org-mode table. The number of columns
+is automatically determined using the first row as a header."
+  (interactive "r")
+  (save-excursion
+    (let* ((lines (split-string (buffer-substring-no-properties start end) "\n" t))
+           (split-lines (mapcar (lambda (line)
+                                  (split-string line "[ \t]+" t))
+                                lines))
+           (max-cols (apply #'max (mapcar #'length split-lines)))
+           (table-lines '()))
+      ;; ヘッダー行の処理
+      (let ((header (car split-lines)))
+        (setq header (append header (make-list (- max-cols (length header)) "")))
+        (push (concat "| " (mapconcat #'identity header " | ") " |") table-lines)
+        (push (concat "|"
+                      (mapconcat (lambda (_) "----") header "|")
+                      "|") table-lines))
+      ;; データ行の処理
+      (dolist (row (cdr split-lines))
+        (setq row (append row (make-list (- max-cols (length row)) "")))
+        (push (concat "| " (mapconcat #'identity row " | ") " |") table-lines))
+      ;; 結果を挿入
+      (setq table-lines (nreverse table-lines))
+      (delete-region start end)
+      (dolist (line table-lines)
+        (insert line "\n"))
+      (org-table-align))))
+
 ;;; 40-org-mode.el ends here
