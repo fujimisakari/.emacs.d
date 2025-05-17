@@ -79,6 +79,7 @@
 ;; C-l
 (unbind-key "C-l")
 (bind-key "C-l 0" 'copy-current-path)                        ; 現在のfile-pathを表示&コピー
+(bind-key "C-l c" 'my-copilot-chat-action-picker)            ; copilot-chat actionを開く
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
 (bind-key "C-l w" 'my/normalize-spaces-in-region)            ; 連続したスペースやTABを1スペースへ変換
@@ -90,6 +91,7 @@
 (bind-key "C-l a" 'my-counsel-ag-with-ignore)                ; counsel-ag検索 ignoreオプション付き
 (bind-key "C-l A" 'counsel-ag)                               ; counsel-ag検索
 (bind-key "C-l d" 'dired-open-current-directory)             ; 現在開いているバッファをdierdで開く
+(bind-key "C-l E" 'lsp-treemacs-errors-list)                 ; code errorの一覧表示
 (bind-key "C-l r" 'anzu-query-replace-regexp)                ; インタラクティブ置換(anzu)
 (bind-key "C-l R" 'replace-regexp)                           ; 一括置換
 (bind-key "C-l s" 'my-switch-to-scratch/current-buffer)      ; *scratch*バッファに移動
@@ -209,10 +211,11 @@
 
 ;; org-mode
 (bind-key "C-," nil org-mode-map)
-(bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)   ; カレントのサブツリーを1階層上げる
-(bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)   ; カレントのサブツリーを1階層下げる
-(bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)     ; サブツリーを上に移動する
-(bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map) ; サブツリーを下に移動する
+(bind-key "C-c C-t" 'my/convert-text-to-org-table org-mode-map) ; テーブルへフォーマット変換
+(bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)       ; カレントのサブツリーを1階層上げる
+(bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)       ; カレントのサブツリーを1階層下げる
+(bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)         ; サブツリーを上に移動する
+(bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map)     ; サブツリーを下に移動する
 
 ;; dired-mode
 (add-hook 'dired-mode-hook
