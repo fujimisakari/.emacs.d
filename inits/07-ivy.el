@@ -194,4 +194,25 @@
       (deactivate-mark))
     (swiper-all (regexp-quote thing))))
 
+
+(defun my-copilot-chat-action-picker ()
+  "Select and run a Copilot Chat command using counsel."
+  (interactive)
+  (let ((actions '(("Display chat" . copilot-chat)
+                   ("Buffer list" . copilot-chat-list)
+                   ("Select AI model" . copilot-chat-default-model)
+                   ("Explain selection" . copilot-chat-explain)
+                   ("Explain defun" . copilot-chat-explain-defun)
+                   ("Explain symbol" . copilot-chat-explain-symbol-at-line)
+                   ("Review selection" . copilot-chat-review)
+                   ("Fix selection" . copilot-chat-fix)
+                   ("Optimize selection" . copilot-chat-optimize)
+                   ("Generate test for selection" . copilot-chat-test)
+                   ("Generate doc for selection" . copilot-chat-doc))))
+    (ivy-read "Copilot Chat Action: "
+              (mapcar #'car actions)
+              :action (lambda (choice)
+                        (let ((fn (cdr (assoc choice actions))))
+                          (when fn (call-interactively fn)))))))
+
 ;;; 07-ivy.el ends here
