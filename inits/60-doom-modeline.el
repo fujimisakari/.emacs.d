@@ -8,7 +8,7 @@
 (doom-modeline-mode 1)
 
 (setq doom-modeline-bar-width 10)
-(setq doom-modeline-buffer-file-name-style 'truncate-with-project)
+(setq doom-modeline-buffer-file-name-style 'relative-from-project)
 
 (set-face-background 'doom-modeline-bar "#4f57f9")
 (set-face-foreground 'doom-modeline-project-dir "Yellow")
