@@ -50,22 +50,9 @@
 ;; src のハイライト設定
 (setq org-src-fontify-natively t)
 
-;; (defface org-block-begin-line
-;;   '((t (:foreground "DimGray" :background "DarkSlateGray")))
-;;   "Face used for the line delimiting the begin of source blocks.")
-;; (set-face-foreground 'org-block-begin-line "DimGray")
-;; ;; (set-face-background 'org-block-begin-line "gray18")
-
-;; (defface org-block-background
-;;   '((t (:background "gray18")))
-;;   "Face used for the source block background.")
-;; (set-face-background 'org-block-background "gray18")
-
-;; (defface org-block-end-line
-;;   '((t (:foreground "DimGray" :background "gray18")))
-;;   "Face used for the line delimiting the end of source blocks.")
-;; (set-face-foreground 'org-block-end-line "DimGray")
-;; ;; (set-face-background 'org-block-end-line "gray18")
+(custom-set-faces
+ '(org-block-begin-line ((t (:foreground "gray30" :background "gray3" :slant italic))))
+ '(org-block-end-line ((t (:foreground "gray30" :background "gray3" :slant italic)))))
 
 (set-face-foreground 'org-level-5 "orange")  ; レベル3の色とカブってたので変更
 (set-face-foreground 'org-level-7 "purple1") ; レベル5の色とカブってたので変更
