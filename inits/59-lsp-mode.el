@@ -69,3 +69,34 @@
   (if (one-window-p)
       (lsp-ui-peek--goto-xref nil t))
   (lsp-ui-peek--goto-xref))
+
+;; treemacs
+;; lsp-treemacs-errors-list を q で閉じたあとに Treemacs のウィンドウが裏で残らず、完全に削除させる
+(defun my/lsp-treemacs--open-error-list (orig-fn &rest args)
+  "Open the LSP error list in a normal window, not a side window."
+  (let ((display-buffer-alist
+         '(("\\*LSP Error List\\*"
+            (display-buffer-reuse-window display-buffer-pop-up-window)))))
+    (apply orig-fn args)))
+
+(with-eval-after-load 'lsp-treemacs
+  (advice-add 'lsp-treemacs--open-error-list :around #'my/lsp-treemacs--open-error-list))
+
+(defun my/fully-remove-lsp-error-list ()
+  "Forcefully remove all windows showing *LSP Error List*, clearing window state."
+  (interactive)
+  (let ((buf (get-buffer "*LSP Error List*")))
+    (when buf
+      (dolist (win (get-buffer-window-list buf nil t))
+        ;; 念のため quit-restore info をクリア
+        (set-window-parameter win 'quit-restore nil)
+        (set-window-dedicated-p win nil)
+        (delete-window win))
+      (kill-buffer buf)
+      (setq lsp-treemacs-error-list-current nil))))
+
+(with-eval-after-load 'lsp-treemacs
+  (define-key lsp-treemacs-error-list-mode-map (kbd "q") #'my/fully-remove-lsp-error-list))
+
+(setq display-buffer-base-action
+      '((display-buffer-reuse-window display-buffer-pop-up-window)))
