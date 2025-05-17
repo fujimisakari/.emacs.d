@@ -10,13 +10,13 @@
 (setq gofmt-command "goimports")
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'go-mode-hook
-          '(lambda()
-             (setq indent-tabs-mode t)
-             (setq go-test-verbose t)
-             (common-mode-init)
-             (company-mode)
-             (flycheck-golangci-lint-setup)
-             (copilot-mode)))
+          (lambda()
+            (setq indent-tabs-mode t)
+            (setq go-test-verbose t)
+            (common-mode-init)
+            (company-mode)
+            (flycheck-golangci-lint-setup)
+            (copilot-mode)))
 
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)
