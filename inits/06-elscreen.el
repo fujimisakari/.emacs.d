@@ -103,18 +103,6 @@
       (elscreen-goto-internal (elscreen-get-current-screen)))))
      (elscreen-next))
 
-;; カラー設定
-(set-face-foreground 'elscreen-tab-current-screen-face "#6c6aff")
-(set-face-background 'elscreen-tab-current-screen-face "gray25")
-(set-face-bold-p 'elscreen-tab-current-screen-face t)
-
-(set-face-foreground 'elscreen-tab-control-face "red")
-(set-face-background 'elscreen-tab-control-face "gray25")
-(set-face-bold-p 'elscreen-tab-control-face t)
-
-(set-face-background 'elscreen-tab-background-face "gray25")
-(set-face-background 'elscreen-tab-other-screen-face "gray25")
-
 ;; diredとターミナルを連動させる
 (defun elscreen-current-directory ()
   (let* (current-dir

@@ -65,26 +65,6 @@
 
 ; ivy-posframe
 (setq ivy-posframe-parameters '((alpha . 70)))
-(custom-set-faces
- '(ivy-posframe ((t (:foreground "gray75" :background "gray5"))))
- '(ivy-posframe-border ((t (:background "#6272a4"))))
- '(ivy-posframe-cursor ((t (:foreground "gray75")))))
-
-; ivy
-(set-face-foreground 'ivy-grep-info "lime green")
-(set-face-foreground 'ivy-modified-buffer "OliveDrab2")
-(set-face-attribute 'ivy-current-match nil
-                    :background "gray20" :distant-foreground "gray75")
-(custom-set-faces
- '(ivy-current-match ((t :background "gray20" :distant-foreground "gray75")))
- '(ivy-minibuffer-match-face-1 ((t :foreground "gray75")))
- '(ivy-minibuffer-match-face-2 ((t :foreground "#7777ff" :underline t)))
- '(ivy-minibuffer-match-face-3 ((t :foreground "lime green" :underline t)))
- '(ivy-minibuffer-match-face-4 ((t :foreground "yellow" :underline t))))
-
-; swiper
-(set-face-foreground 'swiper-line-face "white")
-(set-face-background 'swiper-line-face "SeaGreen")
 
 ;; customize
 

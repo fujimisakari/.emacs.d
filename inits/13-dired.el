@@ -52,11 +52,6 @@
   (if (eq (first (ad-get-args 0)) nil)
       (ad-set-arg 0 0)))
 
-;; face設定
-(set-face-foreground 'dired-directory "CornflowerBlue") ; ディレクトリ
-(set-face-foreground 'dired-symlink "turquoise")        ; シンボリックリンク
-(set-face-foreground 'dired-perm-write "gray75")        ; 書き込み権限
-
 ;; ディレクトリ内のファイル名を自由自在に編集する
 (require 'wdired)
 
@@ -65,13 +60,6 @@
 
 ;; マッチした行を強調表示させる
 (require 'highline)
-(set-face-foreground 'highline-face "black")
-(set-face-background 'highline-face "yellow")
-
-;; ヘッダーを強調表示させる
-(custom-set-faces
- '(dired-header
-   ((t (:foreground "yellow" :weight bold :height 1.3 :family my-global-font)))))
 
 ;;; 更新日が当日のファイルは色を変える
 (defface dired-todays-face '((t (:foreground "green"))) nil)

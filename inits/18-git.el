@@ -58,19 +58,4 @@
 (set-face-attribute 'diff-refine-removed nil
                 :foreground "gray3" :background "#C9635C")
 
-(set-face-background 'magit-diff-context-highlight nil)
-(set-face-foreground 'magit-diff-file-heading "white")
-(set-face-background 'magit-diff-file-heading nil)
-(set-face-foreground 'magit-diff-file-heading-highlight "white")
-(set-face-background 'magit-diff-file-heading-highlight nil)
-(set-face-foreground 'magit-diff-hunk-heading "deep sky blue")
-(set-face-background 'magit-diff-hunk-heading nil)
-(set-face-foreground 'magit-diff-hunk-heading-highlight "deep sky blue")
-(set-face-background 'magit-diff-hunk-heading-highlight nil)
-
-;; log
-(set-face-foreground 'magit-hash "SkyBlue1")
-(set-face-foreground 'magit-log-author "LightSeaGreen")
-(set-face-foreground 'magit-log-date "#4f57f9")
-
 ;;; 18-git.el ends her

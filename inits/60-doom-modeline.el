@@ -10,10 +10,6 @@
 (setq doom-modeline-bar-width 10)
 (setq doom-modeline-buffer-file-name-style 'relative-from-project)
 
-(set-face-background 'doom-modeline-bar "#4f57f9")
-(set-face-foreground 'doom-modeline-project-dir "Yellow")
-(set-face-foreground 'doom-modeline-buffer-modified "orchid1")
-
 (doom-modeline-def-segment branch
   "現在のGitブランチを取得する。"
   (let ((branch (magit-get-current-branch)))

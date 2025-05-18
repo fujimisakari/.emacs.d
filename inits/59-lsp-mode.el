@@ -40,21 +40,6 @@
 (setq lsp-ui-sideline-show-diagnostics nil)
 (setq lsp-ui-sideline-show-code-actions nil)
 
-;; face
-(set-face-foreground 'lsp-ui-peek-selection "white")
-(set-face-background 'lsp-ui-peek-selection "#4f57f9")
-
-(set-face-foreground 'lsp-ui-peek-header "white")
-(set-face-background 'lsp-ui-peek-header "SlateBlue2")
-
-(set-face-foreground 'lsp-ui-peek-footer "white")
-(set-face-background 'lsp-ui-peek-footer "SlateBlue2")
-
-(set-face-foreground 'lsp-ui-peek-filename "CornflowerBlue")
-(set-face-foreground 'lsp-ui-peek-line-number "gray45")
-(set-face-background 'lsp-ui-peek-peek "gray15")
-(set-face-background 'lsp-ui-peek-highlight "DarkOliveGreen2")
-
 ;; customize
 (defun lsp-find-definition-other-window ()
   (interactive)
