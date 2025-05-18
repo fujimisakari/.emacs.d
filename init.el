@@ -20,6 +20,8 @@
             (normal-top-level-add-subdirs-to-load-path))))))
 ;; site-lispとconfディレクトリをサブディレクトリごとload-pathに追加する
 (add-to-load-path "site-lisp" "elpa" "private/env")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(load-theme 'my-visual t)
 
 ;; 個人環境変数の読み込み
 (require 'private-env)
@@ -63,39 +65,39 @@
                  beacon bind-key bm buffer-expose c-eldoc ccc ccls cdb
                  chatgpt clang-format color-moccur column-marker
                  company-box company-go company-posframe
-                 company-quickhelp company-terraform compat
-                 csharp-mode csv-mode dired-git dired-imenu
-                 dired-rainbow dired-subtree distel-completion-lib
-                 dockerfile-mode doom-modeline dumb-jump edit-list
-                 eldoc-extension elixir-mode elscreen engine-mode epc
-                 erlang etags-table evil-python-movement
-                 exec-path-from-shell expand-region fancy-battery
-                 flycheck-elixir flycheck-golangci-lint
-                 flycheck-posframe fold-dwim fuzzy ghub git-gutter
-                 go-direx go-errcheck go-expr-completion go-snippets
-                 golden-ratio google-translate gotest graphql
-                 grep-a-lot gtags highlight-indent-guides
-                 highlight-symbol htmlize id-manager ido-vertical-mode
-                 igrep image+ imenu-list info+ init-loader irony
-                 ivy-dired-history ivy-hydra ivy-posframe
-                 ivy-yasnippet json-mode json-reformat lispxmp lsp-ui
-                 lua-mode magit magit-popup memoize migemo
-                 mo-git-blame mode-icons mozc-popup multi-term
-                 nginx-mode nyan-mode open-junk-file openwith
-                 org-autolist org-bullets org-modern ox-reveal
-                 package-lint paredit pdf-tools perfect-margin
-                 php-mode plantuml-mode point-undo popwin powershell
-                 protobuf-mode py-autopep8 py-isort pydoc pyflakes
-                 python-environment quickrun rainbow-delimiters
-                 rainbow-mode recentf-ext redo+ region-bindings-mode
-                 request resize-window sass-mode screen-lines
-                 sequential-command shell-history shell-pop shimbun
-                 shut-up slime-repl-ansi-color smartparens smeargle
-                 smooth-scroll stem sticky sudo-ext swift-mode
-                 symbol-overlay toml-mode typescript-mode viewer
-                 vimrc-mode virtualenv vline volatile-highlights w3m
-                 wanderlust web-mode which-key xcscope yahoo-weather
-                 yaml-mode zlc))
+                 company-quickhelp company-terraform compat copilot
+                 copilot-chat csharp-mode csv-mode dired-git
+                 dired-imenu dired-rainbow dired-subtree
+                 distel-completion-lib dockerfile-mode doom-modeline
+                 dumb-jump edit-list eldoc-extension elixir-mode
+                 elscreen engine-mode epc erlang etags-table
+                 evil-python-movement exec-path-from-shell
+                 expand-region fancy-battery flycheck-elixir
+                 flycheck-golangci-lint flycheck-posframe fold-dwim
+                 fuzzy ghub git-gutter go-direx go-errcheck
+                 go-expr-completion go-snippets golden-ratio
+                 google-translate gotest graphql grep-a-lot gtags
+                 highlight-indent-guides highlight-symbol htmlize
+                 id-manager ido-vertical-mode igrep image+ imenu-list
+                 info+ init-loader irony ivy-dired-history ivy-hydra
+                 ivy-posframe ivy-yasnippet json-mode json-reformat
+                 lispxmp lsp-treemacs lsp-ui lua-mode magit
+                 magit-popup memoize migemo mo-git-blame mode-icons
+                 mozc-popup multi-term nginx-mode nyan-mode
+                 open-junk-file openwith org-autolist org-bullets
+                 org-modern ox-reveal package-lint paredit pdf-tools
+                 perfect-margin php-mode plantuml-mode point-undo
+                 popwin powershell protobuf-mode py-autopep8 py-isort
+                 pydoc pyflakes python-environment quickrun
+                 rainbow-delimiters rainbow-mode recentf-ext redo+
+                 region-bindings-mode request resize-window sass-mode
+                 screen-lines sequential-command shell-history
+                 shell-pop shimbun shut-up slime-repl-ansi-color
+                 smartparens smeargle smooth-scroll stem sticky
+                 sudo-ext swift-mode symbol-overlay toml-mode
+                 typescript-mode viewer vimrc-mode virtualenv vline
+                 volatile-highlights w3m wanderlust web-mode which-key
+                 xcscope yahoo-weather yaml-mode zlc))
  '(tab-stop-list (tab-stop-list-creator 4)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
