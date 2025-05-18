@@ -29,7 +29,6 @@
     (delete-backward-char arg)))
 (put 'indent-dedent-line-backspace 'delete-selection 'supersede)
 
-
 ;; 関数・変数のヘルプをエコーエリアに表示する
 (require 'eldoc-extension)        ; 拡張版
 (setq eldoc-idle-delay 0.2)       ; すぐに表示したい

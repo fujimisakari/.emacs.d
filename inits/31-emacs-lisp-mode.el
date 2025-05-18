@@ -28,9 +28,4 @@
 ;; リスト変数の内容を編集する(M-x edit-list)
 (require 'edit-list)
 
-;; 括弧の対応を取りながらS式を編集する
-;; (require 'paredit)
-;; (add-hook 'emacs-lisp-mode-hook 'enable-paredit-mode)
-;; (add-hook 'lisp-interaction-mode-hook 'disable-paredit-mode)
-
 ;;; 31-emacs-lisp-mode.el ends here

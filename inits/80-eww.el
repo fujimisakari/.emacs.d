@@ -4,11 +4,6 @@
 
 ;;; Code:
 
-;; (defun eww-mode-hook--rename-buffer ()
-;;   "Rename eww browser's buffer so sites open in new page."
-;;   (rename-buffer "ewwl" t))
-;; (add-hook 'eww-mode-hook 'eww-mode-hook--rename-buffer)
-
 ;; default の検索エンジンを Google に変更
 (setq eww-search-prefix "http://www.google.co.jp/search?q=")
 

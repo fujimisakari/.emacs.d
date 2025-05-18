@@ -174,7 +174,6 @@
       (deactivate-mark))
     (swiper-all (regexp-quote thing))))
 
-
 (defun my-copilot-chat-action-picker ()
   "Select and run a Copilot Chat command using counsel."
   (interactive)

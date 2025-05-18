@@ -59,6 +59,4 @@
                                      :strike-through nil
                                      :underline t))))))))
 
-(set-face-foreground 'jaspace-highlight-eol-face "gray30")
-
 ;;; 25-jaspace.el ends here

@@ -10,11 +10,7 @@
   ;; ディレクトリ検索のとき除外するファイル
   (setq dmoccur-exclusion-mask
         (append '("\\~$" "\\.svn\\/\*" "\\.DS_Store" "\\.pyc$" "^#.+#$") dmoccur-exclusion-mask))
-  (require 'moccur-edit nil t)
-  ;; Migemoを利用できる環境であればMigemoを使う
-  (when (and (executable-find "cmigemo")
-             (require 'migemo nil t))
-    (setq moccur-use-migemo t)))
+  (require 'moccur-edit nil t))
 
 ;; allの拡張
 (require 'all-ext)

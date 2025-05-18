@@ -38,7 +38,6 @@
     (insert (format "%s:rtype: TYPE\n" space))
     (insert (format "%s\"\"\"" space))))
 
-
 (defun insert-python-arrow ()
   (interactive)
   (insert "->"))

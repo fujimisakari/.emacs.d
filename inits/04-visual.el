@@ -64,15 +64,6 @@
 (setq show-paren-delay 0
       show-paren-style 'expression)
 
-;; rainbow-delimiters for nested parens
-(require 'rainbow-delimiters)
-
-;; imenu-list appearance
-(require 'imenu-list)
-
-;; popup tip face
-(require 'popup)
-
 ;; Describe face at point helper
 (defun describe-face-at-point ()
   "Return face used at point."

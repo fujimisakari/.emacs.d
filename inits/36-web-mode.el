@@ -32,10 +32,4 @@
   ;; https://www.shigemk2.com/entry/emacs_no_newline_final
   (setq require-final-newline nil)
   (common-mode-init))
-  ;; htmlファイルさわったとき差分が出るのでコメント
-  ;; (add-hook 'local-write-file-hooks
-  ;;           (lambda ()
-  ;;             (delete-trailing-whitespace)
-  ;;              nil)))
-
 (add-hook 'web-mode-hook 'web-mode-hook)

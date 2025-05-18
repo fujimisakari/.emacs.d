@@ -113,20 +113,6 @@
 ;; undoやyank, kill-regionなどで挿入されたテキストを強調表示する
 (require 'volatile-highlights)
 (volatile-highlights-mode t)
-(set-face-foreground 'vhl/default-face "gray75")
-(set-face-background 'vhl/default-face "#4f57f9")
-
-;; 略語展開・補完を行うコマンドをまとめる
-;; (setq hippie-expand-try-functions-list
-;;   '(try-complete-file-name-partially   ; ファイル名の一部
-;;     try-complete-file-name             ; ファイル名全体
-;;     try-expand-all-abbrevs             ; 動的略語展開
-;;     try-expand-abbrev                  ; 動的略語展開(カレントバファ)
-;;     try-expand-abbrev-all-buffers      ; 動的略語展開(全バッファ)
-;;     try-expand-abbrev-from-kill        ; 動的略語展開(キルリング：M-w/C-wの履歴)
-;;     try-complete-lisp-symbol-partially ; Lispシンボル名の一部
-;;     try-complete-lisp-symbol           ; Lispシンボル名の全体
-;;    ))
 
 ;; 対応する括弧に飛ぶ
 (defun close-paren-at-point-p ()

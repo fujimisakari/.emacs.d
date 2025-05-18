@@ -39,23 +39,12 @@
 (setq org-export-with-TeX-macros nil)       ; TeX・LaTeXのコードを解釈しない
 (setq org-export-with-LaTeX-fragments nil)
 
-;; フォントサイズ設定
-(set-face-attribute 'org-level-1 nil :bold t :height 1.0)
-(set-face-attribute 'org-level-2 nil :bold nil :height 1.0)
-(set-face-attribute 'org-level-3 nil :bold nil :height 1.0)
-(set-face-attribute 'org-level-4 nil :bold nil :height 1.0)
-;; (set-face-attribute 'org-checkbox nil :background "gray" :foreground "black"
-;;                                    :box '(:line-width 1 :style released-button))
-
 ;; src のハイライト設定
 (setq org-src-fontify-natively t)
 
 (custom-set-faces
  '(org-block-begin-line ((t (:foreground "gray30" :background "gray3" :slant italic))))
  '(org-block-end-line ((t (:foreground "gray30" :background "gray3" :slant italic)))))
-
-(set-face-foreground 'org-level-5 "orange")  ; レベル3の色とカブってたので変更
-(set-face-foreground 'org-level-7 "purple1") ; レベル5の色とカブってたので変更
 
 ;; 画像貼り付け
 ;; https://chatgpt.com/share/0ca4b7b0-ecc6-41c3-9454-9588aefba8e4

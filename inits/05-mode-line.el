@@ -5,9 +5,6 @@
 ;;; Code:
 
 ;; モードライン設定
-(set-face-foreground 'mode-line "#757bff")   ; アクティブなモードラインの文字の色設定
-(set-face-background 'mode-line "gray15")          ; アクディブなモードラインの背景色設定
-(set-face-background 'mode-line-inactive "gray15") ; インアクティブなモードラインの背景色設定
 (column-number-mode t)                             ; モードラインにカーソル列の位置表示
 (line-number-mode t)                               ; モードラインにカーソル行の位置表示
 
