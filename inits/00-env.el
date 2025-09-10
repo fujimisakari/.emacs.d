@@ -29,6 +29,8 @@
 (load-file (expand-file-name "~/.emacs.d/share/shellenv/work1_shellenv.el"))
 (load-file (expand-file-name "~/.emacs.d/share/shellenv/work2_shellenv.el"))
 (load-file (expand-file-name "~/.emacs.d/share/shellenv/work3_shellenv.el"))
+(load-file (expand-file-name "~/.emacs.d/share/shellenv/work4_shellenv.el"))
+(load-file (expand-file-name "~/.emacs.d/share/shellenv/work5_shellenv.el"))
 (load-file (expand-file-name (format "~/.emacs.d/share/shellenv/%s_shellenv.el" (getenv "USER"))))
 (dolist (path (reverse (split-string (getenv "PATH") ":")))
   (add-to-list 'exec-path path))
