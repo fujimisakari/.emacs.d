@@ -38,6 +38,8 @@
 (setq dired-listing-switches "-a --time-style=long-iso")
 (when (executable-find "gls")
   (setq insert-directory-program "gls"))
+(setq dired-use-ls-dired nil)
+(setq dired-listing-switches "-alh")
 ;; 日付フォーマットを %Y-%m-%d %H:%M に固定
 (setq ls-lisp-format-time-list '("%Y-%m-%d %H:%M" "%Y-%m-%d %H:%M"))
 (setq ls-lisp-use-localized-time-format t)
@@ -89,8 +91,11 @@
     (list '(dired-today-search . dired-todays-face))))
 
 ;; 現在開いているバッファをdierdで開く
-(defun dired-open-current-directory ()
-  (interactive)
+(defun dired-open-current-directory (&optional split-window)
+  "現在のバッファのディレクトリを Dired で開く。
+SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
+通常は prefix argument（C-u）で分割指定できる。"
+  (interactive "P")
   (let ((path nil))
     (if (equal major-mode 'dired-mode)
         (setq path default-directory)
@@ -98,7 +103,8 @@
           (setq path "~/")
         (setq path (file-name-directory (buffer-file-name)))))
     (when path
-      (other-window-or-split)
+      (when split-window
+        (other-window-or-split))
       (dired path))))
 
 ;; ファイルなら別バッファで、ディレクトリなら同じバッファで開く
@@ -110,6 +116,14 @@
       (dired-find-file))))
 ;; dired-find-alternate-file の有効化
 (put 'dired-find-alternate-file 'disabled nil)
+
+;; ディレクトリを新しいバッファで開く
+(defun dired-open-directory-in-new-buffer ()
+  "Open the directory at point in a new buffer using dired."
+  (interactive)
+  (let ((file (dired-get-file-for-visit)))
+    (when (file-directory-p file)
+      (dired-other-window file))))
 
 ;; subtreeの背景は無色にする
 (require 'dired-subtree)
