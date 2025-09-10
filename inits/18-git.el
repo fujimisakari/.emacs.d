@@ -58,4 +58,33 @@
 (set-face-attribute 'diff-refine-removed nil
                 :foreground "gray3" :background "#C9635C")
 
+;; custom command
+(defun my/magit-show-previous-commit ()
+  "Show the previous commit (parent) of the current commit in
+magit-revision buffer."
+  (interactive)
+  (let* ((current magit-buffer-revision)
+         (parent (and current
+                      (car (process-lines "git" "rev-list" "--parents"
+"-n" "1" current)))))
+    (if parent
+        (let ((parts (split-string parent)))
+          (if (> (length parts) 1)
+              (magit-show-commit (nth 1 parts))
+            (message "No parent commit found.")))
+      (message "Could not get commit info."))))
+
+(defun my/magit-show-next-commit ()
+  "Show the next commit of the current commit in magit-revision buffer."
+  (interactive)
+  (let* ((current magit-buffer-revision)
+         (children (and current
+                        (process-lines
+                         "git" "rev-list" "--reverse" "--ancestry-path"
+                         (format "%s..HEAD" current)))))
+    (if (and children (> (length children) 0))
+        (let ((next (car children)))
+          (magit-show-commit next))
+      (message "No next commit found."))))
+
 ;;; 18-git.el ends her
