@@ -16,7 +16,7 @@
 
    ;; Mode line
    `(mode-line ((,class (:foreground "#757bff" :background "gray15" :box nil))))
-   `(mode-line-inactive ((,class (:foreground "grey20" :background "gray15" :weight light))))
+   `(mode-line-inactive ((,class (:foreground "gray40" :background "gray15" :weight light))))
    `(doom-modeline-bar ((,class (:background "#4f57f9"))))
    `(doom-modeline-project-dir ((,class (:foreground "Yellow"))))
    `(doom-modeline-buffer-modified ((,class (:foreground "orchid1"))))
