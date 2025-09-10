@@ -32,11 +32,11 @@
 (bind-key "<f12>" 'toggle-input-method)                      ; IMの切り替え
 
 ;; C-
-(bind-key* "C-'" 'my-ivy-switch-buffer)                      ; ivyの起動
-(bind-key* "C-," 'er/expand-region)                          ; 拡張リジョン選択
-(bind-key* "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
-(bind-key* "C-s" 'swiper)
-(bind-key* "C-<tab>" 'company-complete)                      ; 補完
+(bind-key "C-'" 'my-ivy-switch-buffer)                       ; ivyの起動
+(bind-key "C-," 'er/expand-region)                          ; 拡張リジョン選択
+(bind-key "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
+(bind-key "C-s" 'swiper)
+(bind-key "C-<tab>" 'company-complete)                      ; 補完
 (bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
@@ -57,15 +57,14 @@
 (bind-key "C-M-." 'my-counsel-recentf)                       ; ファイル/ディレクトリ履歴
 (bind-key "C-M-," 'my-counsel-bookmark)                      ; ブックマーク一覧
 (bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
-(bind-key "C-M-o" 'occur-by-moccur)                          ; 現在開いているファイルをmoccur検索する
+(bind-key "C-M-o" 'swiper)                                   ; swiperの起動
 (bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
 
 ;; M-
-(bind-key* "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
-(bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
-(bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
-(bind-key* "M-o" 'swiper-thing-at-point)                     ; swiperの起動(thing-at-point)
-(bind-key* "M-O" 'swiper)                                    ; swiperの起動
+(bind-key "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
+(bind-key "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
+(bind-key "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
+(bind-key "M-o" 'swiper-thing-at-point)                     ; swiperの起動(thing-at-point)
 (bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
 (bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
 (bind-key "M-Y" 'my/insert-image-like-logsec)                ; org-modeへインライン画像貼り付け
@@ -127,6 +126,10 @@
 
 ;; vc-annotate-mode
 (bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
+
+;; magit-revision-mode
+(bind-key "C-c C-p" 'my/magit-show-next-commit magit-revision-mode-map)
+(bind-key "C-c C-n" 'my/magit-show-previous-commit magit-revision-mode-map)
 
 ;; emacs-lisp-mode
 (bind-key "C-c <f12>" 'my-dumb-jump-go emacs-lisp-mode-map)    ; jump to reference
@@ -218,29 +221,22 @@
 (bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map)     ; サブツリーを下に移動する
 
 ;; dired-mode
-(add-hook 'dired-mode-hook
-  (lambda ()
-    (local-set-key (kbd "C-f") 'dired-open-in-accordance-with-situation) ; ディレクトリ, ファイルを展開
-    (local-set-key (kbd "C-M-m") 'dired-up-directory)                    ; 上位ディレクトリへ
-    (local-set-key (kbd "C-M-r") 'dired-remove-by-shell)                 ; Shell経由で削除処理を行う
-    (local-set-key (kbd "C-t") 'other-window-or-split)                   ; ウィンドウを切り替える
-    ;; (local-set-key (kbd "i") 'dired-subtree-insert)                      ; ディレクトリをサブツリーで開く
-    ;; (local-set-key (kbd "C-l i") 'dired-subtree-remove)                  ; サブツリーを閉じる
-    ;; (local-set-key (kbd "C-l u") 'dired-subtree-up)                      ; サブツリーの上層に移動
-    ;; (local-set-key (kbd "C-l d") 'dired-subtree-down)                    ; サブツリーの下層に移動
-    (local-set-key (kbd "/") 'dired-ex-isearch)                          ; Diredのパス移動
-    (local-set-key (kbd "r") 'wdired-change-to-wdired-mode)))
+(bind-key "C-f" 'dired-open-in-accordance-with-situation dired-mode-map) ; ディレクトリ, ファイルを展開
+(bind-key "C-M-f" 'dired-open-directory-in-new-buffer dired-mode-map)    ; ディレクトリを新しいバッファで展開
+(bind-key "C-M-b" 'dired-up-directory dired-mode-map)                    ; 上位ディレクトリへ
+(bind-key "C-M-r" 'dired-remove-by-shell dired-mode-map)                 ; Shell経由で削除処理を行う
+(bind-key "C-t" 'other-window-or-split dired-mode-map)                   ; ウィンドウを切り替える
+(bind-key "/" 'dired-ex-isearch dired-mode-map)                          ; Diredのパス移動
+(bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)              ; wdiredへモード変更
 
 ;; lsp-mode-hook
-(add-hook 'lsp-mode-hook
-          (lambda ()
-            (local-set-key (kbd "C-c <f12>") 'lsp-find-definition-other-window)
-            (local-set-key (kbd "C-c C-r") 'lsp-ui-peek-find-references)
-            (local-set-key (kbd "C-c C-i") 'lsp-ui-peek-find-implementation)
-            (local-set-key (kbd "C-c C-M-j") 'pop-tag-mark)
-            (local-set-key (kbd "C-c m") 'lsp-ui-imenu)
-            (local-set-key (kbd "C-c s") 'lsp-ui-sideline-mode)
-            (local-set-key (kbd "C-c d") 'ladicle/toggle-lsp-ui-doc)))
+(bind-key "C-c <f12>" 'lsp-find-definition-other-window lsp-mode-map)
+(bind-key "C-c C-r" 'lsp-ui-peek-find-references lsp-mode-map)
+(bind-key "C-c C-i" 'lsp-ui-peek-find-implementation lsp-mode-map)
+(bind-key "C-c C-M-j" 'pop-tag-mark lsp-mode-map)
+(bind-key "C-c m" 'lsp-ui-imenu lsp-mode-map)
+(bind-key "C-c s" 'lsp-ui-sideline-mode lsp-mode-map)
+(bind-key "C-c d" 'ladicle/toggle-lsp-ui-doc lsp-mode-map)
 
 ;; lsp-ui-peek-mode
 (bind-key "RET" 'lsp-ui-peek--goto-xref-custom-other-window lsp-ui-peek-mode-map)
@@ -254,10 +250,10 @@
 (bind-key "C-p" 'company-select-previous company-search-map)
 
 ;; mozc-mode
-(bind-key "," '(lambda () (interactive) (mozc-insert-str "、")) mozc-mode-map)
-(bind-key "." '(lambda () (interactive) (mozc-insert-str "。")) mozc-mode-map)
-(bind-key "?" '(lambda () (interactive) (mozc-insert-str "？")) mozc-mode-map)
-(bind-key "!" '(lambda () (interactive) (mozc-insert-str "！")) mozc-mode-map)
+;; (bind-key "," '(lambda () (interactive) (mozc-insert-str "、")) mozc-mode-map)
+;; (bind-key "." '(lambda () (interactive) (mozc-insert-str "。")) mozc-mode-map)
+;; (bind-key "?" '(lambda () (interactive) (mozc-insert-str "？")) mozc-mode-map)
+;; (bind-key "!" '(lambda () (interactive) (mozc-insert-str "！")) mozc-mode-map)
 (bind-key "C-h" 'delete-backward-char mozc-mode-map)
 
 ;; puml-mode
