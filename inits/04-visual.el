@@ -70,6 +70,16 @@
   (interactive)
   (message "%s" (get-char-property (point) 'face)))
 
+;; Reload current theme for debug
+(defun my/reload-current-theme ()
+  "Reload the currently enabled theme."
+  (interactive)
+  (when custom-enabled-themes
+    (let ((theme (car custom-enabled-themes)))
+      (disable-theme theme)
+      (load-theme theme t)
+      (message "Reloaded theme: %s" theme))))
+
 ;; Battery status
 (require 'fancy-battery)
 (add-hook 'after-init-hook #'fancy-battery-mode)

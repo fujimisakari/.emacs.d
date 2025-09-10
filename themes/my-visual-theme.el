@@ -165,13 +165,21 @@
    `(rst-level-6 ((,class (:foreground nil :background nil))))
 
    ;; lsp-ui
-   `(lsp-ui-peek-selection ((,class (:foreground "white" :background "#4f57f9"))))
-   `(lsp-ui-peek-header ((,class (:foreground "white" :background "SlateBlue2"))))
-   `(lsp-ui-peek-footer ((,class (:foreground "white" :background "SlateBlue2"))))
+   `(lsp-ui-peek-selection ((,class (:foreground "gray80" :background "#4f57f9"))))
+   `(lsp-ui-peek-header ((,class (:foreground "gray80" :background "SlateBlue2"))))
+   `(lsp-ui-peek-footer ((,class (:foreground "gray80" :background "SlateBlue2"))))
    `(lsp-ui-peek-filename ((,class (:foreground "CornflowerBlue"))))
    `(lsp-ui-peek-line-number ((,class (:foreground "gray45"))))
    `(lsp-ui-peek-peek ((,class (:background "gray15"))))
-   `(lsp-ui-peek-highlight ((,class (:background "DarkOliveGreen2" :DistantForeground white))))
+   `(lsp-ui-peek-highlight ((,class (:background "DarkOliveGreen2" :DistantForeground gray80))))
+
+   ;; mozc-cand
+   `(mozc-cand-overlay-description-face ((,class (:foreground "gray45" :background "gray15"))))
+   `(mozc-cand-overlay-even-face ((,class (:foreground "gray45" :background "gray15"))))
+   `(mozc-cand-overlay-odd-face ((,class (:foreground "gray45" :background "gray15"))))
+   `(mozc-cand-overlay-focused-face ((,class (:foreground "gray80" :background "RoyalBlue"))))
+   `(mozc-cand-overlay-footer-face ((,class (:foreground "CornflowerBlue" :background "gray15"))))
+   `(mozc-preedit-selected-face ((,class (:foreground "gray80" :background "RoyalBlue"))))
 
    ;; doom-modeline
    `(doom-modeline-bar ((,class (:background "#4f57f9"))))
