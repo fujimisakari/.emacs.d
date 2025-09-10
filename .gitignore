@@ -30,3 +30,8 @@ site-lisp
 tramp
 transient
 url
+.aider*
+kkcrc
+org-persist
+orghistory
+projects
