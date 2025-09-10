@@ -7,11 +7,11 @@
 ;; 辞書データの格納パス - sufary で高速化した場合
 (eval-after-load "sdic"
   '(progn
-     (setq sdicf-array-command "/usr/local/bin/sary") ; コマンドパス
+     (setq sdicf-array-command "/usr/bin/grep")
      (setq sdic-eiwa-dictionary-list
-           '((sdicf-client "~/.emacs.d/share/eijiro/eijirou.sdic" (strategy array)))
+           '((sdicf-client "~/.emacs.d/share/eijiro/eijirou.sdic"))
            sdic-waei-dictionary-list
-           '((sdicf-client "~/.emacs.d/share/eijiro/waeijirou.sdic" (strategy array))))
+           '((sdicf-client "~/.emacs.d/share/eijiro/waeijirou.sdic")))
 
      ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
      (fset 'sdicf-array-init 'sdicf-common-init)
@@ -24,13 +24,13 @@
                (save-excursion
                  (set-buffer (sdicf-get-buffer sdic))
                  (delete-region (point-min) (point-max))
+                 ;; grepコマンド用の引数に変更
                  (apply 'sdicf-call-process
                         sdicf-array-command
                         (sdicf-get-coding-system sdic)
                         nil t nil
-                        (if case
-                            (list "-i" pattern (sdicf-get-filename sdic))
-                          (list pattern (sdicf-get-filename sdic))))
+                        (append (if case (list "-i"))
+                                (list pattern (sdicf-get-filename sdic))))
                  (goto-char (point-min))
                  (let (entries)
                    (while (not (eobp)) (sdicf-search-internal))
