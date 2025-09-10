@@ -24,9 +24,13 @@
 (mozc-posframe-register)
 (setq mozc-candidate-style 'posframe)
 
-(defun mozc-insert-str (str)
-  (mozc-handle-event 'enter)
-  (insert str))
+;; 日本語入力時の候補メニューが表示されない問題の対応
+;; https://w.atwiki.jp/ntemacs/pages/48.html
+(advice-add 'mozc-protobuf-get
+            :around (lambda (orig-fun &rest args)
+                      (when (eq (nth 1 args) 'candidate-window)
+                        (setf (nth 1 args) 'candidates))
+                      (apply orig-fun args)))
 
 ;; Mac 固有の設定
 ;; https://www.inabamasaki.com/archives/1898
