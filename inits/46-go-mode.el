@@ -13,6 +13,9 @@
           (lambda()
             (setq indent-tabs-mode t)
             (setq go-test-verbose t)
+            (setq tab-width 4)
+            (setq go-tab-width 4)
+            (setq-local copilot-indent-offset tab-width) ; Copilot workaround
             (common-mode-init)
             (company-mode)
             (flycheck-golangci-lint-setup)
