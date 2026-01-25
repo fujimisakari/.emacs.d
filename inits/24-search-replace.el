@@ -19,10 +19,4 @@
 (require 'grep-a-lot)
 ;; (grep-a-lot-setup-keys)
 
-;; igrep設定
-(require 'igrep)
-;; igrepに-Ou8オプションを付けると出力がUTF-8になる
-(igrep-define lgrep (igrep-use-zgrep nil)(igrep-regex-option "-n -Ou8"))
-(igrep-find-define lgrep (igrep-use-zgrep nil)(igrep-regex-option "-n -Ou8"))
-
 ;;; 24-search-replace.el ends here
