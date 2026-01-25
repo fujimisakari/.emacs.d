@@ -33,14 +33,17 @@
         ("^ *\\(def\\|class\\|module\\)" ruby-mode)))
 
 (defun bm-goto-top-p ()
-        (loop for (re . modes) in bm-goto-top-alist
-              thereis (and (memq major-mode modes)
-                           (save-excursion
-                             (beginning-of-line)
-                             (looking-at re)))))
-(defadvice bm-goto (after bm-goto-top activate)
+  (cl-loop for (re . modes) in bm-goto-top-alist
+           thereis (and (memq major-mode modes)
+                        (save-excursion
+                          (beginning-of-line)
+                          (looking-at re)))))
+
+(defun my/bm-goto-recenter-top (&rest _)
+  "Recenter to top after bm-goto if at top pattern."
   (when (bm-goto-top-p)
     (recenter 0)))
+(advice-add 'bm-goto :after #'my/bm-goto-recenter-top)
 
 (require 'highlight-symbol)
 (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue"))

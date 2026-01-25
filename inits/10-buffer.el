@@ -10,7 +10,6 @@
 
 ;; 最近閉じたバッファを復元
 ;; http://d.hatena.ne.jp/kitokitoki/20100608/p2
-(require 'cl)
 (defvar my-killed-file-name-list nil)
 (defun my-push-killed-file-name-list ()
   (when (buffer-file-name)

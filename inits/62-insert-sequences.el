@@ -29,10 +29,10 @@ FORMAT-STRING is like `format', but it can have multiple %-sequences."
          (read-number "From: " 1)
          (read-number "To: ")))
   (save-excursion
-    (loop for i from from to to do
-          (insert (apply 'format format-string
-                         (make-list (count-string-matches "%[^%]" format-string) i))
-                  "\n")))
+    (cl-loop for i from from to to do
+             (insert (apply 'format format-string
+                            (make-list (count-string-matches "%[^%]" format-string) i))
+                     "\n")))
   (end-of-line))
 
 ;;; 62-insert-sequences.el ends here
