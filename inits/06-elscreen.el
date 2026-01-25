@@ -104,34 +104,30 @@
      (elscreen-next))
 
 ;; diredとターミナルを連動させる
+(defun buffer-directory-safe (&optional buffer)
+  "Return directory for BUFFER (or current buffer). Always returns a string."
+  (with-current-buffer (or buffer (current-buffer))
+    ;; buffer-file-name があればそのディレクトリ、無ければ default-directory
+    (let ((dir (or (and (buffer-file-name)
+                        (file-name-directory (buffer-file-name)))
+                   default-directory)))
+      ;; 念のため nil を避ける
+      (file-name-as-directory (expand-file-name (or dir "~"))))))
+
 (defun elscreen-current-directory ()
-  (let* (current-dir
-         (active-file-name
-          (with-current-buffer
-              (let* ((current-screen (car (elscreen-get-conf-list 'screen-history)))
-                     (property (cadr (assoc current-screen
-                                            (elscreen-get-conf-list 'screen-property)))))
-                (marker-buffer (nth 2 property)))
-            (progn
-              (setq current-dir (expand-file-name (cadr (split-string (pwd)))))
-              (buffer-file-name)))))
-    (if active-file-name
-        (file-name-directory active-file-name)
-      current-dir)))
+  (buffer-directory-safe
+   (let* ((current-screen (car (elscreen-get-conf-list 'screen-history)))
+          (property (cadr (assoc current-screen
+                                 (elscreen-get-conf-list 'screen-property))))
+          (marker (nth 2 property)))
+     (and marker (marker-buffer marker)))))
 
 (defun non-elscreen-current-directory ()
-  (let* (current-dir
-         (current-buffer
-          (nth 1 (assoc 'buffer-list
-                        (nth 1 (nth 1 (current-frame-configuration))))))
-         (active-file-name
-          (with-current-buffer current-buffer
-            (progn
-              (setq current-dir (expand-file-name (cadr (split-string (pwd)))))
-              (buffer-file-name)))))
-    (if active-file-name
-        (file-name-directory active-file-name)
-      current-dir)))
+  (buffer-directory-safe
+   (let* ((conf (current-frame-configuration))
+          (params (nth 1 (nth 1 conf)))
+          (buf-list (cdr (assoc 'buffer-list params))))
+     (nth 0 buf-list))))
 
 ;; screenを定位置に設定する
 (setq elscreen-custom-screen-alist
