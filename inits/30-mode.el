@@ -8,8 +8,23 @@
   (rainbow-delimiters-mode)
   (eldoc-mode t))
 
-;; zshはshell-script-modeで起動
+;; --- diff-mode ---
+(setq diff-switches "-u")
+
+;; --- shell-script-mode ---
 (add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
+(setq sh-basic-offset 2)
+(setq sh-indentation 2)
+
+;; --- dockerfile-mode ---
+(add-to-list 'auto-mode-alist '("Dockerfile.*" . dockerfile-mode))
+
+;; --- nginx-mode ---
+(with-eval-after-load 'nginx-mode
+  (add-to-list 'auto-mode-alist '("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
+
+;; --- graphql-mode ---
+(add-to-list 'auto-mode-alist '("\\.graphqls$" . graphql-mode))
 
 ;; タブインデント単位で削除できるようにする
 (defun indent-dedent-line-p ()
