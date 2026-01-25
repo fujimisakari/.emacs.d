@@ -33,10 +33,11 @@
 
 ;; C-
 (bind-key "C-'" 'my-ivy-switch-buffer)                       ; ivyの起動
-(bind-key "C-," 'er/expand-region)                          ; 拡張リジョン選択
-(bind-key "C-]" 'goto-matching-paren)                       ; 対応する括弧に飛ぶ
+(bind-key "C-," 'er/expand-region)                           ; 拡張リジョン選択
+(bind-key "C-]" 'goto-matching-paren)                        ; 対応する括弧に飛ぶ
+(bind-key "C-r" 'lsp-rename)                                 ; lspでリネーム
 (bind-key "C-s" 'swiper)
-(bind-key "C-<tab>" 'company-complete)                      ; 補完
+(bind-key "C-<tab>" 'company-complete)                       ; 補完
 (bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
@@ -61,10 +62,10 @@
 (bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
 
 ;; M-
-(bind-key "M-k" 'kill-buffer-for-elscreen)                  ; カレントバッファを閉じる
-(bind-key "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
-(bind-key "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
-(bind-key "M-o" 'swiper-thing-at-point)                     ; swiperの起動(thing-at-point)
+(bind-key "M-k" 'kill-buffer-for-elscreen)                   ; カレントバッファを閉じる
+(bind-key* "M-p" 'scroll-up-in-place)                        ; カーソル維持したままスクロール(上)
+(bind-key* "M-n" 'scroll-down-in-place)                      ; カーソル維持したままスクロール(下)
+(bind-key "M-o" 'swiper-thing-at-point)                      ; swiperの起動(thing-at-point)
 (bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
 (bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
 (bind-key "M-Y" 'my/insert-image-like-logsec)                ; org-modeへインライン画像貼り付け
@@ -202,6 +203,7 @@
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)    ; markdown-headerの一覧表示
 (bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map) ; プレビュー表示
+(bind-key "C-c C-e" 'mermaid-compile markdown-mode-map)
 (bind-key "C-c C-l" 'markdown-table-insert-column markdown-mode-map)
 (bind-key "C-c <f12>" 'markdown-table-insert-row markdown-mode-map)
 (bind-key "C-c C-k" 'markdown-table-delete-row markdown-mode-map)
@@ -213,6 +215,7 @@
 (bind-key "k" 'elscreen-kill-screen-and-buffers elscreen-map)
 
 ;; org-mode
+(bind-key "C-'" nil org-mode-map)
 (bind-key "C-," nil org-mode-map)
 (bind-key "C-c C-t" 'my/convert-text-to-org-table org-mode-map) ; テーブルへフォーマット変換
 (bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)       ; カレントのサブツリーを1階層上げる
