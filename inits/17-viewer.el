@@ -4,24 +4,8 @@
 
 ;;; Code:
 
-(require 'viewer)
 ;; C-x C-r は view-modeでファイルを開く
 (setq view-read-only t)
-
-;; 書き込み不能ファイルはview-modeから抜けなくする
-;; (viewer-stay-in-setup)
-
-;; 特定のファイルを view-mode で開くようにする
-(setq view-mode-by-default-regexp "\\.log$")
-
-;;; view-mode のときに mode-line に色をつける
-;; 書き込み不可ファイルを開く場合は濃い赤色
-(setq viewer-modeline-color-unwritable "red")
-;; 書き込み可能ファイルを開く場合はオレンジ色
-(setq viewer-modeline-color-view "orange")
-;; view-modeの切り替え時のデフォルト色
-(setq viewer-modeline-color-default "#4f57f9")
-;; (viewer-change-modeline-color-setup)
 
 ;;; view-modeのキーバインド
 ;; (defvar pager-keybind

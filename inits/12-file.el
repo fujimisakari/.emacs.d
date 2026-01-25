@@ -19,22 +19,6 @@
 ;; 現在位置(カーソル)のファイル・URLを開く
 (ffap-bindings)
 
-;; zlc.el でEmacsのミニバッファ候補をzshライクに
-;; http://github.com/mooz/emacs-zlc/raw/master/zlc.el
-(require 'zlc)
-;; TABを押して補完候補一覧を表示する際、即時に一つ目の補完候補を選択する
-(setq zlc-select-immediately t)
-;; 補完候補一覧にて矢印で移動できるようにする
-(let ((map minibuffer-local-map))
-  ;; like menu select
-  (define-key map (kbd "<down>")  'zlc-select-next-vertical)
-  (define-key map (kbd "<up>")    'zlc-select-previous-vertical)
-  (define-key map (kbd "<right>") 'zlc-select-next)
-  (define-key map (kbd "<left>")  'zlc-select-previous)
-  ;; reset selection
-  (define-key map (kbd "C-c") 'zlc-reset)
-  )
-
 ;; bookmack設定
 ;; ブックマークの保存先を指定
 (setq bookmark-default-file "~/.emacs.d/private/emacs.bmk")
