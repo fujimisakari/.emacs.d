@@ -263,6 +263,7 @@
 (bind-key "C-c C-t" 'plantuml-open-with-png-file plantuml-mode-map)
 
 ;; view-mode
+(require 'view)
 (bind-keys :map view-mode-map
            ("h" . backward-char)
            ("l" . forward-char)
