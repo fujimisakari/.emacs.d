@@ -21,13 +21,7 @@
     (set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font))
     (add-to-list 'face-font-rescale-alist `(,(concat ".*" my-global-ja-font ".*") . 1.2))
 
-    ;; Frame decorations and transparency
-    (toggle-scroll-bar -1)
-    (menu-bar-mode -1)
-    (tool-bar-mode -1)
-    (auto-image-file-mode 1)
-    (setq ring-bell-function 'ignore) ; ビープ音、画面フラッシュどちらも起こさない
-    (setq inhibit-startup-screen t)   ; 起動画面を表示させない
+    ;; Frame transparency
     (cond ((eq my-os-type 'mac)
            (set-frame-parameter nil 'alpha 73))
           ((eq my-os-type 'linux)
@@ -38,6 +32,9 @@
 
 ;; Apply to initial frame
 (my/apply-theme-and-ui (selected-frame))
+
+;; Image file display
+(auto-image-file-mode 1)
 
 ;; Font-lock configuration
 (global-font-lock-mode t)
