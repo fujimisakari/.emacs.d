@@ -78,10 +78,8 @@
 (setq highlight-indent-guides-method 'bitmap)
 (setq highlight-indent-guides-auto-enabled nil)
 (setq highlight-indent-guides-responsive t)
-(add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-(add-hook 'yaml-mode-hook 'highlight-indent-guides-mode)
-(set-face-foreground 'highlight-indent-guides-character-face "#4f57f9")
-(set-face-foreground 'highlight-indent-guides-top-character-face "DeepSkyBlue")
+(add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
+(add-hook 'yaml-mode-hook #'highlight-indent-guides-mode)
 
 (defun my/normalize-spaces-in-region (start end)
   "Replaces a continuous space or tab in a region with a single space"
