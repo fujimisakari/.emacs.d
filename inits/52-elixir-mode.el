@@ -16,12 +16,6 @@
   (flycheck-mode))
 (add-hook 'elixir-mode-hook #'my/elixir-mode-setup)
 
-;; TODO
-;; code skelton
-;; alchemist設定
-
-;; dokumento
-
 (defun insert-elixir-chain-arrow ()
   (interactive)
   (insert "|>"))

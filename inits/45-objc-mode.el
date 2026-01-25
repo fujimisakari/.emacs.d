@@ -13,15 +13,6 @@
   (setq indent-tabs-mode nil))
 (add-hook 'objc-mode-hook #'my/objc-mode-setup)
 
-;; revelとコンフリクトするので一旦コメント
-;; .hファイルをobjc-modeで開く
-;; (add-to-list 'magic-mode-alist
-;;              `(,(lambda ()
-;;                   (and (string= (file-name-extension buffer-file-name) "h")
-;;                        (re-search-forward "@\\<interface\\>"
-;;                                           magic-mode-regexp-match-limit t)))
-;;                . objc-mode))
-
 ;; 共通設定
 (defvar xcode:sdk "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk")
 (defvar xcode:framework (concat xcode:sdk "/System/Library/Frameworks"))
@@ -56,13 +47,7 @@
   (other-window-or-split)
   (ff-find-other-file))
 
-;; コード補完
-;; (require 'emaXcode)
-;; (setq xcode:foundation (concat xcode:framework "/Foundation.framework/Headers/"))
-;; (setq xcode:uikit (concat xcode:framework "/UIKit.framework/Headers/"))
-;; (setq emaXcode-yas-objc-header-directories-list (list xcode:foundation xcode:uikit))
-
-;;;コード整形できるようにする
+;;; コード整形できるようにする
 (require 'clang-format)
 
 ;; quickrunにclangでの実行環境を追加

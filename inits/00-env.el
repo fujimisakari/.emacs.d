@@ -35,10 +35,6 @@
 (dolist (path (reverse (split-string (getenv "PATH") ":")))
   (add-to-list 'exec-path path))
 
-;; (require 'exec-path-from-shell)
-;; (let ((envs '("PATH" "GOPATH")))
-;;   (exec-path-from-shell-copy-envs envs))
-
 ;; 日本語環境設定
 (set-language-environment "Japanese")
 (prefer-coding-system 'utf-8-unix)
