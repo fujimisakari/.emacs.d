@@ -5,41 +5,43 @@
 ;;; Code:
 
 ;; 辞書データの格納パス - sufary で高速化した場合
-(eval-after-load "sdic"
-  '(progn
-     (setq sdicf-array-command "/usr/bin/grep")
-     (setq sdic-eiwa-dictionary-list
-           '((sdicf-client "~/.emacs.d/share/eijiro/eijirou.sdic"))
-           sdic-waei-dictionary-list
-           '((sdicf-client "~/.emacs.d/share/eijiro/waeijirou.sdic")))
+(with-eval-after-load "sdic"
+  (setq sdicf-array-command "/usr/bin/grep")
+  (setq sdic-eiwa-dictionary-list
+        '((sdicf-client "~/.emacs.d/share/eijiro/eijirou.sdic"))
+        sdic-waei-dictionary-list
+        '((sdicf-client "~/.emacs.d/share/eijiro/waeijirou.sdic")))
 
-     ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
-     (fset 'sdicf-array-init 'sdicf-common-init)
-     (fset 'sdicf-array-quit 'sdicf-common-quit)
-     (fset 'sdicf-array-search
-           '(lambda (sdic pattern &optional case regexp)
-             (sdicf-array-init sdic)
-             (if regexp
-                 (signal 'sdicf-invalid-method '(regexp))
-               (save-excursion
-                 (set-buffer (sdicf-get-buffer sdic))
-                 (delete-region (point-min) (point-max))
-                 ;; grepコマンド用の引数に変更
-                 (apply 'sdicf-call-process
-                        sdicf-array-command
-                        (sdicf-get-coding-system sdic)
-                        nil t nil
-                        (append (if case (list "-i"))
-                                (list pattern (sdicf-get-filename sdic))))
-                 (goto-char (point-min))
-                 (let (entries)
-                   (while (not (eobp)) (sdicf-search-internal))
-                   (nreverse entries))))))
+  ;; saryを直接使用できるように sdicf.el 内に定義されているarrayコマンド用関数を強制的に置換
+  (fset 'sdicf-array-init 'sdicf-common-init)
+  (fset 'sdicf-array-quit 'sdicf-common-quit)
 
-     (defadvice sdic-forward-item (after sdic-forward-item-always-top activate)
-       (recenter 0))
-     (defadvice sdic-backward-item (after sdic-backward-item-always-top activate)
-       (recenter 0))))
+  (defun my/sdicf-array-search (sdic pattern &optional case regexp)
+    "Custom sdicf-array-search using grep."
+    (sdicf-array-init sdic)
+    (if regexp
+        (signal 'sdicf-invalid-method '(regexp))
+      (save-excursion
+        (set-buffer (sdicf-get-buffer sdic))
+        (delete-region (point-min) (point-max))
+        ;; grepコマンド用の引数に変更
+        (apply 'sdicf-call-process
+               sdicf-array-command
+               (sdicf-get-coding-system sdic)
+               nil t nil
+               (append (if case (list "-i"))
+                       (list pattern (sdicf-get-filename sdic))))
+        (goto-char (point-min))
+        (let (entries)
+          (while (not (eobp)) (sdicf-search-internal))
+          (nreverse entries)))))
+  (fset 'sdicf-array-search #'my/sdicf-array-search)
+
+  (defun my/sdic-item-recenter (&rest _)
+    "Recenter to top after sdic item navigation."
+    (recenter 0))
+  (advice-add 'sdic-forward-item :after #'my/sdic-item-recenter)
+  (advice-add 'sdic-backward-item :after #'my/sdic-item-recenter))
 
 (setq sdic-default-coding-system 'utf-8-unix)
 
@@ -72,13 +74,12 @@
 (setq sdic-face-color "lime green")
 
 ;; 検索結果表示バッファで引いた単語をハイライト表示する
-(defadvice sdic-search-eiwa-dictionary (after highlight-phrase (arg))
+(defun my/sdic-highlight-search-word (orig-fun arg)
+  "Highlight searched word after sdic search."
+  (funcall orig-fun arg)
   (highlight-phrase arg "yellow"))
-(defadvice sdic-search-waei-dictionary (after highlight-phrase (arg))
-  (highlight-phrase arg "yellow"))
-
-(ad-activate 'sdic-search-eiwa-dictionary)
-(ad-activate 'sdic-search-waei-dictionary)
+(advice-add 'sdic-search-eiwa-dictionary :around #'my/sdic-highlight-search-word)
+(advice-add 'sdic-search-waei-dictionary :around #'my/sdic-highlight-search-word)
 
 ;; 検索結果表示ウインドウの高さ
 (setq sdic-window-height 20)

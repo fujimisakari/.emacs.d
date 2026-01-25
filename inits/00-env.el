@@ -53,7 +53,13 @@
 
 ;; システム関連
 (setq echo-keystrokes 0.1)                                    ; キーストロークをエコーエリアに早く表示させる
-(setq gc-cons-threshold (* 50 gc-cons-threshold))             ; GCを減らして軽くする（デフォルトの50倍）
+
+;; GCを減らして起動を軽くする（デフォルトの50倍）、起動後に戻す
+(setq gc-cons-threshold (* 50 gc-cons-threshold))
+(defun my/reset-gc-cons-threshold ()
+  "Reset gc-cons-threshold to reasonable value after startup."
+  (setq gc-cons-threshold (* 2 1024 1024))) ; 起動後は2MBに
+(add-hook 'emacs-startup-hook #'my/reset-gc-cons-threshold)
 (setq select-enable-clipboard t)                              ; X11とクリップボードを共有する
 (setq use-dialog-box nil)                                     ; ダイアログボックスを使わないようにする
 
@@ -87,7 +93,11 @@
 (setq recentf-max-saved-items 2000)
 (setq recentf-save-file "~/.recentf")
 (setq recentf-auto-cleanup 'never)  ;; 存在しないファイルは消さない
-(run-with-idle-timer 30 t '(lambda () (with-suppressed-message (recentf-save-list))))
+
+(defun my/recentf-save-list-silently ()
+  "Save recentf list without message."
+  (with-suppressed-message (recentf-save-list)))
+(run-with-idle-timer 30 t #'my/recentf-save-list-silently)
 
 ;; Delete unnecessary messages
 (defmacro with-suppressed-message (&rest body)
@@ -116,9 +126,11 @@
 (save-place-mode 1)
 
 ;; ミニバッファで入力を取り消しても履歴を残す
-(defadvice abort-recursive-edit (before minibuffer-save activate)
+(defun my/minibuffer-save-history (&rest _)
+  "Save minibuffer contents to history before aborting."
   (when (eq (selected-window) (active-minibuffer-window))
     (add-to-history minibuffer-history-variable (minibuffer-contents))))
+(advice-add 'abort-recursive-edit :before #'my/minibuffer-save-history)
 
 ;; フルスクリーン設定(24.3以降)
 (setq ns-use-native-fullscreen nil)

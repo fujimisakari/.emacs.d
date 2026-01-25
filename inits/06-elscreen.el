@@ -17,18 +17,16 @@
 (setq elscreen-tab-display-kill-screen nil) ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
-(defmacro elscreen-create-automatically (ad-do-it)
-  `(if (not (elscreen-one-screen-p))
-       ,ad-do-it
-     (elscreen-create)
-     (elscreen-notify-screen-modification 'force-immediately)
-     (elscreen-message "New screen is automatically created")))
-(defadvice elscreen-next (around elscreen-create-automatically activate)
-  (elscreen-create-automatically ad-do-it))
-(defadvice elscreen-previous (around elscreen-create-automatically activate)
-  (elscreen-create-automatically ad-do-it))
-(defadvice elscreen-toggle (around elscreen-create-automatically activate)
-  (elscreen-create-automatically ad-do-it))
+(defun elscreen-create-automatically (orig-fun &rest args)
+  "Create a new screen automatically if there is only one screen."
+  (if (not (elscreen-one-screen-p))
+      (apply orig-fun args)
+    (elscreen-create)
+    (elscreen-notify-screen-modification 'force-immediately)
+    (elscreen-message "New screen is automatically created")))
+(advice-add 'elscreen-next :around #'elscreen-create-automatically)
+(advice-add 'elscreen-previous :around #'elscreen-create-automatically)
+(advice-add 'elscreen-toggle :around #'elscreen-create-automatically)
 
 ;; 起動時に自動で10個スクリーンを立ち上げる
 (defun elscreen-create-default-screen ()

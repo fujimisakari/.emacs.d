@@ -5,12 +5,13 @@
 ;;; Code:
 
 ;; 基本設定
-(add-hook 'objc-mode-hook
-          '(lambda()
-             (common-mode-init)
-             (setq c-basic-offset 4)
-             (setq tab-width 4)
-             (setq indent-tabs-mode nil)))
+(defun my/objc-mode-setup ()
+  "Setup for objc-mode."
+  (common-mode-init)
+  (setq c-basic-offset 4)
+  (setq tab-width 4)
+  (setq indent-tabs-mode nil))
+(add-hook 'objc-mode-hook #'my/objc-mode-setup)
 
 ;; revelとコンフリクトするので一旦コメント
 ;; .hファイルをobjc-modeで開く
@@ -33,20 +34,17 @@
 ;; ff-find-other-fileの検索対象にFrameworkの.hファイルを含めるようにする
 (setq xcode:frameworks (concat xcode:sdk "/System/Library/Frameworks"))
 (setq cc-search-directories (list "." xcode:frameworks))
-(defadvice ff-get-file-name (around ff-get-file-name-framework
-                                    (search-dirs
-                                     fname-stub
-                                     &optional suffix-list))
+
+(defun my/ff-get-file-name-framework (orig-fun search-dirs fname-stub &optional suffix-list)
   "Search for Mac framework headers as well as POSIX headers."
   (or
-   (if (string-match "\\(.*?\\)/\\(.*\\)" fname-stub)
-       (let* ((framework (match-string 1 fname-stub))
-              (header (match-string 2 fname-stub))
-              (fname-stub (concat framework ".framework/Headers/" header)))
-         ad-do-it))
-   ad-do-it))
-(ad-enable-advice 'ff-get-file-name 'around 'ff-get-file-name-framework)
-(ad-activate 'ff-get-file-name)
+   (when (string-match "\\(.*?\\)/\\(.*\\)" fname-stub)
+     (let* ((framework (match-string 1 fname-stub))
+            (header (match-string 2 fname-stub))
+            (new-fname-stub (concat framework ".framework/Headers/" header)))
+       (funcall orig-fun search-dirs new-fname-stub suffix-list)))
+   (funcall orig-fun search-dirs fname-stub suffix-list)))
+(advice-add 'ff-get-file-name :around #'my/ff-get-file-name-framework)
 
 ;; ff-find-other-fileで.hファイルと.mファイルをトグルできるようにする
 (require 'find-file) ;; for the "cc-other-file-alist" variable

@@ -6,13 +6,19 @@
 
 (when (require 'slime nil t)
 
-  (add-hook 'lisp-mode-hook (lambda ()
-                              (common-mode-init)
-                              (slime-mode t)
-                              (setq indent-tabs-mode nil)
-                              (unless show-paren-mode
-                                (show-paren-mode))))
-  (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+  (defun my/slime-lisp-mode-setup ()
+    "Setup for lisp-mode with slime."
+    (common-mode-init)
+    (slime-mode t)
+    (setq indent-tabs-mode nil)
+    (unless show-paren-mode
+      (show-paren-mode)))
+  (add-hook 'lisp-mode-hook #'my/slime-lisp-mode-setup)
+
+  (defun my/inferior-slime-setup ()
+    "Setup for inferior-lisp-mode."
+    (inferior-slime-mode t))
+  (add-hook 'inferior-lisp-mode-hook #'my/inferior-slime-setup)
 
   (slime-setup '(slime-repl slime-fancy slime-banner slime-fuzzy slime-indentation))
   (setq slime-autodoc-use-multiline-p t)
@@ -61,22 +67,15 @@
                     (error "The symbol `%s' is not defined in Common Lisp"
                            character-name))))
 
-  (defadvice common-lisp-hyperspec (around common-lisp-hyperspec-around activate)
+  (defun my/hyperspec-switch-to-eww (orig-fun &rest args)
+    "Switch back to original buffer and pop to eww after hyperspec lookup."
     (let ((buf (current-buffer)))
-      ad-do-it
+      (apply orig-fun args)
       (switch-to-buffer buf)
       (pop-to-buffer "*eww*")))
 
-  (defadvice common-lisp-hyperspec-lookup-reader-macro (around common-lisp-hyperspec-lookup-reader-macro-around activate)
-    (let ((buf (current-buffer)))
-      ad-do-it
-      (switch-to-buffer buf)
-      (pop-to-buffer "*eww*")))
-
-  (defadvice common-lisp-hyperspec-format (around common-lisp-hyperspec-format activate)
-    (let ((buf (current-buffer)))
-      ad-do-it
-      (switch-to-buffer buf)
-      (pop-to-buffer "*eww*"))))
+  (advice-add 'common-lisp-hyperspec :around #'my/hyperspec-switch-to-eww)
+  (advice-add 'common-lisp-hyperspec-lookup-reader-macro :around #'my/hyperspec-switch-to-eww)
+  (advice-add 'common-lisp-hyperspec-format :around #'my/hyperspec-switch-to-eww))
 
 ;;; 39-slime-mode.el ends here

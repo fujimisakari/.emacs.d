@@ -9,24 +9,28 @@
 (require 'dired-imenu)
 
 ;; dired-mode
-(add-hook 'dired-mode-hook '(lambda() (hl-line-mode -1)))
+(defun my/dired-disable-hl-line ()
+  "Disable hl-line-mode in dired."
+  (hl-line-mode -1))
+(add-hook 'dired-mode-hook #'my/dired-disable-hl-line)
 (add-hook 'dired-mode-hook 'all-the-icons-dired-mode)
 
 ;; バッファを作成したい時にはoやC-u ^を利用する
 (defvar my-dired-before-buffer nil)
-(defadvice dired-advertised-find-file (before kill-dired-buffer activate)
+
+(defun my/dired-save-buffer-before (&rest _)
+  "Save current buffer before dired navigation."
   (setq my-dired-before-buffer (current-buffer)))
 
-(defadvice dired-advertised-find-file (after kill-dired-buffer-after activate)
-  (if (eq major-mode 'dired-mode)
-      (kill-buffer my-dired-before-buffer)))
+(defun my/dired-kill-buffer-after (&rest _)
+  "Kill previous dired buffer after navigation."
+  (when (eq major-mode 'dired-mode)
+    (kill-buffer my-dired-before-buffer)))
 
-(defadvice dired-up-directory (before kill-up-dired-buffer activate)
-  (setq my-dired-before-buffer (current-buffer)))
-
-(defadvice dired-up-directory (after kill-up-dired-buffer-after activate)
-  (if (eq major-mode 'dired-mode)
-      (kill-buffer my-dired-before-buffer)))
+(advice-add 'dired-advertised-find-file :before #'my/dired-save-buffer-before)
+(advice-add 'dired-advertised-find-file :after #'my/dired-kill-buffer-after)
+(advice-add 'dired-up-directory :before #'my/dired-save-buffer-before)
+(advice-add 'dired-up-directory :after #'my/dired-kill-buffer-after)
 
 ;; Dired表示設定
 ;; ディレクトリから先頭表示されるようにする
@@ -50,9 +54,10 @@
 (setq dired-copy-preserve-time nil)
 
 ;; ファイル名のコピーはpathを含める
-(defadvice dired-copy-filename-as-kill (before dired-copy-prefix activate)
-  (if (eq (first (ad-get-args 0)) nil)
-      (ad-set-arg 0 0)))
+(defun my/dired-copy-filename-with-path (orig-fun &optional arg)
+  "Copy filename with path by default."
+  (funcall orig-fun (or arg 0)))
+(advice-add 'dired-copy-filename-as-kill :around #'my/dired-copy-filename-with-path)
 
 ;; ディレクトリ内のファイル名を自由自在に編集する
 (require 'wdired)
