@@ -232,7 +232,7 @@
 (bind-key "/" 'dired-ex-isearch dired-mode-map)                          ; Diredのパス移動
 (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)              ; wdiredへモード変更
 
-;; lsp-mode-hook
+;; lsp-mode
 (bind-key "C-c <f12>" 'lsp-find-definition-other-window lsp-mode-map)
 (bind-key "C-c C-r" 'lsp-ui-peek-find-references lsp-mode-map)
 (bind-key "C-c C-i" 'lsp-ui-peek-find-implementation lsp-mode-map)

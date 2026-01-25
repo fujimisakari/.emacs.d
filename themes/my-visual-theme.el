@@ -38,7 +38,7 @@
    `(font-lock-regexp-grouping-construct ((,class (:foreground "green" :inherit bold))))
 
    ;; Show paren
-   `(show-paren-match ((,class (:underline (:color "yellow") :background 'unspecified))))
+   `(show-paren-match ((,class (:underline (:color "yellow") :background unspecified))))
 
    ;; Rainbow delimiters
    `(rainbow-delimiters-depth-1-face ((,class (:foreground "SlateBlue2"))))
@@ -84,16 +84,16 @@
    `(swiper-line-face ((,class (:foreground "white" :background "SeaGreen"))))
 
    ;; Diff
-   `(diff-context ((,class (:foreground 'unspecified))))
-   `(diff-header ((,class (:background 'unspecified :underline t))))
-   `(diff-file-header ((,class (:foreground "white" :background 'unspecified :weight bold))))
-   `(diff-index ((,class (:foreground "MediumSeaGreen" :background 'unspecified))))
-   `(diff-hunk-header ((,class (:foreground "turquoise" :background 'unspecified))))
-   `(diff-removed ((,class (:foreground "red" :background 'unspecified))))
-   `(diff-added ((,class (:foreground "lime green" :background 'unspecified))))
+   `(diff-context ((,class (:foreground unspecified))))
+   `(diff-header ((,class (:background unspecified :underline t))))
+   `(diff-file-header ((,class (:foreground "white" :background unspecified :weight bold))))
+   `(diff-index ((,class (:foreground "MediumSeaGreen" :background unspecified))))
+   `(diff-hunk-header ((,class (:foreground "turquoise" :background unspecified))))
+   `(diff-removed ((,class (:foreground "red" :background unspecified))))
+   `(diff-added ((,class (:foreground "lime green" :background unspecified))))
    `(diff-changed ((,class (:foreground "yellow"))))
-   `(diff-function ((,class (:background 'unspecified))))
-   `(diff-nonexistent ((,class (:background 'unspecified))))
+   `(diff-function ((,class (:background unspecified))))
+   `(diff-nonexistent ((,class (:background unspecified))))
 
    ;; Dired
    `(dired-directory ((,class (:foreground "CornflowerBlue"))))
@@ -101,12 +101,12 @@
    `(dired-symlink ((,class (:foreground "turquoise"))))
    `(dired-perm-write ((,class (:foreground "gray75"))))
    `(highline-face ((,class (:foreground "black" :background "yellow"))))
-   `(dired-subtree-depth-1-face ((,class (:background 'unspecified))))
-   `(dired-subtree-depth-2-face ((,class (:background 'unspecified))))
-   `(dired-subtree-depth-3-face ((,class (:background 'unspecified))))
-   `(dired-subtree-depth-4-face ((,class (:background 'unspecified))))
-   `(dired-subtree-depth-5-face ((,class (:background 'unspecified))))
-   `(dired-subtree-depth-6-face ((,class (:background 'unspecified))))
+   `(dired-subtree-depth-1-face ((,class (:background unspecified))))
+   `(dired-subtree-depth-2-face ((,class (:background unspecified))))
+   `(dired-subtree-depth-3-face ((,class (:background unspecified))))
+   `(dired-subtree-depth-4-face ((,class (:background unspecified))))
+   `(dired-subtree-depth-5-face ((,class (:background unspecified))))
+   `(dired-subtree-depth-6-face ((,class (:background unspecified))))
 
    ;; Others
    `(zlc-selected-completion-face ((,class (:foreground "gray7" :background "#4f57f9" :weight bold :slant normal))))
@@ -121,13 +121,13 @@
    `(magit-filename ((,class (:foreground "MediumPurple1" :weight normal))))
    `(magit-diff-added ((,class (:foreground "gray75" :background "#112914"))))
    `(magit-diff-added-highlight ((,class (:foreground "gray75" :background "#112914" :Extend t))))
-   `(magit-diff-removed ((,class (:background 'unspecified))))
-   `(magit-diff-removed-highlight ((,class (:background 'unspecified))))
-   `(magit-diff-context-highlight ((,class (:background 'unspecified))))
-   `(magit-diff-file-heading ((,class (:foreground "white" :background 'unspecified))))
-   `(magit-diff-file-heading-highlight ((,class (:foreground "white" :background 'unspecified))))
-   `(magit-diff-hunk-heading ((,class (:foreground "deep sky blue" :background 'unspecified))))
-   `(magit-diff-hunk-heading-highlight ((,class (:foreground "deep sky blue" :background 'unspecified))))
+   `(magit-diff-removed ((,class (:background unspecified))))
+   `(magit-diff-removed-highlight ((,class (:background unspecified))))
+   `(magit-diff-context-highlight ((,class (:background unspecified))))
+   `(magit-diff-file-heading ((,class (:foreground "white" :background unspecified))))
+   `(magit-diff-file-heading-highlight ((,class (:foreground "white" :background unspecified))))
+   `(magit-diff-hunk-heading ((,class (:foreground "deep sky blue" :background unspecified))))
+   `(magit-diff-hunk-heading-highlight ((,class (:foreground "deep sky blue" :background unspecified))))
    `(magit-hash ((,class (:foreground "SkyBlue1"))))
    `(magit-log-author ((,class (:foreground "LightSeaGreen"))))
    `(magit-log-date ((,class (:foreground "#4f57f9"))))
@@ -157,12 +157,12 @@
    `(markdown-code-face ((,class (:family ,my-global-font :foreground "HotPink" :background "gray15" :bold nil))))
 
    ;; rst-mode
-   `(rst-level-1 ((,class (:foreground "lime green" :bold nil :height 1.8 :background 'unspecified))))
-   `(rst-level-2 ((,class (:foreground "orchid1" :bold nil :height 1.2 :background 'unspecified))))
-   `(rst-level-3 ((,class (:foreground "CornflowerBlue" :bold nil :height 1.1 :background 'unspecified))))
-   `(rst-level-4 ((,class (:foreground "orange" :background 'unspecified))))
-   `(rst-level-5 ((,class (:foreground "turquoise" :background 'unspecified))))
-   `(rst-level-6 ((,class (:foreground 'unspecified :background 'unspecified))))
+   `(rst-level-1 ((,class (:foreground "lime green" :bold nil :height 1.8 :background unspecified))))
+   `(rst-level-2 ((,class (:foreground "orchid1" :bold nil :height 1.2 :background unspecified))))
+   `(rst-level-3 ((,class (:foreground "CornflowerBlue" :bold nil :height 1.1 :background unspecified))))
+   `(rst-level-4 ((,class (:foreground "orange" :background unspecified))))
+   `(rst-level-5 ((,class (:foreground "turquoise" :background unspecified))))
+   `(rst-level-6 ((,class (:foreground unspecified :background unspecified))))
 
    ;; lsp-ui
    `(lsp-ui-peek-selection ((,class (:foreground "gray80" :background "#4f57f9"))))
