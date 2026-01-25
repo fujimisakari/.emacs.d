@@ -1,4 +1,4 @@
-;;; 06-elscree.el --- ElScreen設定 -*- lexical-binding: t; -*-
+;;; 06-elscreen.el --- ElScreen設定 -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 

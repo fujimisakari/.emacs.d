@@ -87,4 +87,4 @@ magit-revision buffer."
           (magit-show-commit next))
       (message "No next commit found."))))
 
-;;; 18-git.el ends her
+;;; 18-git.el ends here

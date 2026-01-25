@@ -15,7 +15,7 @@
 (setq ivy-use-virtual-buffers nil)
 (setq ivy-count-format "(%d/%d) ")
 (when (setq enable-recursive-minibuffers t)
-  (minibuffer-depth-indicate-mode 1)) ;; dispaly how many layers to prompt
+  (minibuffer-depth-indicate-mode 1)) ;; display how many layers to prompt
 (setq ivy-height 30) ;; Increase the size of the minibuffer
 (setq ivy-extra-directories nil)
 (setq ivy-read-action-function #'ivy-hydra-read-action)

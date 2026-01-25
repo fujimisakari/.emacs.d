@@ -85,3 +85,5 @@
 
 (setq display-buffer-base-action
       '((display-buffer-reuse-window display-buffer-pop-up-window)))
+
+;;; 59-lsp-mode.el ends here
