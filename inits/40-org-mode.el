@@ -28,7 +28,7 @@
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 ;; https://unicode.org/emoji/charts/full-emoji-list.html
-(setq org-bullets-bullet-list '("🟢" "🟣" "🟡" "🔵" "🟠"))
+(setq org-bullets-bullet-list '("🟢" "🟣" "🔵" "🟠" "🟡"))
 
 ;; エクスポート処理
 (setq org-export-default-language "ja")     ; 言語は日本語
@@ -38,6 +38,20 @@
 (setq org-export-with-special-strings nil)  ; --や---をそのまま出力する
 (setq org-export-with-TeX-macros nil)       ; TeX・LaTeXのコードを解釈しない
 (setq org-export-with-LaTeX-fragments nil)
+
+;; plantuml設定
+(setq org-plantuml-jar-path "~/dotfiles/bin/plantuml.jar") ; plantuml.jar のパス
+(setq org-confirm-babel-evaluate nil)                      ; 実行時の確認を無効化
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '((plantuml . t)))                                        ; plantuml を有効化
+
+(defun my/create-org-img-dir-before-plantuml ()
+  (let* ((dir (expand-file-name (format-time-string "~/org/work/img/%Y/%m"))))
+    (unless (file-directory-p dir)
+      (make-directory dir t))))
+
+(add-hook 'org-babel-before-execute-hook 'my/create-org-img-dir-before-plantuml)
 
 ;; src のハイライト設定
 (setq org-src-fontify-natively t)
