@@ -143,9 +143,9 @@
    ;; org-mode
    `(org-level-1 ((,class (:foreground "lime green" :bold t :height 1.0))))
    `(org-level-2 ((,class (:foreground "orchid1" :bold nil :height 1.0))))
-   `(org-level-3 ((,class (:foreground "yellow" :bold nil :height 1.0))))
-   `(org-level-4 ((,class (:foreground "CornflowerBlue" :bold nil :height 1.0))))
-   `(org-level-5 ((,class (:foreground "orange"))))
+   `(org-level-3 ((,class (:foreground "CornflowerBlue" :bold nil :height 1.0))))
+   `(org-level-4 ((,class (:foreground "orange" :bold nil :height 1.0))))
+   `(org-level-5 ((,class (:foreground "yellow"))))
    `(org-level-7 ((,class (:foreground "purple1"))))
 
    ;; markdown-mode
