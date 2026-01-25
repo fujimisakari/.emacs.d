@@ -6,6 +6,34 @@
 
 ;; ELScreen関連PKG
 (require 'elscreen)
+
+;; スクリーン上限を20に拡張（デフォルト: 10がハードコードされている）
+(defvar elscreen-screen-max 20
+  "Maximum number of screens.")
+
+(defun my/elscreen-create-internal-override (&optional noerror)
+  "Override to use `elscreen-screen-max' instead of hardcoded 10."
+  (cond
+   ((>= (elscreen-get-number-of-screens) elscreen-screen-max)
+    (unless noerror
+      (elscreen-message "No more screens."))
+    nil)
+   (t
+    (let ((screen-list (sort (elscreen-get-screen-list) '<))
+          (screen 0))
+      (elscreen-set-window-configuration
+       (elscreen-get-current-screen)
+       (elscreen-current-window-configuration))
+      (while (eq (nth screen screen-list) screen)
+        (setq screen (+ screen 1)))
+      (elscreen-set-window-configuration
+       screen (elscreen-default-window-configuration))
+      (elscreen-append-screen-to-history screen)
+      (elscreen-notify-screen-modification 'force)
+      (run-hooks 'elscreen-create-hook)
+      screen))))
+(advice-add 'elscreen-create-internal :override #'my/elscreen-create-internal-override)
+
 (elscreen-start)
 
 ;; EmacsでGNU screen風のインターフェイスを使う
@@ -13,7 +41,7 @@
 (if window-system
     (define-key elscreen-map (kbd "C-z") 'iconify-or-deiconify-frame)
   (define-key elscreen-map (kbd "C-z") 'suspend-emacs))
-(setq elscreen-display-tab 12)              ; tabの幅(6以上でないとダメ)
+(setq elscreen-display-tab 10)              ; tabの幅(6以上でないとダメ)
 (setq elscreen-tab-display-kill-screen nil) ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
@@ -28,11 +56,11 @@
 (advice-add 'elscreen-previous :around #'elscreen-create-automatically)
 (advice-add 'elscreen-toggle :around #'elscreen-create-automatically)
 
-;; 起動時に自動で10個スクリーンを立ち上げる
+;; 起動時に自動で13個スクリーンを立ち上げる
 (defun elscreen-create-default-screen ()
   "create default-screen"
   (let ((counter 0))
-    (while (< counter 9)
+    (while (< counter 12)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
