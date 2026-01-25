@@ -7,13 +7,14 @@
 (require 'elixir-mode)
 (require 'flycheck-elixir)
 
-(add-hook 'elixir-mode-hook
-          '(lambda()
-             (common-mode-init)
-             (smartparens-mode)
-             (setq tab-width 2)
-             (setq tab-stop-list (tab-stop-list-creator tab-width))
-             (flycheck-mode)))
+(defun my/elixir-mode-setup ()
+  "Setup for elixir-mode."
+  (common-mode-init)
+  (smartparens-mode)
+  (setq tab-width 2)
+  (setq tab-stop-list (tab-stop-list-creator tab-width))
+  (flycheck-mode))
+(add-hook 'elixir-mode-hook #'my/elixir-mode-setup)
 
 ;; TODO
 ;; code skelton

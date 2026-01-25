@@ -8,18 +8,20 @@
 (require 'open-godoc)
 
 (setq gofmt-command "goimports")
-(add-hook 'before-save-hook 'gofmt-before-save)
-(add-hook 'go-mode-hook
-          (lambda()
-            (setq indent-tabs-mode t)
-            (setq go-test-verbose t)
-            (setq tab-width 4)
-            (setq go-tab-width 4)
-            (setq-local copilot-indent-offset tab-width) ; Copilot workaround
-            (common-mode-init)
-            (company-mode)
-            (flycheck-golangci-lint-setup)
-            (copilot-mode)))
+(add-hook 'before-save-hook #'gofmt-before-save)
+
+(defun my/go-mode-setup ()
+  "Setup for go-mode."
+  (setq indent-tabs-mode t)
+  (setq go-test-verbose t)
+  (setq tab-width 4)
+  (setq go-tab-width 4)
+  (setq-local copilot-indent-offset tab-width) ; Copilot workaround
+  (common-mode-init)
+  (company-mode)
+  (flycheck-golangci-lint-setup)
+  (copilot-mode))
+(add-hook 'go-mode-hook #'my/go-mode-setup)
 
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)

@@ -16,8 +16,10 @@
         (full-ascii . "orchid")
         (half-katakana . "dark goldenrod")))
 
-(add-hook 'input-method-deactivate-hook
-          (lambda() (key-chord-mode 1)))
+(defun my/enable-key-chord-mode ()
+  "Enable key-chord-mode."
+  (key-chord-mode 1))
+(add-hook 'input-method-deactivate-hook #'my/enable-key-chord-mode)
 
 ;; use postframe with mozc
 (require 'mozc-posframe)
@@ -26,11 +28,12 @@
 
 ;; 日本語入力時の候補メニューが表示されない問題の対応
 ;; https://w.atwiki.jp/ntemacs/pages/48.html
-(advice-add 'mozc-protobuf-get
-            :around (lambda (orig-fun &rest args)
-                      (when (eq (nth 1 args) 'candidate-window)
-                        (setf (nth 1 args) 'candidates))
-                      (apply orig-fun args)))
+(defun my/mozc-protobuf-get-fix (orig-fun &rest args)
+  "Fix mozc candidate window display issue."
+  (when (eq (nth 1 args) 'candidate-window)
+    (setf (nth 1 args) 'candidates))
+  (apply orig-fun args))
+(advice-add 'mozc-protobuf-get :around #'my/mozc-protobuf-get-fix)
 
 ;; Mac 固有の設定
 ;; https://www.inabamasaki.com/archives/1898

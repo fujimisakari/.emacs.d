@@ -44,11 +44,11 @@
     (cond ((= arg 0) (message "*scratch* is cleared up."))
           ((= arg 1) (message "another *scratch* is created")))))
 
-(add-hook 'kill-buffer-query-functions
-          ;; *scratch* バッファで kill-buffer したら内容を消去するだけにする
-          (lambda ()
-            (if (string= "*scratch*" (buffer-name))
-                (progn (my-make-scratch 0) nil)
-              t)))
+(defun my/scratch-kill-buffer-query ()
+  "*scratch* バッファで kill-buffer したら内容を消去するだけにする."
+  (if (string= "*scratch*" (buffer-name))
+      (progn (my-make-scratch 0) nil)
+    t))
+(add-hook 'kill-buffer-query-functions #'my/scratch-kill-buffer-query)
 
 ;;; 10-buffer.el ends here

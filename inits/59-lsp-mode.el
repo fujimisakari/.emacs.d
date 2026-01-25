@@ -9,12 +9,13 @@
 (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
 ;; mode
+(defun my/lsp-mode-setup ()
+  "Setup LSP mode."
+  (lsp)
+  (lsp-deferred)
+  (lsp-completion-mode))
 (dolist (v '(go-mode-hook c-mode-hook))
-  (add-hook v
-            '(lambda()
-               (lsp)
-               (lsp-deferred)
-               (lsp-completion-mode))))
+  (add-hook v #'my/lsp-mode-setup))
 
 ;; general
 (setq lsp-session-file (expand-file-name (locate-user-emacs-file "../.lsp-session-v1")))

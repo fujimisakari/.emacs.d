@@ -7,10 +7,11 @@
 (require 'python)
 
 ;; hook
-(add-hook 'python-mode-hook
-          '(lambda ()
-             (common-mode-init)
-             (setq imenu-create-index-function 'python-imenu-create-index)))
+(defun my/python-mode-setup ()
+  "Setup for python-mode."
+  (common-mode-init)
+  (setq imenu-create-index-function 'python-imenu-create-index))
+(add-hook 'python-mode-hook #'my/python-mode-setup)
 
 ;; isort
 (require 'py-isort)

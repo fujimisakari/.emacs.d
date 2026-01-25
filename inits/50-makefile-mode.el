@@ -6,8 +6,10 @@
 
 (add-to-list 'auto-mode-alist '("Makefile$" . makefile-mode))
 
-(add-hook 'makefile-mode-hook '(lambda()
-                                 (common-mode-init)
-                                 (setq indent-tabs-mode t)))
+(defun my/makefile-mode-setup ()
+  "Setup for makefile-mode."
+  (common-mode-init)
+  (setq indent-tabs-mode t))
+(add-hook 'makefile-mode-hook #'my/makefile-mode-setup)
 
 ;;; 50-makefile-mode.el ends here

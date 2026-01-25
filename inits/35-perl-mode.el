@@ -14,11 +14,12 @@
 (setq interpreter-mode-alist
       (cons '("perl" . cperl-mode)
             interpreter-mode-alist))
-(add-hook 'cperl-mode-hook
-          '(lambda()
-             (common-mode-init)
-             (hs-minor-mode)
-             (cperl-set-style "PerlStyle") ;
-             (perlplus-setup)))
+(defun my/cperl-mode-setup ()
+  "Setup for cperl-mode."
+  (common-mode-init)
+  (hs-minor-mode)
+  (cperl-set-style "PerlStyle")
+  (perlplus-setup))
+(add-hook 'cperl-mode-hook #'my/cperl-mode-setup)
 
 ;;; 35-perl-mode.el ends here

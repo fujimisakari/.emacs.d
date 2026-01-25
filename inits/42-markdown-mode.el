@@ -6,10 +6,11 @@
 
 (require 'markdown-mode)
 
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (common-mode-init)
-            (markdown-display-inline-images)))
+(defun my/markdown-mode-setup ()
+  "Setup for markdown-mode."
+  (common-mode-init)
+  (markdown-display-inline-images))
+(add-hook 'markdown-mode-hook #'my/markdown-mode-setup)
 
 (defun markdown-header-list ()
   "Show Markdown Formed Header list through temporary buffer."

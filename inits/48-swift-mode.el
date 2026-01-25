@@ -6,8 +6,9 @@
 
 (require 'swift-mode)
 
-(add-hook 'swift-mode-hook
-          (lambda ()
-            (common-mode-init)))
+(defun my/swift-mode-setup ()
+  "Setup for swift-mode."
+  (common-mode-init))
+(add-hook 'swift-mode-hook #'my/swift-mode-setup)
 
 ;;; 48-swift-mode.el ends here

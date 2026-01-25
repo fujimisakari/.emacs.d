@@ -6,15 +6,16 @@
 
 (require 'php-mode)
 
-(add-hook 'php-mode-hook
-          (lambda()
-            (common-mode-init)
-            ;; (setq tab-width 4)
-            (flymake-mode-off)
-            ;; (flycheck-mode)
-            (setq indent-tabs-mode nil)
-            (setq c-hungry-delete-key nil)
-            (setq ac-sources '(ac-source-php))))
+(defun my/php-mode-setup ()
+  "Setup for php-mode."
+  (common-mode-init)
+  ;; (setq tab-width 4)
+  (flymake-mode-off)
+  ;; (flycheck-mode)
+  (setq indent-tabs-mode nil)
+  (setq c-hungry-delete-key nil)
+  (setq ac-sources '(ac-source-php)))
+(add-hook 'php-mode-hook #'my/php-mode-setup)
 
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 

@@ -9,10 +9,11 @@
 (require 'erlang-start)
 (require 'erlang)
 
-(add-hook 'erlang-mode-hook
-          '(lambda()
-             (common-mode-init)
-             (flycheck-mode)))
+(defun my/erlang-mode-setup ()
+  "Setup for erlang-mode."
+  (common-mode-init)
+  (flycheck-mode))
+(add-hook 'erlang-mode-hook #'my/erlang-mode-setup)
 
 (defun insert-erlang-arrow ()
   (interactive)

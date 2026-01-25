@@ -25,38 +25,40 @@
   (setq jaspace-alternate-eol-string "↓\n") ; 改行記号を表示させる
   (when (boundp 'jaspace-highlight-tabs)
     (setq jaspace-highlight-tabs ?\xBB))
-  (add-hook 'jaspace-mode-off-hook
-            (lambda()
-              (when (boundp 'show-trailing-whitespace)
-                (setq show-trailing-whitespace nil))))
-  (add-hook 'jaspace-mode-hook
-            (lambda()
-              (progn
-                (when (boundp 'show-trailing-whitespace)
-                  (setq show-trailing-whitespace t))
-                (face-spec-set 'jaspace-highlight-jaspace-face
-                               '((((class color) (background light))
-                                  (:foreground "blue"))
-                                 (t (:foreground "green"))))
-                (face-spec-set 'jaspace-highlight-tab-face
-                               '((((class color) (background light))
-                                  (:foreground "red"
-                                   :background "gray7"
-                                   :strike-through nil
-                                   :underline t))
-                                 (t (:foreground "purple"
-                                     :background "gray7"
-                                     :strike-through nil
-                                     :underline t))))
-                (face-spec-set 'trailing-whitespace
-                               '((((class color) (background light))
-                                  (:foreground "red"
-                                   :background "gray7"
-                                   :strike-through nil
-                                   :underline t))
-                                 (t (:foreground "purple"
-                                     :background "gray7"
-                                     :strike-through nil
-                                     :underline t))))))))
+  (defun my/jaspace-mode-off-setup ()
+    "Setup when jaspace-mode is off."
+    (when (boundp 'show-trailing-whitespace)
+      (setq show-trailing-whitespace nil)))
+  (add-hook 'jaspace-mode-off-hook #'my/jaspace-mode-off-setup)
+
+  (defun my/jaspace-mode-setup ()
+    "Setup when jaspace-mode is on."
+    (when (boundp 'show-trailing-whitespace)
+      (setq show-trailing-whitespace t))
+    (face-spec-set 'jaspace-highlight-jaspace-face
+                   '((((class color) (background light))
+                      (:foreground "blue"))
+                     (t (:foreground "green"))))
+    (face-spec-set 'jaspace-highlight-tab-face
+                   '((((class color) (background light))
+                      (:foreground "red"
+                       :background "gray7"
+                       :strike-through nil
+                       :underline t))
+                     (t (:foreground "purple"
+                         :background "gray7"
+                         :strike-through nil
+                         :underline t))))
+    (face-spec-set 'trailing-whitespace
+                   '((((class color) (background light))
+                      (:foreground "red"
+                       :background "gray7"
+                       :strike-through nil
+                       :underline t))
+                     (t (:foreground "purple"
+                         :background "gray7"
+                         :strike-through nil
+                         :underline t)))))
+  (add-hook 'jaspace-mode-hook #'my/jaspace-mode-setup))
 
 ;;; 25-jaspace.el ends here

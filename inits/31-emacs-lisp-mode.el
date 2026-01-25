@@ -4,23 +4,19 @@
 
 ;;; Code:
 
+(defun my/elisp-mode-setup ()
+  "Setup for emacs-lisp and lisp modes."
+  (common-mode-init)
+  (turn-on-eldoc-mode))
+
 ;; emacs-lisp-mode
-(add-hook 'emacs-lisp-mode-hook
-          (lambda ()
-            (common-mode-init)
-            (turn-on-eldoc-mode)))
+(add-hook 'emacs-lisp-mode-hook #'my/elisp-mode-setup)
 
 ;; lisp-interaction-mode-hook
-(add-hook 'lisp-interaction-mode-hook
-          (lambda ()
-            (common-mode-init)
-            (turn-on-eldoc-mode)))
+(add-hook 'lisp-interaction-mode-hook #'my/elisp-mode-setup)
 
 ;; lisp-mode-hook
-(add-hook 'lisp-mode-hook
-          (lambda ()
-            (common-mode-init)
-            (turn-on-eldoc-mode)))
+(add-hook 'lisp-mode-hook #'my/elisp-mode-setup)
 
 ;; 式の評価結果を注釈する
 (require 'lispxmp)

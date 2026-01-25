@@ -18,15 +18,19 @@
 ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
-; org-modeでの強調表示を有効にする
-(add-hook 'org-mode-hook
-          (lambda ()
-            (turn-on-font-lock)
-            (common-mode-init)))
+;; org-modeでの強調表示を有効にする
+(defun my/org-mode-setup ()
+  "Setup for org-mode."
+  (turn-on-font-lock)
+  (common-mode-init))
+(add-hook 'org-mode-hook #'my/org-mode-setup)
 
 ;; インデントマークを拡張
 (require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(defun my/org-bullets-setup ()
+  "Enable org-bullets-mode."
+  (org-bullets-mode 1))
+(add-hook 'org-mode-hook #'my/org-bullets-setup)
 ;; https://unicode.org/emoji/charts/full-emoji-list.html
 (setq org-bullets-bullet-list '("🟢" "🟣" "🔵" "🟠" "🟡"))
 

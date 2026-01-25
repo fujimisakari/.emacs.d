@@ -21,10 +21,10 @@
 
 ;; dired を使って、一気にファイル内を半角カナに変換する
 (require 'dired-aux)
-(add-hook 'dired-mode-hook
-          (lambda ()
-            (define-key (current-local-map) "T"
-              'dired-do-convert-hankaku-katakana)))
+(defun my/dired-setup-hankaku-katakana-key ()
+  "Setup T key for hankaku-katakana conversion in dired."
+  (define-key (current-local-map) "T" #'dired-do-convert-hankaku-katakana))
+(add-hook 'dired-mode-hook #'my/dired-setup-hankaku-katakana-key)
 
 (defun dired-convert-hankaku-katakana ()
   (let ((file (dired-get-filename)) failure)
