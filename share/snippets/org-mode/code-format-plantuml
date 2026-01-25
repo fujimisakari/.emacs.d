@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: code format plantuml
+# key: code-format-plantuml
+# --
+#+BEGIN_SRC plantuml :file `(concat "~/org/work/img/" (format-time-string "%Y/%m") "/plantuml-" (format-time-string "%Y-%m-%d-%H:%M") ".png")`
+@startuml
+@enduml
+#+END_SRC
