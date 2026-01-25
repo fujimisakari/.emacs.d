@@ -54,7 +54,7 @@
 ;; システム関連
 (setq echo-keystrokes 0.1)                                    ; キーストロークをエコーエリアに早く表示させる
 (setq gc-cons-threshold (* 50 gc-cons-threshold))             ; GCを減らして軽くする（デフォルトの50倍）
-(setq x-select-enable-clipboard t)                            ; X11とクリップボードを共有する
+(setq select-enable-clipboard t)                              ; X11とクリップボードを共有する
 (setq use-dialog-box nil)                                     ; ダイアログボックスを使わないようにする
 
 ;; 履歴関連
@@ -93,11 +93,13 @@
 (defmacro with-suppressed-message (&rest body)
   "Suppress new messages temporarily in the echo area and the `*Messages*' buffer while BODY is evaluated."
   (declare (indent 0))
-  (let ((message-log-max nil))
-    `(with-temp-message (or (current-message) "") ,@body)))
+  `(let ((message-log-max nil))
+     (with-temp-message (or (current-message) "") ,@body)))
 
 ;; ネイティブコンパイルで失敗するので無効
-(setq native-comp-deferred-compilation-deny-list '("transient\\.el$"))
+(if (boundp 'native-comp-jit-compilation-deny-list)
+    (setq native-comp-jit-compilation-deny-list '("transient\\.el$"))    ; Emacs 29+
+  (setq native-comp-deferred-compilation-deny-list '("transient\\.el$"))) ; Emacs 28
 
 ;; 最近使ったファイルに加えないファイルを正規表現で定義する
 ;; (setq recentf-exclude '("/TAGS$" "/var/tmp/"))
@@ -111,8 +113,7 @@
 (setq max-lisp-eval-depth 1500)
 
 ;; ファイル内のカーソル位置を記憶する
-(require 'saveplace)
-(setq-default save-place t)
+(save-place-mode 1)
 
 ;; ミニバッファで入力を取り消しても履歴を残す
 (defadvice abort-recursive-edit (before minibuffer-save activate)
