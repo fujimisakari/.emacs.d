@@ -4,17 +4,21 @@
 
 ;;; Code:
 
-(when (require 'slime nil t)
+;; autoload
+(autoload 'slime-mode "slime" nil t)
 
-  (defun my/slime-lisp-mode-setup ()
-    "Setup for lisp-mode with slime."
-    (common-mode-init)
-    (slime-mode t)
-    (setq indent-tabs-mode nil)
-    (unless show-paren-mode
-      (show-paren-mode)))
-  (add-hook 'lisp-mode-hook #'my/slime-lisp-mode-setup)
+;; lisp-mode-hook で slime を読み込む
+(defun my/slime-lisp-mode-setup ()
+  "Setup for lisp-mode with slime."
+  (common-mode-init)
+  (slime-mode t)
+  (setq indent-tabs-mode nil)
+  (unless show-paren-mode
+    (show-paren-mode)))
+(add-hook 'lisp-mode-hook #'my/slime-lisp-mode-setup)
 
+;; slime 読み込み後の設定
+(with-eval-after-load 'slime
   (defun my/inferior-slime-setup ()
     "Setup for inferior-lisp-mode."
     (inferior-slime-mode t))

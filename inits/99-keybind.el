@@ -151,9 +151,10 @@
 ;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
 ;; (bind-key "M-h" 'paredit-forward-barf-sexp slime-mode-map)
 ;; (bind-key "M-9" 'paredit-wrap-round slime-mode-map)
-(bind-key "C-c 1" 'common-lisp-hyperspec slime-mode-map)
-(bind-key "C-c 2" 'common-lisp-hyperspec-lookup-reader-macro slime-mode-map)
-(bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map)
+(with-eval-after-load 'slime
+  (bind-key "C-c 1" 'common-lisp-hyperspec slime-mode-map)
+  (bind-key "C-c 2" 'common-lisp-hyperspec-lookup-reader-macro slime-mode-map)
+  (bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map))
 
 ;; cc-mode
 (bind-key "\177" 'indent-dedent-line-backspace c-mode-base-map)
