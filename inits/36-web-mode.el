@@ -34,3 +34,5 @@
   (setq require-final-newline nil)
   (common-mode-init))
 (add-hook 'web-mode-hook 'web-mode-hook)
+
+;;; 36-web-mode.el ends here

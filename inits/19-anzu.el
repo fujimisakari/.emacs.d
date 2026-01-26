@@ -13,4 +13,4 @@
  '(anzu-search-threshold 1000)
  '(anzu-replace-to-string-separator " => "))
 
-;;; 19-anzu.el ends her
+;;; 19-anzu.el ends here
