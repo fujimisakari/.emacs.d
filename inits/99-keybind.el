@@ -145,8 +145,9 @@
 (bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
 
 ;; objc-mode
-(bind-key "C-c f" 'clang-format-region objc-mode-map)
-(bind-key "C-c ;" 'open-header-and-method-file objc-mode-map)
+(with-eval-after-load 'cc-mode
+  (bind-key "C-c f" 'clang-format-region objc-mode-map)
+  (bind-key "C-c ;" 'open-header-and-method-file objc-mode-map))
 
 ;; slime-mode
 ;; (bind-key "M-l" 'paredit-forward-slurp-sexp slime-mode-map)
@@ -158,9 +159,10 @@
   (bind-key "C-c 3" 'common-lisp-hyperspec-format slime-mode-map))
 
 ;; cc-mode
-(bind-key "\177" 'indent-dedent-line-backspace c-mode-base-map)
-(bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
-(bind-key "C-c C-c" 'open-header-and-source-file c-mode-base-map)
+(with-eval-after-load 'cc-mode
+  (bind-key "\177" 'indent-dedent-line-backspace c-mode-base-map)
+  (bind-key "C-c '" 'ff-find-other-file c-mode-base-map)
+  (bind-key "C-c C-c" 'open-header-and-source-file c-mode-base-map))
 
 ;; go-mode
 (bind-key "C-c e" 'go-errcheck go-mode-map)
@@ -218,13 +220,14 @@
 (bind-key "k" 'elscreen-kill-screen-and-buffers elscreen-map)
 
 ;; org-mode
-(bind-key "C-'" nil org-mode-map)
-(bind-key "C-," nil org-mode-map)
-(bind-key "C-c C-t" 'my/convert-text-to-org-table org-mode-map) ; テーブルへフォーマット変換
-(bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)       ; カレントのサブツリーを1階層上げる
-(bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)       ; カレントのサブツリーを1階層下げる
-(bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)         ; サブツリーを上に移動する
-(bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map)     ; サブツリーを下に移動する
+(with-eval-after-load 'org
+  (bind-key "C-'" nil org-mode-map)
+  (bind-key "C-," nil org-mode-map)
+  (bind-key "C-c C-t" 'my/convert-text-to-org-table org-mode-map) ; テーブルへフォーマット変換
+  (bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)       ; カレントのサブツリーを1階層上げる
+  (bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)       ; カレントのサブツリーを1階層下げる
+  (bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)         ; サブツリーを上に移動する
+  (bind-key "M-S-<down>" 'org-move-subtree-down org-mode-map))    ; サブツリーを下に移動する
 
 ;; dired-mode
 (bind-key "C-f" 'dired-open-in-accordance-with-situation dired-mode-map) ; ディレクトリ, ファイルを展開

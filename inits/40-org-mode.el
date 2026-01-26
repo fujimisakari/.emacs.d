@@ -4,16 +4,8 @@
 
 ;;; Code:
 
-(require 'org)
-
-;; 基本設定
-(setq org-startup-folded t)                    ; 見出しの初期状態（fold）
-(setq org-startup-indented t)                  ; インデントをつける
-(setq org-startup-truncated nil)               ; org-mode開始時は折り返しするよう設定
-(setq org-startup-with-inline-images t)        ; 画像をインライン表示
-(setq org-indent-mode-turns-on-hiding-stars t) ; 見出しインデントのアスタリスクを減らす
-(setq org-return-follows-link t)               ; リンクはRETで開く
-(setq org-image-actual-width 1100)             ; 画像のデフォルト幅を指定
+;; autoload
+(autoload 'org-mode "org" nil t)
 
 ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
@@ -26,29 +18,45 @@
 (add-hook 'org-mode-hook #'my/org-mode-setup)
 
 ;; インデントマークを拡張
-(require 'org-bullets)
+(autoload 'org-bullets-mode "org-bullets" nil t)
 (defun my/org-bullets-setup ()
   "Enable org-bullets-mode."
   (org-bullets-mode 1))
 (add-hook 'org-mode-hook #'my/org-bullets-setup)
-;; https://unicode.org/emoji/charts/full-emoji-list.html
-(setq org-bullets-bullet-list '("🟢" "🟣" "🔵" "🟠" "🟡"))
 
-;; エクスポート処理
-(setq org-export-default-language "ja")     ; 言語は日本語
-(setq org-export-html-coding-system 'utf-8) ; 文字コードはUTF-8
-(setq org-export-with-fixed-width nil)      ; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
-(setq org-export-with-sub-superscripts nil) ; ^と_を解釈しない
-(setq org-export-with-special-strings nil)  ; --や---をそのまま出力する
-(setq org-export-with-TeX-macros nil)       ; TeX・LaTeXのコードを解釈しない
-(setq org-export-with-LaTeX-fragments nil)
+;; org 読み込み後の設定
+(with-eval-after-load 'org
+  ;; 基本設定
+  (setq org-startup-folded t)                    ; 見出しの初期状態（fold）
+  (setq org-startup-indented t)                  ; インデントをつける
+  (setq org-startup-truncated nil)               ; org-mode開始時は折り返しするよう設定
+  (setq org-startup-with-inline-images t)        ; 画像をインライン表示
+  (setq org-indent-mode-turns-on-hiding-stars t) ; 見出しインデントのアスタリスクを減らす
+  (setq org-return-follows-link t)               ; リンクはRETで開く
+  (setq org-image-actual-width 1100)             ; 画像のデフォルト幅を指定
 
-;; plantuml設定
-(setq org-plantuml-jar-path "~/dotfiles/bin/plantuml.jar") ; plantuml.jar のパス
-(setq org-confirm-babel-evaluate nil)                      ; 実行時の確認を無効化
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((plantuml . t)))                                        ; plantuml を有効化
+  ;; エクスポート処理
+  (setq org-export-default-language "ja")     ; 言語は日本語
+  (setq org-export-html-coding-system 'utf-8) ; 文字コードはUTF-8
+  (setq org-export-with-fixed-width nil)      ; 行頭の:は使わない BEGIN_EXAMPLE 〜 END_EXAMPLE で十分
+  (setq org-export-with-sub-superscripts nil) ; ^と_を解釈しない
+  (setq org-export-with-special-strings nil)  ; --や---をそのまま出力する
+  (setq org-export-with-TeX-macros nil)       ; TeX・LaTeXのコードを解釈しない
+  (setq org-export-with-LaTeX-fragments nil)
+
+  ;; plantuml設定
+  (setq org-plantuml-jar-path "~/dotfiles/bin/plantuml.jar") ; plantuml.jar のパス
+  (setq org-confirm-babel-evaluate nil)                      ; 実行時の確認を無効化
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((plantuml . t)))                                        ; plantuml を有効化
+
+  ;; src のハイライト設定
+  (setq org-src-fontify-natively t)
+
+  (custom-set-faces
+   '(org-block-begin-line ((t (:foreground "gray30" :background "gray3" :slant italic))))
+   '(org-block-end-line ((t (:foreground "gray30" :background "gray3" :slant italic))))))
 
 (defun my/create-org-img-dir-before-plantuml ()
   (let* ((dir (expand-file-name (format-time-string "~/org/work/img/%Y/%m"))))
@@ -57,12 +65,10 @@
 
 (add-hook 'org-babel-before-execute-hook 'my/create-org-img-dir-before-plantuml)
 
-;; src のハイライト設定
-(setq org-src-fontify-natively t)
-
-(custom-set-faces
- '(org-block-begin-line ((t (:foreground "gray30" :background "gray3" :slant italic))))
- '(org-block-end-line ((t (:foreground "gray30" :background "gray3" :slant italic)))))
+;; org-bullets 読み込み後の設定
+;; https://unicode.org/emoji/charts/full-emoji-list.html
+(with-eval-after-load 'org-bullets
+  (setq org-bullets-bullet-list '("🟢" "🟣" "🔵" "🟠" "🟡")))
 
 ;; 画像貼り付け
 ;; https://chatgpt.com/share/0ca4b7b0-ecc6-41c3-9454-9588aefba8e4
