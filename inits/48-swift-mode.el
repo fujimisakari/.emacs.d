@@ -6,7 +6,7 @@
 
 ;; autoload
 (autoload 'swift-mode "swift-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.swift\\'" . swift-mode))
+(add-to-list 'auto-mode-alist '("\\.swift$" . swift-mode))
 
 (defun my/swift-mode-setup ()
   "Setup for swift-mode."

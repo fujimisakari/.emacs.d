@@ -6,7 +6,7 @@
 
 ;; autoload
 (autoload 'elixir-mode "elixir-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.exs?\\'" . elixir-mode))
+(add-to-list 'auto-mode-alist '("\\.exs?$" . elixir-mode))
 
 (with-eval-after-load 'elixir-mode
   (require 'flycheck-elixir))

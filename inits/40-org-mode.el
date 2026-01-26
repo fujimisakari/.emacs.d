@@ -8,7 +8,7 @@
 (autoload 'org-mode "org" nil t)
 
 ; 拡張子がorgのファイルを開いた場合、自動的にorg-modeにする
-(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 ;; org-modeでの強調表示を有効にする
 (defun my/org-mode-setup ()

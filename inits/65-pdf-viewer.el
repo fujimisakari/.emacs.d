@@ -6,7 +6,7 @@
 
 ;; PDF ファイルを開いた時に pdf-tools を読み込む
 (autoload 'pdf-view-mode "pdf-tools" "View PDF files." t)
-(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
+(add-to-list 'auto-mode-alist '("\\.pdf$" . pdf-view-mode))
 
 (with-eval-after-load 'pdf-tools
   (when (eq my-os-type 'mac)

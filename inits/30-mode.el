@@ -12,7 +12,7 @@
 (setq diff-switches "-u")
 
 ;; --- shell-script-mode ---
-(add-to-list 'auto-mode-alist '("\\.zsh\\'" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("\\.zsh$" . shell-script-mode))
 (setq sh-basic-offset 2)
 (setq sh-indentation 2)
 
@@ -24,7 +24,7 @@
   (add-to-list 'auto-mode-alist '("/nginx/sites-\\(?:available\\|enabled\\)/" . nginx-mode)))
 
 ;; --- graphql-mode ---
-(add-to-list 'auto-mode-alist '("\\.graphqls\\'" . graphql-mode))
+(add-to-list 'auto-mode-alist '("\\.graphqls$" . graphql-mode))
 
 ;; タブインデント単位で削除できるようにする
 (defun indent-dedent-line-p ()

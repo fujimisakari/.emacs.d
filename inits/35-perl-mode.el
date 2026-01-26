@@ -7,9 +7,9 @@
 ;; perl-modeではなくcperl-modeを読み込むようにする
 (defalias 'perl-mode 'cperl-mode)
 ;; perl設定の拡張子はcperl-modeで開く
-(add-to-list 'auto-mode-alist '("\\.cgi\\'" . cperl-mode))
-(add-to-list 'auto-mode-alist '("\\.pm\\'" . cperl-mode))
-(add-to-list 'auto-mode-alist '("\\.pl\\'" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.cgi$" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.pm$" . cperl-mode))
+(add-to-list 'auto-mode-alist '("\\.pl$" . cperl-mode))
 ;; スクリプトファイルの#!を解釈したモードで開く
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
 (defun my/cperl-mode-setup ()

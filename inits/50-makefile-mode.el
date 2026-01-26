@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(add-to-list 'auto-mode-alist '("Makefile\\'" . makefile-mode))
+(add-to-list 'auto-mode-alist '("Makefile$" . makefile-mode))
 
 (defun my/makefile-mode-setup ()
   "Setup for makefile-mode."

@@ -6,9 +6,9 @@
 
 ;; autoload
 (autoload 'plantuml-mode "plantuml-mode" nil t)
-(add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
-(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
-(add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
+(add-to-list 'auto-mode-alist '("\\.pu$" . plantuml-mode))
+(add-to-list 'auto-mode-alist '("\\.puml$" . plantuml-mode))
+(add-to-list 'auto-mode-alist '("\\.plantuml$" . plantuml-mode))
 
 ;; 日本語を含むUMLを書く場合はUTF-8を指定
 (with-eval-after-load 'plantuml-mode

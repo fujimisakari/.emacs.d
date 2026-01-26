@@ -7,7 +7,7 @@
 ;; autoload
 (autoload 'go-mode "go-mode" nil t)
 (autoload 'open-godoc "open-godoc" nil t)
-(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
+(add-to-list 'auto-mode-alist '("\\.go$" . go-mode))
 
 (defun my/go-mode-setup ()
   "Setup for go-mode."
