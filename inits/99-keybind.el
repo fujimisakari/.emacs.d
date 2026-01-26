@@ -258,12 +258,13 @@
   (bind-key "RET" 'lsp-ui-peek--goto-xref-custom-other-window lsp-ui-peek-mode-map))
 
 ;; company-mode
-(bind-key "C-n" 'company-select-next company-active-map)
-(bind-key "C-p" 'company-select-previous company-active-map)
-(bind-key "C-s" 'company-filter-candidates company-active-map)
-(bind-key "C-l" 'company-show-doc-buffer company-active-map)
-(bind-key "C-n" 'company-select-next company-search-map)
-(bind-key "C-p" 'company-select-previous company-search-map)
+(with-eval-after-load 'company
+  (bind-key "C-n" 'company-select-next company-active-map)
+  (bind-key "C-p" 'company-select-previous company-active-map)
+  (bind-key "C-s" 'company-filter-candidates company-active-map)
+  (bind-key "C-l" 'company-show-doc-buffer company-active-map)
+  (bind-key "C-n" 'company-select-next company-search-map)
+  (bind-key "C-p" 'company-select-previous company-search-map))
 
 ;; mozc-mode
 ;; (bind-key "," '(lambda () (interactive) (mozc-insert-str "、")) mozc-mode-map)
