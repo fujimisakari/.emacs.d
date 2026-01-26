@@ -211,14 +211,15 @@
   (bind-key "\177" 'indent-dedent-line-backspace web-mode-map))
 
 ;; markdown-mode
-(bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)    ; markdown-headerの一覧表示
-(bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map) ; プレビュー表示
-(bind-key "C-c C-e" 'mermaid-compile markdown-mode-map)
-(bind-key "C-c C-l" 'markdown-table-insert-column markdown-mode-map)
-(bind-key "C-c <f12>" 'markdown-table-insert-row markdown-mode-map)
-(bind-key "C-c C-k" 'markdown-table-delete-row markdown-mode-map)
-(bind-key "C-c C-M-k" 'markdown-table-delete-column markdown-mode-map)
-(unbind-key "RET" markdown-mode-map)
+(with-eval-after-load 'markdown-mode
+  (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)    ; markdown-headerの一覧表示
+  (bind-key "C-c C-c" 'markdown-preview-by-eww markdown-mode-map) ; プレビュー表示
+  (bind-key "C-c C-e" 'mermaid-compile markdown-mode-map)
+  (bind-key "C-c C-l" 'markdown-table-insert-column markdown-mode-map)
+  (bind-key "C-c <f12>" 'markdown-table-insert-row markdown-mode-map)
+  (bind-key "C-c C-k" 'markdown-table-delete-row markdown-mode-map)
+  (bind-key "C-c C-M-k" 'markdown-table-delete-column markdown-mode-map)
+  (unbind-key "RET" markdown-mode-map))
 
 ;; ELScreen固有のキーバインド
 (bind-key "c" 'elscreen-create elscreen-map)
