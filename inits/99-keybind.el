@@ -129,8 +129,9 @@
 (bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
 
 ;; magit-revision-mode
-(bind-key "C-c C-p" 'my/magit-show-next-commit magit-revision-mode-map)
-(bind-key "C-c C-n" 'my/magit-show-previous-commit magit-revision-mode-map)
+(with-eval-after-load 'magit
+  (bind-key "C-c C-p" 'my/magit-show-next-commit magit-revision-mode-map)
+  (bind-key "C-c C-n" 'my/magit-show-previous-commit magit-revision-mode-map))
 
 ;; emacs-lisp-mode
 (bind-key "C-c <f12>" 'my-dumb-jump-go emacs-lisp-mode-map)    ; jump to reference
