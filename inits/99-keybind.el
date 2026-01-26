@@ -166,16 +166,17 @@
   (bind-key "C-c C-c" 'open-header-and-source-file c-mode-base-map))
 
 ;; go-mode
-(bind-key "C-c e" 'go-errcheck go-mode-map)
-(bind-key "C-c t" 'go-toggle-to-test-file go-mode-map)
-(bind-key "C-c d" 'open-godoc go-mode-map)
-(bind-key "C-c x" 'go-test-current-file go-mode-map)
-(bind-key "C-c C-x" 'go-test-current-test go-mode-map)
-(bind-key "C-c C-c" 'go-expr-completion go-mode-map)
-(bind-key "C-c C-t" 'go-open-with-test-file go-mode-map)
-(bind-key "C-c C-f" 'gofmt go-mode-map)
-(bind-key "C-c C-d" 'godoc-popup go-mode-map)
-(bind-key "C-c C-r" 'go-remove-unused-imports go-mode-map)
+(with-eval-after-load 'go-mode
+  (bind-key "C-c e" 'go-errcheck go-mode-map)
+  (bind-key "C-c t" 'go-toggle-to-test-file go-mode-map)
+  (bind-key "C-c d" 'open-godoc go-mode-map)
+  (bind-key "C-c x" 'go-test-current-file go-mode-map)
+  (bind-key "C-c C-x" 'go-test-current-test go-mode-map)
+  (bind-key "C-c C-c" 'go-expr-completion go-mode-map)
+  (bind-key "C-c C-t" 'go-open-with-test-file go-mode-map)
+  (bind-key "C-c C-f" 'gofmt go-mode-map)
+  (bind-key "C-c C-d" 'godoc-popup go-mode-map)
+  (bind-key "C-c C-r" 'go-remove-unused-imports go-mode-map))
 
 ;; php-mode
 (with-eval-after-load 'php-mode

@@ -4,11 +4,10 @@
 
 ;;; Code:
 
-(require 'go-mode)
-(require 'open-godoc)
-
-(setq gofmt-command "goimports")
-(add-hook 'before-save-hook #'gofmt-before-save)
+;; autoload
+(autoload 'go-mode "go-mode" nil t)
+(autoload 'open-godoc "open-godoc" nil t)
+(add-to-list 'auto-mode-alist '("\\.go\\'" . go-mode))
 
 (defun my/go-mode-setup ()
   "Setup for go-mode."
@@ -22,6 +21,10 @@
   (flycheck-golangci-lint-setup)
   (copilot-mode))
 (add-hook 'go-mode-hook #'my/go-mode-setup)
+
+(with-eval-after-load 'go-mode
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook #'gofmt-before-save))
 
 ;; Change godoc buffer name
 (defun godoc--get-buffer (query)
