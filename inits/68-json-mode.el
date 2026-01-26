@@ -4,7 +4,8 @@
 
 ;;; Code:
 
-(require 'json-mode)
+(autoload 'json-mode "json-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 
 (defun json-jq-format (beg end)
   (interactive "r")
