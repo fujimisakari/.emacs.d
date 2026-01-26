@@ -12,17 +12,18 @@
 ;; エスケープシーケンスによる色が付くようにする
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 ;; M-!, M-l, M-&, M-x grepなどでsudoコマンドが使えるようにする
-(require 'sudo-ext)
+(autoload 'sudo "sudo-ext" nil t)
+(autoload 'sudo-find-file "sudo-ext" nil t)
 ;; ;; Emacs内のシェルコマンドを実行履歴に保存する
 ;; (require 'shell-history)  ← これを読み込むとscratchでundoが使えなくなるので注意
 ;; パスワードのプロンプトを認識し，入力時はミニバッファで伏せ字にする
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
-;; tramp設定
-(require 'tramp)
-(setq tramp-default-method "ssh")
-(add-to-list 'tramp-default-proxies-alist '("\\." "\\`root\\'" "/ssh:%h:"))
-(setq tramp-shell-prompt-pattern "^.*[#$%>] *")
+;; tramp設定（リモートファイルを開いた時に遅延読み込み）
+(with-eval-after-load 'tramp
+  (setq tramp-default-method "ssh")
+  (add-to-list 'tramp-default-proxies-alist '("\\." "\\`root\\'" "/ssh:%h:"))
+  (setq tramp-shell-prompt-pattern "^.*[#$%>] *"))
 
 (defun current-directory-to-terminal ()
   (let* (current-dir
