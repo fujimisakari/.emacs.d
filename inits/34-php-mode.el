@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(require 'php-mode)
+(autoload 'php-mode "php-mode" nil t)
 
 (defun my/php-mode-setup ()
   "Setup for php-mode."

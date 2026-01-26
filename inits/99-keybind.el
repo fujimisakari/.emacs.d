@@ -173,14 +173,15 @@
 (bind-key "C-c C-r" 'go-remove-unused-imports go-mode-map)
 
 ;; php-mode
-(bind-key "\177" 'indent-dedent-line-backspace php-mode-map)
-(bind-key "C-." 'redo php-mode-map)
-(bind-key "C-c d" 'php-search-documentation php-mode-map)
-(bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
-(bind-key "C-c p s" 'insert-php-script-tag php-mode-map)
-(bind-key "C-c p v" 'insert-php-short-tag php-mode-map)
-(bind-key "C-l ." 'insert-php-arrow-for-instance php-mode-map)
-(bind-key "C-l C-." 'insert-php-arrow-for-array php-mode-map)
+(with-eval-after-load 'php-mode
+  (bind-key "\177" 'indent-dedent-line-backspace php-mode-map)
+  (bind-key "C-." 'redo php-mode-map)
+  (bind-key "C-c d" 'php-search-documentation php-mode-map)
+  (bind-key "C-c '" 'web-php-mode-toggle php-mode-map)
+  (bind-key "C-c p s" 'insert-php-script-tag php-mode-map)
+  (bind-key "C-c p v" 'insert-php-short-tag php-mode-map)
+  (bind-key "C-l ." 'insert-php-arrow-for-instance php-mode-map)
+  (bind-key "C-l C-." 'insert-php-arrow-for-array php-mode-map))
 
 ;; erlang-mode
 (bind-key "\177" 'indent-dedent-line-backspace erlang-mode-map)
