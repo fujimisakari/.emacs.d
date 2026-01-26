@@ -4,17 +4,18 @@
 
 ;;; Code:
 
-(require 'plantuml-mode)
-
+;; autoload
+(autoload 'plantuml-mode "plantuml-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.pu\\'" . plantuml-mode))
 (add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
 (add-to-list 'auto-mode-alist '("\\.plantuml\\'" . plantuml-mode))
 
 ;; 日本語を含むUMLを書く場合はUTF-8を指定
-(setq plantuml-output-type "png")
-(setq plantuml-default-exec-mode 'executable)
-(setq plantuml-executable-path "plantuml")
-(setq plantuml-executable-args (append plantuml-executable-args '("-charset" "UTF-8")))
+(with-eval-after-load 'plantuml-mode
+  (setq plantuml-output-type "png")
+  (setq plantuml-default-exec-mode 'executable)
+  (setq plantuml-executable-path "plantuml")
+  (setq plantuml-executable-args (append plantuml-executable-args '("-charset" "UTF-8"))))
 
 ;; Open a plantuml file and a png file side by side
 (defun plantuml-open-with-png-file ()

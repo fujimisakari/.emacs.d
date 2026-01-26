@@ -274,7 +274,8 @@
 (bind-key "C-h" 'delete-backward-char mozc-mode-map)
 
 ;; puml-mode
-(bind-key "C-c C-t" 'plantuml-open-with-png-file plantuml-mode-map)
+(with-eval-after-load 'plantuml-mode
+  (bind-key "C-c C-t" 'plantuml-open-with-png-file plantuml-mode-map))
 
 ;; view-mode
 (require 'view)
