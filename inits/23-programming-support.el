@@ -9,10 +9,9 @@
 (autoload 'quickrun-region "quickrun" nil t)
 
 ;; リジョン選択をgithubで開く
-(require 'open-github-from-here)
+(autoload 'open-github-from-here "open-github-from-here" nil t)
 
 ;; git blameからPRを開く
-(require 'vc-annotate)
 (setq vc-annotate-background-mode nil)
 (defun open-pr-at-line ()
   (interactive)
@@ -21,7 +20,9 @@
     (shell-command (concat "open-pr-from-commit " rev))))
 
 ;; 更新履歴を可視化する
-(require 'smeargle)
+(autoload 'smeargle "smeargle" nil t)
+(autoload 'smeargle-commits "smeargle" nil t)
+(autoload 'smeargle-clear "smeargle" nil t)
 
 ;; 関数定義開始などで目印をつけた場合は画面最上部にもっていく
 ;; 正規表現とメジャーモードを指定する
@@ -46,8 +47,14 @@
     (recenter 0)))
 (advice-add 'bm-goto :after #'my/bm-goto-recenter-top)
 
-(require 'highlight-symbol)
-(setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue"))
+(autoload 'highlight-symbol "highlight-symbol" nil t)
+(autoload 'highlight-symbol-remove-all "highlight-symbol" nil t)
+(autoload 'highlight-symbol-add-symbol "highlight-symbol" nil t)
+(autoload 'highlight-symbol-remove-symbol "highlight-symbol" nil t)
+(autoload 'highlight-symbol-symbol-highlighted-p "highlight-symbol" nil t)
+(autoload 'highlight-symbol-count "highlight-symbol" nil t)
+(with-eval-after-load 'highlight-symbol
+  (setq highlight-symbol-colors '("LightSeaGreen" "HotPink" "SlateBlue1" "DarkOrange" "SpringGreen1" "tan" "DodgerBlue")))
 
 ;; highlight-symbol-at-point時にfont-lockが狂うので対策
 ;; あとphp-modeの変数が(thing-at-point 'symbol)だとハイライトできないので 'sexpに変更
@@ -75,10 +82,11 @@
         (highlight-symbol-count symbol t)))))
 
 ;; 縦のインデント表記
-(require 'highlight-indent-guides)
-(setq highlight-indent-guides-method 'bitmap)
-(setq highlight-indent-guides-auto-enabled nil)
-(setq highlight-indent-guides-responsive t)
+(autoload 'highlight-indent-guides-mode "highlight-indent-guides" nil t)
+(with-eval-after-load 'highlight-indent-guides
+  (setq highlight-indent-guides-method 'bitmap)
+  (setq highlight-indent-guides-auto-enabled nil)
+  (setq highlight-indent-guides-responsive t))
 (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
 (add-hook 'yaml-mode-hook #'highlight-indent-guides-mode)
 

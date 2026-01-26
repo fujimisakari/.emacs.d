@@ -126,7 +126,8 @@
 (bind-key "C-l g r" 'magit-rebase-branch)                    ; git rebase
 
 ;; vc-annotate-mode
-(bind-key "P" 'open-pr-at-line vc-annotate-mode-map)         ; PRを開く
+(with-eval-after-load 'vc-annotate
+  (bind-key "P" 'open-pr-at-line vc-annotate-mode-map))      ; PRを開く
 
 ;; magit-revision-mode
 (with-eval-after-load 'magit
