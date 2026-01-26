@@ -8,21 +8,26 @@
 (setq next-screen-context-lines 1) ; C-v/M-vで前のページの１行を残す
 
 ;; コマンドのガイド表示
-(require 'which-key)
-(which-key-mode)
-(which-key-setup-side-window-right-bottom)
+(autoload 'which-key-mode "which-key" nil t)
+(defun my/which-key-setup ()
+  "Setup which-key after idle."
+  (which-key-mode)
+  (which-key-setup-side-window-right-bottom))
+(run-with-idle-timer 1 nil #'my/which-key-setup)
 
 ;; 範囲の可視化する
-(require 'smartparens-config)
-(ad-disable-advice 'delete-backward-char 'before 'sp-delete-pair-advice)
-(ad-activate 'delete-backward-char)
+(defun my/smartparens-setup ()
+  "Setup smartparens after idle."
+  (require 'smartparens-config)
+  (ad-disable-advice 'delete-backward-char 'before 'sp-delete-pair-advice)
+  (ad-activate 'delete-backward-char))
+(run-with-idle-timer 1 nil #'my/smartparens-setup)
 
 ;; リジョン選択拡張
-(require 'expand-region)
+(autoload 'er/expand-region "expand-region" nil t)
 
 ;; 未来へやり直しできるようにる(redo)
-;; (install-elisp "http://www.emacswiki.org/emacs/download/redo+.el")
-(require 'redo+)
+(autoload 'redo "redo+" nil t)
 ;; 過去のundoがredoされないようにする
 (setq undo-no-redo t)
 ;; 大量のundoに 耐えられるようにする
@@ -113,8 +118,8 @@
 (add-hook 'find-file-hooks 'my-mark-eob)
 
 ;; undoやyank, kill-regionなどで挿入されたテキストを強調表示する
-(require 'volatile-highlights)
-(volatile-highlights-mode t)
+(autoload 'volatile-highlights-mode "volatile-highlights" nil t)
+(run-with-idle-timer 1 nil #'volatile-highlights-mode)
 
 ;; 対応する括弧に飛ぶ
 (defun close-paren-at-point-p ()
