@@ -4,8 +4,12 @@
 
 ;;; Code:
 
-(require 'elixir-mode)
-(require 'flycheck-elixir)
+;; autoload
+(autoload 'elixir-mode "elixir-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.exs?\\'" . elixir-mode))
+
+(with-eval-after-load 'elixir-mode
+  (require 'flycheck-elixir))
 
 (defun my/elixir-mode-setup ()
   "Setup for elixir-mode."

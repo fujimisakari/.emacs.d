@@ -196,10 +196,11 @@
   (bind-key "C-l ." 'insert-erlang-arrow erlang-mode-map))
 
 ;; elixir-mode
-(bind-key "\177" 'indent-dedent-line-backspace elixir-mode-map)
-(bind-key "C-l ." 'insert-elixir-patern-match-arrow elixir-mode-map)
-(bind-key "C-l C-." 'insert-elixir-map-arrow elixir-mode-map)
-(bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map)
+(with-eval-after-load 'elixir-mode
+  (bind-key "\177" 'indent-dedent-line-backspace elixir-mode-map)
+  (bind-key "C-l ." 'insert-elixir-patern-match-arrow elixir-mode-map)
+  (bind-key "C-l C-." 'insert-elixir-map-arrow elixir-mode-map)
+  (bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map))
 
 ;; web-mode
 (with-eval-after-load 'web-mode
