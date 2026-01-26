@@ -4,15 +4,15 @@
 
 ;;; Code:
 
-(require 'pdf-tools)
+;; PDF ファイルを開いた時に pdf-tools を読み込む
+(autoload 'pdf-view-mode "pdf-tools" "View PDF files." t)
+(add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode))
 
-(if (eq my-os-type 'mac)
+(with-eval-after-load 'pdf-tools
+  (when (eq my-os-type 'mac)
     (setenv "PKG_CONFIG_PATH" "/usr/local/opt/libffi/lib/pkgconfig"))
-(pdf-tools-install t)
+  (pdf-tools-install t))
 
-(defun my/disable-line-numbers-for-pdf-view ()
-  (display-line-numbers-mode -1))
-
-(add-hook 'pdf-view-mode-hook #'my/disable-line-numbers-for-pdf-view)
+(add-hook 'pdf-view-mode-hook (lambda () (display-line-numbers-mode -1)))
 
 ;;; 65-pdf-viewer.el ends here
