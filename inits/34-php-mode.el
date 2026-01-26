@@ -18,7 +18,7 @@
   (setq ac-sources '(ac-source-php)))
 (add-hook 'php-mode-hook #'my/php-mode-setup)
 
-(add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
 (defun web-php-mode-toggle ()
   (interactive)
