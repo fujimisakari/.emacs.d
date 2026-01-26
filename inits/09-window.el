@@ -11,6 +11,7 @@
   (other-window 1))
 
 ;; 画面分割時にいい感じの比率にしてくれる
+;; autoload
 (autoload 'golden-ratio-mode "golden-ratio" nil t)
 (defun my/golden-ratio-setup ()
   "Setup golden-ratio-mode after idle."

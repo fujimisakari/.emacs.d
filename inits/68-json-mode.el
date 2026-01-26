@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; autoload
 (autoload 'json-mode "json-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.json\\'" . json-mode))
 

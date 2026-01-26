@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; autoload
 (autoload 'mermaid-mode "mermaid-mode" nil t)
 (autoload 'mermaid-compile "mermaid-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.mmd\\'" . mermaid-mode))

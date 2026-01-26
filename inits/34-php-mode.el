@@ -4,6 +4,7 @@
 
 ;;; Code:
 
+;; autoload
 (autoload 'php-mode "php-mode" nil t)
 
 (defun my/php-mode-setup ()

@@ -8,6 +8,7 @@
 (setq next-screen-context-lines 1) ; C-v/M-vで前のページの１行を残す
 
 ;; コマンドのガイド表示
+;; autoload
 (autoload 'which-key-mode "which-key" nil t)
 (defun my/which-key-setup ()
   "Setup which-key after idle."

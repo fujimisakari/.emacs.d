@@ -5,6 +5,7 @@
 ;;; Code:
 
 ;; 使い捨てファイルを設定
+;; autoload
 (autoload 'open-junk-file "open-junk-file" nil t)
 (with-eval-after-load 'open-junk-file
   (setq open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S."))
