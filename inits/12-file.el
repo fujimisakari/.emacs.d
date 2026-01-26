@@ -5,19 +5,21 @@
 ;;; Code:
 
 ;; 使い捨てファイルを設定
-(when (require 'open-junk-file)
-;; ファイル名入力時に ~/junk/年-月-日-時分秒. が出てくる
-(setq open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S."))
+(autoload 'open-junk-file "open-junk-file" nil t)
+(with-eval-after-load 'open-junk-file
+  (setq open-junk-file-format "~/junk/%Y-%m-%d-%H%M%S."))
 
 ;; ファイル名がかぶった時、バッファ名をわかりやすくする
-(require 'uniquify)
 ;; filename<dir> 形式のバッファ名にする
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
 ;; * で囲まれたバッファ名は対象外とする
 (setq uniquify-ignore-bufers-re "*[^*]+*")
 
-;; 現在位置(カーソル)のファイル・URLを開く
-(ffap-bindings)
+;; 現在位置(カーソル)のファイル・URLを開く（アイドル時に設定）
+(defun my/ffap-setup ()
+  "Setup ffap bindings after idle."
+  (ffap-bindings))
+(run-with-idle-timer 1 nil #'my/ffap-setup)
 
 ;; bookmack設定
 ;; ブックマークの保存先を指定
@@ -35,10 +37,14 @@
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
 
-;; バイナリファイルを開く
-(openwith-mode 1)
-(setq openwith-associations
-      '(("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp[34]\\|flv\\|wav\\|ogg\\|swf\\|xls\\|xlsx\\)\\'" "open" (file))))
+;; バイナリファイルを開く（アイドル時に有効化）
+(autoload 'openwith-mode "openwith" nil t)
+(defun my/openwith-setup ()
+  "Setup openwith-mode after idle."
+  (setq openwith-associations
+        '(("\\.\\(?:mpe?g\\|avi\\|wmv\\|mp[34]\\|flv\\|wav\\|ogg\\|swf\\|xls\\|xlsx\\)\\'" "open" (file))))
+  (openwith-mode 1))
+(run-with-idle-timer 1 nil #'my/openwith-setup)
 (setq large-file-warning-threshold nil)
 
 ;;; 12-file.el ends here
