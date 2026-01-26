@@ -188,9 +188,10 @@
   (bind-key "C-l C-." 'insert-php-arrow-for-array php-mode-map))
 
 ;; erlang-mode
-(bind-key "\177" 'indent-dedent-line-backspace erlang-mode-map)
-(bind-key "C-i" 'erlang-indent-command erlang-mode-map)
-(bind-key "C-l ." 'insert-erlang-arrow erlang-mode-map)
+(with-eval-after-load 'erlang
+  (bind-key "\177" 'indent-dedent-line-backspace erlang-mode-map)
+  (bind-key "C-i" 'erlang-indent-command erlang-mode-map)
+  (bind-key "C-l ." 'insert-erlang-arrow erlang-mode-map))
 
 ;; elixir-mode
 (bind-key "\177" 'indent-dedent-line-backspace elixir-mode-map)

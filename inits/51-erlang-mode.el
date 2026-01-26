@@ -4,10 +4,10 @@
 
 ;;; Code:
 
-;; 基本設定
-
-(require 'erlang-start)
-(require 'erlang)
+;; autoload
+(autoload 'erlang-mode "erlang" nil t)
+(add-to-list 'auto-mode-alist '("\\.erl\\'" . erlang-mode))
+(add-to-list 'auto-mode-alist '("\\.hrl\\'" . erlang-mode))
 
 (defun my/erlang-mode-setup ()
   "Setup for erlang-mode."
