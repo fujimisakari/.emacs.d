@@ -13,7 +13,7 @@
 
 ;; git blameからPRを開く
 (setq vc-annotate-background-mode nil)
-(defun open-pr-at-line ()
+(defun my/open-pr-at-line ()
   (interactive)
   (let* ((rev-at-line (vc-annotate-extract-revision-at-line))
          (rev (car rev-at-line)))
@@ -34,7 +34,7 @@
         ("^ *\\(def\\|class\\|module\\)" python-mode)
         ("^ *\\(def\\|class\\|module\\)" ruby-mode)))
 
-(defun bm-goto-top-p ()
+(defun my/bm-goto-top-p ()
   (cl-loop for (re . modes) in bm-goto-top-alist
            thereis (and (memq major-mode modes)
                         (save-excursion
@@ -58,21 +58,21 @@
 
 ;; highlight-symbol-at-point時にfont-lockが狂うので対策
 ;; あとphp-modeの変数が(thing-at-point 'symbol)だとハイライトできないので 'sexpに変更
-(defun my-highlight-symbol-at-point ()
+(defun my/highlight-symbol-at-point ()
   (interactive)
   (defalias 'highlight-symbol-at-point 'highlight-symbol)
   (if (eq major-mode 'php-mode)
       (highlight-symbol-at-point (thing-at-point 'sexp))
     (highlight-symbol-at-point)))
 
-(defun highlight-symbol-region-or-read-string ()
+(defun my/highlight-symbol-region-or-read-string ()
   (cond
    (mark-active
     (buffer-substring-no-properties (region-beginning) (region-end)))
    (t
     (read-string "highlight word: "))))
 
-(defun interactive-highlight-symbol ()
+(defun my/interactive-highlight-symbol ()
   (interactive)
   (let ((symbol (highlight-symbol-region-or-read-string)))
     (if (highlight-symbol-symbol-highlighted-p symbol)

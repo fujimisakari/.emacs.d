@@ -6,7 +6,7 @@
 
 (defun my/elisp-mode-setup ()
   "Setup for emacs-lisp and lisp modes."
-  (common-mode-init)
+  (my/common-mode-init)
   (turn-on-eldoc-mode))
 
 ;; emacs-lisp-mode

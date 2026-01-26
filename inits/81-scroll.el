@@ -11,11 +11,11 @@
 (setq scroll-preserve-screen-position t)
 
 ;; カーソル維持したままスクロール
-(defun scroll-up-in-place (n)
+(defun my/scroll-up-in-place (n)
   (interactive "p")
   (scroll-down n))
 
-(defun scroll-down-in-place (n)
+(defun my/scroll-down-in-place (n)
   (interactive "p")
   (scroll-up n))
 

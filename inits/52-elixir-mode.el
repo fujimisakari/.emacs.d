@@ -13,22 +13,22 @@
 
 (defun my/elixir-mode-setup ()
   "Setup for elixir-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (smartparens-mode)
   (setq tab-width 2)
-  (setq tab-stop-list (tab-stop-list-creator tab-width))
+  (setq tab-stop-list (my/tab-stop-list-creator tab-width))
   (flycheck-mode))
 (add-hook 'elixir-mode-hook #'my/elixir-mode-setup)
 
-(defun insert-elixir-chain-arrow ()
+(defun my/insert-elixir-chain-arrow ()
   (interactive)
   (insert "|>"))
 
-(defun insert-elixir-patern-match-arrow ()
+(defun my/insert-elixir-patern-match-arrow ()
   (interactive)
   (insert "->"))
 
-(defun insert-elixir-map-arrow ()
+(defun my/insert-elixir-map-arrow ()
   (interactive)
   (insert "=>"))
 

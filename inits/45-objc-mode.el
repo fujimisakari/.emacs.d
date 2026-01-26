@@ -10,16 +10,16 @@
 ;; 基本設定
 (defun my/objc-mode-setup ()
   "Setup for objc-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (setq c-basic-offset 4)
   (setq tab-width 4)
   (setq indent-tabs-mode nil))
 (add-hook 'objc-mode-hook #'my/objc-mode-setup)
 
 ;; .hと.mを左右に並べて開く
-(defun open-header-and-method-file ()
+(defun my/open-header-and-method-file ()
   (interactive)
-  (other-window-or-split)
+  (my/other-window-or-split)
   (ff-find-other-file))
 
 ;; objc-mode (cc-mode) 読み込み後の設定

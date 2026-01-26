@@ -25,7 +25,7 @@
   (add-to-list 'tramp-default-proxies-alist '("\\." "\\`root\\'" "/ssh:%h:"))
   (setq tramp-shell-prompt-pattern "^.*[#$%>] *"))
 
-(defun current-directory-to-terminal ()
+(defun my/current-directory-to-terminal ()
   (let* (current-dir
          (current-buffer
           (nth 1 (assoc 'buffer-list

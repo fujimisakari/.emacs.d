@@ -21,7 +21,7 @@
 (add-to-list 'auto-mode-alist '("\\.js[x]?$"  . web-mode))
 
 ;; インデント数
-(defun web-mode-hook ()
+(defun my/web-mode-hook ()
   "Hooks for Web mode."
   (setq web-mode-markup-indent-offset 4) ; html indent
   (setq web-mode-css-indent-offset    4) ; css indent
@@ -32,7 +32,7 @@
   ;; require-final-newlineとNo newline at end of file対策 - by shigemk2
   ;; https://www.shigemk2.com/entry/emacs_no_newline_final
   (setq require-final-newline nil)
-  (common-mode-init))
-(add-hook 'web-mode-hook 'web-mode-hook)
+  (my/common-mode-init))
+(add-hook 'my/web-mode-hook 'my/web-mode-hook)
 
 ;;; 36-web-mode.el ends here

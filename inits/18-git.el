@@ -62,9 +62,9 @@
                       :foreground "gray3" :background "#C9635C"))
 
 ;; diffを表示したらすぐに文字単位での強調表示も行う
-(defun diff-mode-refine-automatically ()
+(defun my/diff-mode-refine-automatically ()
   (diff-auto-refine-mode t))
-(add-hook 'diff-mode-hook 'diff-mode-refine-automatically)
+(add-hook 'diff-mode-hook 'my/diff-mode-refine-automatically)
 
 ;; custom command
 (defun my/magit-show-previous-commit ()

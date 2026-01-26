@@ -11,11 +11,11 @@
 
 (defun my/erlang-mode-setup ()
   "Setup for erlang-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (flycheck-mode))
 (add-hook 'erlang-mode-hook #'my/erlang-mode-setup)
 
-(defun insert-erlang-arrow ()
+(defun my/insert-erlang-arrow ()
   (interactive)
   (insert "->")
   (cond

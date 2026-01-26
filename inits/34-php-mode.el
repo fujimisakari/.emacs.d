@@ -9,7 +9,7 @@
 
 (defun my/php-mode-setup ()
   "Setup for php-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   ;; (setq tab-width 4)
   (flymake-mode-off)
   ;; (flycheck-mode)
@@ -20,25 +20,25 @@
 
 (add-to-list 'auto-mode-alist '("\\.php$" . php-mode))
 
-(defun web-php-mode-toggle ()
+(defun my/web-php-mode-toggle ()
   (interactive)
   (if (eq major-mode 'php-mode)
       (web-mode)
     (php-mode)))
 
-(defun insert-php-arrow-for-instance ()
+(defun my/insert-php-arrow-for-instance ()
   (interactive)
   (insert "->"))
 
-(defun insert-php-arrow-for-array ()
+(defun my/insert-php-arrow-for-array ()
   (interactive)
   (insert "=>"))
 
-(defun insert-php-script-tag ()
+(defun my/insert-php-script-tag ()
   (interactive)
   (insert "<?php  ?>"))
 
-(defun insert-php-short-tag ()
+(defun my/insert-php-short-tag ()
   (interactive)
   (insert "<?=  ?>"))
 

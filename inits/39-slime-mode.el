@@ -10,7 +10,7 @@
 ;; lisp-mode-hook で slime を読み込む
 (defun my/slime-lisp-mode-setup ()
   "Setup for lisp-mode with slime."
-  (common-mode-init)
+  (my/common-mode-init)
   (slime-mode t)
   (setq indent-tabs-mode nil)
   (unless show-paren-mode

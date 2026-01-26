@@ -26,7 +26,7 @@
 ;;         ("[" . bm-previous)
 ;;         ("]" . bm-next)
 ;;         ))
-(defun define-many-keys (keymap key-table &optional includes)
+(defun my/define-many-keys (keymap key-table &optional includes)
   (let (key cmd)
     (dolist (key-cmd key-table)
       (setq key (car key-cmd)
@@ -40,7 +40,7 @@
 ;;   (skk-mode 0))
 ;; (add-hook 'view-mode-hook 'view-mode-hook0)
 
-(defun View-goto-line-last (&optional line)
+(defun my/View-goto-line-last (&optional line)
   "goto last line"
   (interactive "P")
   (goto-line (line-number-at-pos (point-max))))

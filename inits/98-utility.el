@@ -4,14 +4,14 @@
 
 ;;; Code:
 
-(defun open-browse-by-url ()
+(defun my/open-browse-by-url ()
   "w3m上のリンクやURL文字列をブラウザで開く"
   (interactive)
   (browse-url-at-point))
 
 ;; windowを入れ変える
 ;; http://emacswiki.org/emacs/TransposeWindowsより参照
-(defun swap-window-positions ()
+(defun my/swap-window-positions ()
   "*Swap the positions of this window and the next one."
   (interactive)
   (let ((other-window (next-window (selected-window) 'no-minibuf)))
@@ -30,7 +30,7 @@
     (select-window other-window)))
 
 ;; 現在時間
-(defun display-now-time ()
+(defun my/display-now-time ()
   (interactive)
   (message "%s" (format-time-string "%Y-%m-%d %H:%M (%A)")))
 

@@ -40,16 +40,16 @@
 
 ; Search header
 (with-eval-after-load "ivy"
-  (defun my-pre-prompt-function ()
+  (defun my/pre-prompt-function ()
     (if window-system
         (format "%s\n%s "
                 (make-string (frame-width) ?\x5F) ;; "__"
                 (all-the-icons-faicon "sort-amount-asc")) ;; ""
       (format "%s\n" (make-string (1- (frame-width)) ?\x2D))))
-  (setq ivy-pre-prompt-function #'my-pre-prompt-function))
+  (setq ivy-pre-prompt-function #'my/pre-prompt-function))
 
 ; Selector icon
-(defun ivy-format-function-pretty (cands)
+(defun my/ivy-format-function-pretty (cands)
   "Transform CANDS into a string for minibuffer."
   (ivy--format-function-generic
    (lambda (str)
@@ -61,7 +61,7 @@
      (concat "   " str))
    cands
    "\n"))
-(setq ivy-format-functions-alist '((t . ivy-format-function-pretty)))
+(setq ivy-format-functions-alist '((t . my/ivy-format-function-pretty)))
 
 ; ivy-posframe
 (setq ivy-posframe-parameters '((alpha . 70)))
@@ -69,7 +69,7 @@
 ;; customize
 
 ; sort candidates
-(defun ivy--sort-by-len (name candidates)
+(defun my/ivy--sort-by-len (name candidates)
   "Sort CANDIDATES based on similarity of their length with NAME."
   (let ((name-len (length name))
         (candidates-count (length candidates)))
@@ -88,24 +88,24 @@
              counsel-describe-function
              counsel-describe-variable
              counsel-describe-face))
-  (setf (alist-get i ivy-sort-matches-functions-alist) 'ivy--sort-by-len))
+  (setf (alist-get i ivy-sort-matches-functions-alist) 'my/ivy--sort-by-len))
 
 ; switch-buffer
-(defun my-ivy-switch-buffer ()
+(defun my/ivy-switch-buffer ()
   (interactive)
   (if (one-window-p)
       (ivy-switch-buffer-other-window)
     (ivy-switch-buffer)))
 
 ; ad:counsel-ag
-(defun ad:counsel-ag (f &optional initial-input initial-directory extra-ag-args ag-prompt caller)
+(defun my/ad:counsel-ag (f &optional initial-input initial-directory extra-ag-args ag-prompt caller)
   (apply f (or initial-input (if mark-active (buffer-substring-no-properties (region-beginning) (region-end))))
          (unless current-prefix-arg
            (or initial-directory default-directory))
          extra-ag-args ag-prompt caller))
-(advice-add 'counsel-ag :around #'ad:counsel-ag)
+(advice-add 'counsel-ag :around #'my/ad:counsel-ag)
 
-(defun my-counsel-ag-with-ignore ()
+(defun my/counsel-ag-with-ignore ()
   (interactive)
   (let ((initial-input (if mark-active (buffer-substring-no-properties (region-beginning) (region-end))))
         (initial-directory default-directory)
@@ -113,13 +113,13 @@
     (counsel-ag initial-input initial-directory extra-ag-args)))
 
 ; counsel-recentf
-(defun my-counsel-recentf ()
+(defun my/counsel-recentf ()
   (interactive)
   (if (one-window-p)
-      (counsel-recentf-other-window)
+      (my/counsel-recentf-other-window)
     (counsel-recentf)))
 
-(defun counsel-recentf-other-window ()
+(defun my/counsel-recentf-other-window ()
   "Find a file on `recentf-list'."
   (interactive)
   (require 'recentf)
@@ -131,13 +131,13 @@
             :caller 'counsel-recentf))
 
 ; counsel-bookmark
-(defun my-counsel-bookmark ()
+(defun my/counsel-bookmark ()
   (interactive)
   (if (one-window-p)
-      (counsel-bookmark-other-window)
+      (my/counsel-bookmark-other-window)
     (counsel-bookmark)))
 
-(defun counsel-bookmark-other-window ()
+(defun my/counsel-bookmark-other-window ()
   "Forward to `bookmark-jump' or `bookmark-set' if bookmark doesn't exist."
   (interactive)
   (require 'bookmark)
@@ -156,7 +156,7 @@
   (require 'ivy-dired-history))
 
 ;; swiper for region
-(defun swiper-thing-at-region ()
+(defun my/swiper-thing-at-region ()
   "`swiper' with `ivy-thing-at-region'."
   (interactive)
   (let ((thing ""))
@@ -165,7 +165,7 @@
       (deactivate-mark))
     (swiper (regexp-quote thing))))
 
-(defun swiper-all-thing-at-region ()
+(defun my/swiper-all-thing-at-region ()
   "`swiper-all' with `ivy-thing-at-region'."
   (interactive)
   (let ((thing ""))
@@ -174,7 +174,7 @@
       (deactivate-mark))
     (swiper-all (regexp-quote thing))))
 
-(defun my-copilot-chat-action-picker ()
+(defun my/copilot-chat-action-picker ()
   "Select and run a Copilot Chat command using counsel."
   (interactive)
   (let ((actions '(("Display chat" . copilot-chat)

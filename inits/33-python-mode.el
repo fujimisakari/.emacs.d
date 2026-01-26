@@ -11,7 +11,7 @@
 ;; hook
 (defun my/python-mode-setup ()
   "Setup for python-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (setq imenu-create-index-function 'python-imenu-create-index))
 (add-hook 'python-mode-hook #'my/python-mode-setup)
 
@@ -25,7 +25,7 @@
   (setq py-autopep8-options '("--ignore=E501")))
 
 ;; docstring comment
-(defun python-docstring-comment()
+(defun my/python-docstring-comment()
   (interactive)
   (let* ((begin-point (point-at-bol))
          (end-point (point-at-eol))
@@ -41,7 +41,7 @@
     (insert (format "%s:rtype: TYPE\n" space))
     (insert (format "%s\"\"\"" space))))
 
-(defun insert-python-arrow ()
+(defun my/insert-python-arrow ()
   (interactive)
   (insert "->"))
 

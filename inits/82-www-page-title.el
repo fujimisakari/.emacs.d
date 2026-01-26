@@ -4,17 +4,17 @@
 
 ;;; Code:
 
-(defun www-page-title-region-or-read-string ()
+(defun my/www-page-title-region-or-read-string ()
   (cond
    (mark-active
     (buffer-substring-no-properties (region-beginning) (region-end)))
    (t
     (read-string "Enter page url: "))))
 
-(defun www-page-title-shell (url)
+(defun my/www-page-title-shell (url)
   (shell-command-to-string (format "curl -s '%s' | grep -o '<title>.*</title>'" url)))
 
-(defun www-page-title ()
+(defun my/www-page-title ()
   (interactive)
   (let* ((url (www-page-title-region-or-read-string))
          (title-tag (www-page-title-shell url)))

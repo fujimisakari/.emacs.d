@@ -18,12 +18,12 @@
   (setq plantuml-executable-args (append plantuml-executable-args '("-charset" "UTF-8"))))
 
 ;; Open a plantuml file and a png file side by side
-(defun plantuml-open-with-png-file ()
+(defun my/plantuml-open-with-png-file ()
   (interactive)
-  (other-window-or-split)
+  (my/other-window-or-split)
   (plantuml-internal-toggle-to-png-file))
 
-(defun plantuml-internal-toggle-to-png-file ()
+(defun my/plantuml-internal-toggle-to-png-file ()
   (let ((current-file (buffer-file-name))
         (tmp-file (buffer-file-name)))
     (cond ((string-match ".png$" current-file)

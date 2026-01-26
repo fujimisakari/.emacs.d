@@ -11,18 +11,18 @@
 
 (defun my/markdown-mode-setup ()
   "Setup for markdown-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (markdown-display-inline-images))
 (add-hook 'markdown-mode-hook #'my/markdown-mode-setup)
 
-(defun markdown-header-list ()
+(defun my/markdown-header-list ()
   "Show Markdown Formed Header list through temporary buffer."
   (interactive)
   (occur "^\\(#+\\|.*\n===+\\|.*\n\---+\\)")
   (other-window 1))
 
 ;; プレビュー
-(defun markdown-preview-by-eww ()
+(defun my/markdown-preview-by-eww ()
   (interactive)
   (message (buffer-file-name))
   (call-process "grip" nil nil nil

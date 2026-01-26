@@ -10,7 +10,7 @@
 (setq dumb-jump-selector 'ivy)
 
 ;; customize dumb-jump-go
-(defun my-dumb-jump-go ()
+(defun my/dumb-jump-go ()
   (interactive)
   (if (one-window-p)
       (dumb-jump-go-other-window)

@@ -14,7 +14,7 @@
 (add-to-list 'interpreter-mode-alist '("perl" . cperl-mode))
 (defun my/cperl-mode-setup ()
   "Setup for cperl-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (hs-minor-mode)
   (cperl-set-style "PerlStyle")
   (perlplus-setup))

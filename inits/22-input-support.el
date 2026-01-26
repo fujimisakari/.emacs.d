@@ -47,7 +47,7 @@
 ;; Tabの代わりにスペースでインデント
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; M-iで字下げは4の倍数にする
-(defun tab-stop-list-creator (tab-width)
+(defun my/tab-stop-list-creator (tab-width)
   (let ((tab-width-list ())
         (num 0))
     (while (<= num 256)
@@ -55,13 +55,13 @@
       (setq num (+ num tab-width)))
   tab-width-list))
 (custom-set-variables
- '(tab-stop-list (tab-stop-list-creator 4)))
+ '(tab-stop-list (my/tab-stop-list-creator 4)))
 
 ;; 矩形をより簡単にする
 (cua-mode t)
 (setq cua-enable-cua-keys nil) ;; 変なキーバインドを禁止
 
-(defun custom-cua-set-rectangle-mark()
+(defun my/custom-cua-set-rectangle-mark()
   (interactive)
   (cua-set-rectangle-mark))
 
@@ -87,12 +87,12 @@
 (run-with-idle-timer 1 nil #'my/sequential-command-setup)
 
 ;; 現在行を最上部にする
-(defun line-to-top-of-window ()
+(defun my/line-to-top-of-window ()
   (interactive)
   (recenter 0))
 
 ;; 現在のfile-pathを表示&コピー
-(defun copy-current-path ()
+(defun my/copy-current-path ()
   (interactive)
   (let ((path nil))
     (if (equal major-mode 'dired-mode)
@@ -103,7 +103,7 @@
       (kill-new (file-truename path)))))
 
 ;; ファイルの末尾に[EOF]を表示
-(defun my-mark-eob ()
+(defun my/mark-eob ()
   (let ((existing-overlays (overlays-in (point-max) (point-max)))
         (eob-mark (make-overlay (point-max) (point-max) nil t t))
         (eob-text "[EOF]"))
@@ -116,32 +116,32 @@
                        'face '(foreground-color . "gray30") eob-text)
     (overlay-put eob-mark 'eob-overlay t)
     (overlay-put eob-mark 'after-string eob-text)))
-(add-hook 'find-file-hooks 'my-mark-eob)
+(add-hook 'find-file-hooks 'my/mark-eob)
 
 ;; undoやyank, kill-regionなどで挿入されたテキストを強調表示する
 (autoload 'volatile-highlights-mode "volatile-highlights" nil t)
 (run-with-idle-timer 1 nil #'volatile-highlights-mode)
 
 ;; 対応する括弧に飛ぶ
-(defun close-paren-at-point-p ()
+(defun my/close-paren-at-point-p ()
   "Check closed paren at point."
   (let ((s (char-to-string (char-after (point)))))
     (s-contains? s ")]}")))
 
-(defun not-paren-matching-at-point-p ()
+(defun my/not-paren-matching-at-point-p ()
   "Check not matching paren at point."
   (let ((s (char-to-string (char-after (point)))))
     (not (s-contains? s "{}[]()"))))
 
-(defun goto-matching-paren ()
+(defun my/goto-matching-paren ()
   "Jump to matching paren."
   (interactive)
-  (cond ((close-paren-at-point-p)
+  (cond ((my/close-paren-at-point-p)
          (forward-char)
          (-if-let (p (show-paren--default))
              (goto-char (nth 2 p))
            (backward-char)))
-        ((not-paren-matching-at-point-p)
+        ((my/not-paren-matching-at-point-p)
          (when (search-forward-regexp "[(\\[\[{)}]" (point-at-eol) t 1)
            (backward-char)))
         (t
@@ -149,27 +149,27 @@
              (goto-char (nth 2 p))))))
 
 ;; 選択リージョンをクォートする
-(defun region-to-single-quote ()
+(defun my/region-to-single-quote ()
   (interactive)
-  (quote-formater "'%s'" "^\\(\"\\).*" ".*\\(\"\\)$"))
+  (my/quote-formater "'%s'" "^\\(\"\\).*" ".*\\(\"\\)$"))
 
-(defun region-to-double-quote ()
+(defun my/region-to-double-quote ()
   (interactive)
-  (quote-formater "\"%s\"" "^\\('\\).*" ".*\\('\\)$"))
+  (my/quote-formater "\"%s\"" "^\\('\\).*" ".*\\('\\)$"))
 
-(defun region-to-bracket ()
+(defun my/region-to-bracket ()
   (interactive)
-  (quote-formater "\(%s\)" "^\\(\\[\\).*" ".*\\(\\]\\)$"))
+  (my/quote-formater "\(%s\)" "^\\(\\[\\).*" ".*\\(\\]\\)$"))
 
-(defun region-to-square-bracket ()
+(defun my/region-to-square-bracket ()
   (interactive)
-  (quote-formater "\[%s\]" "^\\(\(\\).*" ".*\\(\)\\)$"))
+  (my/quote-formater "\[%s\]" "^\\(\(\\).*" ".*\\(\)\\)$"))
 
-(defun region-to-clear ()
+(defun my/region-to-clear ()
   (interactive)
-  (quote-formater "%s" "^\\(\"\\|'\\|\\[\\|\(\\).*" ".*\\(\"\\|'\\|\\]\\|\)\\)$"))
+  (my/quote-formater "%s" "^\\(\"\\|'\\|\\[\\|\(\\).*" ".*\\(\"\\|'\\|\\]\\|\)\\)$"))
 
-(defun quote-formater (quote-format re-prefix re-suffix)
+(defun my/quote-formater (quote-format re-prefix re-suffix)
   (if mark-active
       (let* ((region-text (buffer-substring-no-properties (region-beginning) (region-end)))
              (replace-func (lambda (re target-text)(replace-regexp-in-string re "" target-text nil nil 1)))
@@ -179,7 +179,7 @@
     (error "Not Region selection")))
 
 ;; Shortcut
-(defun insert-arrow ()
+(defun my/insert-arrow ()
   (interactive)
   (insert "→"))
 

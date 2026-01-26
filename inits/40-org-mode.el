@@ -14,7 +14,7 @@
 (defun my/org-mode-setup ()
   "Setup for org-mode."
   (turn-on-font-lock)
-  (common-mode-init))
+  (my/common-mode-init))
 (add-hook 'org-mode-hook #'my/org-mode-setup)
 
 ;; インデントマークを拡張

@@ -10,7 +10,7 @@
 
 (defun my/swift-mode-setup ()
   "Setup for swift-mode."
-  (common-mode-init))
+  (my/common-mode-init))
 (add-hook 'swift-mode-hook #'my/swift-mode-setup)
 
 ;;; 48-swift-mode.el ends here

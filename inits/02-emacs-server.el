@@ -7,9 +7,9 @@
 (server-start)
 
 ;; emacsclientでの編集が終了したらEmacsをアイコン化する（好みに応じて）
-(defun iconify-emacs-when-server-is-done ()
+(defun my/iconify-emacs-when-server-is-done ()
   (unless server-clients (iconify-frame)))
-;;(add-hook 'server-done-hook 'iconify-emacs-when-server-is-done)
+;;(add-hook 'server-done-hook 'my/iconify-emacs-when-server-is-done)
 
 ;; serverモードで起動時は1画面で開く
 (defun my/server-switch-setup ()

@@ -45,33 +45,33 @@
 (setq elscreen-tab-display-kill-screen nil) ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
-(defun elscreen-create-automatically (orig-fun &rest args)
+(defun my/elscreen-create-automatically (orig-fun &rest args)
   "Create a new screen automatically if there is only one screen."
   (if (not (elscreen-one-screen-p))
       (apply orig-fun args)
     (elscreen-create)
     (elscreen-notify-screen-modification 'force-immediately)
     (elscreen-message "New screen is automatically created")))
-(advice-add 'elscreen-next :around #'elscreen-create-automatically)
-(advice-add 'elscreen-previous :around #'elscreen-create-automatically)
-(advice-add 'elscreen-toggle :around #'elscreen-create-automatically)
+(advice-add 'elscreen-next :around #'my/elscreen-create-automatically)
+(advice-add 'elscreen-previous :around #'my/elscreen-create-automatically)
+(advice-add 'elscreen-toggle :around #'my/elscreen-create-automatically)
 
 ;; 起動時に自動で13個スクリーンを立ち上げる
-(defun elscreen-create-default-screen ()
+(defun my/elscreen-create-default-screen ()
   "create default-screen"
   (let ((counter 0))
     (while (< counter 12)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
-(elscreen-create-default-screen)
+(my/elscreen-create-default-screen)
 
 ;; elscreen用バッファ削除
 (defvar elscreen-ignore-buffer-list
  '("*Backtrace*" "*Colors*" "*Faces*" "*Compile-Log*" "*Packages*" "*Echo" "*vc-" "*Minibuf-"
    "*Messages" "*WL:Message" "Folder" "*Org Agenda*" "inbox.org" "daily-projects.org"))
 
-(defun kill-buffer-for-elscreen ()
+(defun my/kill-buffer-for-elscreen ()
   "バッファを削除時の次のバッファは直近で開いてたバッファを選択するようにする"
   (interactive)
   (kill-buffer)
@@ -87,7 +87,7 @@
           (setq next-buffer buf)))
     (switch-to-buffer next-buffer)))
 
-(defun elscreen-swap-previous()
+(defun my/elscreen-swap-previous()
   "Interchange screens selected currently and previous."
   (interactive)
   (cond
@@ -108,7 +108,7 @@
       (elscreen-goto-internal (elscreen-get-current-screen)))))
   (elscreen-previous))
 
-(defun elscreen-swap-next()
+(defun my/elscreen-swap-next()
   "Interchange screens selected currently and next."
   (interactive)
   (cond
@@ -130,7 +130,7 @@
      (elscreen-next))
 
 ;; diredとターミナルを連動させる
-(defun buffer-directory-safe (&optional buffer)
+(defun my/buffer-directory-safe (&optional buffer)
   "Return directory for BUFFER (or current buffer). Always returns a string."
   (with-current-buffer (or buffer (current-buffer))
     ;; buffer-file-name があればそのディレクトリ、無ければ default-directory
@@ -140,16 +140,16 @@
       ;; 念のため nil を避ける
       (file-name-as-directory (expand-file-name (or dir "~"))))))
 
-(defun elscreen-current-directory ()
-  (buffer-directory-safe
+(defun my/elscreen-current-directory ()
+  (my/buffer-directory-safe
    (let* ((current-screen (car (elscreen-get-conf-list 'screen-history)))
           (property (cadr (assoc current-screen
                                  (elscreen-get-conf-list 'screen-property))))
           (marker (nth 2 property)))
      (and marker (marker-buffer marker)))))
 
-(defun non-elscreen-current-directory ()
-  (buffer-directory-safe
+(defun my/non-elscreen-current-directory ()
+  (my/buffer-directory-safe
    (let* ((conf (current-frame-configuration))
           (params (nth 1 (nth 1 conf)))
           (buf-list (cdr (assoc 'buffer-list params))))
@@ -178,15 +178,15 @@
         (7 . "*scratch*")
         (8 . "*scratch*")))
 
-(defun elscreen-set-custom-screen ()
+(defun my/elscreen-set-custom-screen ()
   (interactive)
   (elscreen-set-screen elscreen-custom-screen-alist))
 
-(defun elscreen-set-default-screen ()
+(defun my/elscreen-set-default-screen ()
   (interactive)
   (elscreen-set-screen elscreen-default-screen-alist))
 
-(defun elscreen-set-screen (set-screen-alist)
+(defun my/elscreen-set-screen (set-screen-alist)
   (let ((screen-list (sort (elscreen-get-screen-list) '<))
         (current-screen (elscreen-get-current-screen)))
     (mapc (lambda (alist)

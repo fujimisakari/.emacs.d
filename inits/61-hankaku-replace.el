@@ -4,7 +4,7 @@
 
 ;;; Code:
 
-(defun keitai-hankaku-katakana-region (start end)
+(defun my/keitai-hankaku-katakana-region (start end)
   (interactive "r")
   (while (string-match
           "[０-９Ａ-Ｚａ-ｚァ-ンー：；＄]+\\|[！？][！？]+"
@@ -15,7 +15,7 @@
        (+ start (match-end 0))
        ))))
 
-(defun keitai-hankaku-katakana-buffer ()
+(defun my/keitai-hankaku-katakana-buffer ()
   (interactive)
   (keitai-hankaku-katakana-region (point-min) (point-max)))
 
@@ -23,10 +23,10 @@
 (require 'dired-aux)
 (defun my/dired-setup-hankaku-katakana-key ()
   "Setup T key for hankaku-katakana conversion in dired."
-  (define-key (current-local-map) "T" #'dired-do-convert-hankaku-katakana))
+  (define-key (current-local-map) "T" #'my/dired-do-convert-hankaku-katakana))
 (add-hook 'dired-mode-hook #'my/dired-setup-hankaku-katakana-key)
 
-(defun dired-convert-hankaku-katakana ()
+(defun my/dired-convert-hankaku-katakana ()
   (let ((file (dired-get-filename)) failure)
     (condition-case err
         (with-temp-buffer
@@ -39,7 +39,7 @@
       (dired-log "convert hankaku-katakana error for %s:\n%s\n" file failure)
       (dired-make-relative file))))
 
-(defun dired-do-convert-hankaku-katakana (&optional arg)
+(defun my/dired-do-convert-hankaku-katakana (&optional arg)
   "Convert file (s) in hankaku-katakana."
   (interactive)
   (dired-map-over-marks-check

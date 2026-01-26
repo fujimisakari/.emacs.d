@@ -16,7 +16,7 @@
   (setq tab-width 4)
   (setq go-tab-width 4)
   (setq-local copilot-indent-offset tab-width) ; Copilot workaround
-  (common-mode-init)
+  (my/common-mode-init)
   (company-mode)
   (flycheck-golangci-lint-setup)
   (copilot-mode))
@@ -27,7 +27,7 @@
   (add-hook 'before-save-hook #'gofmt-before-save))
 
 ;; Change godoc buffer name
-(defun godoc--get-buffer (query)
+(defun my/godoc--get-buffer (query)
   "Get an empty buffer for a godoc QUERY."
   (let* ((buffer-name "*godoc*")
          (buffer (get-buffer buffer-name)))
@@ -36,7 +36,7 @@
     (get-buffer-create buffer-name)))
 
 ;; Docoument Popup
-(defun godoc-popup ()
+(defun my/godoc-popup ()
   (interactive)
   (unless (use-region-p)
     (error "Dose not region selection"))
@@ -50,17 +50,17 @@
          (buffer-substring-no-properties (+ (point-min) 1) (- (point-max) 3)))))))
 
 ;; toggle to test file
-(defun go-toggle-to-test-file ()
+(defun my/go-toggle-to-test-file ()
   (interactive)
   (go-internal-toggle-to-test-file))
 
 ;; Open a go file and a test file side by side
-(defun go-open-with-test-file ()
+(defun my/go-open-with-test-file ()
   (interactive)
-  (other-window-or-split)
+  (my/other-window-or-split)
   (go-internal-toggle-to-test-file))
 
-(defun go-internal-toggle-to-test-file ()
+(defun my/go-internal-toggle-to-test-file ()
   (let ((current-file (buffer-file-name))
         (tmp-file (buffer-file-name)))
     (cond ((string-match "_test.go$" current-file)

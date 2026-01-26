@@ -8,7 +8,7 @@
 (autoload 'json-mode "json-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.json$" . json-mode))
 
-(defun json-jq-format (beg end)
+(defun my/json-jq-format (beg end)
   (interactive "r")
   (shell-command-on-region beg end "jq ." nil t))
 

@@ -77,7 +77,7 @@
     ("5" . "May") ("6" . "Jun") ("7" . "Jul") ("8" . "Aug")
     ("9" . "Sep") ("10" . "Oct") ("11" . "Nov") ("12" . "Dec")))
 
-(defun dired-today-search (arg)
+(defun my/dired-today-search (arg)
   "Fontlock search function for dired."
   (search-forward-regexp
    (let ((month-name
@@ -93,10 +93,10 @@
 (eval-after-load "dired"
   '(font-lock-add-keywords
     'dired-mode
-    (list '(dired-today-search . dired-todays-face))))
+    (list '(my/dired-today-search . dired-todays-face))))
 
 ;; 現在開いているバッファをdierdで開く
-(defun dired-open-current-directory (&optional split-window)
+(defun my/dired-open-current-directory (&optional split-window)
   "現在のバッファのディレクトリを Dired で開く。
 SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
 通常は prefix argument（C-u）で分割指定できる。"
@@ -109,11 +109,11 @@ SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
         (setq path (file-name-directory (buffer-file-name)))))
     (when path
       (when split-window
-        (other-window-or-split))
+        (my/other-window-or-split))
       (dired path))))
 
 ;; ファイルなら別バッファで、ディレクトリなら同じバッファで開く
-(defun dired-open-in-accordance-with-situation ()
+(defun my/dired-open-in-accordance-with-situation ()
   (interactive)
   (let ((file (dired-get-filename)))
     (if (file-directory-p file)
@@ -123,7 +123,7 @@ SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; ディレクトリを新しいバッファで開く
-(defun dired-open-directory-in-new-buffer ()
+(defun my/dired-open-directory-in-new-buffer ()
   "Open the directory at point in a new buffer using dired."
   (interactive)
   (let ((file (dired-get-file-for-visit)))
@@ -140,7 +140,7 @@ SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
 (set-face-background 'dired-subtree-depth-6-face nil)
 
 ;; diredからファイル or ディレクトリ削除をやろうとすると遅いのでshell経由で削除させる
-(defun dired-remove-by-shell ()
+(defun my/dired-remove-by-shell ()
   (interactive)
   (let ((files (dired-get-marked-files t current-prefix-arg)))
     (dired-do-shell-command "rm -rf" nil files)))

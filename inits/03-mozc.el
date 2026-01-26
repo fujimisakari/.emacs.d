@@ -38,13 +38,13 @@
 ;; Mac 固有の設定
 ;; https://www.inabamasaki.com/archives/1898
 (when (eq system-type 'darwin)
-  (defun my-eisuu-key ()
+  (defun my/eisuu-key ()
     "Emulating alphanumeric keys"
     (interactive)
     (call-process "osascript" nil t nil "-e" "tell application \"System Events\" to key code 102"))
   ;; Mozc が起動されたら英数にする
-  (add-hook 'mozc-mode-hook 'my-eisuu-key)
+  (add-hook 'mozc-mode-hook 'my/eisuu-key)
   ;; フレームがアクティブになった時英数にする
-  (add-hook 'focus-in-hook 'my-eisuu-key))
+  (add-hook 'focus-in-hook 'my/eisuu-key))
 
 ;;; 03-mozc.el ends here

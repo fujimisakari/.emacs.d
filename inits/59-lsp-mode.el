@@ -48,7 +48,7 @@
   (setq lsp-ui-sideline-show-code-actions nil))
 
 ;; customize
-(defun lsp-find-definition-other-window ()
+(defun my/lsp-find-definition-other-window ()
   (interactive)
   (when (one-window-p)
     (progn
@@ -56,7 +56,7 @@
       (other-window 1)))
   (lsp-find-definition))
 
-(defun lsp-ui-peek--goto-xref-custom-other-window ()
+(defun my/lsp-ui-peek--goto-xref-custom-other-window ()
   (interactive)
   (if (one-window-p)
       (lsp-ui-peek--goto-xref nil t))

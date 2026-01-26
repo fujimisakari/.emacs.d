@@ -8,7 +8,7 @@
 
 (defun my/makefile-mode-setup ()
   "Setup for makefile-mode."
-  (common-mode-init)
+  (my/common-mode-init)
   (setq indent-tabs-mode t))
 (add-hook 'makefile-mode-hook #'my/makefile-mode-setup)
 
