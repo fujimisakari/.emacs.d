@@ -19,9 +19,9 @@
 (add-hook 'lisp-mode-hook #'my/elisp-mode-setup)
 
 ;; 式の評価結果を注釈する
-(require 'lispxmp)
+(autoload 'lispxmp "lispxmp" nil t)
 
 ;; リスト変数の内容を編集する(M-x edit-list)
-(require 'edit-list)
+(autoload 'edit-list "edit-list" nil t)
 
 ;;; 31-emacs-lisp-mode.el ends here
