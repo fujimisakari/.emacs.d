@@ -65,16 +65,20 @@
 
 ;; 同じコマンドを連続実行したときの振舞いを変更する
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
-(require 'sequential-command-config)
-(sequential-command-setup-keys)
-(define-sequential-command seq-home
-  beginning-of-line beginning-of-buffer seq-return)
-(define-sequential-command seq-end
-  end-of-line end-of-buffer seq-return)
-(define-sequential-command org-seq-home
-  org-beginning-of-line beginning-of-buffer seq-return)
-(define-sequential-command org-seq-end
-  org-end-of-line end-of-buffer seq-return)
+;; 起動後アイドル時に遅延読み込み
+(defun my/sequential-command-setup ()
+  "Setup sequential-command."
+  (require 'sequential-command-config)
+  (sequential-command-setup-keys)
+  (define-sequential-command seq-home
+    beginning-of-line beginning-of-buffer seq-return)
+  (define-sequential-command seq-end
+    end-of-line end-of-buffer seq-return)
+  (define-sequential-command org-seq-home
+    org-beginning-of-line beginning-of-buffer seq-return)
+  (define-sequential-command org-seq-end
+    org-end-of-line end-of-buffer seq-return))
+(run-with-idle-timer 1 nil #'my/sequential-command-setup)
 
 ;; 現在行を最上部にする
 (defun line-to-top-of-window ()
