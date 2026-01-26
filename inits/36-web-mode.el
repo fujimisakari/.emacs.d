@@ -4,7 +4,8 @@
 
 ;;; Code:
 
-(require 'web-mode)
+;; autoload
+(autoload 'web-mode "web-mode" nil t)
 
 ;; 適用する拡張子
 (add-to-list 'auto-mode-alist '("\\.phtml$"   . web-mode))

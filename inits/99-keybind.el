@@ -201,11 +201,12 @@
 (bind-key "C-l |" 'insert-elixir-chain-arrow elixir-mode-map)
 
 ;; web-mode
-(bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
-(bind-key "C-;" nil web-mode-map)
-;; (bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
-(bind-key "C-c '" 'web-php-mode-toggle web-mode-map)
-(bind-key "\177" 'indent-dedent-line-backspace web-mode-map)
+(with-eval-after-load 'web-mode
+  (bind-key "M-;" 'web-mode-comment-or-uncomment web-mode-map)
+  (bind-key "C-;" nil web-mode-map)
+  ;; (bind-key "C-c '" 'sp-fp-file-toggle web-mode-map)
+  (bind-key "C-c '" 'web-php-mode-toggle web-mode-map)
+  (bind-key "\177" 'indent-dedent-line-backspace web-mode-map))
 
 ;; markdown-mode
 (bind-key "C-c C-s" 'markdown-header-list markdown-mode-map)    ; markdown-headerの一覧表示
