@@ -4,7 +4,9 @@
 
 ;;; Code:
 
-(require 'python)
+;; autoload
+(autoload 'py-isort-buffer "py-isort" nil t)
+(autoload 'py-autopep8-region "py-autopep8" nil t)
 
 ;; hook
 (defun my/python-mode-setup ()
@@ -14,13 +16,13 @@
 (add-hook 'python-mode-hook #'my/python-mode-setup)
 
 ;; isort
-(require 'py-isort)
-(setq py-isort-options '("--multi-line=3"))
+(with-eval-after-load 'py-isort
+  (setq py-isort-options '("--multi-line=3")))
 
 ;; code formatter
-(require 'py-autopep8)
-;; (setq py-autopep8-options '("--ignore=E221,E501,E701,E202"))
-(setq py-autopep8-options '("--ignore=E501"))
+(with-eval-after-load 'py-autopep8
+  ;; (setq py-autopep8-options '("--ignore=E221,E501,E701,E202"))
+  (setq py-autopep8-options '("--ignore=E501")))
 
 ;; docstring comment
 (defun python-docstring-comment()

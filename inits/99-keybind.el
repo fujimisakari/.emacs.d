@@ -140,9 +140,10 @@
 (bind-key "C-c C-d" 'lispxmp emacs-lisp-mode-map)              ; 実行結果を注釈してくれる
 
 ;; python-mode
-(bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
-(bind-key "C-c i" 'py-isort-buffer python-mode-map)          ; import整形
-(bind-key "C-c d" 'python-docstring-comment python-mode-map) ; docstring comment生成
+(with-eval-after-load 'python
+  (bind-key "C-c f" 'py-autopep8-region python-mode-map)       ; コード整形
+  (bind-key "C-c i" 'py-isort-buffer python-mode-map)          ; import整形
+  (bind-key "C-c d" 'python-docstring-comment python-mode-map)) ; docstring comment生成
 
 ;; objc-mode
 (with-eval-after-load 'cc-mode
