@@ -4,9 +4,10 @@
 
 ;;; Code:
 
-(require 'lsp-mode)
-(require 'lsp-ui)
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+;; autoload
+(autoload 'lsp "lsp-mode" nil t)
+(autoload 'lsp-deferred "lsp-mode" nil t)
+(autoload 'lsp-rename "lsp-mode" nil t)
 
 ;; mode
 (defun my/lsp-mode-setup ()
@@ -17,29 +18,34 @@
 (dolist (v '(go-mode-hook c-mode-hook))
   (add-hook v #'my/lsp-mode-setup))
 
-;; general
-(setq lsp-session-file (expand-file-name (locate-user-emacs-file "../.lsp-session-v1")))
-(setq lsp-print-io nil)
-(setq lsp-trace nil)
-(setq lsp-auto-guess-root t)
-;; (setq lsp-document-sync-method 'incremental) ;; always send incremental document
-(setq lsp-response-timeout 5)
-(setq lsp-enable-completion-at-point nil)
-(setq lsp-enable-file-watchers nil)
-(setq lsp-prefer-capf t)
-(setq lsp-ui-flycheck-enable t)
+;; lsp-mode 読み込み後の設定
+(with-eval-after-load 'lsp-mode
+  (require 'lsp-ui)
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
 
-;; lsp-ui-doc
-(setq lsp-ui-doc-enable nil)
-(setq lsp-ui-doc-use-webkit t)
+  ;; general
+  (setq lsp-session-file (expand-file-name (locate-user-emacs-file "../.lsp-session-v1")))
+  (setq lsp-print-io nil)
+  (setq lsp-trace nil)
+  (setq lsp-auto-guess-root t)
+  ;; (setq lsp-document-sync-method 'incremental) ;; always send incremental document
+  (setq lsp-response-timeout 5)
+  (setq lsp-enable-completion-at-point nil)
+  (setq lsp-enable-file-watchers nil)
+  (setq lsp-prefer-capf t)
+  (setq lsp-ui-flycheck-enable t)
 
-;; lsp-ui-sideline
-(setq lsp-ui-sideline-enable nil)
-(setq lsp-ui-sideline-ignore-duplicate t)
-(setq lsp-ui-sideline-show-symbol t)
-(setq lsp-ui-sideline-show-hover t)
-(setq lsp-ui-sideline-show-diagnostics nil)
-(setq lsp-ui-sideline-show-code-actions nil)
+  ;; lsp-ui-doc
+  (setq lsp-ui-doc-enable nil)
+  (setq lsp-ui-doc-use-webkit t)
+
+  ;; lsp-ui-sideline
+  (setq lsp-ui-sideline-enable nil)
+  (setq lsp-ui-sideline-ignore-duplicate t)
+  (setq lsp-ui-sideline-show-symbol t)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-sideline-show-diagnostics nil)
+  (setq lsp-ui-sideline-show-code-actions nil))
 
 ;; customize
 (defun lsp-find-definition-other-window ()

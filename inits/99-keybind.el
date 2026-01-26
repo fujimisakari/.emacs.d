@@ -234,16 +234,17 @@
 (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)              ; wdiredへモード変更
 
 ;; lsp-mode
-(bind-key "C-c <f12>" 'lsp-find-definition-other-window lsp-mode-map)
-(bind-key "C-c C-r" 'lsp-ui-peek-find-references lsp-mode-map)
-(bind-key "C-c C-i" 'lsp-ui-peek-find-implementation lsp-mode-map)
-(bind-key "C-c C-M-j" 'pop-tag-mark lsp-mode-map)
-(bind-key "C-c m" 'lsp-ui-imenu lsp-mode-map)
-(bind-key "C-c s" 'lsp-ui-sideline-mode lsp-mode-map)
-(bind-key "C-c d" 'ladicle/toggle-lsp-ui-doc lsp-mode-map)
+(with-eval-after-load 'lsp-mode
+  (bind-key "C-c <f12>" 'lsp-find-definition-other-window lsp-mode-map)
+  (bind-key "C-c C-r" 'lsp-ui-peek-find-references lsp-mode-map)
+  (bind-key "C-c C-i" 'lsp-ui-peek-find-implementation lsp-mode-map)
+  (bind-key "C-c C-M-j" 'pop-tag-mark lsp-mode-map)
+  (bind-key "C-c i" 'lsp-ui-imenu lsp-mode-map)
+  (bind-key "C-c s" 'lsp-ui-sideline-mode lsp-mode-map))
 
 ;; lsp-ui-peek-mode
-(bind-key "RET" 'lsp-ui-peek--goto-xref-custom-other-window lsp-ui-peek-mode-map)
+(with-eval-after-load 'lsp-ui
+  (bind-key "RET" 'lsp-ui-peek--goto-xref-custom-other-window lsp-ui-peek-mode-map))
 
 ;; company-mode
 (bind-key "C-n" 'company-select-next company-active-map)
