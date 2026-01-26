@@ -17,7 +17,7 @@
   (ff-find-other-file))
 
 ;;コード整形できるようにする
-(require 'clang-format)
+(autoload 'clang-format-buffer "clang-format" nil t)
 
 (defun my/clang-format-before-save ()
   "Run clang-format if .clang-format exists."
