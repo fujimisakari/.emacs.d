@@ -4,7 +4,8 @@
 
 ;;; Code:
 
-(require 'google-translate)
+;; autoload
+(autoload 'google-translate-translate "google-translate" nil t)
 
 (defvar google-translate-english-chars "[:ascii:]"
   "これらの文字が含まれているときは英語とみなす")
@@ -37,18 +38,20 @@
      (if asciip "ja" "en")
      string)))
 
-(defun google-translate-json-suggestion (json)
-  "Retrieve from JSON (which returns by the
+;; google-translate のパッチ（ロード後に適用）
+(with-eval-after-load 'google-translate
+  (defun google-translate-json-suggestion (json)
+    "Retrieve from JSON (which returns by the
 `google-translate-request' function) suggestion. This function
 does matter when translating misspelled word. So instead of
 translation it is possible to get suggestion."
-  (let ((info (aref json 7)))
-    (if (and info (> (length info) 0))
-        (aref info 1)
-      nil)))
+    (let ((info (aref json 7)))
+      (if (and info (> (length info) 0))
+          (aref info 1)
+        nil)))
 
-(defun google-translate--search-tkk ()
-  "Search TKK."
-  (list 430675 2721866130))
+  (defun google-translate--search-tkk ()
+    "Search TKK."
+    (list 430675 2721866130)))
 
 ;;; 63-google-translator.el ends here
