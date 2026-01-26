@@ -5,7 +5,8 @@
 ;;; Code:
 
 ;; プログラムをインタラクティブに実行する
-(require 'quickrun)
+(autoload 'quickrun "quickrun" nil t)
+(autoload 'quickrun-region "quickrun" nil t)
 
 ;; リジョン選択をgithubで開く
 (require 'open-github-from-here)

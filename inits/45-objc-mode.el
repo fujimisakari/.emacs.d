@@ -51,11 +51,12 @@
 (require 'clang-format)
 
 ;; quickrunにclangでの実行環境を追加
-(add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
-(quickrun-add-command "objc/clang"
-                      '((:command . "clang")
-                        (:exec    . ("%c -fobjc-arc -framework Foundation %s -o %e" "%e"))
-                        (:remove  . ("%e")))
-                      :default "objc")
+(with-eval-after-load 'quickrun
+  (add-to-list 'quickrun-file-alist '("\\.m$" . "objc/clang"))
+  (quickrun-add-command "objc/clang"
+                        '((:command . "clang")
+                          (:exec    . ("%c -fobjc-arc -framework Foundation %s -o %e" "%e"))
+                          (:remove  . ("%e")))
+                        :default "objc"))
 
 ;;; 45-objc-mode.el ends here
