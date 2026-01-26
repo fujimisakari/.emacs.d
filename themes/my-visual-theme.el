@@ -187,7 +187,19 @@
    `(doom-modeline-buffer-modified ((,class (:foreground "orchid1"))))
 
    ;; wanderlust
-   `(wl-highlight-summary-refiled-face ((,class (:foreground "DodgerBlue"))))))
+   `(wl-highlight-summary-refiled-face ((,class (:foreground "DodgerBlue"))))
+
+   ;; company-mode
+   `(company-tooltip ((,class (:foreground "gray75" :background "gray20"))))
+   `(company-tooltip-selection ((,class (:foreground "white" :background "#4f57f9"))))
+   `(company-tooltip-common ((,class (:foreground "lime green"))))
+   `(company-tooltip-common-selection ((,class (:foreground "lime green"))))
+   `(company-tooltip-annotation ((,class (:foreground "gray50"))))
+   `(company-tooltip-annotation-selection ((,class (:foreground "gray75"))))
+   `(company-scrollbar-bg ((,class (:background "gray30"))))
+   `(company-scrollbar-fg ((,class (:background "#4f57f9"))))
+   `(company-preview ((,class (:foreground "gray50" :background unspecified))))
+   `(company-preview-common ((,class (:foreground "lime green" :background unspecified))))))
 
 (provide-theme 'my-visual)
 
