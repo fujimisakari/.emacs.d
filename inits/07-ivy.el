@@ -174,6 +174,18 @@
       (deactivate-mark))
     (swiper-all (regexp-quote thing))))
 
+; counsel-find-file
+(defun my/counsel-find-file ()
+  "Find files under current directory using find with ignore patterns."
+  (interactive)
+  (let* ((default-directory (or default-directory "~/"))
+         (cmd "find . -type f ! -path '*/.git/*' ! -name '*_test.go' ! -name '*.txt' ! -name '*.html' | sed 's|^\\./||'")
+         (files (split-string (shell-command-to-string cmd) "\n" t)))
+    (ivy-read "Find file: " files
+              :action (lambda (f)
+                        (find-file (expand-file-name f default-directory)))
+              :caller 'my/counsel-find-file)))
+
 (defun my/copilot-chat-action-picker ()
   "Select and run a Copilot Chat command using counsel."
   (interactive)

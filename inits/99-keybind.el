@@ -57,6 +57,7 @@
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-." 'my/counsel-recentf)                       ; ファイル/ディレクトリ履歴
 (bind-key "C-M-," 'my/counsel-bookmark)                      ; ブックマーク一覧
+(bind-key "C-M-m" 'my/counsel-find-file)                       ; カレント配下のファイル検索
 (bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
 (bind-key "C-M-o" 'swiper)                                   ; swiperの起動
 (bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
