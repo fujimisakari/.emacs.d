@@ -12,7 +12,11 @@
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)
-        (undecorated . t)))
+        (undecorated . t)
+        (internal-border-width . 0)))
+
+;; Disable fringe (left/right margin indicators)
+(fringe-mode 0)
 
 ;; Also disable via modes
 (menu-bar-mode -1)
