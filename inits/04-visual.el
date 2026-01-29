@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+;; Hide titlebar (keep rounded corners, works better with fullscreen)
+(setq frame-resize-pixelwise t)
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+(add-to-list 'initial-frame-alist '(undecorated-round . t))
+
 (defun my/apply-theme-and-ui (frame)
   "Apply theme, font, and UI settings to new FRAME."
   (with-selected-frame frame

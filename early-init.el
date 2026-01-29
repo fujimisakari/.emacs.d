@@ -11,7 +11,8 @@
       '((menu-bar-lines . 0)
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
-        (horizontal-scroll-bars . nil)))
+        (horizontal-scroll-bars . nil)
+        (undecorated . t)))
 
 ;; Also disable via modes
 (menu-bar-mode -1)
