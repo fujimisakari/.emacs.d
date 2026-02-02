@@ -64,11 +64,11 @@
    ;; Popup
    `(popup-tip-face ((,class (:foreground "gray20" :background "ivory3"))))
 
-   ;; Elscreens
-   `(elscreen-tab-current-screen-face ((,class (:foreground "#6c6aff" :background "gray25" :weight bold))))
-   `(elscreen-tab-control-face ((,class (:foreground "red" :background "gray25" :underline "gray50" :weight bold))))
-   `(elscreen-tab-background-face ((,class (:background "gray25"))))
-   `(elscreen-tab-other-screen-face ((,class (:foreground "gray50" :background "gray25"))))
+   ;; Elscreens (darker background, brighter text for visibility with transparency)
+   `(elscreen-tab-current-screen-face ((,class (:foreground "#b299ff" :background "gray20" :weight bold))))
+   `(elscreen-tab-control-face ((,class (:foreground "tomato" :background "gray20" :underline "gray50" :weight bold))))
+   `(elscreen-tab-background-face ((,class (:background "gray20"))))
+   `(elscreen-tab-other-screen-face ((,class (:foreground "gray65" :background "gray20"))))
 
    ;; Ivy and Swiper
    `(ivy-grep-info ((,class (:foreground "lime green"))))

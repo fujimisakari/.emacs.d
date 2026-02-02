@@ -28,7 +28,7 @@
 
     ;; Frame transparency
     (cond ((eq my-os-type 'mac)
-           (set-frame-parameter nil 'alpha 73))
+           (set-frame-parameter nil 'alpha 78))
           ((eq my-os-type 'linux)
            (set-frame-parameter nil 'alpha 81)))))
 
