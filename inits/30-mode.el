@@ -39,7 +39,7 @@
 (defun my/indent-dedent-line-backspace (arg)
   "De-indent current line."
   (interactive "*p")
-  (if (indent-dedent-line-p)
+  (if (my/indent-dedent-line-p)
       (backward-delete-char-untabify tab-width)
     (delete-backward-char arg)))
 (put 'my/indent-dedent-line-backspace 'delete-selection 'supersede)
