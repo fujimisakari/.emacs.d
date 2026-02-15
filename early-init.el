@@ -15,8 +15,8 @@
         (undecorated . t)
         (internal-border-width . 0)))
 
-;; Minimal fringe (just enough for wrap/continuation arrows)
-(fringe-mode '(4 . 4))
+;; Disable fringe (left/right margin indicators)
+(fringe-mode 0)
 
 ;; Also disable via modes
 (menu-bar-mode -1)

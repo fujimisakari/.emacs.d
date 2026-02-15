@@ -82,6 +82,11 @@
       (load-theme theme t)
       (message "Reloaded theme: %s" theme))))
 
+;; Hide wrap backslash (fringe disabled, no bitmap arrows available)
+(unless standard-display-table
+  (setq standard-display-table (make-display-table)))
+(set-display-table-slot standard-display-table 'wrap ?\ )
+
 ;; Battery status
 (require 'fancy-battery)
 (add-hook 'after-init-hook #'fancy-battery-mode)
