@@ -19,11 +19,11 @@
 ;; パスワードのプロンプトを認識し，入力時はミニバッファで伏せ字にする
 (add-hook 'comint-output-filter-functions 'comint-watch-for-password-prompt)
 
-;; tramp設定（リモートファイルを開いた時に遅延読み込み）
-(with-eval-after-load 'tramp
-  (setq tramp-default-method "ssh")
-  (add-to-list 'tramp-default-proxies-alist '("\\." "\\`root\\'" "/ssh:%h:"))
-  (setq tramp-shell-prompt-pattern "^.*[#$%>] *"))
+;; tramp無効化
+;; Emacs 30.2でtramp-integrationがfind-file-hookに未定義関数を登録するバグの回避策
+;; tramp-integrationが読み込まれた時にfind-file-hookから未定義関数を除去する
+(with-eval-after-load 'tramp-integration
+  (remove-hook 'find-file-hook 'tramp-set-connection-local-variables-for-buffer))
 
 (defun my/current-directory-to-terminal ()
   (let* (current-dir
