@@ -48,13 +48,6 @@
 ;; Cursor settings
 (blink-cursor-mode t)
 
-;; Highlight current line
-(beacon-mode 1)
-(setq beacon-size 70
-      beacon-blink-duration 0.6
-      beacon-blink-when-focused t
-      beacon-color "lime")
-
 ;; Show line numbers
 (global-display-line-numbers-mode 1)
 
