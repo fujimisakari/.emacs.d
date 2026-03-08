@@ -33,7 +33,7 @@
 (progn
   (setq bookmark-sort-flag nil)
   (defun bookmark-arrange-latest-top ()
-    (let ((latest (bookmark-get-bookmark bookmark)))
+    (let ((latest (bookmark-get-bookmark bookmark-current-bookmark)))
       (setq bookmark-alist (cons latest (delq latest bookmark-alist))))
     (bookmark-save))
   (add-hook 'bookmark-after-jump-hook 'bookmark-arrange-latest-top))
