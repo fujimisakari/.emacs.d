@@ -34,4 +34,11 @@
   (interactive)
   (message "%s" (format-time-string "%Y-%m-%d %H:%M (%A)")))
 
+;; パッケージ更新後にelpa配下を再バイトコンパイルする
+(defun my/recompile-elpa ()
+  "Recompile all packages in elpa directory."
+  (interactive)
+  (byte-recompile-directory (expand-file-name "elpa" user-emacs-directory) 0 t)
+  (message "elpa recompile done."))
+
 ;;; 98-utility.el ends here
