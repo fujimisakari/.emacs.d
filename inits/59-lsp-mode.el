@@ -15,7 +15,13 @@
   (lsp)
   (lsp-deferred)
   (lsp-completion-mode))
-(dolist (v '(go-mode-hook c-mode-hook))
+(dolist (v '(go-mode-hook
+             c-mode-hook
+             typescript-mode-hook
+             typescript-ts-mode-hook
+             tsx-ts-mode-hook
+             vue-mode-hook
+             vue-ts-mode-hook))
   (add-hook v #'my/lsp-mode-setup))
 
 ;; lsp-mode 読み込み後の設定
@@ -45,7 +51,13 @@
   (setq lsp-ui-sideline-show-symbol t)
   (setq lsp-ui-sideline-show-hover t)
   (setq lsp-ui-sideline-show-diagnostics nil)
-  (setq lsp-ui-sideline-show-code-actions nil))
+  (setq lsp-ui-sideline-show-code-actions nil)
+
+  ;; Vue.js (Volar) 連携
+  ;; lsp-mode は lsp-volar を同梱しており、vue-mode / vue-ts-mode を自動検出する
+  ;; 事前に以下をインストールしておくこと:
+  ;;   npm install -g @vue/language-server typescript-language-server typescript
+  (require 'lsp-volar nil t))
 
 ;; customize
 (defun my/lsp-find-definition-other-window ()

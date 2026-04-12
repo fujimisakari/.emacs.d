@@ -17,7 +17,6 @@
 (add-to-list 'auto-mode-alist '("\\.ejs?$"    . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.scss$"    . web-mode))
-(add-to-list 'auto-mode-alist '("\\.vue$"     . web-mode))
 (add-to-list 'auto-mode-alist '("\\.js[x]?$"  . web-mode))
 
 ;; インデント数

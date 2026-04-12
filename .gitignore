@@ -29,6 +29,7 @@ shellenv
 site-lisp
 tramp
 transient
+tree-sitter
 url
 .aider*
 kkcrc

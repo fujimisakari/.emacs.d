@@ -48,3 +48,25 @@
             ;; show init time
             (message "init time: %.3f sec"
                      (float-time (time-subtract after-init-time before-init-time)))))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(anzu-deactivate-region t)
+ '(anzu-mode-lighter "")
+ '(anzu-replace-to-string-separator " => ")
+ '(anzu-search-threshold 1000)
+ '(magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 12))
+ '(package-selected-packages nil)
+ '(package-vc-selected-packages
+   '((vue-ts-mode :url "https://github.com/8uff3r/vue-ts-mode" :branch
+                  "main")))
+ '(tab-stop-list (my/tab-stop-list-creator 4)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-block-begin-line ((t (:foreground "gray30" :background "gray3" :slant italic))))
+ '(org-block-end-line ((t (:foreground "gray30" :background "gray3" :slant italic)))))
