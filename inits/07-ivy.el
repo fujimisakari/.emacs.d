@@ -148,13 +148,6 @@
                       (bookmark-jump-other-window x))
             :caller 'counsel-bookmark))
 
-; ivy-dired-history
-(require 'savehist)
-(add-to-list 'savehist-additional-variables 'ivy-dired-history-variable)
-(savehist-mode 1)
-(with-eval-after-load 'dired
-  (require 'ivy-dired-history))
-
 ;; swiper for region
 (defun my/swiper-thing-at-region ()
   "`swiper' with `ivy-thing-at-region'."

@@ -78,20 +78,20 @@
                  google-translate gotest graphql grep-a-lot gtags
                  highlight-indent-guides highlight-symbol htmlize
                  ido-vertical-mode image+ imenu-list init-loader irony
-                 ivy-dired-history ivy-hydra ivy-migemo ivy-posframe
-                 ivy-yasnippet json-mode json-reformat lispxmp
-                 lsp-treemacs lsp-ui lua-mode magit memoize
-                 mermaid-mode migemo mo-git-blame mode-icons
-                 mozc-popup multi-term nginx-mode nyan-mode
-                 open-junk-file openwith org-autolist org-bullets
-                 org-modern ox-reveal package-lint paredit pdf-tools
-                 persistent-scratch php-mode plantuml-mode point-undo
-                 popwin powershell protobuf-mode py-autopep8 py-isort
-                 pydoc pyflakes python-environment quickrun
-                 rainbow-delimiters rainbow-mode recentf-ext redo+
-                 region-bindings-mode resize-window sass-mode
-                 sequential-command shell-history shell-pop shimbun
-                 shut-up slime-repl-ansi-color smartparens smeargle
+                 ivy-hydra ivy-migemo ivy-posframe ivy-yasnippet
+                 json-mode json-reformat lispxmp lsp-treemacs lsp-ui
+                 lua-mode magit memoize mermaid-mode migemo
+                 mo-git-blame mode-icons mozc-popup multi-term
+                 nginx-mode nyan-mode open-junk-file openwith
+                 org-autolist org-bullets org-modern ox-reveal
+                 package-lint paredit pdf-tools persistent-scratch
+                 php-mode plantuml-mode point-undo popwin powershell
+                 protobuf-mode py-autopep8 py-isort pydoc pyflakes
+                 python-environment quickrun rainbow-delimiters
+                 rainbow-mode recentf-ext redo+ region-bindings-mode
+                 resize-window sass-mode sequential-command
+                 shell-history shell-pop shimbun shut-up
+                 slime-repl-ansi-color smartparens smeargle
                  smooth-scroll stem sticky sudo-ext swift-mode
                  symbol-overlay toml-mode typescript-mode vimrc-mode
                  virtualenv vline volatile-highlights vterm w3m
