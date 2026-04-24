@@ -8,6 +8,31 @@
   (rainbow-delimiters-mode)
   (eldoc-mode t))
 
+;; --- image-mode ---
+(setq image-use-external-converter t)
+
+(defun my/image-auto-orient ()
+  "EXIF の Orientation に従って画像を回転する (ImageMagick 利用)."
+  (when (and buffer-file-name
+             (string-match-p "\\.jpe?g\\'" (downcase buffer-file-name))
+             (executable-find "magick"))
+    (let* ((raw (ignore-errors
+                  (string-trim
+                   (shell-command-to-string
+                    (format "magick identify -format '%%[EXIF:Orientation]' %s 2>/dev/null"
+                            (shell-quote-argument buffer-file-name))))))
+           (orient (and (stringp raw)
+                        (not (string-empty-p raw))
+                        (string-to-number raw))))
+      (when (and orient (> orient 0))
+        (pcase orient
+          (6 (image-rotate 90))
+          (3 (image-rotate 180))
+          (8 (image-rotate 270)))))))
+
+(add-hook 'image-mode-hook #'image-transform-fit-to-window)
+(add-hook 'image-mode-hook #'my/image-auto-orient)
+
 ;; --- diff-mode ---
 (setq diff-switches "-u")
 
