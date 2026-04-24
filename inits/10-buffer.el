@@ -50,4 +50,9 @@
     t))
 (add-hook 'kill-buffer-query-functions #'my/scratch-kill-buffer-query)
 
+;; *scratch* バッファの永続化
+(require 'persistent-scratch)
+(setq persistent-scratch-autosave-interval 60)
+(persistent-scratch-setup-default)
+
 ;;; 10-buffer.el ends here
