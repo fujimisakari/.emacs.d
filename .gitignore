@@ -1,6 +1,7 @@
 .cache
 .ccls-cache
 .lsp-session-v1
+.persistent-scratch
 .python-environments
 97-gamewith.el
 97-work.el
