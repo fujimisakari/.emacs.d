@@ -242,6 +242,7 @@
 (bind-key "C-M-f" 'my/dired-open-directory-in-new-buffer dired-mode-map)    ; ディレクトリを新しいバッファで展開
 (bind-key "C-M-b" 'dired-up-directory dired-mode-map)                       ; 上位ディレクトリへ
 (bind-key "C-M-r" 'my/dired-remove-by-shell dired-mode-map)                 ; Shell経由で削除処理を行う
+(bind-key "C-c o" 'my/dired-open-in-finder dired-mode-map)                  ; カレントディレクトリをFinderで開く
 (bind-key "C-t" 'my/other-window-or-split dired-mode-map)                   ; ウィンドウを切り替える
 (bind-key "/" 'dired-ex-isearch dired-mode-map)                             ; Diredのパス移動
 (bind-key "r" 'wdired-change-to-wdired-mode dired-mode-map)                 ; wdiredへモード変更

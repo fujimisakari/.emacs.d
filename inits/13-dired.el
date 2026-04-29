@@ -145,4 +145,14 @@ SPLIT-WINDOW が non-nil の場合、ウィンドウを分割して開く。
   (let ((files (dired-get-marked-files t current-prefix-arg)))
     (dired-do-shell-command "rm -rf" nil files)))
 
+;; カレントディレクトリを Finder で開く
+(defun my/dired-open-in-finder ()
+  "Open the current dired directory in Finder."
+  (interactive)
+  (let ((dir (expand-file-name
+              (or (and (eq major-mode 'dired-mode) default-directory)
+                  default-directory))))
+    (message "Opening in Finder: %s" dir)
+    (call-process "open" nil 0 nil dir)))
+
 ;;; 13-dired.el ends here
