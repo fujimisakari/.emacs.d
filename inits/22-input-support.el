@@ -67,6 +67,11 @@
 
 ;; 長い行を画面端で折り返さない (はみ出し分は画面外)
 (setq-default truncate-lines t)
+;; 折り返し時の "$" マーカーを非表示にする
+(unless standard-display-table
+  (setq standard-display-table (make-display-table)))
+(set-display-table-slot standard-display-table 'truncation ?\s)
+(set-display-table-slot standard-display-table 'wrap ?\s)
 
 ;; 同じコマンドを連続実行したときの振舞いを変更する
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
