@@ -65,9 +65,8 @@
   (interactive)
   (cua-set-rectangle-mark))
 
-;; 物理行(visual line)でカーソル移動する
-;; text-modeかそれを継承したメジャーモードで自動的に有効にする
-(add-hook 'text-mode-hook #'visual-line-mode)
+;; 長い行を画面端で折り返さない (はみ出し分は画面外)
+(setq-default truncate-lines t)
 
 ;; 同じコマンドを連続実行したときの振舞いを変更する
 ;; C-a，C-eを2回押ししたとき，バッファの先頭・末尾へ行く
