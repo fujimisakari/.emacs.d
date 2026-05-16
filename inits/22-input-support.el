@@ -65,12 +65,11 @@
   (interactive)
   (cua-set-rectangle-mark))
 
-;; 長い行を画面端で折り返さない (はみ出し分は画面外)
-(setq-default truncate-lines t)
-;; 折り返し時の "$" マーカーを非表示にする
+;; 長い行は画面幅で折り返す
+(setq-default truncate-lines nil)
+;; 折り返しマーカーを非表示にする
 (unless standard-display-table
   (setq standard-display-table (make-display-table)))
-(set-display-table-slot standard-display-table 'truncation ?\s)
 (set-display-table-slot standard-display-table 'wrap ?\s)
 
 ;; 同じコマンドを連続実行したときの振舞いを変更する
