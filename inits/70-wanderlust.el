@@ -16,6 +16,9 @@
   ;; Maildir のパス
   (setq elmo-maildir-folder-path "~/Maildir")
 
+  ;; Message-ID 生成に利用される。読み取り専用でも警告回避のため設定
+  (setq wl-from (gethash "work-mail-address" private-env-hash))
+
   ;; `wl-summary-goto-folder' の時に選択するデフォルトフォルダ
   (setq wl-default-folder "%inbox")
 
@@ -70,8 +73,8 @@
   (setq wl-summary-width nil)
   (setq wl-subject-length-limit nil)
 
-  ;; スレッドは開かない
-  (setq wl-thread-insert-opened nil)
+  ;; スレッドを常に展開した状態で表示する
+  (setq wl-thread-insert-opened t)
 
   ;; リファイル等で参照するフィールド
   (dolist (extra-fields '("newsgroups" "mailing-list" "list-id" "x-ml-name" "reply-to"
