@@ -20,7 +20,7 @@
            (setq-default line-spacing 0.25)
            (set-face-attribute 'default nil :family my-global-font :height 130))
           ((eq my-os-type 'mac)
-           (set-face-attribute 'default nil :family my-global-font :height 160)))
+           (set-face-attribute 'default nil :family my-global-font :height 150)))
 
     ;; Japanese font setup
     (set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font))
