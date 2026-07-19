@@ -38,7 +38,7 @@
 (bind-key "C-r" 'lsp-rename)                                 ; lspでリネーム
 (bind-key "C-s" 'swiper)
 (bind-key "C-<tab>" 'company-complete)                       ; 補完
-(bind-key "C-;" 'ace-jump-word-mode)                         ; 単語でace-jump
+(bind-key "C-;" 'swiper)                                     ; swiperの起動
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
 (bind-key* "C-t" 'my/other-window-or-split)                  ; ウィンドウを切り替える
@@ -53,20 +53,18 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-/" 'my/duplicate-this-line-forward)          ; 直前行をコピーする
 (bind-key* "C-M-i" 'counsel-imenu)                           ; counsel-imenuの起動
-(bind-key "C-M-;" 'ace-window)                               ; 現在の行の位置調整
+(bind-key "C-M-;" 'swiper-thing-at-point)                    ; swiperの起動(thing-at-point)
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-." 'my/counsel-recentf)                       ; ファイル/ディレクトリ履歴
 (bind-key "C-M-," 'my/counsel-bookmark)                      ; ブックマーク一覧
 (bind-key "C-M-m" 'my/counsel-find-file)                     ; カレント配下のファイル検索
 (bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
-(bind-key "C-M-o" 'swiper)                                   ; swiperの起動
 (bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
 
 ;; M-
 (bind-key "M-k" 'my/kill-buffer-for-elscreen)                ; カレントバッファを閉じる
 (bind-key* "M-p" 'my/scroll-up-in-place)                     ; カーソル維持したままスクロール(上)
 (bind-key* "M-n" 'my/scroll-down-in-place)                   ; カーソル維持したままスクロール(下)
-(bind-key "M-o" 'swiper-thing-at-point)                      ; swiperの起動(thing-at-point)
 (bind-key "M-x" 'counsel-M-x)                                ; counselでM-x
 (bind-key "M-y" 'counsel-yank-pop)                           ; 過去のyank, kill-ringの内容を取り出す
 (bind-key "M-Y" 'my/insert-image-like-logsec)                ; org-modeへインライン画像貼り付け
