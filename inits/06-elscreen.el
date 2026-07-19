@@ -41,7 +41,7 @@
 (if window-system
     (define-key elscreen-map (kbd "C-z") 'iconify-or-deiconify-frame)
   (define-key elscreen-map (kbd "C-z") 'suspend-emacs))
-(setq elscreen-display-tab 10)              ; tabの幅(6以上でないとダメ)
+(setq elscreen-display-tab 20)              ; tabの幅(6以上でないとダメ)
 (setq elscreen-tab-display-kill-screen nil) ; タブの左端の×を非表示
 
 ;; 起動時に自動でスクリーンを生成する
@@ -56,11 +56,11 @@
 (advice-add 'elscreen-previous :around #'my/elscreen-create-automatically)
 (advice-add 'elscreen-toggle :around #'my/elscreen-create-automatically)
 
-;; 起動時に自動で13個スクリーンを立ち上げる
+;; 起動時に自動で6個スクリーンを立ち上げる
 (defun my/elscreen-create-default-screen ()
   "create default-screen"
   (let ((counter 0))
-    (while (< counter 12)
+    (while (< counter 5)
       (elscreen-create)
       (setq counter(1+ counter))))
   (elscreen-next))
