@@ -20,6 +20,9 @@
   (custom-set-variables
    '(magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 12)))
 
+  ;; git実行結果バッファーは必ず表示する
+  (setq magit-process-popup-time 0)
+
   ;; common
   (set-face-attribute 'magit-section-heading nil
                       :foreground "lime green" :weight 'bold)
