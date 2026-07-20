@@ -104,13 +104,13 @@
 (bind-key* "C-l C-l" 'my/highlight-symbol-at-point)          ; symbolをhighlight表示
 (bind-key "C-l C-q" 'quickrun-region)                        ; quickrun(リジョン)
 (bind-key "C-l C-f" 'moccur-grep-find)                       ; moccur-grep検索
-(bind-key "C-l C-'" 'ispell-word)                            ; 現在のスペルから候補を表示
 (bind-key "C-l C-." 'my/insert-arrow)                        ; → を追加
-(bind-key "C-l C-;" 'my/google-translate-enja-or-jaen)       ; google翻訳
+(bind-key "C-l C-;" 'my/ai-translate-region)                 ; AI翻訳(英⇄日/自動判定,別バッファ表示)
+(bind-key "C-l C-'" 'my/ai-rewrite-region-codex)             ; AI清書(codex,その場で差し替え)
+(bind-key "C-l C-M-'" 'my/ai-rewrite-region-claude)          ; AI清書(claude,その場で差し替え)
 (bind-key* "C-l C-M-l" 'highlight-symbol-remove-all)         ; symbolをhighlight表示を解除
 (bind-key* "C-l C-M-i" 'imenu-list-smart-toggle)             ; imenu-listの起動
 (bind-key "C-l C-M-;" 'sdic-describe-region)                 ; 英辞郎で翻訳
-(bind-key "C-l C-M-'" 'flyspell-region)                      ; スペルが正しいかチェック
 (bind-key* "C-l M-l" 'my/interactive-highlight-symbol)       ; symbolをhighlight表示
 (bind-key "C-l <tab>" 'tabify)                               ; TAB生成
 (bind-key "C-l C-<tab>" 'untabify)                           ; TAB削除

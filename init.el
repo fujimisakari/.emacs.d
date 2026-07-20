@@ -75,7 +75,7 @@
                  flycheck-golangci-lint flycheck-posframe fold-dwim
                  fuzzy ghub git-gutter go-direx go-errcheck
                  go-expr-completion go-snippets golden-ratio
-                 google-translate gotest graphql grep-a-lot gtags
+                 gotest graphql grep-a-lot gtags
                  highlight-indent-guides highlight-symbol htmlize
                  ido-vertical-mode image+ imenu-list init-loader irony
                  ivy-hydra ivy-migemo ivy-posframe ivy-yasnippet

@@ -40,10 +40,6 @@
 ;; 閉じ括弧、クォートの自動挿入
 (electric-pair-mode 1)
 
-;; スペルチェッカは aspell を使う
-(when (executable-find "aspell")
-  (setq-default ispell-program-name "aspell"))
-
 ;; Tabの代わりにスペースでインデント
 (setq-default tab-width 4 indent-tabs-mode nil)
 ;; M-iで字下げは4の倍数にする
