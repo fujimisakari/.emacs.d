@@ -11,10 +11,31 @@
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 
 ;; org-modeでの強調表示を有効にする
+;; `> ' で始まる引用行用のフェイス
+(defface my/org-quote-line-face
+  '((t (:inherit font-lock-doc-face)))
+  "Face for markdown-style quote lines (`> ...') in org-mode.
+markdown-mode の `markdown-blockquote-face' と同じ見た目 (font-lock-doc-face 継承)."
+  :group 'org-faces)
+
 (defun my/org-mode-setup ()
   "Setup for org-mode."
   (turn-on-font-lock)
-  (my/common-mode-init))
+  (my/common-mode-init)
+  ;; org-mode では < > が括弧クラス扱いのため、`> 引用' のように
+  ;; 片方だけ出現すると rainbow-delimiters の色付けが崩れる。
+  ;; バッファローカルに区切り文字クラスへ変更して色付け対象から外す。
+  (set-syntax-table (make-syntax-table (syntax-table)))
+  (modify-syntax-entry ?< ".")
+  (modify-syntax-entry ?> ".")
+  ;; 行頭が `> ' の行を引用として色付けする
+  (font-lock-add-keywords
+   nil
+   '(("^[ \t]*\\(>.*\\)$" 1 'my/org-quote-line-face t))
+   'append)
+  ;; turn-on-font-lock 後にキーワードを追加しているため、既存表示へ再適用する
+  (font-lock-flush)
+  (font-lock-ensure))
 (add-hook 'org-mode-hook #'my/org-mode-setup)
 
 ;; インデントマークを拡張
