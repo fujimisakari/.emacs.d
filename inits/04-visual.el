@@ -26,6 +26,16 @@
     (set-fontset-font t 'japanese-jisx0208 (font-spec :family my-global-ja-font))
     (add-to-list 'face-font-rescale-alist `(,(concat ".*" my-global-ja-font ".*") . 1.2))
 
+    ;; Emoji font setup (絵文字をカラー表示)
+    ;; 'emoji script は Emoji_Presentation=Yes の文字(📌🐙等)、
+    ;; 'symbol script は text表示デフォルトの絵文字(🗣 U+1F5E3等)。両方カバーする。
+    (let ((emoji-font (cond ((eq my-os-type 'mac) "Apple Color Emoji")
+                            ((eq my-os-type 'linux) "Noto Color Emoji"))))
+      (when emoji-font
+        (set-fontset-font t 'emoji (font-spec :family emoji-font) nil 'prepend)
+        ;; symbol script はテキストフォント優先のまま、未カバー文字のみ絵文字にフォールバック
+        (set-fontset-font t 'symbol (font-spec :family emoji-font) nil 'append)))
+
     ;; Frame transparency
     (cond ((eq my-os-type 'mac)
            (set-frame-parameter nil 'alpha 78))
