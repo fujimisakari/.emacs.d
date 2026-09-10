@@ -36,9 +36,8 @@
 (bind-key "C-," 'er/expand-region)                           ; 拡張リジョン選択
 (bind-key "C-]" 'my/goto-matching-paren)                     ; 対応する括弧に飛ぶ
 (bind-key "C-r" 'lsp-rename)                                 ; lspでリネーム
-(bind-key "C-s" 'swiper)
 (bind-key "C-<tab>" 'company-complete)                       ; 補完
-(bind-key "C-;" 'swiper)                                     ; swiperの起動
+(bind-key "C-;" 'consult-line)                               ; consult-lineの起動
 (bind-key "C-." 'redo)                                       ; redo
 (bind-key "C-k" 'kill-line)                                  ; カーソル位置より前(右)を削除
 (bind-key* "C-t" 'my/other-window-or-split)                  ; ウィンドウを切り替える
@@ -53,7 +52,7 @@
 (bind-key* "C-M-h" 'elscreen-previous)                       ; タブの左移動
 (bind-key* "C-M-/" 'my/duplicate-this-line-forward)          ; 直前行をコピーする
 (bind-key* "C-M-i" 'counsel-imenu)                           ; counsel-imenuの起動
-(bind-key "C-M-;" 'swiper-thing-at-point)                    ; swiperの起動(thing-at-point)
+(bind-key "C-M-;" 'my/consult-line-thing-at-point)           ; consult-lineの起動
 (bind-key "C-M-'" 'delete-other-windows)                     ; 現在のウィンドウ以外を消す
 (bind-key "C-M-." 'my/counsel-recentf)                       ; ファイル/ディレクトリ履歴
 (bind-key "C-M-," 'my/counsel-bookmark)                      ; ブックマーク一覧

@@ -65,7 +65,7 @@
                  buffer-expose c-eldoc ccc ccls cdb chatgpt
                  clang-format color-moccur column-marker company-box
                  company-go company-posframe company-quickhelp
-                 company-terraform copilot copilot-chat csharp-mode
+                 company-terraform consult copilot copilot-chat csharp-mode
                  csv-mode dired-git dired-imenu dired-rainbow
                  dired-subtree distel-completion-lib dockerfile-mode
                  doom-modeline dumb-jump eat edit-list eldoc-extension
