@@ -12,9 +12,10 @@
 ;; mode
 (defun my/lsp-mode-setup ()
   "Setup LSP mode."
-  (lsp)
-  (lsp-deferred)
-  (lsp-completion-mode))
+  ;; `lsp-deferred' はバッファが可視になった時点で `lsp' を呼ぶので、
+  ;; `lsp' を直接併用すると workspace が二重に張られる。
+  ;; 補完も lsp-mode 側 (lsp-completion-enable) が自動で有効化するため呼ばない。
+  (lsp-deferred))
 (dolist (v '(go-mode-hook
              c-mode-hook
              typescript-mode-hook
@@ -35,11 +36,21 @@
   (setq lsp-trace nil)
   (setq lsp-auto-guess-root t)
   ;; (setq lsp-document-sync-method 'incremental) ;; always send incremental document
-  (setq lsp-response-timeout 5)
+  ;; 巨大 monorepo (GOMODCACHE 83GB) だと gopls の応答に数秒かかるため長めに取る
+  (setq lsp-response-timeout 20)
   (setq lsp-enable-completion-at-point nil)
   (setq lsp-enable-file-watchers nil)
   (setq lsp-prefer-capf t)
   (setq lsp-ui-flycheck-enable t)
+
+  ;; 入力中に走るリクエストを抑える
+  (setq lsp-enable-on-type-formatting nil)
+  (setq lsp-idle-delay 1.0)
+
+  ;; gopls は daemon モード (-remote=auto) をやめて 1 Emacs = 1 gopls (stdio) にする。
+  ;; 共有デーモンは -listen.timeout 1m0s で自死し、その度に workspace が
+  ;; SIGKILL されて "Process gopls not running: killed: 9" を起こす。
+  (setq lsp-go-gopls-server-args nil)
 
   ;; lsp-ui-doc
   (setq lsp-ui-doc-enable nil)
