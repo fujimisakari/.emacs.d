@@ -229,7 +229,7 @@
 (with-eval-after-load 'org
   (bind-key "C-'" nil org-mode-map)
   (bind-key "C-," nil org-mode-map)
-  (bind-key "C-c C-t" 'my/convert-text-to-org-table org-mode-map) ; テーブルへフォーマット変換
+  (bind-key "C-c t" 'my/convert-text-to-org-table org-mode-map)   ; テーブルへフォーマット変換 (C-c C-t はorg-todo用に残す)
   (bind-key "M-S-<left>" 'org-promote-subtree org-mode-map)       ; カレントのサブツリーを1階層上げる
   (bind-key "M-S-<right>" 'org-demote-subtree org-mode-map)       ; カレントのサブツリーを1階層下げる
   (bind-key "M-S-<up>" 'org-move-subtree-up org-mode-map)         ; サブツリーを上に移動する
