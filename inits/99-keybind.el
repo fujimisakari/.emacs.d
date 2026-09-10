@@ -73,7 +73,7 @@
 (bind-key "M-h" 'backward-kill-word)                         ; 直前の単語を削除
 (bind-key "M-P" 'bm-previous)                                ; bm-goto 前へ移動
 (bind-key "M-N" 'bm-next)                                    ; bm-goto 次へ移動
-(bind-key "M-SPC" 'bm-toggle)                                ; bm-goto 現在行に色をつけて記録
+(bind-key "M-S-SPC" 'bm-toggle)                              ; bm-goto 現在行に色をつけて記録
 
 ;; C-l
 (unbind-key "C-l")
