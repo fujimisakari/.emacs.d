@@ -27,4 +27,9 @@
 (setq inhibit-startup-screen t)   ; 起動画面を表示させない
 (setq ring-bell-function 'ignore) ; ビープ音、画面フラッシュどちらも起こさない
 
+;; 既定では .elc が古くても .el より優先されるため、コンパイル漏れの .elc が
+;; 残っていると .el の変更が反映されない。常に新しい方を読む。
+;; init.el 自体の読み込みにも効かせるため early-init.el に置く。
+(setq load-prefer-newer t)
+
 ;;; early-init.el ends here
