@@ -7,7 +7,6 @@
 (require 'ivy)
 (require 'ivy-posframe)
 (require 'counsel)
-(require 'swiper)
 
 ;; ivy config
 (ivy-mode 1)
@@ -20,7 +19,6 @@
 (setq ivy-extra-directories nil)
 (setq ivy-read-action-function #'ivy-hydra-read-action)
 (setq ivy-initial-inputs-alist '())
-(setq swiper-action-recenter t)
 (setq ivy-re-builders-alist '((t . ivy--regex-plus)))
 
 ;; counsel config
@@ -31,9 +29,8 @@
 ;; ivy-posframe config
 (ivy-posframe-mode 1)
 (setq ivy-posframe-display-functions-alist
-      '((swiper . ivy-display-function-fallback)
-        (t      . ivy-posframe-display-at-frame-center)))
-(setq ivy-posframe-height-alist '((swiper . 20) (t . 40)))
+      '((t . ivy-posframe-display-at-frame-center)))
+(setq ivy-posframe-height-alist '((t . 40)))
 (setq ivy-posframe-parameters '((left-fringe . 5) (right-fringe . 5)))
 
 ;; visual
@@ -147,25 +144,6 @@
             :action (lambda (x)
                       (bookmark-jump-other-window x))
             :caller 'counsel-bookmark))
-
-;; swiper for region
-(defun my/swiper-thing-at-region ()
-  "`swiper' with `ivy-thing-at-region'."
-  (interactive)
-  (let ((thing ""))
-    (when (use-region-p)
-      (setq thing (buffer-substring (region-beginning) (region-end)))
-      (deactivate-mark))
-    (swiper (regexp-quote thing))))
-
-(defun my/swiper-all-thing-at-region ()
-  "`swiper-all' with `ivy-thing-at-region'."
-  (interactive)
-  (let ((thing ""))
-    (when (use-region-p)
-      (setq thing (buffer-substring (region-beginning) (region-end)))
-      (deactivate-mark))
-    (swiper-all (regexp-quote thing))))
 
 ; counsel-find-file
 (defun my/counsel-find-file ()
