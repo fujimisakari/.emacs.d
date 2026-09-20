@@ -7,6 +7,31 @@
 (require 'git-gutter)
 (global-git-gutter-mode +1)
 
+;; Magit bytecode still calls the legacy `incf' macro.
+(require 'cl)
+
+;; Magit 2026 uses `set-local', introduced in Emacs 31.
+;; Emacs 30 has the same operation under `make-local-variable' and `set'.
+(unless (fboundp 'set-local)
+  (defun set-local (variable value)
+    (set (make-local-variable variable) value)))
+
+;; Magit 2026 also uses the Emacs 31 `any' and `all' helpers.
+(unless (fboundp 'any)
+  (defun any (pred list)
+    (cl-member-if pred list)))
+(unless (fboundp 'all)
+  (defun all (pred list)
+    (cl-every pred list)))
+
+;; The current ELPA Magit package contains an Emacs 31 compatibility
+;; form compiled as a function. Emacs 30 does not provide that form;
+;; skip the optional Emacs 31-only backport so Magit can load normally.
+(when (and (< emacs-major-version 31)
+           (not (fboundp 'static-when)))
+  (defun static-when (&rest _args)
+    nil))
+
 ;; magit autoload
 (autoload 'magit-status "magit" nil t)
 (autoload 'magit-log-current "magit" nil t)
@@ -31,15 +56,15 @@
 
   ;; branch
   (set-face-attribute 'magit-branch-current nil
-                      :foreground "turquoise1" :background nil :weight 'bold)
+                      :foreground "turquoise1" :background 'unspecified :weight 'bold)
   (set-face-attribute 'magit-branch-local nil
-                      :foreground "turquoise3" :background nil :weight 'normal)
+                      :foreground "turquoise3" :background 'unspecified :weight 'normal)
   (set-face-attribute 'magit-branch-remote-head nil
-                      :foreground "yellow" :background nil :weight 'bold)
+                      :foreground "yellow" :background 'unspecified :weight 'bold)
   (set-face-attribute 'magit-branch-remote nil
-                      :foreground "yellow3" :background nil :weight 'normal)
+                      :foreground "yellow3" :background 'unspecified :weight 'normal)
   (set-face-attribute 'magit-tag nil
-                      :foreground "orchid1" :background nil :weight 'bold)
+                      :foreground "orchid1" :background 'unspecified :weight 'bold)
 
   ;; diff
   (setq magit-diff-refine-hunk 'all)

@@ -4,7 +4,9 @@
 
 ;;; Code:
 
-(require 'yasnippet)
+;; This directory is shared by different Emacs versions.  Expand the mode
+;; macros with the running Emacs instead of using incompatible .elc/.eln files.
+(load "yasnippet.el" nil t)
 (setq yas-snippet-dirs
       '("~/.emacs.d/share/snippets"))
 (yas-global-mode 1)

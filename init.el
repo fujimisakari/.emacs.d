@@ -65,17 +65,17 @@
                  buffer-expose c-eldoc ccc ccls cdb chatgpt
                  clang-format color-moccur column-marker company-box
                  company-go company-posframe company-quickhelp
-                 company-terraform consult copilot copilot-chat csharp-mode
-                 csv-mode dired-git dired-imenu dired-rainbow
-                 dired-subtree distel-completion-lib dockerfile-mode
-                 doom-modeline dumb-jump eat edit-list eldoc-extension
-                 elixir-mode elscreen engine-mode epc erlang
-                 etags-table evil-python-movement exec-path-from-shell
-                 expand-region fancy-battery flycheck-elixir
-                 flycheck-golangci-lint flycheck-posframe fold-dwim
-                 fuzzy ghub git-gutter go-direx go-errcheck
-                 go-expr-completion go-snippets golden-ratio
-                 gotest graphql grep-a-lot gtags
+                 company-terraform consult copilot copilot-chat
+                 csharp-mode csv-mode dired-git dired-imenu
+                 dired-rainbow dired-subtree distel-completion-lib
+                 dockerfile-mode doom-modeline dumb-jump eat edit-list
+                 eldoc-extension elixir-mode elscreen engine-mode epc
+                 erlang etags-table evil-python-movement
+                 exec-path-from-shell expand-region fancy-battery
+                 flycheck-elixir flycheck-golangci-lint
+                 flycheck-posframe fold-dwim fuzzy ghub git-gutter
+                 go-direx go-errcheck go-expr-completion go-snippets
+                 golden-ratio gotest graphql grep-a-lot gtags
                  highlight-indent-guides highlight-symbol htmlize
                  ido-vertical-mode image+ imenu-list init-loader irony
                  ivy-hydra ivy-migemo ivy-posframe ivy-yasnippet
@@ -95,8 +95,8 @@
                  smooth-scroll stem sticky sudo-ext swift-mode
                  symbol-overlay toml-mode typescript-mode vimrc-mode
                  virtualenv vline volatile-highlights vterm w3m
-                 wanderlust web-mode which-key xcscope yahoo-weather
-                 yaml-mode))
+                 wanderlust web-mode which-key xcscope xterm-color
+                 yahoo-weather yaml-mode))
  '(package-vc-selected-packages
    '((vue-ts-mode :url "https://github.com/8uff3r/vue-ts-mode" :branch
                   "main")))

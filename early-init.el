@@ -8,11 +8,11 @@
 
 ;; Disable UI elements before frame creation to prevent flicker
 (setq default-frame-alist
-      '((menu-bar-lines . 0)
+      `((menu-bar-lines . 0)
         (tool-bar-lines . 0)
         (vertical-scroll-bars . nil)
         (horizontal-scroll-bars . nil)
-        (undecorated . t)
+        (undecorated . ,(not (eq system-type 'gnu/linux)))
         (internal-border-width . 0)))
 
 ;; Disable fringe (left/right margin indicators)

@@ -4,9 +4,9 @@
 
 ;;; Code:
 
-;; autoload
-(autoload 'company-complete "company" nil t)
-(autoload 'global-company-mode "company" nil t)
+;; This directory is shared by different Emacs versions.  Expand the mode
+;; macros with the running Emacs instead of using incompatible .elc/.eln files.
+(load "company.el" nil t)
 
 (defun my/company-setup ()
   "Setup company-mode after idle."

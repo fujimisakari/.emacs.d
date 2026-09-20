@@ -4,10 +4,11 @@
 
 ;;; Code:
 
-;; Hide titlebar (keep rounded corners, works better with fullscreen)
+;; Keep the titlebar on Linux; use rounded, undecorated frames elsewhere.
 (setq frame-resize-pixelwise t)
-(add-to-list 'default-frame-alist '(undecorated-round . t))
-(add-to-list 'initial-frame-alist '(undecorated-round . t))
+(let ((undecorated (not (eq system-type 'gnu/linux))))
+  (add-to-list 'default-frame-alist `(undecorated-round . ,undecorated))
+  (add-to-list 'initial-frame-alist `(undecorated-round . ,undecorated)))
 
 (defun my/apply-theme-and-ui (frame)
   "Apply theme, font, and UI settings to new FRAME."
