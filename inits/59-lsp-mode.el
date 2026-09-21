@@ -38,9 +38,13 @@
   ;; (setq lsp-document-sync-method 'incremental) ;; always send incremental document
   ;; 巨大 monorepo (GOMODCACHE 83GB) だと gopls の応答に数秒かかるため長めに取る
   (setq lsp-response-timeout 20)
-  (setq lsp-enable-completion-at-point nil)
+  ;; `lsp-enable-completion-at-point' は `lsp-completion-enable' の廃止済みエイリアス。
+  ;; nil にすると completion-at-point への統合ごと切れて company-capf が
+  ;; LSP の候補を取れなくなる (定義ジャンプや診断だけ動く状態になる)。
+  (setq lsp-completion-enable t)
+  ;; `lsp-prefer-capf' も `lsp-completion-provider' の廃止済みエイリアス。
+  ;; capf は既定なので指定不要。
   (setq lsp-enable-file-watchers nil)
-  (setq lsp-prefer-capf t)
   (setq lsp-ui-flycheck-enable t)
 
   ;; 入力中に走るリクエストを抑える
