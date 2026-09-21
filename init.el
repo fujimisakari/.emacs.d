@@ -59,11 +59,10 @@
  '(anzu-search-threshold 1000)
  '(magit-log-margin '(t "%Y-%m-%d %H:%M" magit-log-margin-width t 12))
  '(package-selected-packages
-   '(ace-isearch ace-jump-mode all-ext
-                 all-the-icons-dired all-the-icons-ivy amx
-                 angular-mode anzu arduino-mode
-                 auto-async-byte-compile bbdb-vcard beacon bind-key
-                 bm buffer-expose c-eldoc ccc ccls cdb chatgpt
+   '(ace-isearch ace-jump-mode all-ext all-the-icons-dired
+                 all-the-icons-ivy amx angular-mode anzu arduino-mode
+                 auto-async-byte-compile bbdb-vcard beacon bind-key bm
+                 buffer-expose c-eldoc ccc ccls cdb chatgpt
                  clang-format color-moccur column-marker company-box
                  company-go company-posframe company-quickhelp
                  company-terraform consult csharp-mode csv-mode
