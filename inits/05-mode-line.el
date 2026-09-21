@@ -51,8 +51,8 @@
 (defun my/buffer-coding-system-mnemonic ()
   "Return a mnemonic for `buffer-file-coding-system'."
   (let* ((code buffer-file-coding-system)
-         (name (my-coding-system-name-mnemonic code))
-         (bom (my-coding-system-bom-mnemonic code)))
+         (name (my/coding-system-name-mnemonic code))
+         (bom (my/coding-system-bom-mnemonic code)))
     (format "%s%s" name bom)))
 
 ;; `mode-line-mule-info' の文字エンコーディングの文字列表現を差し替える
