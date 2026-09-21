@@ -15,11 +15,9 @@
   (setq go-test-verbose t)
   (setq tab-width 4)
   (setq go-tab-width 4)
-  (setq-local copilot-indent-offset tab-width) ; Copilot workaround
   (my/common-mode-init)
   (company-mode)
-  (flycheck-golangci-lint-setup)
-  (copilot-mode))
+  (flycheck-golangci-lint-setup))
 (add-hook 'go-mode-hook #'my/go-mode-setup)
 
 (with-eval-after-load 'go-mode

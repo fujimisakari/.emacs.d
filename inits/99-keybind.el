@@ -58,7 +58,6 @@
 (bind-key "C-M-," 'my/counsel-bookmark)                      ; ブックマーク一覧
 (bind-key "C-M-m" 'my/counsel-find-file)                     ; カレント配下のファイル検索
 (bind-key "C-M-g" 'counsel-git)                              ; git管理ファイル一覧
-(bind-key "C-M-j" 'copilot-accept-completion)                ; copilot補完
 
 ;; M-
 (bind-key "M-k" 'my/kill-buffer-for-elscreen)                ; カレントバッファを閉じる
@@ -77,7 +76,6 @@
 ;; C-l
 (unbind-key "C-l")
 (bind-key "C-l 0" 'my/copy-current-path)                     ; 現在のfile-pathを表示&コピー
-(bind-key "C-l c" 'my/copilot-chat-action-picker)            ; copilot-chat actionを開く
 (bind-key "C-l q" 'quickrun)                                 ; quickrun(バッファ)
 (bind-key "C-l l" 'ace-jump-line-mode)                       ; 行でace-jump
 (bind-key "C-l w" 'my/normalize-spaces-in-region)            ; 連続したスペースやTABを1スペースへ変換

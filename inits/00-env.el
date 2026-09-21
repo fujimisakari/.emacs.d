@@ -51,12 +51,13 @@
 ;; システム関連
 (setq echo-keystrokes 0.1)                                    ; キーストロークをエコーエリアに早く表示させる
 
-;; GCを減らして起動を軽くする（デフォルトの50倍）、起動後に戻す
+;; GCを減らして起動を軽くする（デフォルトの50倍）
+;; 起動後の gc-cons-threshold は gcmh に任せるため、ここでは戻さない (02-gcmh.el)
 (setq gc-cons-threshold (* 50 gc-cons-threshold))
-(defun my/reset-gc-cons-threshold ()
-  "Reset gc-cons-threshold to reasonable value after startup."
-  (setq gc-cons-threshold (* 2 1024 1024))) ; 起動後は2MBに
-(add-hook 'emacs-startup-hook #'my/reset-gc-cons-threshold)
+
+;; プロセスから一度に読み取るバイト数。デフォルトの 64KB では gopls の大きな応答を
+;; 細かく刻んで読むことになり、その分 consing が増えて GC を誘発する。
+(setq read-process-output-max (* 1024 1024))   ; 1MB
 (setq select-enable-clipboard t)                              ; X11とクリップボードを共有する
 (setq use-dialog-box nil)                                     ; ダイアログボックスを使わないようにする
 
