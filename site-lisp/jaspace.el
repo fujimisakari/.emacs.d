@@ -1,4 +1,4 @@
-;;; -*- coding: shift_jis-dos; tab-width: 4; -*-
+;;; -*- lexical-binding: t; coding: shift_jis-dos; tab-width: 4; -*-
 ;;; jaspace.el --- make Japanese whitespaces visible
 ;;; $Id: jaspace.el 1.1 2005/02/26 06:21:02 satomii Exp $
 

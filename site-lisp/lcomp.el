@@ -1,4 +1,4 @@
-;;; lcomp.el --- auto close completion window
+;;; lcomp.el --- auto close completion window  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2002, 2004 by Taiki SUGAWARA <taiki.s@cityfujisawa.ne.jp>
 

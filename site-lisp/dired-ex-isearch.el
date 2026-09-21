@@ -1,4 +1,4 @@
-;; dired-ex-isearch.el v0.1
+;; dired-ex-isearch.el v0.1  -*- lexical-binding: t; -*-
 ;; This is free software
 ;;
 ;; * Base code
