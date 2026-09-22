@@ -9,6 +9,12 @@
 (define-key global-map [?¥] [?\\]) ; ¥の代わりにバックスラッシュを入力する
 (global-unset-key "\M-t") ; transpose-words(2つの単語の順序を入れ換え)はタイポしがちなので外す
 
+;; Option+Tab は Hammerspoon のウィンドウ切り替えに使うため Emacs では無効にする。
+;; 物理 Tab キー由来は <M-tab> として届き、束縛が無いと制御文字 M-TAB (= C-M-i) に
+;; フォールバックして counsel-imenu が起動してしまうので、ignore を明示的に割り当てる。
+;; Ctrl+Option+i で打つ C-M-i 側はそのまま counsel-imenu が使える。
+(bind-key* "<M-tab>" 'ignore)                                ; Option+Tabを無効化
+
 ;; key-chord
 (require 'key-chord)
 (setq key-chord-two-keys-delay 0.3)
